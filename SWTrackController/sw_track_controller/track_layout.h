@@ -8,11 +8,11 @@ struct block{
     bool switch_tail = false;
     double speed_limit;
     double real_speed = 0;
-    int head_connect[2] = {-1,-1};
-    int tail_connect = -1;
+    int headOptions[2] = {-1,-1};
     int auth;
+    int route;
     bool station;
-    bool heater;
+    bool heater=false;
     //char section;
     bool underground = false;
     bool yard;
@@ -20,7 +20,8 @@ struct block{
     double sugg_speed = 0;
     double comm_speed= 0;
     bool maintenance = false;
-    bool switch_connection = -1;
+    int headConnect = -1;
+    int tailConnect = -1;
 
     //0 = green, 1 = yellow, 2 = red
     int lights = 0;

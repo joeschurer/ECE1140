@@ -46,7 +46,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->occupancy_edit,SIGNAL(editingFinished()),this,SLOT(check_track_lines()));
     connect(ui->heater_test,SIGNAL(editingFinished()),this,SLOT(check_heater_line()));
     connect(ui->heater_submit,SIGNAL(released()),this,SLOT(track_heater()));
-    connect(ui->maintenance_submit,SIGNAL(released()),this,SLOT(maintenance_sel()));
     connect(ui->maintenance_test,SIGNAL(editingFinished()),this,SLOT(check_maintenance_line()));
 
 }
@@ -102,13 +101,15 @@ void MainWindow::sel_line(){
 
 void MainWindow::sel_block(){
     int selection = ui->block_select->currentIndex() +1;
+
     ui->sel_block->setText(QStringLiteral("Block ")+ QString::number(selection));
 
     //get block info
     block temp_block = plc.get_block(selection);
+
     ui->auth_status->setText(QString::number(temp_block.auth));
-    ui->sugg_status->setText(QString::number(temp_block.sugg_speed));
-    ui->commanded_status->setText(QString::number(temp_block.comm_speed));
+    ui->sugg_status->setText(QString::number(temp_block.sugg_speed)+ " mph");
+    ui->commanded_status->setText(QString::number(temp_block.comm_speed)+ " mph");
     ui->presence_status->setText(QString::number(temp_block.occupancy));
     //get heater status
     QString state = "Off";
@@ -117,10 +118,30 @@ void MainWindow::sel_block(){
     }
     QString mode = "No";
     if(temp_block.maintenance == true){
-        state = "Yes";
+        mode = "Yes";
+    }
+    QString light = "Green";
+    if(temp_block.lights == 1){
+        light = "Yellow";
+    }
+    else if(temp_block.lights == 2){
+        light = "Red";
+    }
+    QString switchString = "No Switch";
+    if(temp_block.switch_tail == true){
+       switchString = "Switch Not connected";
+       if(temp_block.tailConnect != -1){
+           switchString = "Connected to " + QString::number(temp_block.tailConnect);
+       }
+    }
+    if(temp_block.switch_head == true){
+        switchString = "Connected to " + QString::number(temp_block.headConnect);
     }
     ui->maintenance_status->setText(mode);
     ui->heater_status->setText(state);
+    ui->light_status->setText(light);
+    ui->switch_status->setText(switchString);
+    ui->crossing_status->setText("None");
     block_selected = true;
 
 }
@@ -199,16 +220,7 @@ void MainWindow::track_heater(){
     }
 }
 
-//toggles maintenance mode for the given block
-void MainWindow::maintenance_sel(){
-    int index = ui->maintenance_test->text().toInt();
-    bool check = plc.get_maintenance_mode(index);
-    plc.set_maintenance_mode(index,!check);
-    if(block_selected){
-        sel_block();
-    }
 
-}
 
 void MainWindow::check_maintenance_line(){
     if(!ui->maintenance_test->text().isEmpty()){
@@ -216,6 +228,47 @@ void MainWindow::check_maintenance_line(){
     }
 }
 
-void MainWindow::maintenance_toggle(){
+
+void MainWindow::on_uploadButton_clicked()
+{
+    fileName = QFileDialog::getOpenFileName(this,"Open the PLC File","C://");
+    if(fileName != ""){
+        ui->uploadNotif->setText("Uploaded " + fileName);
+    }
 
 }
+
+
+void MainWindow::on_maintenance_submit_clicked()
+{
+    int index = ui->maintenance_test->text().toInt();
+    bool check = plc.get_maintenance_mode(index);
+    plc.set_maintenance_mode(index,!check);
+    block temp = plc.get_block(index);
+    if(temp.switch_head == true){
+        if(!check == true){
+            ui->maintenance_toggle->setEnabled(true);
+        } else {
+            ui->maintenance_toggle->setEnabled(false);
+        }
+    } else {
+        ui->maintenance_toggle->setEnabled(false);
+    }
+
+    if(block_selected){
+        sel_block();
+    }
+
+}
+
+
+void MainWindow::on_maintenance_toggle_clicked()
+{
+    int index = ui->maintenance_test->text().toInt();
+    plc.toggleSwitch(index);
+
+    if(block_selected){
+        sel_block();
+    }
+}
+

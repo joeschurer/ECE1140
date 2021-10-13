@@ -14,9 +14,8 @@ bool track_layout::create_line(){
     double speed = 50;
     double elev = 0;
 
-    block temp;
-
     for(int i=1; i<16; i++){
+        block temp;
         temp.block_num = i;
         temp.speed_limit = speed;
         temp.heater = false;
@@ -25,12 +24,15 @@ bool track_layout::create_line(){
         }
         if(i==5){
             temp.switch_head = true;
-            temp.head_connect[0] = 6;
-            temp.head_connect[1] = 11;
+            temp.headOptions[0] = 6;
+            temp.headOptions[1] = 11;
+            temp.headConnect = 6;
         }
         if(i==6 || i == 11){
             temp.switch_tail = true;
-            temp.tail_connect = 5;
+            if(i==6){
+                temp.tailConnect = 5;
+            }
         }
         if(i==10){
             temp.station='B';
@@ -38,7 +40,8 @@ bool track_layout::create_line(){
         if(i==15){
             temp.station='C';
         }
-        temp.auth = i;
+        temp.auth = 10;
+        temp.comm_speed = 50;
         new_block(temp);
     }
 

@@ -31,14 +31,18 @@ private slots:
     void check_heater_line();
     void track_test();
     void track_heater();
-    void maintenance_sel();
     void check_maintenance_line();
-    void maintenance_toggle();
 
+
+    void on_uploadButton_clicked();
+
+    void on_maintenance_submit_clicked();
+
+    void on_maintenance_toggle_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QString file = "";
+    QString fileName = "";
     PLC plc;
 };
 #endif // MAINWINDOW_H

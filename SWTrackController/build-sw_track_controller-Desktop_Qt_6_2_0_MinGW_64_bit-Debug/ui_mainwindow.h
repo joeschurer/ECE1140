@@ -43,7 +43,7 @@ public:
     QLabel *sel_wayside;
     QLabel *sel_block;
     QSpacerItem *horizontalSpacer;
-    QPushButton *pushButton;
+    QPushButton *uploadButton;
     QGridLayout *gridLayout_3;
     QLabel *switch_label;
     QLabel *light_status;
@@ -88,6 +88,7 @@ public:
     QLineEdit *heater_test;
     QCheckBox *heater_state;
     QPushButton *heater_submit;
+    QLabel *uploadNotif;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -156,10 +157,10 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        uploadButton = new QPushButton(centralwidget);
+        uploadButton->setObjectName(QString::fromUtf8("uploadButton"));
 
-        horizontalLayout->addWidget(pushButton);
+        horizontalLayout->addWidget(uploadButton);
 
 
         verticalLayout_6->addLayout(horizontalLayout);
@@ -401,6 +402,11 @@ public:
 
         verticalLayout_7->addWidget(heater_submit);
 
+        uploadNotif = new QLabel(centralwidget);
+        uploadNotif->setObjectName(QString::fromUtf8("uploadNotif"));
+
+        verticalLayout_7->addWidget(uploadNotif);
+
 
         horizontalLayout_6->addLayout(verticalLayout_7);
 
@@ -420,7 +426,7 @@ public:
         sel_line->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         sel_wayside->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         sel_block->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Upload Program", nullptr));
+        uploadButton->setText(QCoreApplication::translate("MainWindow", "Upload Program", nullptr));
         switch_label->setText(QCoreApplication::translate("MainWindow", "Switch Position", nullptr));
         light_status->setText(QString());
         presence_status->setText(QString());
@@ -456,7 +462,8 @@ public:
         track_submit->setText(QCoreApplication::translate("MainWindow", "Submit", nullptr));
         heater_test->setPlaceholderText(QCoreApplication::translate("MainWindow", "Block to toggle heater", nullptr));
         heater_state->setText(QCoreApplication::translate("MainWindow", "Heater State", nullptr));
-        heater_submit->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        heater_submit->setText(QCoreApplication::translate("MainWindow", "Submit", nullptr));
+        uploadNotif->setText(QString());
     } // retranslateUi
 
 };

@@ -96,7 +96,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="uploadButton">
             <property name="text">
              <string>Upload Program</string>
             </property>
@@ -500,7 +500,14 @@
         <item>
          <widget class="QPushButton" name="heater_submit">
           <property name="text">
-           <string>PushButton</string>
+           <string>Submit</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="uploadNotif">
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>

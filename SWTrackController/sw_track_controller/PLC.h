@@ -15,6 +15,9 @@ public:
     block get_block(int);
     void set_maintenance_mode(int,bool);
     bool get_maintenance_mode(int);
+    bool updateBlocks();
+    void toggleSwitch(int);
+    void authUpdate(int);
 
 };
 
