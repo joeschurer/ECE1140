@@ -1,0 +1,54 @@
+<pre><tt><font color="#000000">01: </font><b><font color="#000080">import</font></b> java<font color="#990000">.</font>util<font color="#990000">.</font>Scanner<font color="#990000">;</font>
+<font color="#000000">02: </font>
+<font color="#000000">03: </font><i><font color="#9A1900">/**</font></i>
+<font color="#000000">04: </font><i><font color="#9A1900">   A telephone that takes simulated keystrokes and voice input</font></i>
+<font color="#000000">05: </font><i><font color="#9A1900">   from the user and simulates spoken text.</font></i>
+<font color="#000000">06: </font><i><font color="#9A1900">*/</font></i>
+<font color="#000000">07: </font><b><font color="#0000FF">public</font></b> <b><font color="#0000FF">class</font></b> Telephone
+<font color="#000000">08: </font><font color="#FF0000">{</font>
+<font color="#000000">09: </font>   <i><font color="#9A1900">/**</font></i>
+<font color="#000000">10: </font><i><font color="#9A1900">      Construct phone object.</font></i>
+<font color="#000000">11: </font><i><font color="#9A1900">      @param aScanner that reads text from a character-input stream</font></i>
+<font color="#000000">12: </font><i><font color="#9A1900">   */</font></i>
+<font color="#000000">13: </font>   <b><font color="#0000FF">public</font></b> <b><font color="#000000">Telephone</font></b><font color="#990000">(</font>Scanner aScanner<font color="#990000">)</font>
+<font color="#000000">14: </font>   <font color="#FF0000">{</font>
+<font color="#000000">15: </font>      scanner <font color="#990000">=</font> aScanner<font color="#990000">;</font>
+<font color="#000000">16: </font>   <font color="#FF0000">}</font>
+<font color="#000000">17: </font>
+<font color="#000000">18: </font>   <i><font color="#9A1900">/**</font></i>
+<font color="#000000">19: </font><i><font color="#9A1900">      Speak a message to System.out.</font></i>
+<font color="#000000">20: </font><i><font color="#9A1900">      @param output the text that will be "spoken"</font></i>
+<font color="#000000">21: </font><i><font color="#9A1900">   */</font></i>
+<font color="#000000">22: </font>   <b><font color="#0000FF">public</font></b> <font color="#009900">void</font> <b><font color="#000000">speak</font></b><font color="#990000">(</font>String output<font color="#990000">)</font>
+<font color="#000000">23: </font>   <font color="#FF0000">{</font>
+<font color="#000000">24: </font>      System<font color="#990000">.</font>out<font color="#990000">.</font><b><font color="#000000">println</font></b><font color="#990000">(</font>output<font color="#990000">)</font><font color="#990000">;</font>
+<font color="#000000">25: </font>   <font color="#FF0000">}</font>
+<font color="#000000">26: </font>
+<font color="#000000">27: </font>   <i><font color="#9A1900">/**</font></i>
+<font color="#000000">28: </font><i><font color="#9A1900">      Loops reading user input and passes the input to the</font></i>
+<font color="#000000">29: </font><i><font color="#9A1900">      Connection object's methods dial, record or hangup.</font></i>
+<font color="#000000">30: </font><i><font color="#9A1900">      @param c the connection that connects this phone to the</font></i>
+<font color="#000000">31: </font><i><font color="#9A1900">      voice mail system</font></i>
+<font color="#000000">32: </font><i><font color="#9A1900">   */</font></i>
+<font color="#000000">33: </font>   <b><font color="#0000FF">public</font></b> <font color="#009900">void</font> <b><font color="#000000">run</font></b><font color="#990000">(</font>Connection c<font color="#990000">)</font>
+<font color="#000000">34: </font>   <font color="#FF0000">{</font>
+<font color="#000000">35: </font>      <font color="#009900">boolean</font> more <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+<font color="#000000">36: </font>      <b><font color="#0000FF">while</font></b> <font color="#990000">(</font>more<font color="#990000">)</font>
+<font color="#000000">37: </font>      <font color="#FF0000">{</font>
+<font color="#000000">38: </font>         String input <font color="#990000">=</font> scanner<font color="#990000">.</font><b><font color="#000000">nextLine</font></b><font color="#990000">(</font><font color="#990000">)</font><font color="#990000">;</font>
+<font color="#000000">39: </font>         <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>input <font color="#990000">=</font><font color="#990000">=</font> <b><font color="#0000FF">null</font></b><font color="#990000">)</font> <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+<font color="#000000">40: </font>         <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>input<font color="#990000">.</font><b><font color="#000000">equalsIgnoreCase</font></b><font color="#990000">(</font><font color="#FF0000">"H"</font><font color="#990000">)</font><font color="#990000">)</font>
+<font color="#000000">41: </font>            c<font color="#990000">.</font><b><font color="#000000">hangup</font></b><font color="#990000">(</font><font color="#990000">)</font><font color="#990000">;</font>
+<font color="#000000">42: </font>         <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>input<font color="#990000">.</font><b><font color="#000000">equalsIgnoreCase</font></b><font color="#990000">(</font><font color="#FF0000">"Q"</font><font color="#990000">)</font><font color="#990000">)</font>
+<font color="#000000">43: </font>            more <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+<font color="#000000">44: </font>         <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>input<font color="#990000">.</font><b><font color="#000000">length</font></b><font color="#990000">(</font><font color="#990000">)</font> <font color="#990000">=</font><font color="#990000">=</font> <font color="#993399">1</font>
+<font color="#000000">45: </font>            <font color="#990000">&amp;</font><font color="#990000">&amp;</font> <font color="#FF0000">"1234567890#"</font><font color="#990000">.</font><b><font color="#000000">indexOf</font></b><font color="#990000">(</font>input<font color="#990000">)</font> <font color="#990000">&gt;</font><font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">)</font>
+<font color="#000000">46: </font>            c<font color="#990000">.</font><b><font color="#000000">dial</font></b><font color="#990000">(</font>input<font color="#990000">)</font><font color="#990000">;</font>
+<font color="#000000">47: </font>         <b><font color="#0000FF">else</font></b>
+<font color="#000000">48: </font>            c<font color="#990000">.</font><b><font color="#000000">record</font></b><font color="#990000">(</font>input<font color="#990000">)</font><font color="#990000">;</font>
+<font color="#000000">49: </font>      <font color="#FF0000">}</font>
+<font color="#000000">50: </font>   <font color="#FF0000">}</font>
+<font color="#000000">51: </font>
+<font color="#000000">52: </font>   <b><font color="#0000FF">private</font></b> Scanner scanner<font color="#990000">;</font>
+<font color="#000000">53: </font><font color="#FF0000">}</font>
+</tt></pre>
