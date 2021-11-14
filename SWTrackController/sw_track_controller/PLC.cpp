@@ -2,7 +2,7 @@
 
 PLC::PLC(){
     //create the blue line
-    track_model.create_line();
+    track_model.create_line(1);
 }
 
 PLC::~PLC(){}

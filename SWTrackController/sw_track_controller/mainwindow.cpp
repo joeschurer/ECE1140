@@ -103,11 +103,11 @@ void MainWindow::sel_block(){
     int selection = ui->block_select->currentIndex() +1;
 
     ui->sel_block->setText(QStringLiteral("Block ")+ QString::number(selection));
-
+    qDebug()<<"help";
     //get block info
     block temp_block = plc.get_block(selection);
-
-    ui->auth_status->setText(QString::number(temp_block.auth));
+    qDebug()<<"help2";
+    /*ui->auth_status->setText(QString::number(temp_block.auth));
     ui->sugg_status->setText(QString::number(temp_block.sugg_speed)+ " mph");
     ui->commanded_status->setText(QString::number(temp_block.comm_speed)+ " mph");
     ui->presence_status->setText(QString::number(temp_block.occupancy));
@@ -143,7 +143,7 @@ void MainWindow::sel_block(){
     ui->switch_status->setText(switchString);
     ui->crossing_status->setText("None");
     block_selected = true;
-
+    */
 }
 
 void MainWindow::sel_wayside(){
@@ -159,7 +159,7 @@ void MainWindow::sel_wayside(){
     } else if(curr_line == "red") {
         num_blocks = 20;
     } else {
-        num_blocks = 27;
+        num_blocks = 150;
     }
 
     //add block to the drop-down

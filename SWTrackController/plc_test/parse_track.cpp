@@ -1,8 +1,36 @@
-#include "track_layout.h"
 #include <fstream>
 #include <string>
 #include <iostream>
-#include <QDebug>
+#include <vector>
+
+struct block{
+    int block_num;
+    bool switch_head = false;
+    bool switch_tail = false;
+    double speed_limit;
+    double real_speed = 0;
+    //0 = yard else indexed by block numbers
+    int headOptions[2] = {-1,-1};
+    int auth;
+    int route;
+    bool station;
+    bool heater=false;
+    bool underground = false;
+    bool yard;
+    bool occupancy = false;
+    double sugg_speed = 0;
+    double comm_speed= 0;
+    bool maintenance = false;
+    int headConnect = -1;
+    int tailConnect = -1;
+    char section;
+    bool crossing;
+    //0 is inactive, 1 active
+    bool crossingState;
+
+    //0 = green, 1 = yellow, 2 = red
+    int lights = 0;
+};
 
 
 std::vector<std::string> lineSplit(std::string s, std::string delimeter) {
@@ -18,26 +46,11 @@ std::vector<std::string> lineSplit(std::string s, std::string delimeter) {
     return result;
 }
 
-track_layout::track_layout(){
-    //create the red line for iteration 3
-   // this->create_line(1);
-}
-track_layout::~track_layout(){}
-
-//push block onto the track
-bool track_layout::new_block(block new_block){
-    track.push_back(new_block);
-    return true;
-}
-
-//create a track
-bool track_layout::create_line(int line){
+int main(){
     std::ifstream trackFile;
-    trackFile.open(QApplication::applicationDirPath()+"GreenLine.txt");
+    trackFile.open("GreenLine.txt");
     std::string fLine;
     getline(trackFile, fLine);
-    qDebug() << "hi";
-    qDebug() << QString::fromStdString(fLine);
     while(getline(trackFile, fLine)){
         block temp;
         std::vector<std::string> splitLine = lineSplit(fLine, ",");
@@ -103,29 +116,8 @@ bool track_layout::create_line(int line){
             }
         }
         
-        new_block(temp);
+        //new_block(temp);
     }
 
-    for (int i = 0; i < track.size(); i++)
-    {
-        if(track[i].switch_head==true){
-            track[i].headConnect=track[i].headOptions[0];
-            track[track[i].headOptions[0]-1].switch_tail = true;
-            track[track[i].headOptions[0]-1].tailConnect = i+1;
-            track[track[i].headOptions[1]-1].switch_tail = true;
-        }
-    }
-    
-    trackFile.close();
-    return true;
-}
-
-//retrieve a block
-//use 1 index
-block track_layout::get_block(int index){
-    return track.at(index);
-}
-
-bool track_layout::edit_block(){
-    return true;
+    return 0;
 }
