@@ -107,7 +107,7 @@ void MainWindow::sel_block(){
     //get block info
     block temp_block = plc.get_block(selection);
     qDebug()<<"help2";
-    /*ui->auth_status->setText(QString::number(temp_block.auth));
+    ui->auth_status->setText(QString::number(temp_block.auth));
     ui->sugg_status->setText(QString::number(temp_block.sugg_speed)+ " mph");
     ui->commanded_status->setText(QString::number(temp_block.comm_speed)+ " mph");
     ui->presence_status->setText(QString::number(temp_block.occupancy));
@@ -143,7 +143,7 @@ void MainWindow::sel_block(){
     ui->switch_status->setText(switchString);
     ui->crossing_status->setText("None");
     block_selected = true;
-    */
+
 }
 
 void MainWindow::sel_wayside(){

@@ -33,11 +33,10 @@ bool track_layout::new_block(block new_block){
 //create a track
 bool track_layout::create_line(int line){
     std::ifstream trackFile;
-    trackFile.open(QApplication::applicationDirPath()+"GreenLine.txt");
+    trackFile.open("C:\\Users\\jwsch\\Documents\\GitHub\\ECE1140\\SWTrackController\\sw_track_controller\\GreenLine.txt");
     std::string fLine;
     getline(trackFile, fLine);
-    qDebug() << "hi";
-    qDebug() << QString::fromStdString(fLine);
+    //qDebug() << QString::fromStdString(fLine);
     while(getline(trackFile, fLine)){
         block temp;
         std::vector<std::string> splitLine = lineSplit(fLine, ",");
@@ -114,6 +113,7 @@ bool track_layout::create_line(int line){
             track[track[i].headOptions[0]-1].tailConnect = i+1;
             track[track[i].headOptions[1]-1].switch_tail = true;
         }
+        track[i].auth = true;
     }
     
     trackFile.close();
@@ -126,6 +126,30 @@ block track_layout::get_block(int index){
     return track.at(index);
 }
 
-bool track_layout::edit_block(){
+bool track_layout::add_block(){
+
+    return true;
+}
+
+bool track_layout::toggle_switch(int index){
+    if(track[index-1].occupancy==true){
+        return false;
+    }
+
+    int current = track[index-1].headConnect;
+    int nPos = track[index-1].headOptions[1];
+    if(track[index-1].headOptions[1]==current){
+        nPos = track[index-1].headOptions[0];
+    }
+    track[index-1].switch_pos=false;
+    track[index-1].headConnect=nPos;
+    if(current!=0){
+        track[current-1].tailConnect=-1;
+    }
+    if(nPos!=0){
+        track[nPos-1].tailConnect=index;
+    }
+
+
     return true;
 }

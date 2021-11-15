@@ -12,12 +12,14 @@ SOURCES += \
     PLC.cpp \
     main.cpp \
     mainwindow.cpp \
-    track_layout.cpp
+    track_layout.cpp \
+    waysidecontroller.cpp
 
 HEADERS += \
     PLC.h \
     mainwindow.h \
-    track_layout.h
+    track_layout.h \
+    waysidecontroller.h
 
 FORMS += \
     mainwindow.ui

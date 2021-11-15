@@ -1,14 +1,14 @@
-#include "PLC.h"
+#include "waysidecontroller.h"
 
-PLC::PLC(){
+WaysideController::WaysideController(){
     //create the blue line
     track_model.create_line(1);
 
 }
 
-PLC::~PLC(){}
+WaysideController::~WaysideController(){}
 
-bool PLC::update_occupancy(int index){
+bool WaysideController::update_occupancy(int index){
     bool curr_occ = track_model.track[index-1].occupancy;
     if(curr_occ == false){
         track_model.track[index-1].occupancy = true;
@@ -40,12 +40,20 @@ bool PLC::update_occupancy(int index){
     }
 }
 
-bool PLC::ctc_reccomend(bool a[150]){
+bool WaysideController::ctc_reccomend(int index,int auth,double speed=0){
+    //check speed
+    index--;
+    double speed_limit;
+    //test authority forward
+    int open=index;
+    if(auth >15){
+        auth=15;
+    }
+
     //find occupied blocks
     std::vector<int> occBlocks;
     int trackLength = static_cast<int>(track_model.track.size());
     for(int i=0;i<trackLength;i++){
-        track_model.track[i].auth = a[i];
         //if block is occupied
         if(track_model.track[i].occupancy == true){
             occBlocks.push_back(track_model.track[i].block_num);
@@ -53,40 +61,89 @@ bool PLC::ctc_reccomend(bool a[150]){
         }
     }
 
-    for(int i=0;i<trackLength;i++){
-        if(track_model.track[i].switch_head == true){
-            int conn1 = track_model.track[i].headOptions[0]-1;
-            int conn2 = track_model.track[i].headOptions[1]-1;
-            if(track_model.track[conn1].auth==true && track_model.track[conn2].auth==false){
-                if(track_model.track[i].headConnect-1 != conn1){
-                    track_model.toggle_switch(i+1);
+    for(int i=index+1;i<auth;i++){
+       if(track_model.track.at(i).occupancy == false){
+           open = i;
+       } else {
+           break;
+       }
+    }
+    int tempStart,tempEnd;
+    if(index<6){
+        tempStart=index;
+        tempEnd = 5;
+        if(auth>5){
+            if(auth < 11){
+                for(int i=5;i<open;i++){
+                    track_model.track[i].auth = open+1;
+                    //update the speed
+                    speed_limit = track_model.track.at(i).speed_limit;
+                    track_model.track.at(i).sugg_speed = speed;
+                    if(speed > speed_limit){
+                        track_model.track.at(i).comm_speed = speed_limit;
+                    } else {
+                        track_model.track.at(i).comm_speed = speed;
+                    }
                 }
-            } else if(track_model.track[conn1].auth==false && track_model.track[conn2].auth==true){
-                if(track_model.track[i].headConnect-1 != conn2){
-                    track_model.toggle_switch(i+1);
+            } else {
+                for(int i=10;i<open;i++){
+                    track_model.track[i].auth = open+1;
+                    //update the speed
+                    speed_limit = track_model.track.at(i).speed_limit;
+                    track_model.track.at(i).sugg_speed = speed;
+                    if(speed > speed_limit){
+                        track_model.track.at(i).comm_speed = speed_limit;
+                    } else {
+                        track_model.track.at(i).comm_speed = speed;
+                    }
                 }
-            }else{
-
             }
-
-
         }
+    } else if(index < 11){
+        tempStart=5;
+        tempEnd = 11;
+    } else{
+        tempStart=10;
+        tempEnd=14;
+
+    }
+
+    for(int i=tempStart;i<tempEnd;i++){
+        track_model.track[i].auth = open+1;
+        //update the speed
+        speed_limit = track_model.track.at(i).speed_limit;
+        track_model.track.at(i).sugg_speed = speed;
+        if(speed > speed_limit){
+            track_model.track.at(i).comm_speed = speed_limit;
+        } else {
+            track_model.track.at(i).comm_speed = speed;
+        }
+
+    }
+
+    //fix switch position if necessary
+    if(track_model.track[4].occupancy == false){
+            if(track_model.track[4].auth > 5 && track_model.track[4].auth > 10 && track_model.track[4].headConnect != 11){
+                toggleSwitch(5);
+            } else if(track_model.track[4].auth > 5 && track_model.track[4].auth < 10 &&track_model.track[4].headConnect != 6){
+                toggleSwitch(5);
+            }
     }
 
     updateBlocks();
     return true;
 }
 
-block PLC::get_block(int index){
+block WaysideController::get_block(int index){
 
     return track_model.track[index-1];
 }
 
-void PLC::heater(int index,bool state){
+void WaysideController::heater(int index,bool state){
     track_model.track[index-1].heater = state;
 }
 
-void PLC::set_maintenance_mode(int index, bool state){
+void WaysideController::set_maintenance_mode(int index, bool state){
     track_model.track[index-1].maintenance = state;
     if(state==true){
         track_model.track[index-1].lights = 2;
@@ -99,11 +156,11 @@ void PLC::set_maintenance_mode(int index, bool state){
     }
 }
 
-bool PLC::get_maintenance_mode(int index){
+bool WaysideController::get_maintenance_mode(int index){
     return track_model.track[index-1].maintenance;
 }
 
-void PLC::authUpdate(int index){
+void WaysideController::authUpdate(int index){
     std::vector<int> occBlocks;
 
     if(index<6 && index> 0){//before switch
@@ -139,7 +196,7 @@ void PLC::authUpdate(int index){
     }
 }
 
-bool PLC::updateBlocks(){
+bool WaysideController::updateBlocks(){
     //find occupied blocks
     std::vector<int> occBlocks;
     int trackLength = static_cast<int>(track_model.track.size());
@@ -224,7 +281,7 @@ bool PLC::updateBlocks(){
     return true;
 }
 
-void PLC::toggleSwitch(int index){
+void WaysideController::toggleSwitch(int index){
     //only toggle if block is unoccupied
     index--;
     if(track_model.track[index].occupancy == false){

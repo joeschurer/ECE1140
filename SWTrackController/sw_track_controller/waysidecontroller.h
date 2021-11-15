@@ -1,14 +1,16 @@
-#ifndef PLC_H
-#define PLC_H
+#ifndef WAYSIDECONTROLLER_H
+#define WAYSIDECONTROLLER_H
 #include "track_layout.h"
-
-class PLC{
+#include "PLC.h"
+class WaysideController{
 private:
     track_layout track_model;
+    //PLC waysides[10];
+    PLC wayside;
 
 public:
-    PLC();
-    ~PLC();
+    WaysideController();
+    ~WaysideController();
     bool update_occupancy(int);
     void heater(int,bool);
     bool ctc_reccomend(bool[50]);
@@ -21,4 +23,5 @@ public:
 
 };
 
-#endif // PLC_H
+
+#endif // WAYSIDECONTROLLER_H

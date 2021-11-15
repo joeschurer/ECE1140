@@ -3,6 +3,8 @@
 #include <vector>
 
 struct block{
+    //true is left item in switch declaration,false is right
+    bool switch_pos= true;
     int block_num;
     bool switch_head = false;
     bool switch_tail = false;
@@ -10,7 +12,7 @@ struct block{
     double real_speed = 0;
     //0 = yard else indexed by block numbers
     int headOptions[2] = {-1,-1};
-    int auth;
+    bool auth;
     int route;
     bool station;
     bool heater=false;
@@ -42,7 +44,9 @@ public:
     //0 = blue,1 = red,2= green
     bool create_line(int line);
     block get_block(int);
-    bool edit_block();
+    bool add_block();
+    //index should be in block number
+    bool toggle_switch(int index);
 };
 
 #endif // TRACK_LAYOUT_H
