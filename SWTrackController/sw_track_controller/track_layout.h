@@ -17,7 +17,7 @@ struct block{
     bool station;
     bool heater=false;
     bool underground = false;
-    bool yard;
+    bool yard= false;
     bool occupancy = false;
     double sugg_speed = 0;
     double comm_speed= 0;

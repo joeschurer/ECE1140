@@ -19,7 +19,7 @@ public:
     bool get_maintenance_mode(int);
     bool updateBlocks();
     void toggleSwitch(int);
-    void authUpdate(int);
+    void authUpdate(bool[151]);
 
 };
 

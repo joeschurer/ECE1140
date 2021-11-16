@@ -32,6 +32,10 @@ bool track_layout::new_block(block new_block){
 
 //create a track
 bool track_layout::create_line(int line){
+    block tempYard;
+    tempYard.yard=true;
+    new_block(tempYard);
+
     std::ifstream trackFile;
     trackFile.open("C:\\Users\\jwsch\\Documents\\GitHub\\ECE1140\\SWTrackController\\sw_track_controller\\GreenLine.txt");
     std::string fLine;
@@ -109,9 +113,9 @@ bool track_layout::create_line(int line){
     {
         if(track[i].switch_head==true){
             track[i].headConnect=track[i].headOptions[0];
-            track[track[i].headOptions[0]-1].switch_tail = true;
-            track[track[i].headOptions[0]-1].tailConnect = i+1;
-            track[track[i].headOptions[1]-1].switch_tail = true;
+            track[track[i].headOptions[0]].switch_tail = true;
+            track[track[i].headOptions[0]].tailConnect = i;
+            track[track[i].headOptions[1]].switch_tail = true;
         }
         track[i].auth = true;
     }
@@ -121,7 +125,6 @@ bool track_layout::create_line(int line){
 }
 
 //retrieve a block
-//use 1 index
 block track_layout::get_block(int index){
     return track.at(index);
 }
@@ -132,24 +135,18 @@ bool track_layout::add_block(){
 }
 
 bool track_layout::toggle_switch(int index){
-    if(track[index-1].occupancy==true){
+    if(track[index].occupancy==true){
         return false;
     }
-
-    int current = track[index-1].headConnect;
-    int nPos = track[index-1].headOptions[1];
-    if(track[index-1].headOptions[1]==current){
-        nPos = track[index-1].headOptions[0];
+    int current = track[index].headConnect;
+    int nPos = track[index].headOptions[1];
+    if(track[index].headOptions[1]==current){
+        nPos = track[index].headOptions[0];
     }
-    track[index-1].switch_pos=false;
-    track[index-1].headConnect=nPos;
-    if(current!=0){
-        track[current-1].tailConnect=-1;
-    }
-    if(nPos!=0){
-        track[nPos-1].tailConnect=index;
-    }
-
+    track[index].switch_pos= !track[index].switch_pos;
+    track[index].headConnect=nPos;
+    track[current].tailConnect=-1;
+    track[nPos].tailConnect=index;
 
     return true;
 }

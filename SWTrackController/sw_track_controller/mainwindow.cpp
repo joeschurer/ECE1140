@@ -100,48 +100,64 @@ void MainWindow::sel_line(){
 
 
 void MainWindow::sel_block(){
-    int selection = ui->block_select->currentIndex() +1;
+    int selection = ui->block_select->currentIndex();
 
     ui->sel_block->setText(QStringLiteral("Block ")+ QString::number(selection));
-    qDebug()<<"help";
+
     //get block info
     block temp_block = plc.get_block(selection);
-    qDebug()<<"help2";
-    ui->auth_status->setText(QString::number(temp_block.auth));
-    ui->sugg_status->setText(QString::number(temp_block.sugg_speed)+ " mph");
-    ui->commanded_status->setText(QString::number(temp_block.comm_speed)+ " mph");
-    ui->presence_status->setText(QString::number(temp_block.occupancy));
+
     //get heater status
-    QString state = "Off";
-    if(temp_block.heater == true){
-        state = "On";
+    if(selection==0){
+        ui->maintenance_status->setText("-");
+        ui->heater_status->setText("-");
+        ui->light_status->setText("-");
+        ui->switch_status->setText("-");
+        ui->crossing_status->setText("-");
+        ui->auth_status->setText(QString::number(temp_block.auth));
+        ui->sugg_status->setText("-");
+        ui->commanded_status->setText("-");
+        ui->presence_status->setText("-");
+    } else{
+        QString state = "Off";
+        if(temp_block.heater == true){
+            state = "On";
+        }
+        QString mode = "No";
+        if(temp_block.maintenance == true){
+            mode = "Yes";
+        }
+        QString light = "Green";
+        if(temp_block.lights == 1){
+            light = "Yellow";
+        }
+        else if(temp_block.lights == 2){
+            light = "Red";
+        }
+        QString switchString = "No Switch";
+        if(temp_block.switch_tail == true){
+           switchString = "Switch Not connected";
+           if(temp_block.tailConnect != -1){
+               switchString = "Connected to " + QString::number(temp_block.tailConnect);
+           }
+        }
+        if(temp_block.switch_head == true){
+            switchString = "Connected to " + QString::number(temp_block.headConnect);
+        }
+        QString crossing = "Inactive";
+        if(temp_block.crossingState==true){
+            crossing = "Active";
+        }
+        ui->maintenance_status->setText(mode);
+        ui->heater_status->setText(state);
+        ui->light_status->setText(light);
+        ui->switch_status->setText(switchString);
+        ui->crossing_status->setText(crossing);
+        ui->auth_status->setText(QString::number(temp_block.auth));
+        ui->sugg_status->setText(QString::number(temp_block.sugg_speed)+ " mph");
+        ui->commanded_status->setText(QString::number(temp_block.comm_speed)+ " mph");
+        ui->presence_status->setText(QString::number(temp_block.occupancy));
     }
-    QString mode = "No";
-    if(temp_block.maintenance == true){
-        mode = "Yes";
-    }
-    QString light = "Green";
-    if(temp_block.lights == 1){
-        light = "Yellow";
-    }
-    else if(temp_block.lights == 2){
-        light = "Red";
-    }
-    QString switchString = "No Switch";
-    if(temp_block.switch_tail == true){
-       switchString = "Switch Not connected";
-       if(temp_block.tailConnect != -1){
-           switchString = "Connected to " + QString::number(temp_block.tailConnect);
-       }
-    }
-    if(temp_block.switch_head == true){
-        switchString = "Connected to " + QString::number(temp_block.headConnect);
-    }
-    ui->maintenance_status->setText(mode);
-    ui->heater_status->setText(state);
-    ui->light_status->setText(light);
-    ui->switch_status->setText(switchString);
-    ui->crossing_status->setText("None");
     block_selected = true;
 
 }
@@ -159,12 +175,12 @@ void MainWindow::sel_wayside(){
     } else if(curr_line == "red") {
         num_blocks = 20;
     } else {
-        num_blocks = 150;
+        num_blocks = 151;
     }
 
     //add block to the drop-down
     QString temp;
-    for(int i=1; i<=num_blocks;i++){
+    for(int i=0; i<=num_blocks;i++){
         temp = "Block " + QString::number(i);
         ui->block_select->addItem(temp);
     }
@@ -179,7 +195,7 @@ void MainWindow::ctc_test(){
     int index = ui->block_test->text().toInt();
     int auth = ui->auth_test->text().toInt();
     double speed = ui->speed_test->text().toDouble();
-    plc.ctc_reccomend(index,auth,speed);
+    //plc.ctc_reccomend(index,auth,speed);
     if(block_selected){
         sel_block();
     }
