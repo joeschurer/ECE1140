@@ -345,6 +345,7 @@ void TrackModel::trainMoved(int trainNum) {
         //Pass new block's data to train model and emit beacon if applicable
         int bn = layout.line->trains[tb].location;
         vector<int> data;
+        data.push_back(trainNum);
         data.push_back(layout.line->blocks[bn-1].length);
         data.push_back(layout.line->blocks[bn-1].grade);
         data.push_back(layout.line->blocks[bn-1].speedLimit);
@@ -358,7 +359,10 @@ void TrackModel::trainMoved(int trainNum) {
         }
     }
     //Send new passenger count to train model
-    emit passengersChanged(layout.line->trains[trainNum-1].passengers);
+    vector<int> pass;
+    pass.push_back(trainNum);
+    pass.push_back(layout.line->trains[trainNum-1].passengers);
+    emit passengersChanged(pass);
 
     //Get occupancy and send it to the wayside
     vector<int> occ;
