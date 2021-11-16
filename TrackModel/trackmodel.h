@@ -41,7 +41,7 @@ private slots:
 signals:
     vector<int> newBlock(vector<int> data);
     vector<string> newTrainData(vector<string> newData);
-    int passengersChanged(int pass);
+    vector<int> passengersChanged(vector<int> pass);
     vector<int> occupancyChanged(vector<int> occ);
     string beaconData(string data);
 
