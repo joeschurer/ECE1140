@@ -76,6 +76,8 @@ int main(int argc, char *argv[])
 
         Engineer eng;
         eng.show();
+      //  TestUI t;
+        //t.show();
 
         //TrainTimer ttime(1000);
         QTimer timer;
@@ -88,6 +90,25 @@ int main(int argc, char *argv[])
         QObject::connect(&wui, &MainWindow::sendTrainDispatch,&window, &TrackModel::trainUpdated);
         QObject::connect(&window, &TrackModel::occupancyChanged,&wui, &MainWindow::receiveOcc);
 
+
+        //Train Controller
+        /* QObject::connect(&swt, SIGNAL(SetSpeedDifferent(int)), &t, SLOT(SetSpeedChanged(int)));
+         QObject::connect(&swt, SIGNAL(LightsDifferent(bool)), &t, SLOT(LightsChanged(bool)));
+         QObject::connect(&swt, SIGNAL(LeftDoorsDifferent(bool)), &t, SLOT(LeftDoorsChanged(bool)));
+         QObject::connect(&swt, SIGNAL(RightDoorsDifferent(bool)), &t, SLOT(RightDoorsChanged(bool)));
+         QObject::connect(&swt, SIGNAL(TempDifferent(int)), &t, SLOT(TempChanged(int)));
+         QObject::connect(&swt, SIGNAL(EmergencyBrakeDifferent(bool)), &t, SLOT(EmergencyBrakeChanged(bool)));
+         QObject::connect(&swt, SIGNAL(AutomaticModeDifferent(bool)), &t, SLOT(AutomaticModeChanged(bool)));
+         QObject::connect(&t, SIGNAL(DestinationD   ifferent(std::string)), &w, SLOT(DestinationChanged(std::string)));
+         QObject::connect(&t, SIGNAL(DistanceDifferent(std::string)), &w, SLOT(DistanceChanged(std::string)));
+         QObject::connect(&t, SIGNAL(TimeDifferent(std::string)), &w, SLOT(TimeChanged(std::string)));
+         QObject::connect(&t, SIGNAL(SpeedLimitDifferent(int)), &w, SLOT(SpeedLimitChanged(int)));
+         QObject::connect(&t, SIGNAL(CommandedSpeedDifferent(int)), &w, SLOT(CommandedSpeedChanged(int)));
+         QObject::connect(&t, SIGNAL(CurrentSpeedDifferent(int)), &w, SLOT(CurrentSpeedChanged(int)));
+         QObject::connect(&t, SIGNAL(EmergencyBrakeDifferent(std::string)), &w, SLOT(EmergencyBrakeChanged(std::string)));
+        */
+         QObject::connect(&eng, SIGNAL(SubmitKpKi(int,int)), &swt, SLOT(KpKiChanged(int,int)));
+        // QObject::connect(&swt, SIGNAL(PowerCalculated(double)), &t, SLOT(PowerChanged(double)));
 
         return a.exec();
 }
