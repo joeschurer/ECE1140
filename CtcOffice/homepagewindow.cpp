@@ -56,19 +56,39 @@ void HomepageWindow::on_testInterfaceButton_clicked()
 
 void HomepageWindow::on_uploadScheduleButton_clicked()
 {
+    /*
     QString fileName = QFileDialog::getOpenFileName(this,"Select Train Schedule File","C://");
     qDebug() << fileName;
     if(!fileName.isEmpty()) {
         ifstream infile (fileName.toStdString());
         ctcOffice_->parseSchedule(infile);
-        std::list<scheduleEntry> currentTrainSchedule = ctcOffice_->getSchedule()[ctcOffice_->getNumTrains()];
+        std::list<ScheduleEntry> currentTrainSchedule = ctcOffice_->getSchedule()[ctcOffice_->getNumTrains()];
         updateTrainTable(currentTrainSchedule);
         updateTrainComboBox();
+    }*/
+}
+void HomepageWindow::updateTrainTable(std::unordered_map<int, std::vector<ScheduleEntry>> schedule){
+    for(auto element: schedule) {
+        for(auto scheduleEntry: element.second){
+            auto trainTableWidget = ui->trainTableWidget;
+            int numRows = trainTableWidget->rowCount();
+            trainTableWidget->insertRow(numRows);
+            string trainString = "Train " + std::to_string(element.first);
+            trainTableWidget->setItem(numRows, 0, new QTableWidgetItem(trainString.c_str()));
+            string destinationString = scheduleEntry.destinationString + ", " + std::to_string(scheduleEntry.destination);
+            trainTableWidget->setItem(numRows, 1, new QTableWidgetItem(destinationString.c_str()));
+            string arrivalTime = ctcOffice_->toStringTime(scheduleEntry.arrivalTime);
+            trainTableWidget->setItem(numRows, 2, new QTableWidgetItem(arrivalTime.c_str()));
+            string departureTime = ctcOffice_->toStringTime(scheduleEntry.departureTime);
+            trainTableWidget->setItem(numRows, 3, new QTableWidgetItem(departureTime.c_str()));
+            trainTableWidget->setItem(numRows, 4, new QTableWidgetItem(std::to_string(scheduleEntry.suggestedSpeed).c_str()));
+        }
     }
 }
+void HomepageWindow::updateTrainTable(std::list<ScheduleEntry> schedule){
+    /*
 
-void HomepageWindow::updateTrainTable(std::list<scheduleEntry> schedule){
-    std::list<scheduleEntry>::iterator current=schedule.begin();
+    std::list<ScheduleEntry>::iterator current=schedule.begin();
     auto next = std::next(current,1);
     auto trainTableWidget = ui->trainTableWidget;
     // from yard to first station
@@ -109,7 +129,8 @@ void HomepageWindow::updateTrainTable(std::list<scheduleEntry> schedule){
 
         // 1 minute dwell
         previousDepartureTime = arrivalTime + 1;
-    }
+
+    }*/
 }
 
 void HomepageWindow::updateTrainComboBox() {
@@ -122,9 +143,15 @@ void HomepageWindow::updateTrainComboBox() {
 void HomepageWindow::on_plusButton_clicked()
 {
     auto scheduleTrainText = ui->scheduleTrainLineEdit->text();
-    auto scheduleRouteText = ui->scheduleRouteLineEdit->text();
+    auto scheduleDestinationText = ui->scheduleDestinationLineEdit->text();
     auto scheduleArrivalText = ui->scheduleArrivalLineEdit->text();
+    if(!scheduleTrainText.isEmpty() && !scheduleDestinationText.isEmpty() && !scheduleArrivalText.isEmpty()){
+        ctcOffice_->addScheduleEntry(stoi(scheduleTrainText.toStdString()), "Yard", scheduleDestinationText.toStdString(), scheduleArrivalText.toStdString());
+        updateTrainTable(ctcOffice_->getSchedule());
+    }
 
+
+    /*
     if(!scheduleTrainText.isEmpty() && !scheduleRouteText.isEmpty() && !scheduleArrivalText.isEmpty()){
         auto trainTableWidget = ui->trainTableWidget;
         int numRows = trainTableWidget->rowCount();
@@ -133,25 +160,33 @@ void HomepageWindow::on_plusButton_clicked()
         trainTableWidget->setItem(numRows, 1, new QTableWidgetItem(scheduleRouteText));
         string timeString = utility::convertMinutesToMinuteAndSecond(scheduleArrivalText.toStdString());
         trainTableWidget->setItem(numRows, 2, new QTableWidgetItem(timeString.c_str()));
-        auto suggestedSpeed = ctcOffice_->computeRouteSuggestedSpeed(scheduleRouteText.toStdString());
+     //   auto suggestedSpeed = ctcOffice_->computeRouteSuggestedSpeed(scheduleRouteText.toStdString());
         trainTableWidget->setItem(numRows, 3, new QTableWidgetItem(std::to_string(suggestedSpeed).c_str()));
-        auto authority = ctcOffice_->computeRouteAuthority(scheduleRouteText.toStdString());
+      //  auto authority = ctcOffice_->computeRouteAuthority(scheduleRouteText.toStdString());
         trainTableWidget->setItem(numRows, 4, new QTableWidgetItem(std::to_string(authority).c_str()));
         ctcOffice_->getRouteBlockList(scheduleRouteText.toStdString());
-    }
+    }*/
 }
 
 
 void HomepageWindow::on_addTrackSectionButton_clicked()
 {
     auto trackInput = ui->trackLineEdit->text();
-
     if(!trackInput.isEmpty()){
+        auto stringBlocks = utility::split(trackInput.toStdString(), ",");
+        vector<int> intBlocks;
+        std::transform(stringBlocks.begin(), stringBlocks.end(), std::back_inserter(intBlocks), [](string c) -> int { return stoi(c); });
         auto trackTable = ui->trackSectionTable;
-        int numRows = trackTable->rowCount();
-        trackTable->insertRow(numRows);
-        trackTable->setItem(numRows, 0, new QTableWidgetItem(trackInput));
+        for(auto block: intBlocks) {
+            if(ctcOffice_->getClosedBlocks().count(block)==0) {
+            int numRows = trackTable->rowCount();
+            trackTable->insertRow(numRows);
+            trackTable->setItem(numRows, 0, new QTableWidgetItem(std::to_string(block).c_str()));
+            }
+        }
+        ctcOffice_->addClosedBlocks(intBlocks);
     }
+    emit sendClosedBlocks(ctcOffice_->sendClosedBlocks());
 }
 
 
@@ -195,16 +230,38 @@ void HomepageWindow::on_submitTestTrainInputButton_clicked()
 void HomepageWindow::on_addSwitchButton_clicked()
 {
     auto switchTable = ui->switchTableWidget;
-    int numRows = switchTable->rowCount();
-    switchTable->insertRow(numRows);
-    switchTable->setItem(numRows, 0, new QTableWidgetItem(ui->switchLineEdit->text()));
+    vector<string> switchString = utility::split(ui->switchLineEdit->text().toStdString(), "->");
+    auto closedBlocks = ctcOffice_->getClosedBlocks();
+    if(closedBlocks.count(stoi(switchString[0]))==1 && closedBlocks.count(stoi(switchString[1]))==1) {
+        int numRows = switchTable->rowCount();
+        switchTable->insertRow(numRows);
+        switchTable->setItem(numRows, 0, new QTableWidgetItem(ui->switchLineEdit->text()));
+        emit ctcOffice_->sendSwitchPosition(stoi(switchString[0]), stoi(switchString[1]));
+    }
 }
 
 
 void HomepageWindow::on_dispatchButton_clicked()
 {
-    auto trainTable =ui->trainTableWidget;
-    auto route = trainTable->item(trainTable->rowCount()-1, 1);
-    ctcOffice_->getRouteBlockList(route->text().toStdString());
+   auto schedule = ctcOffice_->getSchedule();
+   emit sendDispatchInfo(ctcOffice_->dispatchTrain(1, schedule[1][0]));
+
+}
+
+void HomepageWindow::receiveOccupancy(vector<bool> occupancy){
+    ctcOffice_->updateOccupancy(occupancy);
+}
+
+void HomepageWindow::timerSlot(){
+    ctcOffice_->checkForDispatch(3/*global clock*/);
+}
+
+
+void HomepageWindow::on_submitBlockButton_clicked()
+{
+    int startBlock = std::stoi(ui->startBlockLineEdit->text().toStdString());
+    int destinationBlock = std::stoi(ui->destinationBlockLineEdit->text().toStdString());
+    ctcOffice_->getRoute(startBlock, destinationBlock);
+
 }
 

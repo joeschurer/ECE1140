@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>943</width>
-    <height>654</height>
+    <height>525</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -62,7 +62,7 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>-10</x>
+      <x>-20</x>
       <y>70</y>
       <width>951</width>
       <height>611</height>
@@ -76,23 +76,13 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>390</y>
+        <y>350</y>
         <width>231</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>Throughput Blue (tickets/hour)</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="throughputTextEdit">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>380</y>
-        <width>41</width>
-        <height>41</height>
-       </rect>
+       <string>Throughput Green (tickets/hour)</string>
       </property>
      </widget>
      <widget class="QComboBox" name="selectTrainComboBox">
@@ -226,27 +216,139 @@
        </rect>
       </property>
      </widget>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>350</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>390</y>
+        <width>151</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Throughput Red (tickets/Hour)</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>390</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>120</y>
+        <width>361</width>
+        <height>192</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Blocks Occupied</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Train in Block</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QTextEdit" name="textEdit">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>20</y>
+        <width>261</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Alert: Occupancies&gt;DispatchedTrains, Potential Track Failure</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>360</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>370</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Total Occupancies: </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>400</y>
+        <width>151</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Number of Dispatched Trains</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_4">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>400</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="mangeTrainsPage">
      <widget class="QPushButton" name="uploadScheduleButton">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>330</y>
+        <x>410</x>
+        <y>340</y>
         <width>121</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>Upload</string>
+       <string>Upload Schedule</string>
       </property>
      </widget>
      <widget class="QTableWidget" name="trainTableWidget">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>30</y>
-        <width>511</width>
+        <x>200</x>
+        <y>20</y>
+        <width>501</width>
         <height>241</height>
        </rect>
       </property>
@@ -257,30 +359,36 @@
       </column>
       <column>
        <property name="text">
-        <string>Route</string>
+        <string>Destination</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Arrival</string>
+        <string>Arrival Time</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
+        </font>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Suggested Speed (km/hr)</string>
+        <string>Departure Time</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Authority (Blocks)</string>
+        <string>S. Speed(mph)</string>
        </property>
       </column>
      </widget>
      <widget class="QPushButton" name="plusButton">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>330</y>
+        <x>620</x>
+        <y>280</y>
         <width>41</width>
         <height>22</height>
        </rect>
@@ -292,8 +400,8 @@
      <widget class="QPushButton" name="minusButton">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>330</y>
+        <x>670</x>
+        <y>280</y>
         <width>41</width>
         <height>22</height>
        </rect>
@@ -305,31 +413,43 @@
      <widget class="QLineEdit" name="scheduleTrainLineEdit">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>290</y>
+        <x>200</x>
+        <y>280</y>
         <width>91</width>
         <height>21</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>Enter Train #</string>
+      </property>
      </widget>
-     <widget class="QLineEdit" name="scheduleRouteLineEdit">
+     <widget class="QLineEdit" name="scheduleDestinationLineEdit">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>290</y>
+        <x>300</x>
+        <y>280</y>
         <width>91</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Enter Destination</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="scheduleArrivalLineEdit">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>290</y>
-        <width>91</width>
+        <x>410</x>
+        <y>280</y>
+        <width>101</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Enter Arrival Time</string>
       </property>
      </widget>
      <widget class="QCheckBox" name="autoDispatchCheckBox">
@@ -345,13 +465,26 @@
        <string>Auto-dispatch</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>290</y>
+        <width>47</width>
+        <height>14</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
      <widget class="QPushButton" name="dispatchButton">
       <property name="geometry">
        <rect>
-        <x>360</x>
-        <y>390</y>
-        <width>121</width>
-        <height>20</height>
+        <x>180</x>
+        <y>340</y>
+        <width>80</width>
+        <height>22</height>
        </rect>
       </property>
       <property name="text">
@@ -737,6 +870,39 @@
       </property>
       <property name="text">
        <string>Destination:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="submitBlockButton">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>320</y>
+        <width>80</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>submit</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="startBlockLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>270</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="destinationBlockLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>270</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
       </property>
      </widget>
     </widget>

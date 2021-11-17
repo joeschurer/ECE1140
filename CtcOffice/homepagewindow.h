@@ -16,12 +16,20 @@ public:
     HomepageWindow(QWidget *parent = nullptr, CtcOffice *ctcOffice = nullptr);
     ~HomepageWindow();
 
+public slots:
+    void receiveOccupancy(vector<bool> occupancy);
+    void timerSlot();
+
+signals:
+    void sendClosedBlocks(vector<bool>);
+    void sendSwitchPosition(vector<int>);
+    void sendDispatchInfo(TrainEntry);
 
 private slots:
-
     void on_uploadScheduleButton_clicked();
 
-    void updateTrainTable(std::list<scheduleEntry> schedule);
+    void updateTrainTable(std::list<ScheduleEntry> schedule);
+    void updateTrainTable(std::unordered_map<int, std::vector<ScheduleEntry>>);
 
     void updateTrainComboBox();
 
@@ -46,6 +54,8 @@ private slots:
     void on_addSwitchButton_clicked();
 
     void on_dispatchButton_clicked();
+
+    void on_submitBlockButton_clicked();
 
 private:
     Ui::HomepageWindow *ui;
