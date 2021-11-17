@@ -253,7 +253,11 @@ void HomepageWindow::receiveOccupancy(vector<bool> occupancy){
 }
 
 void HomepageWindow::timerSlot(){
-    ctcOffice_->checkForDispatch(3/*global clock*/);
+    bool trainDispatched = ctcOffice_->checkForDispatch(3/*global clock*/);
+    if(trainDispatched){
+        auto schedule = ctcOffice_->getSchedule();
+        emit sendDispatchInfo(ctcOffice_->dispatchTrain(1, schedule[1][0]));
+    }
 }
 
 

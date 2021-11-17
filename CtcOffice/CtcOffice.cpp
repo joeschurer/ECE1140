@@ -207,15 +207,17 @@ TrainEntry CtcOffice::dispatchTrain(int trainNumber, ScheduleEntry scheduleEntry
     return t;
 }
 
-void CtcOffice::checkForDispatch(int time){
+bool CtcOffice::checkForDispatch(int time){
     for(auto element: schedule_) {
         for(auto scheduleEntry: element.second){
             int timeInSeconds = scheduleEntry.departureTime.first*60*60 + scheduleEntry.departureTime.second*60;
            if(timeInSeconds==time){
                dispatchTrain(element.first, scheduleEntry);
+               return true;
            }
         }
     }
+    return false;
 }
 
 vector<int> CtcOffice::sendSwitchPosition(int switchNode, int blockToConnect){

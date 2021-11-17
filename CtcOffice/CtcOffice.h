@@ -68,7 +68,7 @@ public:
     string toStringTime(Time Time);
     void addClosedBlocks(vector<int> blocks);
     std::unordered_set<int> getClosedBlocks();
-    void checkForDispatch(int time);
+    bool checkForDispatch(int time);
 
 private:
     std::unordered_map<int, std::vector<ScheduleEntry>> schedule_;
