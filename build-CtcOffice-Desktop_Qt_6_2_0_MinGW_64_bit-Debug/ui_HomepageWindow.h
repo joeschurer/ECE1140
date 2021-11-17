@@ -240,8 +240,8 @@ public:
         label = new QLabel(manageTracksPage);
         label->setObjectName(QString::fromUtf8("label"));
         label->setEnabled(false);
-        label->setGeometry(QRect(330, -30, 851, 391));
-        label->setPixmap(QPixmap(QString::fromUtf8("../../../OneDrive - University of Pittsburgh/PITT/PITT Senior Year/Semester 1/ECE 1140-Systems and Project Engineering/blue_line_small.png")));
+        label->setGeometry(QRect(480, -190, 1021, 761));
+        label->setPixmap(QPixmap(QString::fromUtf8("../../../OneDrive - University of Pittsburgh/PITT/PITT Senior Year/Semester 1/ECE 1140-Systems and Project Engineering/green_and_red_track_small2.png")));
         trackLineEdit = new QLineEdit(manageTracksPage);
         trackLineEdit->setObjectName(QString::fromUtf8("trackLineEdit"));
         trackLineEdit->setGeometry(QRect(70, 250, 101, 21));
@@ -351,7 +351,7 @@ public:
 
         retranslateUi(HomepageWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(HomepageWindow);

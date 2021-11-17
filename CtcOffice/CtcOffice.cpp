@@ -177,7 +177,8 @@ void CtcOffice::addScheduleEntry(int trainNumber, string start, string destinati
         scheduleEntry.destination = route1.size()<route2.size()? stationBlocks[0]: stationBlocks[1];
         scheduleEntry.authority = route1.size()<route2.size()? computeAuthority(route1): computeAuthority(route2);
         scheduleEntry.suggestedSpeed = route1.size()<route2.size()? computeSuggestedSpeed(route1): computeSuggestedSpeed(route2);
-       int departureTime = route1.size()<route2.size()? computeTimeToDestination(route1): computeTimeToDestination(route2);
+        int departureTime = route1.size()<route2.size()? computeTimeToDestination(route1): computeTimeToDestination(route2);
+        scheduleEntry.departureTime = {0, departureTime};
        qDebug() << "Departure Time: " << departureTime;
     }
     schedule_[trainNumber].push_back(scheduleEntry);
