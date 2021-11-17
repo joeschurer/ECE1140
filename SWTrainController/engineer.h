@@ -25,6 +25,7 @@ private:
     Ui::Engineer *ui;
     int KpValue;
     int KiValue;
+
 };
 
 #endif // ENGINEER_H

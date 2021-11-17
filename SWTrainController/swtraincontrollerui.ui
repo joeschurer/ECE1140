@@ -1,37 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>SWTrainControllerUI</class>
+ <widget class="QMainWindow" name="SWTrainControllerUI">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1060</width>
-    <height>660</height>
+    <width>1058</width>
+    <height>636</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>SWTrainControllerUI</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="ClockLabel">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>60</y>
-      <width>61</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Clock&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="PlusSpeedButton">
     <property name="geometry">
      <rect>
@@ -48,154 +30,6 @@
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(8, 185, 8);</string>
-    </property>
-    <property name="text">
-     <string>+</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="MinusSpeedButton">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>430</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>51</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 17, 17);</string>
-    </property>
-    <property name="text">
-     <string>-</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="OperateLeftDoorsButton">
-    <property name="geometry">
-     <rect>
-      <x>710</x>
-      <y>410</y>
-      <width>161</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>13</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 0, 0);
-color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>Operate Left Doors</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="OperateLightsButton">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>500</y>
-      <width>151</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 0);</string>
-    </property>
-    <property name="text">
-     <string>Operate Lights</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="AutomaticModeButton">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>530</y>
-      <width>151</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>Automatic Mode</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="BrakeButton">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>300</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 31, 11);</string>
-    </property>
-    <property name="text">
-     <string>Brake</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="MinusACButton">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>570</y>
-      <width>81</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>37</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(11, 15, 255);</string>
-    </property>
-    <property name="text">
-     <string>-</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="PlusACButton">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>570</y>
-      <width>81</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>27</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 168, 17);</string>
     </property>
     <property name="text">
      <string>+</string>
@@ -219,76 +53,79 @@ color: rgb(255, 255, 255);</string>
      <string>Speed Control</string>
     </property>
    </widget>
-   <widget class="QLabel" name="TempLabel">
+   <widget class="QPushButton" name="OperateLightsButton">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>500</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 0);</string>
+    </property>
+    <property name="text">
+     <string>Operate Lights</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="CurrentSpeedMPH">
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>520</y>
-      <width>181</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Current Temperature</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="SetSpeedLabel">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>260</y>
-      <width>131</width>
+      <y>220</y>
+      <width>61</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <pointsize>18</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Set Speed</string>
+     <string>MPH</string>
     </property>
    </widget>
-   <widget class="QLabel" name="CurrentSpeedLabel">
+   <widget class="QLabel" name="DegreesFLabel">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>260</y>
-      <width>181</width>
+      <x>580</x>
+      <y>580</y>
+      <width>55</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <pointsize>25</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Current Speed</string>
+     <string>°F</string>
     </property>
    </widget>
-   <widget class="QLabel" name="SpeedLimitLabel">
+   <widget class="QLabel" name="EStopState">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>260</y>
-      <width>151</width>
+      <x>720</x>
+      <y>50</y>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <pointsize>13</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Speed Limit</string>
+     <string>Emergency Brake</string>
     </property>
    </widget>
    <widget class="QLabel" name="CommandedSpeedLabel">
@@ -307,27 +144,6 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Commanded Speed</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="SetSpeedBox">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>200</y>
-      <width>113</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLineEdit" name="CurrentSpeedBox">
@@ -372,79 +188,43 @@ color: rgb(255, 255, 255);</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="CommandedSpeedBox">
+   <widget class="QLineEdit" name="ClockDisplay">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>200</y>
-      <width>113</width>
-      <height>61</height>
+      <x>490</x>
+      <y>10</y>
+      <width>101</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>25</pointsize>
+      <pointsize>20</pointsize>
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="SetSpeedMPH">
+   <widget class="QLabel" name="SetSpeedLabel">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>220</y>
-      <width>61</width>
+      <x>110</x>
+      <y>260</y>
+      <width>131</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>18</pointsize>
+      <pointsize>16</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>MPH</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="CurrentSpeedMPH">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>220</y>
-      <width>61</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>MPH</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="SpeedLimitMPH">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>220</y>
-      <width>61</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>MPH</string>
+     <string>Set Speed</string>
     </property>
    </widget>
    <widget class="QLabel" name="CommandedSpeedMPH">
@@ -463,27 +243,6 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>MPH</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="EBrakeButton">
-    <property name="geometry">
-     <rect>
-      <x>830</x>
-      <y>10</y>
-      <width>151</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 0, 0);</string>
-    </property>
-    <property name="text">
-     <string>Emergency Brake</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="CurrentTempBox">
@@ -507,13 +266,13 @@ color: rgb(255, 255, 255);</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="DegreesFLabel">
+   <widget class="QLineEdit" name="CommandedSpeedBox">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>580</y>
-      <width>55</width>
-      <height>31</height>
+      <x>800</x>
+      <y>200</y>
+      <width>113</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -521,26 +280,51 @@ color: rgb(255, 255, 255);</string>
       <pointsize>25</pointsize>
      </font>
     </property>
-    <property name="text">
-     <string>°F</string>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="DestinationDisplay">
+   <widget class="QPushButton" name="OperateRightDoorsButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>231</width>
+      <x>890</x>
+      <y>410</y>
+      <width>161</width>
       <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>19</pointsize>
+      <pointsize>13</pointsize>
      </font>
     </property>
-    <property name="readOnly">
-     <bool>true</bool>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Operate Right Doors</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="SpeedLimitMPH">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>220</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>MPH</string>
     </property>
    </widget>
    <widget class="QLabel" name="DestLabel">
@@ -579,52 +363,55 @@ color: rgb(255, 255, 255);</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="TimeDistanceLabel">
+   <widget class="QPushButton" name="MinusACButton">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>370</y>
-      <width>321</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Time and Distance Required To Stop</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="ClockDisplay">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>10</y>
-      <width>101</width>
+      <x>380</x>
+      <y>570</y>
+      <width>81</width>
       <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>20</pointsize>
+      <pointsize>37</pointsize>
      </font>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(11, 15, 255);</string>
     </property>
-    <property name="readOnly">
-     <bool>true</bool>
+    <property name="text">
+     <string>-</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="EBrakeBox">
+   <widget class="QPushButton" name="PlusACButton">
     <property name="geometry">
      <rect>
-      <x>730</x>
+      <x>640</x>
+      <y>570</y>
+      <width>81</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>27</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 168, 17);</string>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="EBrakeButton">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
       <y>10</y>
-      <width>71</width>
-      <height>41</height>
+      <width>151</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -632,44 +419,11 @@ color: rgb(255, 255, 255);</string>
       <pointsize>14</pointsize>
      </font>
     </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="EStopState">
-    <property name="geometry">
-     <rect>
-      <x>720</x>
-      <y>50</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>13</pointsize>
-     </font>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 0, 0);</string>
     </property>
     <property name="text">
      <string>Emergency Brake</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="FailureBox">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>10</y>
-      <width>113</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="FailureLabel">
@@ -690,10 +444,70 @@ color: rgb(255, 255, 255);</string>
      <string>Failure</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="OperateRightDoorsButton">
+   <widget class="QPushButton" name="MinusSpeedButton">
     <property name="geometry">
      <rect>
-      <x>890</x>
+      <x>110</x>
+      <y>430</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>51</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 17, 17);</string>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="SetSpeedBox">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>200</y>
+      <width>113</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>25</pointsize>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="SpeedLimitLabel">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>260</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Speed Limit</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="OperateLeftDoorsButton">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
       <y>410</y>
       <width>161</width>
       <height>51</height>
@@ -709,7 +523,193 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Operate Right Doors</string>
+     <string>Operate Left Doors</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="FailureBox">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>10</y>
+      <width>113</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="AutomaticModeButton">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>530</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Automatic Mode</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="CurrentSpeedLabel">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>260</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Current Speed</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="TimeDistanceLabel">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>370</y>
+      <width>321</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Time and Distance Required To Stop</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ClockLabel">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>60</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Clock&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="EBrakeBox">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>10</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="SetSpeedMPH">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>220</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>MPH</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="DestinationDisplay">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>231</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>19</pointsize>
+     </font>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="TempLabel">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>520</y>
+      <width>181</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Current Temperature</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BrakeButton">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>300</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>25</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 31, 11);</string>
+    </property>
+    <property name="text">
+     <string>Brake</string>
     </property>
    </widget>
   </widget>

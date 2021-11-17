@@ -21,7 +21,7 @@ void Engineer::on_SubmitButton_released()
     QString Ki = ui->KiBox->text();
     KiValue = Ki.toInt();
 
-    SubmitKpKi(KpValue, KiValue);
+    emit SubmitKpKi(KpValue, KiValue);
     close();
 }
 

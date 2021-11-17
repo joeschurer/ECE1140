@@ -1,10 +1,9 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <time.h>
+#include "swtraincontrollerui.h"
+#include "ui_swtraincontrollerui.h"
 
-MainWindow::MainWindow(QWidget *parent)
+SWTrainControllerUI::SWTrainControllerUI(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::SWTrainControllerUI)
 {
     ui->setupUi(this);
 
@@ -26,55 +25,56 @@ MainWindow::MainWindow(QWidget *parent)
         switch (i)
         {
             case 0:
-                numButtons[i] = MainWindow::findChild<QPushButton *>("PlusSpeedButton");
+                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("PlusSpeedButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(PlusSpeedPressed()));
                 break;
             case 1:
-                numButtons[i] = MainWindow::findChild<QPushButton *>("MinusSpeedButton");
+                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("MinusSpeedButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(MinusSpeedPressed()));
                 break;
             case 2:
-                numButtons[i] = MainWindow::findChild<QPushButton *>("BrakeButton");
+                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("BrakeButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(BrakePressed()));
                 break;
             case 3:
-                numButtons[i] = MainWindow::findChild<QPushButton *>("MinusACButton");
+                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("MinusACButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(MinusTempPressed()));
                 break;
             case 4:
-                numButtons[i] = MainWindow::findChild<QPushButton *>("PlusACButton");
+                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("PlusACButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(PlusTempPressed()));
                 break;
             case 5:
-                numButtons[i] = MainWindow::findChild<QPushButton *>("OperateLeftDoorsButton");
+                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("OperateLeftDoorsButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(OperateLeftDoorsPressed()));
                 break;
             case 6:
-                numButtons[i] = MainWindow::findChild<QPushButton *>("OperateRightDoorsButton");
+                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("OperateRightDoorsButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(OperateRightDoorsPressed()));
                 break;
             case 7:
-                numButtons[i] = MainWindow::findChild<QPushButton *>("OperateLightsButton");
+                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("OperateLightsButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(LightsButtonPressed()));
                 break;
             case 8:
-                numButtons[i] = MainWindow::findChild<QPushButton *>("AutomaticModeButton");
+                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("AutomaticModeButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(AutomaticModeButtonPressed()));
                 break;
             case 9:
-                numButtons[i] = MainWindow::findChild<QPushButton *>("EBrakeButton");
+                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("EBrakeButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(EBrakePressed()));
                 break;
         }
     }
 }
 
-MainWindow::~MainWindow()
+SWTrainControllerUI::~SWTrainControllerUI()
 {
     delete ui;
 }
 
-void MainWindow::PlusSpeedPressed() {
+
+void SWTrainControllerUI::PlusSpeedPressed() {
     int newSpeed = ++SetSpeed;
     if(SetSpeed > 43)
     {
@@ -86,7 +86,7 @@ void MainWindow::PlusSpeedPressed() {
     emit SetSpeedDifferent(SetSpeed);
 }
 
-void MainWindow::MinusSpeedPressed() {
+void SWTrainControllerUI::MinusSpeedPressed() {
     int newSpeed = --SetSpeed;
     if(SetSpeed <= 0)
     {
@@ -102,19 +102,19 @@ void MainWindow::MinusSpeedPressed() {
     emit SetSpeedDifferent(SetSpeed);
 }
 
-void MainWindow::PlusTempPressed() {
+void SWTrainControllerUI::PlusTempPressed() {
     int newTemp = ++CurrentTemp;
     ui->CurrentTempBox->setText(QString::number(newTemp, 'g', 3));
     emit TempDifferent(newTemp);
 }
 
-void MainWindow::MinusTempPressed() {
+void SWTrainControllerUI::MinusTempPressed() {
     int newTemp = --CurrentTemp;
     ui->CurrentTempBox->setText(QString::number(newTemp, 'g', 3));
     emit TempDifferent(newTemp);
 }
 
-void MainWindow::BrakePressed() {
+void SWTrainControllerUI::BrakePressed() {
     int newSpeed = 0;
     CurrentSpeed = 0;
     BrakeState = true;
@@ -123,7 +123,7 @@ void MainWindow::BrakePressed() {
     emit SetSpeedDifferent(CurrentSpeed);
 }
 
-void MainWindow::OperateLeftDoorsPressed() {
+void SWTrainControllerUI::OperateLeftDoorsPressed() {
     if(LeftDoorsOpen)
     {
         LeftDoorsOpen = false;
@@ -136,7 +136,7 @@ void MainWindow::OperateLeftDoorsPressed() {
 
 }
 
-void MainWindow::OperateRightDoorsPressed() {
+void SWTrainControllerUI::OperateRightDoorsPressed() {
     if(RightDoorsOpen)
     {
         RightDoorsOpen = false;
@@ -148,7 +148,7 @@ void MainWindow::OperateRightDoorsPressed() {
     emit RightDoorsDifferent(RightDoorsOpen);
 }
 
-void MainWindow::LightsButtonPressed() {
+void SWTrainControllerUI::LightsButtonPressed() {
     if(LightsOn)
     {
         LightsOn = false;
@@ -160,7 +160,7 @@ void MainWindow::LightsButtonPressed() {
     emit LightsDifferent(LightsOn);
 }
 
-void MainWindow::AutomaticModeButtonPressed() {
+void SWTrainControllerUI::AutomaticModeButtonPressed() {
     if(AutomaticModeState)
     {
         AutomaticModeState = false;
@@ -174,7 +174,7 @@ void MainWindow::AutomaticModeButtonPressed() {
     emit AutomaticModeDifferent(AutomaticModeState);
 }
 
-void MainWindow::EBrakePressed() {
+void SWTrainControllerUI::EBrakePressed() {
     int newSpeed = 0;
     CurrentSpeed = 0;
     if(EmergencyBrakeState)
@@ -192,52 +192,52 @@ void MainWindow::EBrakePressed() {
     emit SetSpeedDifferent(CurrentSpeed);
 }
 
-void MainWindow::DestinationChanged(std::string destination)
+void SWTrainControllerUI::DestinationChanged(std::string destination)
 {
     ui->DestinationDisplay->setText(QString::fromStdString(destination));
 }
 
-void MainWindow::DistanceChanged(std::string distance)
+void SWTrainControllerUI::DistanceChanged(std::string distance)
 {
     ui->TimeDistanceBox->setText(QString::fromStdString(distance));
 }
 
-void MainWindow::TimeChanged(std::string time)
+void SWTrainControllerUI::TimeChanged(std::string time)
 {
     ui->ClockDisplay->setText(QString::fromStdString(time));
 }
 
-void MainWindow::SpeedLimitChanged(int speed)
+void SWTrainControllerUI::SpeedLimitChanged(int speed)
 {
     ui->SpeedLimitBox->setText(QString::number(speed));
     SpeedLimit = speed;
 }
 
-void MainWindow::CommandedSpeedChanged(int speed)
+void SWTrainControllerUI::CommandedSpeedChanged(int speed)
 {
     ui->CommandedSpeedBox->setText(QString::number(speed));
     CommandedSpeed = speed;
 }
 
-void MainWindow::CurrentSpeedChanged(int speed)
+void SWTrainControllerUI::CurrentSpeedChanged(int speed)
 {
     ui->CurrentSpeedBox->setText(QString::number(speed));
     CurrentSpeed = speed;
     CalculatePower();
 }
 
-void MainWindow::EmergencyBrakeChanged(std::string state)
+void SWTrainControllerUI::EmergencyBrakeChanged(std::string state)
 {
     ui->EBrakeBox->setText(QString::fromStdString(state));
 }
 
-void MainWindow::KpKiChanged(int Kp, int Ki)
+void SWTrainControllerUI::KpKiChanged(int Kp, int Ki)
 {
     KpValue = Kp;
     KiValue = Ki;
 }
 
-void MainWindow::CalculatePower()
+void SWTrainControllerUI::CalculatePower()
 {
     SpeedPower = SetSpeed * 1.60934;
     CurrentKPH = CurrentSpeed * 1.60934;
@@ -256,5 +256,7 @@ void MainWindow::CalculatePower()
     }
     emit PowerCalculated(Power);
 }
+
+
 
 

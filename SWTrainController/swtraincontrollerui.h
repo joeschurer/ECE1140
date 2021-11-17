@@ -1,20 +1,19 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef SWTRAINCONTROLLERUI_H
+#define SWTRAINCONTROLLERUI_H
 
 #include <QMainWindow>
-#include "testui.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class SWTrainControllerUI; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class SWTrainControllerUI : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    SWTrainControllerUI(QWidget *parent = nullptr);
+    ~SWTrainControllerUI();
 
 public slots:
     void DestinationChanged(std::string destination);
@@ -37,7 +36,7 @@ signals:
     void PowerCalculated(double power);
 
 private:
-    Ui::MainWindow *ui;
+    Ui::SWTrainControllerUI *ui;
     void CalculatePower();
     int SetSpeed = 0;
     int CurrentSpeed = 0;
@@ -75,4 +74,4 @@ private slots:
     void EBrakePressed();
 
 };
-#endif // MAINWINDOW_H
+#endif // SWTRAINCONTROLLERUI_H
