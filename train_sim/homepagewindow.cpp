@@ -11,12 +11,15 @@ using std::list;
 using std::ifstream;
 using std::vector;
 
+int systemClock = 0;
+int simulationSpeed = 10;
 HomepageWindow::HomepageWindow(QWidget *parent, CtcOffice *ctcOffice)
     : QMainWindow(parent)
     , ui(new Ui::HomepageWindow), ctcOffice_(ctcOffice)
 {
     ui->setupUi(this);
     initializeTestInterfaceUi();
+
 
 }
 
@@ -236,7 +239,7 @@ void HomepageWindow::on_addSwitchButton_clicked()
         int numRows = switchTable->rowCount();
         switchTable->insertRow(numRows);
         switchTable->setItem(numRows, 0, new QTableWidgetItem(ui->switchLineEdit->text()));
-        emit ctcOffice_->sendSwitchPosition(stoi(switchString[0]), stoi(switchString[1]));
+        emit sendSwitchPosition({stoi(switchString[0]), stoi(switchString[1])});
     }
 }
 
@@ -252,8 +255,10 @@ void HomepageWindow::receiveOccupancy(vector<bool> occupancy){
     ctcOffice_->updateOccupancy(occupancy);
 }
 
-void HomepageWindow::timerSlot(){
-    bool trainDispatched = ctcOffice_->checkForDispatch(3/*global clock*/);
+void HomepageWindow::timerSlot(){;
+    systemClock+=1;
+    qDebug() << systemClock;
+    bool trainDispatched = ctcOffice_->checkForDispatch(systemClock);
     if(trainDispatched){
         auto schedule = ctcOffice_->getSchedule();
         emit sendDispatchInfo(ctcOffice_->dispatchTrain(1, schedule[1][0]));

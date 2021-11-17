@@ -212,6 +212,7 @@ bool CtcOffice::checkForDispatch(int time){
         for(auto scheduleEntry: element.second){
             int timeInSeconds = scheduleEntry.departureTime.first*60*60 + scheduleEntry.departureTime.second*60;
            if(timeInSeconds==time){
+               qDebug() << "dispatching train";
                dispatchTrain(element.first, scheduleEntry);
                return true;
            }

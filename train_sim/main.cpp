@@ -32,6 +32,8 @@
 #include "swtraincontrollerui.h"
 #include "engineer.h"
 
+
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -65,7 +67,8 @@ int main(int argc, char *argv[])
         MainWindow wui;
         wui.show();
 
-        HomepageWindow ctc;
+        CtcOffice ctcOffice;
+        HomepageWindow ctc(nullptr, &ctcOffice);
         ctc.show();
 
         SWTrainControllerUI swt;
@@ -76,9 +79,9 @@ int main(int argc, char *argv[])
 
         //TrainTimer ttime(1000);
         QTimer timer;
-        //QObject::connect(&timer, &QTimer::timeout,&ctc, &HomepageWindow::timerSlot);
         QObject::connect(&timer, &QTimer::timeout,&window, &TrackModel::timeout);
-        timer.start(1000);
+        QObject::connect(&timer, &QTimer::timeout, &ctc, &HomepageWindow::timerSlot);
+        timer.start(1000/simulationSpeed);
         QObject::connect(&wui, &MainWindow::sendCTCOcc,&ctc, &HomepageWindow::receiveOccupancy);
         QObject::connect(&ctc, &HomepageWindow::sendClosedBlocks,&wui, &MainWindow::getMaintenaceMode);
         QObject::connect(&ctc, &HomepageWindow::sendSwitchPosition,&wui, &MainWindow::changeSwitch);
@@ -88,3 +91,4 @@ int main(int argc, char *argv[])
 
         return a.exec();
 }
+
