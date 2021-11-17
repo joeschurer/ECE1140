@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/line">
-        <file>GreenLine.txt</file>
-    </qresource>
-</RCC>
