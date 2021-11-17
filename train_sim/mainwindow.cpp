@@ -319,7 +319,7 @@ void MainWindow::recieveAuth(TrainEntry t){
 
 void MainWindow::getMaintenaceMode(std::vector<bool> blocks){
     for(int i=0; i< blocks.size(); i++){
-        plc.set_maintenance_mode(i+1,blocks[i]);
+        plc.set_maintenance_mode(i,blocks[i]);
     }
 }
 

@@ -13,7 +13,7 @@ extern int systemClock;
 extern int simulationSpeed;
 
 typedef std::pair<int, int> Time;
-enum TrainLine {Green, Red};
+enum TrackLine {Green, Red};
 
 struct ScheduleEntry {
     int destination;

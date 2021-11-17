@@ -23,7 +23,7 @@ string convertMinutesToMinuteAndSecond(string time);
 class CtcOffice
 {
 public:
-    CtcOffice(TrainLine line = Green);
+    CtcOffice(TrackLine line = Green);
     void parseSchedule(std::ifstream &scheduleFile);
     void parseTrack();
     std::unordered_map<int, std::vector<ScheduleEntry>> getSchedule();
@@ -47,13 +47,15 @@ public:
     void addClosedBlocks(vector<int> blocks);
     std::unordered_set<int> getClosedBlocks();
     bool checkForDispatch(int time);
+    Time toTimeFromSeconds(int time);
+    vector<TrainEntry> getDispatchedTrains();
 
 private:
     std::unordered_map<int, std::vector<ScheduleEntry>> schedule_;
     void buildGreenLineGraph();
     void buildGreenStationMap();
-    void setupLine(TrainLine line);
-    TrainLine currentLine;
+    void setupLine(TrackLine line);
+    TrackLine currentLine;
     std::unordered_map<std::string, vector<int>> stationMap;
     std::vector<TrackEntry> track_;
     int numTrains_;
@@ -62,6 +64,8 @@ private:
     vector<bool> occupancies;
     vector<TrainEntry> dispatchedTrains;
 
+    int totalOccupancies;
+
     // maps node (track before switch) to it's preceeding track.
     // trains cannot back up
     // can only use switches if you were traveling in the direction of the switch
@@ -69,3 +73,4 @@ private:
     // TODO: Use set for closed tracks
 };
 #endif // CTCOFFICE_H
+
