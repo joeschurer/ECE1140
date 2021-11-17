@@ -31,14 +31,14 @@ string convertMinutesToMinuteAndSecond(string time){
 }
 }
 
-CtcOffice::CtcOffice(Line line)
+CtcOffice::CtcOffice(TrackLine line)
 {
     numTrains_ = 0;
     parseTrack();
     setupLine(line);
 }
 
-void CtcOffice::setupLine(Line line){
+void CtcOffice::setupLine(TrackLine line){
     currentLine = line;
     if (line==Green) {
         buildGreenLineGraph();
@@ -181,6 +181,7 @@ void CtcOffice::addScheduleEntry(int trainNumber, string start, string destinati
        qDebug() << "Departure Time: " << departureTime;
     }
     schedule_[trainNumber].push_back(scheduleEntry);
+    int a = 1;
 }
 
 void CtcOffice::buildGreenStationMap() {
@@ -235,7 +236,9 @@ vector<bool> CtcOffice::sendClosedBlocks(){
 }
 
 void CtcOffice::updateOccupancy(vector<bool> occupancy){
+    // TODO: Check for track failure
     occupancies = occupancy;
+    // TODO: update authority, need a slot for this
 }
 
 void CtcOffice::buildGreenLineGraph() {
@@ -350,76 +353,7 @@ void CtcOffice::addClosedBlocks(vector<int> blocks) {
     }
     sendClosedBlocks();
 }
-/*
-int CtcOffice::computeRouteAuthority(std::string route){
-    vector<string> splitRoute = utility::split(route, "->");
-    string departure = splitRoute[0], destination = splitRoute[1];
-    std::list<trackEntry>::iterator current=track_.begin();
-    auto authority = 0;
-    if(departure!="Yard") {
-        // advance past departure station
-        while(current->infrastructure!= departure){
-            ++current;
-        }
-        ++current;
-    }
-    while (current->infrastructure!= destination){
-       ++authority;
-        ++current;
-    }
-    return ++authority;
-}
 
-int CtcOffice::computeRouteSuggestedSpeed(std::string route){
-    vector<string> splitRoute = utility::split(route, "->");
-    string departure = splitRoute[0], destination = splitRoute[1];
-    std::list<trackEntry>::iterator current=track_.begin();
-    auto suggestedSpeed = 1000;
-    if(departure!="Yard") {
-        // advance past departure station
-        while(current->infrastructure!= departure){
-            ++current;
-        }
-        ++current;
-    }
-    while (current->infrastructure!= destination){
-        suggestedSpeed = std::min(suggestedSpeed, stoi(current->speedLimit));
-        ++current;
-    }
-    return std::min(suggestedSpeed, stoi(current->speedLimit));
-}
-
-
-std::string CtcOffice::getRouteBlockList(std::string route){
-    vector<string> splitRoute = utility::split(route, "->");
-    string blockList = "";
-    string departure = splitRoute[0], destination = splitRoute[1];
-    std::list<trackEntry>::iterator current=track_.begin();
-    if(departure!="Yard") {
-        // advance to departure station
-        while(current->infrastructure!= departure){
-            ++current;
-        }
-    } else {
-        blockList+=current->line + ":" + "Yard" + "->";
-    }
-    while (current->infrastructure!= destination){
-        blockList+=current->line + ":" + current->section + ":" + current->blockNumber + "->";
-        ++current;
-    }
-    blockList+=current->line + ":" + current->section + ":" + current->blockNumber;
-    qDebug() << blockList.c_str();
-    return blockList;
-}
-
-std::unordered_map<int, std::list<ScheduleEntry>> CtcOffice::getSchedule(){
-    return schedule_;
-}
-
-std::list<trackEntry> CtcOffice::getTrack(){
-    return track_;
-}
-*/
 std::unordered_map<int, std::vector<ScheduleEntry>> CtcOffice::getSchedule(){
     return schedule_;
 }

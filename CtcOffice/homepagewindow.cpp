@@ -81,7 +81,7 @@ void HomepageWindow::updateTrainTable(std::unordered_map<int, std::vector<Schedu
             trainTableWidget->setItem(numRows, 2, new QTableWidgetItem(arrivalTime.c_str()));
             string departureTime = ctcOffice_->toStringTime(scheduleEntry.departureTime);
             trainTableWidget->setItem(numRows, 3, new QTableWidgetItem(departureTime.c_str()));
-            trainTableWidget->setItem(numRows, 4, new QTableWidgetItem(std::to_string(scheduleEntry.suggestedSpeed).c_str()));
+            trainTableWidget->setItem(numRows, 4, new QTableWidgetItem(std::to_string(scheduleEntry.suggestedSpeed*0.621371).c_str()));
         }
     }
 }
@@ -134,9 +134,11 @@ void HomepageWindow::updateTrainTable(std::list<ScheduleEntry> schedule){
 }
 
 void HomepageWindow::updateTrainComboBox() {
+    /*
     auto comboBox = ui->selectTrainComboBox;
     auto numTrains = ctcOffice_->getNumTrains();
     comboBox->insertItem(numTrains, QString::fromStdString("Train "+ std::to_string(numTrains)));
+    */
 }
 
 
@@ -216,6 +218,7 @@ void HomepageWindow::on_submitTestTrackInputButton_clicked()
 
 void HomepageWindow::on_submitTestTrainInputButton_clicked()
 {
+    /*
     auto comboBox = ui->selectTrainComboBox;
     comboBox->insertItem(0, ui->testTrainComboBox->currentText());
     comboBox->setCurrentIndex(0);
@@ -224,6 +227,7 @@ void HomepageWindow::on_submitTestTrainInputButton_clicked()
     ui->locationLineEdit->setText(ui->testLocationComboBox->currentText());
     ui->destinationLineEdit->setText(ui->testDestinationLineEdit->text());
     ui->stackedWidget->setCurrentIndex(0);
+    */
 }
 
 
@@ -240,7 +244,6 @@ void HomepageWindow::on_addSwitchButton_clicked()
     }
 }
 
-
 void HomepageWindow::on_dispatchButton_clicked()
 {
    auto schedule = ctcOffice_->getSchedule();
@@ -250,6 +253,21 @@ void HomepageWindow::on_dispatchButton_clicked()
 
 void HomepageWindow::receiveOccupancy(vector<bool> occupancy){
     ctcOffice_->updateOccupancy(occupancy);
+    updateOccupancyTable(occupancy);
+}
+
+void HomepageWindow::updateOccupancyTable(vector<bool> occupancy){
+    auto occupancyTable = ui->occupancyTableWidget;
+    occupancyTable->clearContents();
+    for(int i = 0; i<occupancy.size(); i++){
+        if(occupancy[i]==1){
+            int numRows = occupancyTable->rowCount();
+            occupancyTable->insertRow(numRows);
+            string trainString = "Train 1";
+            occupancyTable->setItem(numRows, 0, new QTableWidgetItem(trainString.c_str()));
+            occupancyTable->setItem(numRows, 1, new QTableWidgetItem(std::to_string(i).c_str()));
+        }
+    }
 }
 
 void HomepageWindow::timerSlot(){

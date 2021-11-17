@@ -11,7 +11,7 @@ using std::string;
 using std::vector;
 
 typedef std::pair<int, int> Time;
-enum Line {Green, Red};
+enum TrackLine {Green, Red};
 
 struct ScheduleEntry {
     int destination;
@@ -45,7 +45,7 @@ string convertMinutesToMinuteAndSecond(string time);
 class CtcOffice
 {
 public:
-    CtcOffice(Line line = Green);
+    CtcOffice(TrackLine line = Green);
     void parseSchedule(std::ifstream &scheduleFile);
     void parseTrack();
     std::unordered_map<int, std::vector<ScheduleEntry>> getSchedule();
@@ -74,8 +74,8 @@ private:
     std::unordered_map<int, std::vector<ScheduleEntry>> schedule_;
     void buildGreenLineGraph();
     void buildGreenStationMap();
-    void setupLine(Line line);
-    Line currentLine;
+    void setupLine(TrackLine line);
+    TrackLine currentLine;
     std::unordered_map<std::string, vector<int>> stationMap;
     std::vector<TrackEntry> track_;
     int numTrains_;
@@ -83,6 +83,7 @@ private:
     std::unordered_set<int> closedBlocks;
     vector<bool> occupancies;
     vector<TrainEntry> dispatchedTrains;
+    int totalOccupancies;
 
     // maps node (track before switch) to it's preceeding track.
     // trains cannot back up

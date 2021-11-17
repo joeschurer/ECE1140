@@ -29,6 +29,7 @@ private slots:
     void on_uploadScheduleButton_clicked();
 
     void updateTrainTable(std::list<ScheduleEntry> schedule);
+    void updateOccupancyTable(vector<bool> occupancy);
     void updateTrainTable(std::unordered_map<int, std::vector<ScheduleEntry>>);
 
     void updateTrainComboBox();
