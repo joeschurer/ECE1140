@@ -10,11 +10,11 @@ public:
     trainCalculate();
     //trainCalculate();
     void getPower(double);
-    float calculateVelocity();
-    float distTraveled();
+    double calculateVelocity();
+    double distTraveled();
     int calcWeight(int);
-    float getLength();
-    int calcCapacity(int, int);
+    double getLength();
+    int calcCapacity(int);
     void leftDoors();
     void rightDoors();
     void calcTime();
@@ -26,17 +26,21 @@ public:
     double emergencyDecel = -2.73;
 
 //variables
-    float trainLength = 0;
+    double trainLength = 0;
     int numCars;
     int numPassengers = 0;
     int currentPower;
-    float currentVelocity;
-    float currentAcc;
-    float currentForce;
-    float lastVelocity;
-    float lastAcc;
+    double currentVelocity;
+    double currentMPH;
+    double currentKPH;
+    double currentAcc;
+    double currentForce;
+    double lastVelocity;
+    double lastAcc;
     int lastPosition;
     int currentPosition;
+    double currentTime;
+    double lastTime;
     int maxCapacity = 222;
     int newPassengers = 0;
     int passengersOff = 0;
@@ -46,6 +50,7 @@ public:
     bool emergencyBrake = false;
     int currentWeight;
     int timespan = 5;
+    int trainWeight;
 
 
 };

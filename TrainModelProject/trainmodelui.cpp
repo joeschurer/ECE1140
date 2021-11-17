@@ -6,6 +6,7 @@ TrainModelUI::TrainModelUI(QWidget *parent)
     , ui(new Ui::TrainModelUI)
 {
     ui->setupUi(this);
+    trainCalculate hah;
 }
 
 TrainModelUI::~TrainModelUI()
@@ -13,6 +14,9 @@ TrainModelUI::~TrainModelUI()
     delete ui;
 }
 
+void TrainModelUI::makeTrain(trainCalculate calcs){
+    train = calcs;
+}
 
 void TrainModelUI::setLength(double length){
     ui->trainLengthValue->setText(QString::number(length));
@@ -25,6 +29,7 @@ void TrainModelUI::setMass(double weight){
 
 
 void TrainModelUI::getPower(int power){
+    train.getPower(power);
     ui->currentPowerValue->setText(QString::number((power)));
 
 }
@@ -33,6 +38,8 @@ void TrainModelUI::getVelocity(float speed){
     ui->currentSpeedValue->setText(QString::number((speed)));
 
 }
+
+
 void TrainModelUI::getAcceleration(float acc){
     ui->currentAccelerationValue->setText(QString::number((acc)));
 
@@ -70,9 +77,11 @@ void TrainModelUI::getMode(int val){
         ui->currentModeValue->setText("ENGINE FAILURE MODE");
     }
 }
-int getPassengers();
-float getTemp();
-int selectTrain();
+void TrainModelUI::getPassengers(int passengers){
+    ui->passengersOnTrainValue->setText(QString::number(passengers));
+}
+
+
 
 
 
@@ -88,8 +97,10 @@ void TrainModelUI::on_toggleLights_clicked()
 
 void TrainModelUI::on_inputPowerConfirm_clicked()
 {
-
-
+    QString x = ui->inputPowerResult->text();
+    double powerval = x.toDouble();
+    train.getPower(powerval);
+    //updateUI();
 }
 
 
@@ -99,12 +110,15 @@ void TrainModelUI::on_inputPowerConfirm_clicked()
 void TrainModelUI::on_emergencyBrake_clicked()
 {
     ui->currentModeValue->setText("Emergency Brake Pulled");
+    emit eBrakeSetTC(true);
 }
 
 
 void TrainModelUI::on_pushButton_3_clicked()
 {
     ui->currentModeValue->setText("POWER FAILURE");
+    int i = 2;
+    emit failureState(i);
 }
 
 
@@ -132,11 +146,57 @@ void TrainModelUI::on_toggleDoorLeft_clicked()
 void TrainModelUI::on_pushButton_2_clicked()
 {
     ui->currentModeValue->setText("SIGNAL PICKUP FAILURE");
+    int i = 1;
+    emit failureState(i);
 }
 
 
 void TrainModelUI::on_pushButton_4_clicked()
 {
     ui->currentModeValue->setText("TRAIN ENGINE FAILURE");
+    int i = 3;
+    emit failureState(i);
 }
 
+void TrainModelUI::updateUI(){
+    ui->currentSpeedValue->setText(QString::number(train.calculateVelocity()));
+    ui->currentAccelerationValue->setText(QString::number(train.currentAcc));
+    ui->currentSpeedValue->setText(QString::number(train.currentPower));
+
+
+
+}
+
+
+void TrainModelUI::CurrentSpeedDifferent(int power){
+    train.getPower(power);
+    int speed = train.calculateVelocity();
+    emit currSpeedTC(speed);
+}
+
+void TrainModelUI::boardingPassengersFromTM(int numPassengers){
+   int newtotal = train.calcCapacity(numPassengers);
+    ui->passengersOnTrainValue->setText(QString::number(newtotal));
+}
+void TrainModelUI::trackSignalFromTM(int meters, int grade, int limit, int comm){
+    emit speedLimitTC(limit);
+    emit commandedSpeedTC(comm);
+
+
+}
+
+void FailureDifferent(std::string state);
+void distLeftTC(int dist);
+void eBrakeSetTC(bool state);
+void failureState(int mode);
+
+//to track model
+void currSpeed(int currSpeed);
+void currentPassengers(int passengers);
+
+
+//length of blokc
+//grade
+//speedlimit
+//commanded speed
+//passengers

@@ -9,6 +9,8 @@ int main(int argc, char *argv[])
        QApplication a(argc, argv);
        TrainModelUI w;
        trainCalculate m;
+       w.makeTrain(m);
+       w.updateUI();
        w.show();
        return a.exec();
 

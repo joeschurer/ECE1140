@@ -15,10 +15,17 @@ trainCalculate::trainCalculate()
     lastVelocity = 0;
     currentForce = 0;
     currentWeight = 40800;
+    lastTime = 0;
+    currentTime = 1;
+    lastPosition = 0;
+    currentPosition = 0;
+
 }
+
+
 void trainCalculate::getPower(double power){
     if(currentMode == 2){
-        power = 0;
+        currentPower = 0;
     }else{
         currentPower = power;
     }
@@ -37,32 +44,43 @@ void trainCalculate::getPower(double power){
     return;
 }
 
-float trainCalculate::distTraveled(){
-
+double trainCalculate::distTraveled(){
+    if(lastTime == 0){
+        lastPosition = 0;
+    }
+    double timeDiff = lastTime - currentTime;
+    lastTime = currentTime;
+//    currentTime = clockTime;
+//    double avgVelocity = (currentVelocity+lastVelocity)/2;
+//    double distanceCovered = avgVelocity * (currentTime - lastTime);
+//    return distanceCovered;
+    return 5;
 }
 
 void trainCalculate:: calcTime(){
 
 }
 
-float trainCalculate::calculateVelocity(){
+double trainCalculate::calculateVelocity(){
     currentVelocity = currentVelocity + (currentAcc*timespan);
     if(currentVelocity < 0){
         currentVelocity = 0;
     }
+    currentKPH = currentVelocity*3.6; //convert to Kilometers per hour
+
     return currentVelocity;
 }
 
-float trainCalculate::getLength(){
+double trainCalculate::getLength(){
     return trainLength;
 }
 int trainCalculate::calcWeight(int numPassengers){
-    int weight = 2*40800;
+    trainWeight = 2*40800;
     int passWeight = 150*numPassengers;
-    currentWeight = weight + passWeight;
+    currentWeight = trainWeight + passWeight;
     return currentWeight;
 }
-int trainCalculate::calcCapacity(int numPassengers, int newPassengers){
+int trainCalculate::calcCapacity(int newPassengers){
 
     if(numPassengers > 0){
         passengersOff = rand() % numPassengers;
@@ -72,6 +90,7 @@ int trainCalculate::calcCapacity(int numPassengers, int newPassengers){
         if(numPassengers > maxCapacity){
             numPassengers = maxCapacity;
         }
+        calcWeight(numPassengers);
     return numPassengers;
 }
 void trainCalculate::leftDoors(){
@@ -91,8 +110,4 @@ void trainCalculate::rightDoors(){
     return;
 }
 
-//length of blokc
-//grade
-//speedlimit
-//commanded speed
-//passengers
+

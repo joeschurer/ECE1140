@@ -14,9 +14,9 @@ class TrainModelUI : public QWidget
 public:
     TrainModelUI(QWidget *parent = nullptr);
     ~TrainModelUI();
+    void makeTrain(trainCalculate);
     void updateUI();
     void setUI();
-    void setTrain(trainCalculate);
     void setLength(double);
     void setMass(double);
     void getPower(int);
@@ -30,7 +30,8 @@ public:
     void getPassengers(int);
     void getTemp(int);
     void selectTrain(int);
-
+    void updateALL();
+    trainCalculate train;
 private slots:
     void on_toggleDoor_clicked();
 
@@ -56,9 +57,25 @@ private:
 
 public slots:
     void receivePower(int power);
+    void DestinationDifferent(std::string destination);
+    void DistanceDifferent(std::string distance);
+    void TimeDifferent(std::string time);
+    void SpeedLimitDifferent(int speed);
+    void CommandedSpeedDifferent(int speed);
+    void CurrentSpeedDifferent(int power);
+    void EmergencyBrakeDifferent(std::string state);
+    void FailureDifferent(std::string state);
+    void boardingPassengersFromTM(int numPassengers);
+    void trackSignalFromTM(int meters, int grade, int limit, int comm);
+
+    //length of blokc
+    //grade
+    //speedlimit
+    //commanded speed
+    //passengers
 signals:
     //to train controller
-    void currSpeedTC(int currSpeed);
+    void currSpeedTC(int);
     void speedLimitTC(int speedL);
     void commandedSpeedTC(int cSpeed);
     void distLeftTC(int dist);
@@ -67,5 +84,6 @@ signals:
 
     //to track model
     void currSpeed(int currSpeed);
+    void currentPassengers(int passengers);
 };
 #endif // TRAINMODELUI_H
