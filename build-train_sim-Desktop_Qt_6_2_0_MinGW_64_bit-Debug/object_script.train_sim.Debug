@@ -17,7 +17,9 @@ debug/topwindow.o
 debug/track_layout.o
 debug/trackmodel.o
 debug/train.o
+debug/traincalculate.o
 debug/trainmodel.o
+debug/trainmodelui.o
 debug/wayside.o
 debug/moc_beacon.o
 debug/moc_engineer.o
@@ -28,4 +30,5 @@ debug/moc_swtraincontrollerui.o
 debug/moc_topwindow.o
 debug/moc_trackmodel.o
 debug/moc_trainmodel.o
+debug/moc_trainmodelui.o
 debug/moc_wayside.o

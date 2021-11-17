@@ -28,7 +28,9 @@ SOURCES += \
     track_layout.cpp \
     trackmodel.cpp \
     train.cpp \
+    traincalculate.cpp \
     trainmodel.cpp \
+    trainmodelui.cpp \
     wayside.cpp
 
 HEADERS += \
@@ -51,7 +53,9 @@ HEADERS += \
     track_layout.h \
     trackmodel.h \
     train.h \
+    traincalculate.h \
     trainmodel.h \
+    trainmodelui.h \
     wayside.h
 
 FORMS += \
@@ -64,6 +68,7 @@ FORMS += \
     topwindow.ui \
     trackmodel.ui \
     trainmodel.ui \
+    trainmodelui.ui \
     wayside.ui
 
 # Default rules for deployment.

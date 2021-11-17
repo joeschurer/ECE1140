@@ -59,14 +59,16 @@ void PLC::heater(int index,bool state){
 }
 
 void PLC::set_maintenance_mode(int index, bool state){
-    track_model.track[index].maintenance = state;
-    if(state==true){
-        track_model.track[index].lights = 2;
-        track_model.track[index].comm_speed = 0;
-    } else {
-        if(track_model.track[index].occupancy == false){
-            track_model.track[index].lights = 0;
-            track_model.track[index].comm_speed = track_model.track[index].speed_limit;
+    if(index<148 && index>0){
+        track_model.track[index].maintenance = state;
+        if(state==true){
+            track_model.track[index].lights = 2;
+            track_model.track[index].comm_speed = 0;
+        } else {
+            if(track_model.track[index].occupancy == false){
+                track_model.track[index].lights = 0;
+                track_model.track[index].comm_speed = track_model.track[index].speed_limit;
+            }
         }
     }
 }
@@ -106,17 +108,17 @@ bool PLC::updateBlocks(){
 
 void PLC::toggleSwitch(int index){
     //only toggle if block is unoccupied
-    index--;
+    //index--;
     if(track_model.track[index].occupancy == false){
         int currentConnect = track_model.track[index].headConnect;
-        track_model.track[currentConnect-1].tailConnect = -1;
+        track_model.track[currentConnect].tailConnect = -1;
 
         int newConnect = track_model.track[index].headOptions[0];
         if(track_model.track[index].headOptions[0] == currentConnect){
             newConnect = track_model.track[index].headOptions[1];
         }
         track_model.track[index].headConnect = newConnect;
-        track_model.track[newConnect-1].tailConnect = index+1;
+        track_model.track[newConnect].tailConnect = index;
     }
 }
 

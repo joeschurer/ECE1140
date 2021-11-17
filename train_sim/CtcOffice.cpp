@@ -84,7 +84,7 @@ string CtcOffice::toStringTime(Time time){
 
 void CtcOffice::parseTrack() {
     std::ifstream trackFile;
-    trackFile.open("C:\\Users\\akina\\OneDrive - University of Pittsburgh\\PITT\\PITT Senior Year\\Semester 1\\ECE 1140-Systems and Project Engineering\\Green_Track_Layout.csv");
+    trackFile.open("C:\\Users\\daisy1\\Documents\\GitHub\\ECE1140\\train_sim\\Green_Track_Layout.csv");
     // get line for column headers
     string line="chicken";
     std::getline(trackFile, line);

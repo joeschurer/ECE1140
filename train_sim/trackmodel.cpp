@@ -334,7 +334,7 @@ void TrackModel::trainMoved(int trainNum) {
     int tb = -1;
     for (int i=0; i<a; i++) {
         if (layout.line->trains[i].id == trainNum) {
-            layout.line->moveTrain(trainNum);
+            layout.line->moveTrain(i+1);
             tb = i;
         }
     }

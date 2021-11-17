@@ -13,7 +13,7 @@ using std::string;
 using std::vector;
 
 int systemClock = 0;
-int simulationSpeed = 10;
+int simulationSpeed = 15;
 HomepageWindow::HomepageWindow(QWidget *parent, CtcOffice *ctcOffice)
     : QMainWindow(parent), ui(new Ui::HomepageWindow), ctcOffice_(ctcOffice) {
   ui->setupUi(this);
@@ -209,7 +209,7 @@ void HomepageWindow::on_addTrackSectionButton_clicked() {
     ctcOffice_->addClosedBlocks(intBlocks);
   }
   auto closedBlocks = ctcOffice_->sendClosedBlocks();
-  //emit sendClosedBlocks(closedBlocks);
+  emit sendClosedBlocks(closedBlocks);
 }
 
 void HomepageWindow::on_maintenanceModeCheckBox_stateChanged(int arg1) {

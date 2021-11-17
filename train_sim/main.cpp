@@ -31,7 +31,8 @@
 #include <QApplication>
 #include "swtraincontrollerui.h"
 #include "engineer.h"
-
+#include "trainmodelui.h"
+#include "traincalculate.h"
 
 
 int main(int argc, char *argv[])
@@ -60,9 +61,9 @@ int main(int argc, char *argv[])
         window.show();
 
         //Beacon Test UI
-        Beacon beacon;
-        beacon.show();
-        QObject::connect(&window, SIGNAL(beaconData(string)), &beacon, SLOT(transmitting(string)));
+        //Beacon beacon;
+        //beacon.show();
+        //QObject::connect(&window, SIGNAL(beaconData(string)), &beacon, SLOT(transmitting(string)));
 
         MainWindow wui;
         wui.show();
@@ -76,11 +77,17 @@ int main(int argc, char *argv[])
 
         Engineer eng;
         eng.show();
+
+        TrainModelUI aaah;
+        trainCalculate wwwww;
+        aaah.makeTrain(wwwww);
+        aaah.show();
       //  TestUI t;
         //t.show();
 
         //TrainTimer ttime(1000);
         QTimer timer;
+        //QObject::connect(&timer, &QTimer::timeout, &aaah, &TrainModelUI::updateTime);
         QObject::connect(&timer, &QTimer::timeout,&window, &TrackModel::timeout);
         QObject::connect(&timer, &QTimer::timeout, &ctc, &HomepageWindow::timerSlot);
         timer.start(1000/simulationSpeed);
