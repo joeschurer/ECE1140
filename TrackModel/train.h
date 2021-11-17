@@ -15,11 +15,9 @@ public:
     bool emergencyStop;
     int id;
     int location;
-    vector<bool> authority;
 
     Train();
-    Train(int id, int com, int loc, vector<bool> auth);
-    void setAuthority(vector<bool> auth);
+    Train(int id, int com, int loc);
     void setCommandedSpeed(int com);
     void setActualSpeed(double act);
     void addPassengers(int available);

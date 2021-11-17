@@ -26,6 +26,7 @@ public:
     bool trackBroken = false;
     bool circuitBroken = false;
     bool powerBroken = false;
+    bool authority = false;
     string section;
     Beacons beacon;
     Station station;

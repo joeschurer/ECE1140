@@ -307,23 +307,21 @@ void TrackModel::trainUpdated(vector<string> item) {
     int id = stoi(ids);
     bool found = false;
     int com = stoi(item[1]);
-    vector<bool> auth;
     string a = item[2];
-    for (int j=0; j<a.length(); j++) {
-        if (a[j] == '0') auth.push_back(false);
-        else auth.push_back(true);
+    for (int i=0; i<layout.line->blocks.size(); i++) {
+        if (a[i] == '0') layout.line->blocks[i].authority = false;
+        else layout.line->blocks[i].authority = true;
     }
     for (int i=0; i<layout.line->trains.size(); i++) {
         if (layout.line->trains[i].id == id && found == false) {
             layout.line->trains[i].commandedSpeed = com;
             found = true;
-            layout.line->trains[i].setAuthority(auth);
         }
     }
 
     if (!found) {
         int star = stoi(item[3]);
-        Train train(id, com, star, auth);
+        Train train(id, com, star);
         layout.line->trains.push_back(train);
     }
 
@@ -457,8 +455,10 @@ void TrackModel::on_breakPower_textChanged(const QString &arg1)
     trackModelDisplay();
 }
 
-void TrackModel::toggleSwitch(int sw) {
-    if (layout.line->blocks[sw-1].hasSwitch == true) {
-        layout.line->blocks[sw-1].swtch.point1 = !layout.line->blocks[sw-1].swtch.point1;
+void TrackModel::toggleSwitch(vector<int> sw) {
+    for (int i=0; i<sw.size(); i++) {
+        if (layout.line->blocks[sw[i]-1].hasSwitch == true) {
+            layout.line->blocks[sw[i]-1].swtch.point1 = !layout.line->blocks[sw[i]-1].swtch.point1;
+        }
     }
 }

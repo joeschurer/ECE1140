@@ -78,8 +78,10 @@ void Wayside::on_test1_clicked()
 
 void Wayside::on_cont1_1_clicked()
 {
-    emit toggleSwitch(86);
-    emit toggleSwitch(76);
+    vector<int> te;
+    te.push_back(86);
+    te.push_back(76);
+    emit toggleSwitch(te);
     vector<string> vec;
     vec.push_back("1");
     vec.push_back("70");
@@ -119,14 +121,17 @@ void Wayside::on_toggleSwitch_editingFinished()
 {
     QString s = ui->toggleSwitch->text();
     string a = s.toStdString();
-    int num = stoi(a);
+    vector<int> num;
+    num.push_back(stoi(a));
     emit toggleSwitch(num);
 }
 
 
 void Wayside::on_cont1_2_clicked()
 {
-    emit toggleSwitch(29);
+    vector<int> te;
+    te.push_back(29);
+    emit toggleSwitch(te);
     vector<string> vec;
     vec.push_back("1");
     vec.push_back("45");
@@ -164,8 +169,10 @@ void Wayside::on_cont1_2_clicked()
 
 void Wayside::on_cont1_3_clicked()
 {
-    emit toggleSwitch(29);
-    emit toggleSwitch(13);
+    vector<int> te;
+    te.push_back(29);
+    te.push_back(13);
+    emit toggleSwitch(te);
     vector<string> vec;
     vec.push_back("1");
     vec.push_back("60");

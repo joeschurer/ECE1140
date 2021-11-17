@@ -37,7 +37,7 @@ signals:
     void timeChanged();
     int addedPassengers(int added);
     vector<string> trainChanged(vector<string> data);
-    int toggleSwitch(int sw);
+    vector<int> toggleSwitch(vector<int> sw);
 
 private:
     Ui::Wayside *ui;

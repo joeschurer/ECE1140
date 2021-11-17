@@ -29,7 +29,7 @@ public slots:
     void trainMoved(int trainNum);
     void actualSpeedChanged(QString item);
     void trainUpdated(vector<string> item);
-    void toggleSwitch(int sw);
+    void toggleSwitch(vector<int> sw);
 
 private slots:
     void on_breakCircuit_textChanged(const QString &arg1);

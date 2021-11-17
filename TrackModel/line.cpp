@@ -5,7 +5,7 @@ using namespace std;
 void Line::moveTrain(int trainNum) {
     int current = trains[trainNum-1].location;
     int next = current;
-    if (current > 0) trains[trainNum-1].authority[current-1] = false;
+    if (current > 0) blocks[current-1].authority = false;
 
     //Get next block
     //If already done, stay put
@@ -23,15 +23,15 @@ void Line::moveTrain(int trainNum) {
                 n = blocks[current-1].swtch.block1_1;
             }
             //If you can go where the switch is pointing go
-            if (trains[trainNum-1].authority[n-1] == true) {
+            if (blocks[n-1].authority == true) {
                 next = n;
             }
             //If you can't go there or already went there, find the next in order and go there instead
             else {
-                if ((current+1 != n) && (trains[trainNum-1].authority[current] == true)) {
+                if ((current+1 != n) && blocks[current].authority == true) {
                     next = current+1;
                 }
-                else if ((current-1 != n) && (trains[trainNum-1].authority[current-2] == true)) {
+                else if ((current-1 != n) && blocks[current-2].authority == true) {
                     next = current-1;
                 }
             }
@@ -45,15 +45,15 @@ void Line::moveTrain(int trainNum) {
                 n = blocks[current-1].swtch.block2_1;
             }
             //If you can go where the switch is pointing go
-            if (trains[trainNum-1].authority[n-1] == true) {
+            if (blocks[n-1].authority == true) {
                 next = n;
             }
             //If you can't go there or already went there, find the next in order and go there instead
             else {
-                if ((current+1 != n) && (trains[trainNum-1].authority[current] == true)) {
+                if ((current+1 != n) && blocks[current].authority == true) {
                     next = current+1;
                 }
-                else if ((current-1 != n) && (trains[trainNum-1].authority[current-2] == true)) {
+                else if ((current-1 != n) && blocks[current-2].authority == true) {
                     next = current-1;
                 }
             }
@@ -82,8 +82,7 @@ void Line::moveTrain(int trainNum) {
                         n = blocks[i].swtch.block2_1;
                     }
                 }
-
-                if (n>0 && n!=current && trains[trainNum-1].authority[n-1] == true) {
+                if (n>0 && n!=current && blocks[n-1].authority == true) {
                     next = n;
                     con = true;
                 }
@@ -91,13 +90,13 @@ void Line::moveTrain(int trainNum) {
         }
 
         if (!con || n == -1) {
-            if (trains[trainNum-1].authority[current] == true) {
+            if (blocks[current].authority == true) {
                 next = current+1;
             }
             else if (current == 1) {
                 next = current;
             }
-            else if (trains[trainNum-1].authority[current-2] == true){
+            else if (blocks[current-2].authority == true) {
                 next = current-1;
             }
             else if (n == -1) {

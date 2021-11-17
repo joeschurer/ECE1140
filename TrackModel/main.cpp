@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
     QObject::connect(&trainUI, SIGNAL(trainMoved(int)), &window, SLOT(trainMoved(int)));
     QObject::connect(&trainUI, SIGNAL(trainSpeedUpdated(QString)), &window, SLOT(actualSpeedChanged(QString)));
     QObject::connect(&waysideUI, SIGNAL(trainChanged(vector<string>)), &window, SLOT(trainUpdated(vector<string>)));
-    QObject::connect(&waysideUI, SIGNAL(toggleSwitch(int)), &window, SLOT(toggleSwitch(int)));
+    QObject::connect(&waysideUI, SIGNAL(toggleSwitch(vector<int>)), &window, SLOT(toggleSwitch(vector<int>)));
     QObject::connect(&window, SIGNAL(beaconData(string)), &beacon, SLOT(transmitting(string)));
 
     return a.exec();

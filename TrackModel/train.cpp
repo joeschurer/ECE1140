@@ -9,10 +9,9 @@ Train::Train()
     capacity = 222;
     emergencyStop = false;
     location = 0;
-    authority.clear();
 }
 
-Train::Train(int id, int com, int loc, vector<bool> auth) {
+Train::Train(int id, int com, int loc) {
     passengers = 0;
     this->id = id;
     commandedSpeed = com;
@@ -20,12 +19,6 @@ Train::Train(int id, int com, int loc, vector<bool> auth) {
     capacity = 222;
     emergencyStop = false;
     location = loc;
-    authority = auth;
-}
-
-void Train::setAuthority(vector<bool> auth) {
-    authority.clear();
-    authority = auth;
 }
 
 void Train::setCommandedSpeed(int com) {
