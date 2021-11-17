@@ -540,7 +540,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>../../../OneDrive - University of Pittsburgh/PITT/PITT Senior Year/Semester 1/ECE 1140-Systems and Project Engineering/green_and_red_track_small2.png</pixmap>
+       <pixmap>green_and_red_track_small2.png</pixmap>
       </property>
      </widget>
      <widget class="QLineEdit" name="trackLineEdit">

@@ -282,7 +282,7 @@ public:
         label->setObjectName(QString::fromUtf8("label"));
         label->setEnabled(false);
         label->setGeometry(QRect(630, -160, 1021, 761));
-        label->setPixmap(QPixmap(QString::fromUtf8("../../../OneDrive - University of Pittsburgh/PITT/PITT Senior Year/Semester 1/ECE 1140-Systems and Project Engineering/green_and_red_track_small2.png")));
+        label->setPixmap(QPixmap(QString::fromUtf8("green_and_red_track_small2.png")));
         trackLineEdit = new QLineEdit(manageTracksPage);
         trackLineEdit->setObjectName(QString::fromUtf8("trackLineEdit"));
         trackLineEdit->setGeometry(QRect(320, 260, 101, 21));
