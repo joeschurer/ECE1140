@@ -43,6 +43,7 @@ HEADERS += \
     line.h \
     lineselect.h \
     mainwindow.h \
+    models.h \
     station.h \
     switch.h \
     swtraincontrollerui.h \

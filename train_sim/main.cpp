@@ -17,6 +17,7 @@
 #include <QTimer>
 #include <QLocale>
 #include <QTranslator>
+#include <QObject>
 #include <string>
 #include <vector>
 #include <fstream>
@@ -30,6 +31,7 @@
 #include <QApplication>
 #include "swtraincontrollerui.h"
 #include "engineer.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -71,6 +73,17 @@ int main(int argc, char *argv[])
 
         Engineer eng;
         eng.show();
+
+        //TrainTimer ttime(1000);
+        QTimer timer;
+        //QObject::connect(&timer, &QTimer::timeout,&ctc, &HomepageWindow::timerSlot);
+        QObject::connect(&timer, &QTimer::timeout,&window, &TrackModel::timeout);
+        timer.start(1000);
+        QObject::connect(&wui, &MainWindow::sendCTCOcc,&ctc, &HomepageWindow::receiveOccupancy);
+        QObject::connect(&ctc, &HomepageWindow::sendClosedBlocks,&wui, &MainWindow::getMaintenaceMode);
+        QObject::connect(&ctc, &HomepageWindow::sendSwitchPosition,&wui, &MainWindow::changeSwitch);
+        QObject::connect(&wui, &MainWindow::sendTrainDispatch,&window, &TrackModel::trainUpdated);
+        QObject::connect(&window, &TrackModel::occupancyChanged,&wui, &MainWindow::receiveOcc);
 
 
         return a.exec();

@@ -1,6 +1,8 @@
 #ifndef PLC_H
 #define PLC_H
 #include "track_layout.h"
+#include "models.h"
+
 
 class PLC{
 private:

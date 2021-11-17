@@ -363,13 +363,16 @@ void TrackModel::trainMoved(int trainNum) {
     emit passengersChanged(pass);
 
     //Get occupancy and send it to the wayside
-    vector<int> occ;
+   /* vector<int> occ;
     for (int i=0; i<layout.line->trains.size(); i++) {
         occ.push_back(i);
-    }
+    }*/
+    vector<bool> occ;
     for (int i=0; i<layout.line->blocks.size(); i++) {
-        if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back(i);
+        if (layout.line->blocks[i].presenceDetected||layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
+            occ.push_back(true);
+        } else {
+            occ.push_back(false);
         }
     }
     emit occupancyChanged(occ);

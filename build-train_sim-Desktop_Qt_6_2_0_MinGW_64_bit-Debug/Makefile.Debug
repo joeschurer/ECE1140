@@ -123,6 +123,7 @@ DIST          =  ..\train_sim\CtcOffice.h \
 		..\train_sim\line.h \
 		..\train_sim\lineselect.h \
 		..\train_sim\mainwindow.h \
+		..\train_sim\models.h \
 		..\train_sim\station.h \
 		..\train_sim\switch.h \
 		..\train_sim\swtraincontrollerui.h \
@@ -171,7 +172,7 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) train_sim.zip $(SOURCES) $(DIST) ..\train_sim\train_sim.pro C:\Qt\6.2.0\mingw81_64\mkspecs\features\spec_pre.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\device_config.prf C:\Qt\6.2.0\mingw81_64\mkspecs\common\sanitize.conf C:\Qt\6.2.0\mingw81_64\mkspecs\common\gcc-base.conf C:\Qt\6.2.0\mingw81_64\mkspecs\common\g++-base.conf C:\Qt\6.2.0\mingw81_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\6.2.0\mingw81_64\mkspecs\common\windows-vulkan.conf C:\Qt\6.2.0\mingw81_64\mkspecs\common\g++-win32.conf C:\Qt\6.2.0\mingw81_64\mkspecs\common\windows-desktop.conf C:\Qt\6.2.0\mingw81_64\mkspecs\qconfig.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_ext_freetype.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_ext_libpng.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_core.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_help.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labsanimation.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labssettings.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_linguist.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_linguist_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_network.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlcore.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlcore_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickdialogs2.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_tools_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\features\qt_functions.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\qt_config.prf C:\Qt\6.2.0\mingw81_64\mkspecs\win32-g++\qmake.conf C:\Qt\6.2.0\mingw81_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\6.2.0\mingw81_64\mkspecs\features\exclusive_builds.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\toolchain.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\default_pre.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\win32\default_pre.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\resolve_config.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\default_post.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\build_pass.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\qml_debug.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\entrypoint.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\precompile_header.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\warn_on.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\qt.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\resources_functions.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\resources.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\moc.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\win32\opengl.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\uic.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\qmake_use.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\file_copies.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\win32\windows.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\testcase_targets.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\exceptions.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\yacc.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\lex.prf ..\train_sim\train_sim.pro C:\Qt\6.2.0\mingw81_64\lib\Qt6Widgets.prl C:\Qt\6.2.0\mingw81_64\lib\Qt6Gui.prl C:\Qt\6.2.0\mingw81_64\lib\Qt6Core.prl C:\Qt\6.2.0\mingw81_64\lib\Qt6EntryPoint.prl    C:\Qt\6.2.0\mingw81_64\mkspecs\features\data\dummy.cpp ..\train_sim\CtcOffice.h ..\train_sim\PLC.h ..\train_sim\beacon.h ..\train_sim\beacons.h ..\train_sim\block.h ..\train_sim\engineer.h ..\train_sim\homepagewindow.h ..\train_sim\layout.h ..\train_sim\line.h ..\train_sim\lineselect.h ..\train_sim\mainwindow.h ..\train_sim\station.h ..\train_sim\switch.h ..\train_sim\swtraincontrollerui.h ..\train_sim\topwindow.h ..\train_sim\track_layout.h ..\train_sim\trackmodel.h ..\train_sim\train.h ..\train_sim\trainmodel.h ..\train_sim\wayside.h  ..\train_sim\CtcOffice.cpp ..\train_sim\PLC.cpp ..\train_sim\beacon.cpp ..\train_sim\beacons.cpp ..\train_sim\block.cpp ..\train_sim\engineer.cpp ..\train_sim\homepagewindow.cpp ..\train_sim\layout.cpp ..\train_sim\line.cpp ..\train_sim\lineselect.cpp ..\train_sim\main.cpp ..\train_sim\mainwindow.cpp ..\train_sim\station.cpp ..\train_sim\switch.cpp ..\train_sim\swtraincontrollerui.cpp ..\train_sim\topwindow.cpp ..\train_sim\track_layout.cpp ..\train_sim\trackmodel.cpp ..\train_sim\train.cpp ..\train_sim\trainmodel.cpp ..\train_sim\wayside.cpp ..\train_sim\HomepageWindow.ui ..\train_sim\beacon.ui ..\train_sim\engineer.ui ..\train_sim\lineselect.ui ..\train_sim\mainwindow.ui ..\train_sim\swtraincontrollerui.ui ..\train_sim\topwindow.ui ..\train_sim\trackmodel.ui ..\train_sim\trainmodel.ui ..\train_sim\wayside.ui    
+	$(ZIP) train_sim.zip $(SOURCES) $(DIST) ..\train_sim\train_sim.pro C:\Qt\6.2.0\mingw81_64\mkspecs\features\spec_pre.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\device_config.prf C:\Qt\6.2.0\mingw81_64\mkspecs\common\sanitize.conf C:\Qt\6.2.0\mingw81_64\mkspecs\common\gcc-base.conf C:\Qt\6.2.0\mingw81_64\mkspecs\common\g++-base.conf C:\Qt\6.2.0\mingw81_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\6.2.0\mingw81_64\mkspecs\common\windows-vulkan.conf C:\Qt\6.2.0\mingw81_64\mkspecs\common\g++-win32.conf C:\Qt\6.2.0\mingw81_64\mkspecs\common\windows-desktop.conf C:\Qt\6.2.0\mingw81_64\mkspecs\qconfig.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_ext_freetype.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_ext_libpng.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_core.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_help.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labsanimation.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labssettings.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_linguist.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_linguist_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_network.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlcore.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlcore_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickdialogs2.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_tools_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\6.2.0\mingw81_64\mkspecs\features\qt_functions.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\qt_config.prf C:\Qt\6.2.0\mingw81_64\mkspecs\win32-g++\qmake.conf C:\Qt\6.2.0\mingw81_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\6.2.0\mingw81_64\mkspecs\features\exclusive_builds.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\toolchain.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\default_pre.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\win32\default_pre.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\resolve_config.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\default_post.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\build_pass.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\qml_debug.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\entrypoint.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\precompile_header.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\warn_on.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\qt.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\resources_functions.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\resources.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\moc.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\win32\opengl.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\uic.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\qmake_use.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\file_copies.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\win32\windows.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\testcase_targets.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\exceptions.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\yacc.prf C:\Qt\6.2.0\mingw81_64\mkspecs\features\lex.prf ..\train_sim\train_sim.pro C:\Qt\6.2.0\mingw81_64\lib\Qt6Widgets.prl C:\Qt\6.2.0\mingw81_64\lib\Qt6Gui.prl C:\Qt\6.2.0\mingw81_64\lib\Qt6Core.prl C:\Qt\6.2.0\mingw81_64\lib\Qt6EntryPoint.prl    C:\Qt\6.2.0\mingw81_64\mkspecs\features\data\dummy.cpp ..\train_sim\CtcOffice.h ..\train_sim\PLC.h ..\train_sim\beacon.h ..\train_sim\beacons.h ..\train_sim\block.h ..\train_sim\engineer.h ..\train_sim\homepagewindow.h ..\train_sim\layout.h ..\train_sim\line.h ..\train_sim\lineselect.h ..\train_sim\mainwindow.h ..\train_sim\models.h ..\train_sim\station.h ..\train_sim\switch.h ..\train_sim\swtraincontrollerui.h ..\train_sim\topwindow.h ..\train_sim\track_layout.h ..\train_sim\trackmodel.h ..\train_sim\train.h ..\train_sim\trainmodel.h ..\train_sim\wayside.h  ..\train_sim\CtcOffice.cpp ..\train_sim\PLC.cpp ..\train_sim\beacon.cpp ..\train_sim\beacons.cpp ..\train_sim\block.cpp ..\train_sim\engineer.cpp ..\train_sim\homepagewindow.cpp ..\train_sim\layout.cpp ..\train_sim\line.cpp ..\train_sim\lineselect.cpp ..\train_sim\main.cpp ..\train_sim\mainwindow.cpp ..\train_sim\station.cpp ..\train_sim\switch.cpp ..\train_sim\swtraincontrollerui.cpp ..\train_sim\topwindow.cpp ..\train_sim\track_layout.cpp ..\train_sim\trackmodel.cpp ..\train_sim\train.cpp ..\train_sim\trainmodel.cpp ..\train_sim\wayside.cpp ..\train_sim\HomepageWindow.ui ..\train_sim\beacon.ui ..\train_sim\engineer.ui ..\train_sim\lineselect.ui ..\train_sim\mainwindow.ui ..\train_sim\swtraincontrollerui.ui ..\train_sim\topwindow.ui ..\train_sim\trackmodel.ui ..\train_sim\trainmodel.ui ..\train_sim\wayside.ui    
 
 clean: compiler_clean 
 	-$(DEL_FILE) debug\CtcOffice.o debug\PLC.o debug\beacon.o debug\beacons.o debug\block.o debug\engineer.o debug\homepagewindow.o debug\layout.o debug\line.o debug\lineselect.o debug\main.o debug\mainwindow.o debug\station.o debug\switch.o debug\swtraincontrollerui.o debug\topwindow.o debug\track_layout.o debug\trackmodel.o debug\train.o debug\trainmodel.o debug\wayside.o debug\moc_beacon.o debug\moc_engineer.o debug\moc_homepagewindow.o debug\moc_lineselect.o debug\moc_mainwindow.o debug\moc_swtraincontrollerui.o debug\moc_topwindow.o debug\moc_trackmodel.o debug\moc_trainmodel.o debug\moc_wayside.o
@@ -336,7 +337,7 @@ debug/moc_beacon.cpp: ../train_sim/beacon.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
-	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\beacon.h -o debug\moc_beacon.cpp
+	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/jwsch/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/jwsch/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\beacon.h -o debug\moc_beacon.cpp
 
 debug/moc_engineer.cpp: ../train_sim/engineer.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QWidget \
@@ -469,7 +470,7 @@ debug/moc_engineer.cpp: ../train_sim/engineer.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qloggingcategory.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
-	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\engineer.h -o debug\moc_engineer.cpp
+	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/jwsch/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/jwsch/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\engineer.h -o debug\moc_engineer.cpp
 
 debug/moc_homepagewindow.cpp: ../train_sim/homepagewindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMainWindow \
@@ -604,9 +605,10 @@ debug/moc_homepagewindow.cpp: ../train_sim/homepagewindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
 		../train_sim/CtcOffice.h \
+		../train_sim/models.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
-	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\homepagewindow.h -o debug\moc_homepagewindow.cpp
+	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/jwsch/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/jwsch/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\homepagewindow.h -o debug\moc_homepagewindow.cpp
 
 debug/moc_lineselect.cpp: ../train_sim/lineselect.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QDialog \
@@ -740,7 +742,7 @@ debug/moc_lineselect.cpp: ../train_sim/lineselect.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qloggingcategory.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
-	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\lineselect.h -o debug\moc_lineselect.cpp
+	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/jwsch/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/jwsch/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\lineselect.h -o debug\moc_lineselect.cpp
 
 debug/moc_mainwindow.cpp: ../train_sim/mainwindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMainWindow \
@@ -890,9 +892,10 @@ debug/moc_mainwindow.cpp: ../train_sim/mainwindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmessagebox.h \
 		../train_sim/PLC.h \
 		../train_sim/track_layout.h \
+		../train_sim/models.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
-	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\mainwindow.h -o debug\moc_mainwindow.cpp
+	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/jwsch/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/jwsch/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\mainwindow.h -o debug\moc_mainwindow.cpp
 
 debug/moc_swtraincontrollerui.cpp: ../train_sim/swtraincontrollerui.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMainWindow \
@@ -1028,7 +1031,7 @@ debug/moc_swtraincontrollerui.cpp: ../train_sim/swtraincontrollerui.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
-	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\swtraincontrollerui.h -o debug\moc_swtraincontrollerui.cpp
+	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/jwsch/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/jwsch/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\swtraincontrollerui.h -o debug\moc_swtraincontrollerui.cpp
 
 debug/moc_topwindow.cpp: ../train_sim/topwindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMainWindow \
@@ -1164,7 +1167,7 @@ debug/moc_topwindow.cpp: ../train_sim/topwindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
-	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\topwindow.h -o debug\moc_topwindow.cpp
+	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/jwsch/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/jwsch/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\topwindow.h -o debug\moc_topwindow.cpp
 
 debug/moc_trackmodel.cpp: ../train_sim/trackmodel.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMainWindow \
@@ -1338,7 +1341,7 @@ debug/moc_trackmodel.cpp: ../train_sim/trackmodel.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextoption.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
-	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\trackmodel.h -o debug\moc_trackmodel.cpp
+	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/jwsch/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/jwsch/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\trackmodel.h -o debug\moc_trackmodel.cpp
 
 debug/moc_trainmodel.cpp: ../train_sim/trainmodel.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMainWindow \
@@ -1493,7 +1496,7 @@ debug/moc_trainmodel.cpp: ../train_sim/trainmodel.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qrubberband.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
-	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\trainmodel.h -o debug\moc_trainmodel.cpp
+	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/jwsch/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/jwsch/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\trainmodel.h -o debug\moc_trainmodel.cpp
 
 debug/moc_wayside.cpp: ../train_sim/wayside.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QDialog \
@@ -1627,7 +1630,7 @@ debug/moc_wayside.cpp: ../train_sim/wayside.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qloggingcategory.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
-	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\wayside.h -o debug\moc_wayside.cpp
+	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/jwsch/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/jwsch/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\wayside.h -o debug\moc_wayside.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1689,6 +1692,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 debug/CtcOffice.o: ../train_sim/CtcOffice.cpp ../train_sim/CtcOffice.h \
+		../train_sim/models.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/QDebug \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdebug.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qalgorithms.h \
@@ -1770,7 +1774,8 @@ debug/CtcOffice.o: ../train_sim/CtcOffice.cpp ../train_sim/CtcOffice.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\CtcOffice.o ..\train_sim\CtcOffice.cpp
 
 debug/PLC.o: ../train_sim/PLC.cpp ../train_sim/PLC.h \
-		../train_sim/track_layout.h
+		../train_sim/track_layout.h \
+		../train_sim/models.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\PLC.o ..\train_sim\PLC.cpp
 
 debug/beacon.o: ../train_sim/beacon.cpp ../train_sim/beacon.h \
@@ -2148,7 +2153,44 @@ debug/engineer.o: ../train_sim/engineer.cpp ../train_sim/engineer.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/QTransform \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qloggingcategory.h \
-		ui_engineer.h
+		ui_engineer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmutex.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthread.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qexception.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qapplicationpermission.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qinputmethod.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qlocale.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QLabel \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpicture.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpen.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\engineer.o ..\train_sim\engineer.cpp
 
 debug/homepagewindow.o: ../train_sim/homepagewindow.cpp ../train_sim/HomepageWindow.h \
@@ -2284,6 +2326,7 @@ debug/homepagewindow.o: ../train_sim/homepagewindow.cpp ../train_sim/HomepageWin
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
 		../train_sim/CtcOffice.h \
+		../train_sim/models.h \
 		ui_HomepageWindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
@@ -2814,6 +2857,7 @@ debug/main.o: ../train_sim/main.cpp ../train_sim/topwindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
 		../train_sim/homepagewindow.h \
 		../train_sim/CtcOffice.h \
+		../train_sim/models.h \
 		../train_sim/mainwindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/QFile \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfile.h \
@@ -3059,6 +3103,7 @@ debug/mainwindow.o: ../train_sim/mainwindow.cpp ../train_sim/mainwindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmessagebox.h \
 		../train_sim/PLC.h \
 		../train_sim/track_layout.h \
+		../train_sim/models.h \
 		ui_mainwindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
@@ -3328,7 +3373,49 @@ debug/swtraincontrollerui.o: ../train_sim/swtraincontrollerui.cpp ../train_sim/s
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qloggingcategory.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
-		ui_swtraincontrollerui.h
+		ui_swtraincontrollerui.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmutex.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthread.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qexception.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qapplicationpermission.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qinputmethod.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qlocale.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QLabel \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpicture.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpen.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QTextEdit \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtextedit.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\swtraincontrollerui.o ..\train_sim\swtraincontrollerui.cpp
 
 debug/topwindow.o: ../train_sim/topwindow.cpp ../train_sim/topwindow.h \

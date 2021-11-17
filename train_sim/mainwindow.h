@@ -49,10 +49,11 @@ signals:
    void sendCTCOcc(std::vector<bool>);
    void sendTrackModelAuth(std::vector<bool>);
    void sendTrackModelSwitches(std::vector<int>);
+   void sendTrainDispatch(std::vector<std::string>);
 
 public slots:
     void receiveOcc(std::vector<bool> occ);
-    void recieveAuth(std::vector<bool> auth);
+    void recieveAuth(TrainEntry);
     void getMaintenaceMode(std::vector<bool> blocks);
     void changeSwitch(std::vector<int> pos);
 

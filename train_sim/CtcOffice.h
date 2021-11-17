@@ -1,5 +1,6 @@
 #ifndef CTCOFFICE_H
 #define CTCOFFICE_H
+#include "models.h"
 #include <list>
 #include <fstream>
 #include <string>
@@ -11,31 +12,8 @@ using std::string;
 using std::vector;
 
 typedef std::pair<int, int> Time;
-enum TrainLine {Green, Red};
-
-struct ScheduleEntry {
-    int destination;
-    string destinationString;
-    int start;
-    Time arrivalTime;
-    Time departureTime;
-    int suggestedSpeed;
-    vector<bool> authority;
-};
-
-struct TrackEntry {
-    string line;
-    string section;
-    int speedLimit;
-    int blockLength;
-    string infrastructure;
-};
-
-struct TrainEntry{
-    int trainNumber;
-    int suggestedSpeed;
-    vector<bool> authority;
-};
+//enum TrainLine {Green, Red};
+//struct and other declarations moved to models.h
 
 namespace utility {
 vector<string> split(string s, string delimeter);

@@ -40,7 +40,7 @@ signals:
     vector<int> newBlock(vector<int> data);
     vector<string> newTrainData(vector<string> newData);
     vector<int> passengersChanged(vector<int> pass);
-    vector<int> occupancyChanged(vector<int> occ);
+    void occupancyChanged(vector<bool>);
     string beaconData(string data);
 
 private:
