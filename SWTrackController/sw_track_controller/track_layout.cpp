@@ -37,7 +37,7 @@ bool track_layout::create_line(int line){
     new_block(tempYard);
 
     std::ifstream trackFile;
-    trackFile.open("C:\\Users\\daisy1\\Documents\\GitHub\\ECE1140\\SWTrackController\\sw_track_controller\\GreenLine.txt");
+    trackFile.open("C:\\Users\\daisy1\\Documents\\GitHub\\ECE1140\\train_sim\\GreenLine.txt");
     std::string fLine;
     getline(trackFile, fLine);
     //qDebug() << QString::fromStdString(fLine);

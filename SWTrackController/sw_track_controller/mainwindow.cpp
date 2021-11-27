@@ -295,16 +295,31 @@ void  MainWindow::receiveOcc(std::vector<bool> occ){
 
 }
 
-void MainWindow::recieveAuth(std::vector<bool> auth){
+void MainWindow::recieveAuth(TrainEntry t){
+    std::vector<bool> auth = t.authority;
     std::vector<int> sw = plc.ctc_reccomend(auth);
     emit sendTrackModelSwitches(sw);
     std::vector<bool> temp = plc.getAuth();
-    emit sendTrackModelAuth(temp);
+    //emit sendTrackModelAuth(temp);
+    std::string auth_string;
+    for(int i=0;i<temp.size();i++){
+        if(temp[i]==true){
+            auth_string.push_back('1');
+        } else {
+            auth_string.push_back('0');
+        }
+    }
+
+    std::vector<std::string> out;
+    out.push_back(std::to_string(t.trainNumber));
+    out.push_back(std::to_string(t.suggestedSpeed));
+    out.push_back(auth_string);
+    emit sendTrainDispatch(out);
 }
 
 void MainWindow::getMaintenaceMode(std::vector<bool> blocks){
     for(int i=0; i< blocks.size(); i++){
-        plc.set_maintenance_mode(i+1,blocks[i]);
+        plc.set_maintenance_mode(i,blocks[i]);
     }
 }
 
