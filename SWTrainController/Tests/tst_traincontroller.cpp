@@ -1,5 +1,5 @@
 #include <QtTest/QtTest>
-#include "C:\Users\jakeb\OneDrive\Documents\SWTrainController\swtraincontrollerui.cpp"
+#include "C:\Users\jakeb\OneDrive\Documents\SWTrainController\traincontrol.cpp"
 
 // add necessary includes here
 
@@ -42,7 +42,7 @@ void TrainController::cleanupTestCase()
 
 void TrainController::testChangeCurrentSpeed()
 {
-    SWTrainControllerUI SWTC;
+    traincontrol SWTC;
     SWTC.CurrentSpeedChanged(10);
     int speed = SWTC.getCurrentSpeed();
     QCOMPARE(speed, 10);
@@ -50,15 +50,15 @@ void TrainController::testChangeCurrentSpeed()
 
 void TrainController::testChangeEmergencyBrake()
 {
-    SWTrainControllerUI SWTC;
-    SWTC.EmergencyBrakeChanged("true");
+    traincontrol SWTC;
+    SWTC.EmergencyBrakeChanged(false);
     bool EBrake = SWTC.getEmergencyBrakeState();
-    QCOMPARE(EBrake, true);
+    QCOMPARE(EBrake, false);
 }
 
 void TrainController::testChangeDestination()
 {
-    SWTrainControllerUI SWTC;
+    traincontrol SWTC;
     SWTC.DestinationChanged("Pittsburgh");
     std::string destination = SWTC.getDestination();
     QCOMPARE(destination, "Pittsburgh");
