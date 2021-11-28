@@ -8,27 +8,6 @@ PLC::PLC(){
 
 PLC::~PLC(){}
 
-std::vector<std::string> lineSplit(std::string s, std::string delimeter) {
-    std::vector<std::string> result;
-    int start = 0;
-    int end = s.find(delimeter);
-    while(end!=-1) {
-        result.push_back(s.substr(start, end-start));
-        start = end + delimeter.size();
-        end = s.find(delimeter, start);
-    }
-    result.push_back(s.substr(start, end-start));
-    return result;
-}
-
-void removeFromString(std::string &line, const std::string &word){
-    std::string tarTemp =  "("+ word +")+";
-    std::regex target(tarTemp);
-    std::string replacement = "";
-    std::string temp = std::regex_replace(line, target, replacement);
-    line=temp;
-}
-
 bool PLC::update_occupancy(int index){
     bool curr_occ = track_model.track[index].occupancy;
     if(curr_occ == false){
@@ -119,6 +98,11 @@ bool PLC::updateBlocks(){
 
     //fix switch position if necessary
 
+    //update blocks auth backwards
+    /*while(!occBlocks.empty()){
+       authUpdate(occBlocks.back());
+       occBlocks.pop_back();
+    }*/
     return true;
 }
 

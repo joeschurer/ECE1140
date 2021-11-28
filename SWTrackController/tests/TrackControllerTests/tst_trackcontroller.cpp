@@ -1,6 +1,5 @@
 #include <QtTest>
-
-// add necessary includes here
+#include "PLC.cpp"
 
 class TrackController : public QObject
 {
@@ -13,7 +12,7 @@ public:
 private slots:
     void initTestCase();
     void cleanupTestCase();
-    void test_case1();
+    void test_maintenance();
 
 };
 
@@ -37,8 +36,16 @@ void TrackController::cleanupTestCase()
 
 }
 
-void TrackController::test_case1()
-{
+void TrackController::test_maintenance(){
+    PLC plc;
+    //test simple maintenance mode
+    QVERIFY2(plc.get_maintenance_mode(1)==false,"Mainenetance mode should be false at start");
+    plc.set_maintenance_mode(1,true);
+    QVERIFY2(plc.get_maintenance_mode(1)==true,"Mainenetance mode toggled");
+    plc.set_maintenance_mode(1,true);
+    QVERIFY2(plc.get_maintenance_mode(1)==true,"Mainenetance mode should remain true");
+    plc.set_maintenance_mode(1,false);
+    QVERIFY2(plc.get_maintenance_mode(1)==false,"Mainenetance mode should again be false");
 
 }
 
