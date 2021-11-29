@@ -39,7 +39,7 @@ void TrackController::cleanupTestCase()
 void TrackController::test_maintenance(){
     PLC plc;
     //test simple maintenance mode
-    QVERIFY2(plc.get_maintenance_mode(1)==false,"Mainenetance mode should be false at start");
+    QVERIFY2(plc.get_maintenance_mode(1)==false,"Mainenetance mode should be false at start. May fail if track path is wrong in track_layout.cpp");
     plc.set_maintenance_mode(1,true);
     QVERIFY2(plc.get_maintenance_mode(1)==true,"Mainenetance mode toggled");
     plc.set_maintenance_mode(1,true);

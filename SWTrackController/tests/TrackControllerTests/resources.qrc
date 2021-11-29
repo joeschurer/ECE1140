@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/track">
+        <file>GreenLine.txt</file>
+    </qresource>
+</RCC>

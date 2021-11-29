@@ -16,3 +16,6 @@ HEADERS += \
     models.h \
     track_layout.h \
     waysidecontroller.h
+
+RESOURCES += \
+    resources.qrc
