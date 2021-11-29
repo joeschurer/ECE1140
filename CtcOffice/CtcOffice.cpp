@@ -4,6 +4,7 @@
 #include <vector>
 #include <queue>
 #include <math.h>
+#include <QFile>
 
 namespace utility {
 vector<string> split(string s, string delimeter) {
@@ -84,6 +85,20 @@ string CtcOffice::toStringTime(Time time){
 
 void CtcOffice::parseTrack() {
     std::ifstream trackFile;
+    QString fileName("://Green_Track_Layout.csv");
+    QFile inputFile(fileName);
+    if(inputFile.open(QIODevice::ReadOnly)){
+        QTextStream in(&inputFile);
+        QString temp = in.readLine();
+        while (!in.atEnd()) {
+            QString qline = in.readLine();
+            std::string line = qline.toStdString();
+            vector<string> splitLine = utility::split(line, ",");
+            TrackEntry entry = {splitLine[0], splitLine[1], stoi(splitLine[5]), stoi(splitLine[3]), splitLine[6]};
+            track_.push_back(entry);
+        }
+    }
+    /*
     trackFile.open("C:\\Users\\akina\\OneDrive - University of Pittsburgh\\PITT\\PITT Senior Year\\Semester 1\\ECE 1140-Systems and Project Engineering\\Green_Track_Layout.csv");
     // get line for column headers
     string line="chicken";
@@ -93,6 +108,7 @@ void CtcOffice::parseTrack() {
         TrackEntry entry = {splitLine[0], splitLine[1], stoi(splitLine[5]), stoi(splitLine[3]), splitLine[6]};
         track_.push_back(entry);
     }
+    */
 }
 
 vector<int> CtcOffice::getRoute(int startingBlock, int destinationBlock) {
@@ -182,7 +198,6 @@ void CtcOffice::addScheduleEntry(int trainNumber, string start, string destinati
        qDebug() << "Departure Time: " << departureTime;
     }
     schedule_[trainNumber].push_back(scheduleEntry);
-    int a = 1;
 }
 
 void CtcOffice::buildGreenStationMap() {
