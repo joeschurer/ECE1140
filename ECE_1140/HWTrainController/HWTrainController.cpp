@@ -38,14 +38,33 @@ void HWTrainController::sendCommandStr() {
 		command.at(3) = '1';
 	if (rightDoors)
 		command.at(4) = '1';
+	
+	char power[9];
+	if (commandedPower < 10)
+		sprintf(power, "%.6f", commandedPower);
+	else if (commandedPower < 100)
+		sprintf(power, "%.5f", commandedPower);
+	else if (commandedPower < 1000)
+		sprintf(power, "%.4f", commandedPower);
+	else if (commandedPower < 10000)
+		sprintf(power, "%.3f", commandedPower);
+	else if (commandedPower < 100000)
+		sprintf(power, "%.2f", commandedPower);
+	else
+		sprintf(power, "%.1f", commandedPower);
+	std::string tmp = power;
+	std::cout << tmp << std::endl;
+	command += std::to_string(temperature) + tmp;
 
-	command += std::to_string(temperature) + std::to_string(commandedPower);
-
-	for(int i = 0; i < command.length(); i++) {
+	for(int i = 0; i < LENGTH; i++) {
 		commandArr[i] = command.at(i);
 	}
-
-	std::cout << command << " " << setpointSpeed << std::endl;
+	/*
+	for (int i = 0; i < 9; i++) {
+		commandArr[i+8] = power[i];
+	}
+	*/
+	std::cout << commandArr << " " << setpointSpeed << std::endl;
 	serWrite(fd, commandArr, command.length());
 }
 
@@ -53,14 +72,10 @@ void HWTrainController::readTrackSignal() {
 	int count = 0;
 	char tmp[25];
 	trackSignal = "";
-	//while (serialDataAvail(fd) > -1 && count++ < 25) {
-		serRead(fd, tmp, 24);
-		//std::cout << "getchar was called\n";
-		std::cout << tmp;
-		//fflush(stdout);
-	//}
-	//read(fd, tmp, 25);
-	//std::cout << tmp << std::endl;
+	if ((count = serRead(fd, tmp, 25)) == 25) {
+		std::cout << count << std::endl;
+		std::cout << tmp << std::endl;
+	}
 }
 
 void HWTrainController::setKp(int i) {

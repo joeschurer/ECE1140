@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include "ExternalInputs.hpp"
 
-#define LENGTH 20
+#define LENGTH 15
 #define MAX_POWER 120000
 #define TRAIN_MASS 1
 #define T 1

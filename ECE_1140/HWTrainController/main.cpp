@@ -129,10 +129,10 @@ int main() {
 			}
 		}
 		
-		//gpioDelay(150);
-		//tc.sendCommandStr();
+		gpioDelay(500);
+		tc.sendCommandStr();
 		displayValues(exInputs, tc);
-		tc.readTrackSignal();
+		//tc.readTrackSignal();
 	}
 
 	delete i2c;
