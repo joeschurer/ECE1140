@@ -1,6 +1,7 @@
 #include "trainmodelui.h"
 #include "ui_trainmodelui.h"
 #include "traincalculate.h"
+#include <QApplication>
 TrainModelUI::TrainModelUI(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::TrainModelUI)
@@ -29,12 +30,13 @@ void TrainModelUI::setMass(double weight){
 
 
 void TrainModelUI::getPower(int power){
-    train.getPower(power);
+    train.setPower(power);
     ui->currentPowerValue->setText(QString::number((power)));
 
 }
 
 void TrainModelUI::getVelocity(float speed){
+
     ui->currentSpeedValue->setText(QString::number((speed)));
 
 }
@@ -99,8 +101,8 @@ void TrainModelUI::on_inputPowerConfirm_clicked()
 {
     QString x = ui->inputPowerResult->text();
     double powerval = x.toDouble();
-    train.getPower(powerval);
-    //updateUI();
+    train.setPower(powerval);
+
 }
 
 
@@ -161,15 +163,14 @@ void TrainModelUI::on_pushButton_4_clicked()
 void TrainModelUI::updateUI(){
     ui->currentSpeedValue->setText(QString::number(train.calculateVelocity()));
     ui->currentAccelerationValue->setText(QString::number(train.currentAcc));
-    ui->currentSpeedValue->setText(QString::number(train.currentPower));
-
-
-
+    ui->currentPowerValue->setText(QString::number(train.currentPower));
+    //train.lastTime = train.currentTime;
+    //train.currentTime = train.clockTime;
 }
 
 
 void TrainModelUI::CurrentSpeedDifferent(int power){
-    train.getPower(power);
+    train.setPower(power);
     int speed = train.calculateVelocity();
     emit currSpeedTC(speed);
 }
@@ -200,3 +201,9 @@ void currentPassengers(int passengers);
 //speedlimit
 //commanded speed
 //passengers
+
+void TrainModelUI::on_pushButton_clicked()
+{
+    updateUI();
+}
+

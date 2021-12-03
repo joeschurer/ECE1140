@@ -3,6 +3,7 @@
 #include <iostream>
 #include <QApplication>
 #include "traincalculate.h"
+#include "mytimer.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,8 +11,9 @@ int main(int argc, char *argv[])
        TrainModelUI w;
        trainCalculate m;
        w.makeTrain(m);
-       w.updateUI();
        w.show();
+       w.updateUI();
+
        return a.exec();
 
 }

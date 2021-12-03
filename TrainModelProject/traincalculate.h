@@ -9,7 +9,7 @@ class trainCalculate
 public:
     trainCalculate();
     //trainCalculate();
-    void getPower(double);
+    void setPower(double);
     double calculateVelocity();
     double distTraveled();
     int calcWeight(int);
@@ -51,7 +51,7 @@ public:
     int currentWeight;
     int timespan = 5;
     int trainWeight;
-
+    int blockSize;
 
 };
 

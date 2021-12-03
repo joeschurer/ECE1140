@@ -8,39 +8,39 @@ trainCalculate::trainCalculate()
     passengersOff = 0;
     currentPower = 0;
     currentVelocity = 0;
+    lastAcc = 0;
     currentAcc = 0;
     trainLength = 105.6;
     maxCapacity = 222;
     currentMode = 0;
     lastVelocity = 0;
     currentForce = 0;
-    currentWeight = 40800;
+    currentWeight = 37104;
     lastTime = 0;
     currentTime = 1;
     lastPosition = 0;
     currentPosition = 0;
-
+    blockSize = 50;
 }
 
 
-void trainCalculate::getPower(double power){
+void trainCalculate::setPower(double power){
     if(currentMode == 2){
         currentPower = 0;
     }else{
         currentPower = power;
     }
-    currentForce = currentPower / lastVelocity;
     if(currentForce > (.5*currentWeight)){
         currentForce = .5*currentWeight;
     } else if((lastVelocity && currentPower == 0) || emergencyBrake == true){
         currentForce = 0;
     }else if(lastVelocity == 0){
         currentForce = .5*currentWeight;
+    }else{
+        currentForce = currentPower / lastVelocity;
     }
-    currentAcc = currentForce/currentWeight;
-    if(currentAcc > .5){
-        currentAcc = .5;
-    }
+
+
     return;
 }
 
@@ -48,13 +48,10 @@ double trainCalculate::distTraveled(){
     if(lastTime == 0){
         lastPosition = 0;
     }
-    double timeDiff = lastTime - currentTime;
-    lastTime = currentTime;
-//    currentTime = clockTime;
-//    double avgVelocity = (currentVelocity+lastVelocity)/2;
-//    double distanceCovered = avgVelocity * (currentTime - lastTime);
-//    return distanceCovered;
-    return 5;
+    double timeDiff = currentTime-lastTime;
+    double avgVelocity = (currentVelocity+lastVelocity)/2;
+    double distanceCovered = avgVelocity * (currentTime - lastTime);
+    return distanceCovered;
 }
 
 void trainCalculate:: calcTime(){
@@ -62,26 +59,31 @@ void trainCalculate:: calcTime(){
 }
 
 double trainCalculate::calculateVelocity(){
-    currentVelocity = currentVelocity + (currentAcc*timespan);
+    lastAcc = currentAcc;
+    currentAcc = currentForce/currentWeight;
+    if(currentAcc > .5){
+        currentAcc = .5;
+    }
+    currentVelocity = currentVelocity + ((currentTime-lastTime)*(currentAcc+lastAcc))/2;
     if(currentVelocity < 0){
         currentVelocity = 0;
     }
     currentKPH = currentVelocity*3.6; //convert to Kilometers per hour
-
-    return currentVelocity;
+    if(currentKPH > 70){
+        currentKPH = 70;
+    }
+    return currentKPH;
 }
 
 double trainCalculate::getLength(){
     return trainLength;
 }
 int trainCalculate::calcWeight(int numPassengers){
-    trainWeight = 2*40800;
     int passWeight = 150*numPassengers;
     currentWeight = trainWeight + passWeight;
     return currentWeight;
 }
 int trainCalculate::calcCapacity(int newPassengers){
-
     if(numPassengers > 0){
         passengersOff = rand() % numPassengers;
     }
