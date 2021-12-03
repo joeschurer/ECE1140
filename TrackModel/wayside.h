@@ -19,8 +19,6 @@ public:
     ~Wayside();
 
 private slots:
-    void on_timer_userTimeChanged(const QTime &time);
-
     void on_test1_clicked();
 
     void on_cont1_1_clicked();
@@ -33,11 +31,13 @@ private slots:
 
     void on_testYard_clicked();
 
+    void on_toggleCrossing_returnPressed();
+
 signals:
-    void timeChanged();
     int addedPassengers(int added);
     vector<string> trainChanged(vector<string> data);
     vector<int> toggleSwitch(vector<int> sw);
+    int toggleCrossing(int cross);
 
 private:
     Ui::Wayside *ui;

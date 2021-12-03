@@ -1,4 +1,4 @@
-Line,Section,Block Number,Block Length (m),Block Grade (%),Speed Limit (Km/Hr),Infrastructure,Station Side,ELEVATION (M),CUMALTIVE ELEVATION (M),Direction
+﻿Line,Section,Block Number,Block Length (m),Block Grade (%),Speed Limit (Km/Hr),Infrastructure,Station Side,ELEVATION (M),CUMALTIVE ELEVATION (M),Direction
 Green,A,1,100,0.5,55,,,0.5,0.5,Outbound
 Green,A,2,100,1,55,STATION; PIONEER,Left,1,1.5,Outbound
 Green,A,3,100,1.5,55,,,1.5,3,Outbound

@@ -30,3 +30,12 @@ void TrainModel::on_speedEdit_editingFinished()
     emit trainSpeedUpdated(item);
 }
 
+
+void TrainModel::on_openDoors_returnPressed()
+{
+    QString item = ui->openDoors->text();
+    string it = item.toStdString();
+    int i = stoi(it);
+    emit doorsOpen(i);
+}
+

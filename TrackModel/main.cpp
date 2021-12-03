@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 
     //Open the window and put the layout into it
     TrackModel window;
-    window.setGeometry(0, 20, 850, 1000);
+    window.setGeometry(0, 20, 850, 1400);
     window.setWindowTitle("Track Model");
     window.show();
 
@@ -64,12 +64,13 @@ int main(int argc, char *argv[])
     trainUI.setGeometry(860, 350, 300, 300);
     trainUI.show();
 
-    QObject::connect(&waysideUI, SIGNAL(timeChanged()), &window, SLOT(timeout()));
     QObject::connect(&trainUI, SIGNAL(trainMoved(int)), &window, SLOT(trainMoved(int)));
     QObject::connect(&trainUI, SIGNAL(trainSpeedUpdated(QString)), &window, SLOT(actualSpeedChanged(QString)));
     QObject::connect(&waysideUI, SIGNAL(trainChanged(vector<string>)), &window, SLOT(trainUpdated(vector<string>)));
     QObject::connect(&waysideUI, SIGNAL(toggleSwitch(vector<int>)), &window, SLOT(toggleSwitch(vector<int>)));
     QObject::connect(&window, SIGNAL(beaconData(string)), &beacon, SLOT(transmitting(string)));
+    QObject::connect(&waysideUI, SIGNAL(toggleCrossing(int)), &window, SLOT(toggleCrossing(int)));
+    QObject::connect(&trainUI, SIGNAL(doorsOpen(int)), &window, SLOT(doorsOpen(int)));
 
     return a.exec();
 }

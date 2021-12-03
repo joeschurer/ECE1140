@@ -7,6 +7,7 @@
 #include <QGroupBox>
 #include <QLabel>
 #include <QLineEdit>
+#include "ui_trackmodel.h"
 
 namespace Ui {
 class TrackModel;
@@ -25,18 +26,23 @@ public:
     ~TrackModel();
 
 public slots:
-    void timeout();
     void trainMoved(int trainNum);
     void actualSpeedChanged(QString item);
     void trainUpdated(vector<string> item);
     void toggleSwitch(vector<int> sw);
+    void toggleCrossing(int cross);
+    void doorsOpen(int trainNum);
+    void openDoors(vector<int> train);
 
 private slots:
-    void on_breakCircuit_textChanged(const QString &arg1);
+    void on_breakCircuit_returnPressed();
 
-    void on_breakTrack_textChanged(const QString &arg1);
+    void on_breakTrack_returnPressed();
 
-    void on_breakPower_textChanged(const QString &arg1);
+    void on_breakPower_returnPressed();
+
+    void  on_setTemp_returnPressed();
+
 
 signals:
     vector<int> newBlock(vector<int> data);
@@ -44,6 +50,7 @@ signals:
     vector<int> passengersChanged(vector<int> pass);
     vector<int> occupancyChanged(vector<int> occ);
     string beaconData(string data);
+    double tempChanged(double temp);
 
 private:
     Ui::TrackModel *ui;

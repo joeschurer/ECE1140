@@ -21,9 +21,12 @@ private slots:
 
     void on_speedEdit_editingFinished();
 
+    void on_openDoors_returnPressed();
+
 signals:
     int trainMoved(int trainNum);
     QString trainSpeedUpdated(QString item);
+    int doorsOpen(int trainNum);
 
 private:
     Ui::TrainModel *ui;

@@ -14,27 +14,6 @@ Wayside::~Wayside()
     delete ui;
 }
 
-void Wayside::on_timer_userTimeChanged(const QTime &time)
-{
-    Line* line =&(Line::getLine());
-    //Add more people to stations
-    int j = line->blocks.size();
-    int a = 0;
-    int b = 0;
-    for (int i=0; i<j; i++) {
-        if (line->blocks[i].hasStation) {
-            a += line->blocks[i].station.passengers;
-            line->blocks[i].station.addPassengers();
-            b += line->blocks[i].station.passengers;
-        }
-    }
-
-    emit timeChanged();
-
-    int added = b-a;
-    emit addedPassengers(added);
-}
-
 void Wayside::on_test1_clicked()
 {
     string name = "1";
@@ -245,3 +224,11 @@ void Wayside::on_testYard_clicked()
     emit trainChanged(vec);
 }
 
+
+void Wayside::on_toggleCrossing_returnPressed()
+{
+    QString s = ui->toggleCrossing->text();
+    string a = s.toStdString();
+    int b = stoi(a);
+    emit toggleCrossing(b);
+}

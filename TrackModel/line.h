@@ -1,8 +1,8 @@
 #ifndef LINE_H
 #define LINE_H
 
-#include <block.h>
-#include <train.h>
+#include "block.h"
+#include "train.h"
 #include <iostream>
 #include <vector>
 
@@ -14,6 +14,7 @@ public:
     vector<Train> trains;
     string name;
     vector<int> switched;
+    double temp = 72.5;
 
     static Line& getLine() {
         static Line line;

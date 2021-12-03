@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1406</width>
+    <height>1095</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QLineEdit" name="breakCircuit">
     <property name="geometry">
      <rect>
-      <x>670</x>
-      <y>480</y>
+      <x>810</x>
+      <y>980</y>
       <width>113</width>
       <height>21</height>
      </rect>
@@ -27,8 +27,8 @@
    <widget class="QLineEdit" name="breakTrack">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>480</y>
+      <x>670</x>
+      <y>980</y>
       <width>113</width>
       <height>21</height>
      </rect>
@@ -37,8 +37,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>670</x>
-      <y>500</y>
+      <x>810</x>
+      <y>1000</y>
       <width>111</width>
       <height>16</height>
      </rect>
@@ -50,8 +50,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>500</y>
+      <x>670</x>
+      <y>1000</y>
       <width>111</width>
       <height>16</height>
      </rect>
@@ -63,8 +63,8 @@
    <widget class="QLineEdit" name="breakPower">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>480</y>
+      <x>530</x>
+      <y>980</y>
       <width>113</width>
       <height>21</height>
      </rect>
@@ -73,8 +73,8 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>500</y>
+      <x>530</x>
+      <y>1000</y>
       <width>111</width>
       <height>16</height>
      </rect>
@@ -86,8 +86,8 @@
    <widget class="QLabel" name="faultList">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>450</y>
+      <x>650</x>
+      <y>950</y>
       <width>251</width>
       <height>16</height>
      </rect>
@@ -96,14 +96,37 @@
      <string>There are no faults</string>
     </property>
    </widget>
+   <widget class="QLineEdit" name="setTemp">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>980</y>
+      <width>161</width>
+      <height>24</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="temp">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>960</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Current Temperature:</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>21</height>
+     <width>1406</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>

@@ -7,55 +7,17 @@
     <x>0</x>
     <y>0</y>
     <width>209</width>
-    <height>300</height>
+    <height>298</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QTimeEdit" name="timer">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>30</y>
-     <width>118</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
-   </property>
-   <property name="inputMethodHints">
-    <set>Qt::ImhNone</set>
-   </property>
-   <property name="keyboardTracking">
-    <bool>false</bool>
-   </property>
-   <property name="maximumDateTime">
-    <datetime>
-     <hour>23</hour>
-     <minute>59</minute>
-     <second>59</second>
-     <year>2000</year>
-     <month>1</month>
-     <day>1</day>
-    </datetime>
-   </property>
-   <property name="currentSection">
-    <enum>QDateTimeEdit::AmPmSection</enum>
-   </property>
-   <property name="displayFormat">
-    <string>h:mm:ss AP</string>
-   </property>
-   <property name="currentSectionIndex">
-    <number>3</number>
-   </property>
-  </widget>
   <widget class="QPushButton" name="test1">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>70</y>
+     <x>40</x>
+     <y>20</y>
      <width>121</width>
      <height>22</height>
     </rect>
@@ -67,8 +29,8 @@
   <widget class="QPushButton" name="cont1_1">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>100</y>
+     <x>40</x>
+     <y>50</y>
      <width>121</width>
      <height>22</height>
     </rect>
@@ -80,8 +42,8 @@
   <widget class="QLineEdit" name="toggleSwitch">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>250</y>
+     <x>40</x>
+     <y>230</y>
      <width>121</width>
      <height>21</height>
     </rect>
@@ -90,8 +52,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>270</y>
+     <x>50</x>
+     <y>250</y>
      <width>101</width>
      <height>20</height>
     </rect>
@@ -103,8 +65,8 @@
   <widget class="QPushButton" name="cont1_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>130</y>
+     <x>40</x>
+     <y>80</y>
      <width>121</width>
      <height>22</height>
     </rect>
@@ -116,8 +78,8 @@
   <widget class="QPushButton" name="cont1_3">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>160</y>
+     <x>40</x>
+     <y>110</y>
      <width>121</width>
      <height>22</height>
     </rect>
@@ -129,14 +91,40 @@
   <widget class="QPushButton" name="testYard">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>190</y>
+     <x>40</x>
+     <y>140</y>
      <width>121</width>
      <height>22</height>
     </rect>
    </property>
    <property name="text">
     <string>Test Yard</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="toggleCrossing">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>180</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>200</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Toggle Crossing #</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

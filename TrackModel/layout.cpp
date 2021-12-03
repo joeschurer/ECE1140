@@ -34,6 +34,8 @@ Layout::Layout() {
         //Find speed limit
         div = text.find(",");
         int limit = stoi(text.substr(0, div));
+        //Convert to mph
+        limit = limit * .621371;
         text.erase(0, div+1);
         //Find infrastructure
         div = text.find(",");
@@ -50,6 +52,10 @@ Layout::Layout() {
         text.erase(0, div+1);
         //Find and remove cumulative elevation
         div = text.find(",");
+        text.erase(0, div+1);
+        //Find direction
+        div = text.find(",");
+        string dir = text.substr(0, div);
         text.erase(0, div+1);
 
         Block b(block, sect, length, limit, grade, elev);
@@ -81,6 +87,9 @@ Layout::Layout() {
             }
             else if (s1 == "SWITCH ") {
                 b.hasSwitch = true;
+                //All switches have crossings
+                b.hasCrossing = true;
+                b.crossingLights = false;
                 string sw = infrastructure.substr(0, 16);
                 if (sw == "SWITCH TO YARD (") {
                     f = infrastructure.find("(");
@@ -207,7 +216,29 @@ Layout::Layout() {
             }
         }
 
+        if (dir == "Both") {
+            b.inbound = true;
+            b.outbound = true;
+        }
+        else if (dir == "Inbound") {
+            b.inbound = true;
+            b.outbound = false;
+        }
+        else if (dir == "Outbound") {
+            b.inbound = false;
+            b.outbound = true;
+        }
+
         line->blocks.push_back(b);
     }
 
+    //Add lights before and after a station
+    for (int i=0; i<line->blocks.size(); i++) {
+        if (line->blocks[i].hasStation) {
+            line->blocks[i-1].hasCrossing = true;
+            line->blocks[i-1].crossingLights = false;
+            line->blocks[i+1].hasCrossing = true;
+            line->blocks[i+1].crossingLights = false;
+        }
+    }
 }

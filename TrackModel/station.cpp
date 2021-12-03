@@ -28,7 +28,10 @@ Station::Station(string name, int pass, bool left, bool right) {
 }
 
 void Station::addPassengers() {
-    passengers += rand() % 10 + 1;
+    int a = rand() % 2;
+    if (a == 1) {
+        passengers += rand() % 3 + 1;
+    }
 }
 
 

@@ -106,11 +106,4 @@ void Line::moveTrain(int trainNum) {
     }
 
     trains[trainNum-1].moveTrain(next);
-
-    //If station, unboard/reboard passengers
-    if (next > 0 && blocks[next-1].hasStation) {
-        trains[trainNum-1].removePassengers();
-        trains[trainNum-1].addPassengers(blocks[next-1].station.passengers);
-        blocks[next-1].station.passengers -= trains[trainNum-1].passengers;
-    }
 }
