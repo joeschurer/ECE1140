@@ -16,46 +16,36 @@ void Line::moveTrain(int trainNum) {
     else if (blocks[current-1].hasSwitch) {
         if (blocks[current-1].swtch.point1) {
             int n;
-            if (blocks[current-1].blockNum == blocks[current-1].swtch.block1_1) {
+            if (current == blocks[current-1].swtch.block1_1) {
                 n = blocks[current-1].swtch.block1_2;
             }
             else {
                 n = blocks[current-1].swtch.block1_1;
             }
-            //If you can go where the switch is pointing go
-            if (blocks[n-1].authority == true) {
+
+            if (blocks[n-1].authority) {
                 next = n;
             }
-            //If you can't go there or already went there, find the next in order and go there instead
             else {
-                if ((current+1 != n) && blocks[current].authority == true) {
-                    next = current+1;
-                }
-                else if ((current-1 != n) && blocks[current-2].authority == true) {
-                    next = current-1;
-                }
+                if (blocks[current-1].inbound && blocks[current].authority) next = current+1;
+                else if (blocks[current-1].outbound && blocks[current-2].authority) next = current-1;
             }
         }
         else {
             int n;
-            if (blocks[current-1].blockNum == blocks[current-1].swtch.block2_1) {
+            if (current == blocks[current-1].swtch.block2_1) {
                 n = blocks[current-1].swtch.block2_2;
             }
             else {
                 n = blocks[current-1].swtch.block2_1;
             }
-            //If you can go where the switch is pointing go
-            if (blocks[n-1].authority == true) {
+
+            if (blocks[n-1].authority) {
                 next = n;
             }
-            //If you can't go there or already went there, find the next in order and go there instead
             else {
-                if ((current+1 != n) && blocks[current].authority == true) {
-                    next = current+1;
-                }
-                else if ((current-1 != n) && blocks[current-2].authority == true) {
-                    next = current-1;
-                }
+                if (blocks[current-1].inbound && current+1 != n && blocks[current].authority) next = current+1;
+                else if (blocks[current-1].outbound && current-1 != n && blocks[current-2].authority) next = current-1;
             }
         }
     }
@@ -90,13 +80,13 @@ void Line::moveTrain(int trainNum) {
         }
 
         if (!con || n == -1) {
-            if (blocks[current].authority == true) {
+            if (blocks[current-1].inbound && blocks[current].authority == true) {
                 next = current+1;
             }
             else if (current == 1) {
                 next = current;
             }
-            else if (blocks[current-2].authority == true) {
+            else if (blocks[current-1].outbound && blocks[current-2].authority == true) {
                 next = current-1;
             }
             else if (n == -1) {

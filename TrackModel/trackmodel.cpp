@@ -475,13 +475,16 @@ void TrackModel::trainMoved(int trainNum) {
 
     //Get occupancy and send it to the wayside
     vector<int> occ;
-    for (int i=0; i<layout.line->trains.size(); i++) {
-        occ.push_back(i);
-    }
     for (int i=0; i<layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back(i);
+            occ.push_back(1);
         }
+        else {
+            occ.push_back(0);
+        }
+    }
+    for (int i=0; i<layout.line->trains.size(); i++) {
+        occ[i] = 1;
     }
     emit occupancyChanged(occ);
 
