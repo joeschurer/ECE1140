@@ -94,15 +94,6 @@ bool PLC::updateBlocks(){
         }
     }
 
-    //determine switch position
-
-    //fix switch position if necessary
-
-    //update blocks auth backwards
-    /*while(!occBlocks.empty()){
-       authUpdate(occBlocks.back());
-       occBlocks.pop_back();
-    }*/
     return true;
 }
 

@@ -21,7 +21,7 @@ LineSelect::~LineSelect()
 void LineSelect::on_selectgreen_clicked()
 {
     ifstream ifile;
-    ifile.open("C:/Users/daisy1/Documents/GitHub/ECE1140/train_sim/GreenLine_CopyTest.txt");
+    ifile.open("C:/Users/jwsch/Documents/GitHub/ECE1140/ECE1140/train_sim/GreenLine.txt");
 
     ofstream ofile;
     ofile.open("layoutfile.txt");

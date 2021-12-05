@@ -7,9 +7,11 @@
 #include <QGroupBox>
 #include <QLabel>
 #include <QLineEdit>
+
 namespace Ui {
 class TrackModel;
 }
+
 class TrackModel : public QMainWindow
 {
     Q_OBJECT
@@ -40,7 +42,7 @@ signals:
     vector<int> newBlock(vector<int> data);
     vector<string> newTrainData(vector<string> newData);
     vector<int> passengersChanged(vector<int> pass);
-    void occupancyChanged(vector<bool>);
+    vector<bool> occupancyChanged(vector<bool> occ);
     string beaconData(string data);
 
 private:

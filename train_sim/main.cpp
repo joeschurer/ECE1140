@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
         //TrainTimer ttime(1000);
         QTimer timer;
         //QObject::connect(&timer, &QTimer::timeout, &aaah, &TrainModelUI::updateTime);
-        QObject::connect(&timer, &QTimer::timeout,&window, &TrackModel::timeout);
+        //QObject::connect(&timer, &QTimer::timeout,&window, &TrackModel::timeout);
         QObject::connect(&timer, &QTimer::timeout, &ctc, &HomepageWindow::timerSlot);
         timer.start(1000/simulationSpeed);
         QObject::connect(&wui, &MainWindow::sendCTCOcc,&ctc, &HomepageWindow::receiveOccupancy);
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
         QObject::connect(&ctc, &HomepageWindow::sendSwitchPosition,&wui, &MainWindow::changeSwitch);
         QObject::connect(&wui, &MainWindow::sendTrainDispatch,&window, &TrackModel::trainUpdated);
         QObject::connect(&window, &TrackModel::occupancyChanged,&wui, &MainWindow::receiveOcc);
-
+        QObject::connect(&wui, &MainWindow::sendTrackModelSwitches,&window, &TrackModel::toggleSwitch);
 
         //Train Controller
         /* QObject::connect(&swt, SIGNAL(SetSpeedDifferent(int)), &t, SLOT(SetSpeedChanged(int)));

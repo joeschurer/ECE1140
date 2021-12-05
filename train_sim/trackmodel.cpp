@@ -334,7 +334,7 @@ void TrackModel::trainMoved(int trainNum) {
     int tb = -1;
     for (int i=0; i<a; i++) {
         if (layout.line->trains[i].id == trainNum) {
-            layout.line->moveTrain(i+1);
+            layout.line->moveTrain(trainNum);
             tb = i;
         }
     }
@@ -363,18 +363,19 @@ void TrackModel::trainMoved(int trainNum) {
     emit passengersChanged(pass);
 
     //Get occupancy and send it to the wayside
-   /* vector<int> occ;
-    for (int i=0; i<layout.line->trains.size(); i++) {
-        occ.push_back(i);
-    }*/
     vector<bool> occ;
     for (int i=0; i<layout.line->blocks.size(); i++) {
-        if (layout.line->blocks[i].presenceDetected||layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back(true);
-        } else {
-            occ.push_back(false);
+        if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
+            occ.push_back('1');
+        }
+        else {
+            occ.push_back('0');
         }
     }
+    for (int i=0; i<layout.line->trains.size(); i++) {
+        occ[layout.line->trains[i].location-1] = 1;
+    }
+
     emit occupancyChanged(occ);
 
     //Refresh display
