@@ -16,33 +16,37 @@ int main(){
 	//std::vector<lineContainer> plcContainer;
 	std::vector<std::vector<std::string>> plcContainer;
 	getline(plcFile,inputString);
-	//get owned blocks
-	getline(plcFile,inputString);
-	inputString.erase(0,6);
-	std::vector<std::string> temp = lineSplit(inputString,",");
-	for(int i=0;i<temp.size();i++){
-		std::cout<< temp[i] << ", ";
-		owned.push_back(std::stoi(temp[i]));
-	}
-	temp.clear();
-	//get reached blocks
-	std::cout<<std::endl;
-	getline(plcFile,inputString);
-	inputString.erase(0,6);
-	temp = lineSplit(inputString,",");
-	for(int i=0;i<temp.size();i++){
-		std::cout<< temp[i] << ", ";
-		reach.push_back(std::stoi(temp[i]));
-	}
-	/*
-
+	
+	
+	
+	int start=0;
 	//read in PLC file
 	while(getline(plcFile,inputString)){
-		std::vector<std::string> fileLines;
-		std::cout << inputString << std::endl;
-		if(inputString[0] != '#'){
-			fileLines = lineSplit(inputString," ");
-			plcContainer.push_back(fileLines);
+		if(start==0){
+			//get owned blocks
+			getline(plcFile,inputString);
+			inputString.erase(0,6);
+			std::vector<std::string> temp = lineSplit(inputString,",");
+			for(int i=0;i<temp.size();i++){
+				owned.push_back(std::stoi(temp[i]));
+			}
+			start++;
+		} else if(start==1){
+			//get reached blocks
+			getline(plcFile,inputString);
+			inputString.erase(0,6);
+			std::vector<std::string> temp = lineSplit(inputString,",");
+			for(int i=0;i<temp.size();i++){
+				reach.push_back(std::stoi(temp[i]));
+			}
+			start++;
+		} else{
+			std::vector<std::string> fileLines;
+			std::cout << inputString << std::endl;
+			if(inputString[0] != '#'){
+				fileLines = lineSplit(inputString," ");
+				plcContainer.push_back(fileLines);
+			}
 		}
 	}
 	plcFile.close();
@@ -66,7 +70,7 @@ int main(){
 	
 
 
-	*/
+	
 
 	bool occ[] = {0,1};
 	bool auth[]= {1,1};
