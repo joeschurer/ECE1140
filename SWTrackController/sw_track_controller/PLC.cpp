@@ -6,27 +6,14 @@ PLC::PLC(){
 
 }
 
-PLC::~PLC(){}
-
-std::vector<std::string> lineSplit(std::string s, std::string delimeter) {
-    std::vector<std::string> result;
-    int start = 0;
-    int end = s.find(delimeter);
-    while(end!=-1) {
-        result.push_back(s.substr(start, end-start));
-        start = end + delimeter.size();
-        end = s.find(delimeter, start);
-    }
-    result.push_back(s.substr(start, end-start));
-    return result;
+PLC::PLC(track_layout *in){
+    track = in;
 }
 
-void removeFromString(std::string &line, const std::string &word){
-    std::string tarTemp =  "("+ word +")+";
-    std::regex target(tarTemp);
-    std::string replacement = "";
-    std::string temp = std::regex_replace(line, target, replacement);
-    line=temp;
+PLC::~PLC(){
+    nextPLC = nullptr;
+    prevPLC = nullptr;
+    track=nullptr;
 }
 
 bool PLC::update_occupancy(int index){
@@ -114,10 +101,6 @@ bool PLC::updateBlocks(){
             track_model.track[i].lights = 2;
         }
     }
-
-    //determine switch position
-
-    //fix switch position if necessary
 
     return true;
 }

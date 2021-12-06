@@ -6,15 +6,36 @@
 //#include <cctype>
 
 std::vector<std::string> lineSplit(std::string s, std::string delimeter);
-
+std::vector<int> owned,reach;
 
 int main(){
     bool success;
 	std::string inputString;
-	std::ifstream plcFile("test.plc");
+	std::ifstream plcFile("PLCdefaultg1.plc");
 
 	//std::vector<lineContainer> plcContainer;
 	std::vector<std::vector<std::string>> plcContainer;
+	getline(plcFile,inputString);
+	//get owned blocks
+	getline(plcFile,inputString);
+	inputString.erase(0,6);
+	std::vector<std::string> temp = lineSplit(inputString,",");
+	for(int i=0;i<temp.size();i++){
+		std::cout<< temp[i] << ", ";
+		owned.push_back(std::stoi(temp[i]));
+	}
+	temp.clear();
+	//get reached blocks
+	std::cout<<std::endl;
+	getline(plcFile,inputString);
+	inputString.erase(0,6);
+	temp = lineSplit(inputString,",");
+	for(int i=0;i<temp.size();i++){
+		std::cout<< temp[i] << ", ";
+		reach.push_back(std::stoi(temp[i]));
+	}
+	/*
+
 	//read in PLC file
 	while(getline(plcFile,inputString)){
 		std::vector<std::string> fileLines;
@@ -40,12 +61,12 @@ int main(){
 	
 	for (size_t i = 0; i < plcContainer.size(); i++)
 	{
-		if(plcContainer[i][0])
+		//if(plcContainer[i][0])
 	}
 	
 
 
-	
+	*/
 
 	bool occ[] = {0,1};
 	bool auth[]= {1,1};

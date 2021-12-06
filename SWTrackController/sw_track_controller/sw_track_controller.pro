@@ -18,6 +18,7 @@ SOURCES += \
 HEADERS += \
     PLC.h \
     mainwindow.h \
+    models.h \
     track_layout.h \
     waysidecontroller.h
 

@@ -2,15 +2,18 @@
 #define PLC_H
 #include "track_layout.h"
 #include "models.h"
-#include <regex>
 
 
 class PLC{
 private:
     track_layout track_model;
+    PLC* nextPLC = nullptr;
+    PLC* prevPLC = nullptr;
+
 
 public:
     PLC();
+    PLC(vector<block>);
     ~PLC();
     bool update_occupancy(int);
     void heater(int,bool);
