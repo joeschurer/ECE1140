@@ -15,6 +15,8 @@ int main(){
 
 	//std::vector<lineContainer> plcContainer;
 	std::vector<std::vector<std::string>> plcContainer;
+
+	//strip comment
 	getline(plcFile,inputString);
 	
 	
