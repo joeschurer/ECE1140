@@ -5,13 +5,16 @@ WaysideController::WaysideController(int lineSel){
 
     //divide sections between PLCs
     if(lineSel==0){//green
-       for(int i=0;i<4;i++){
-           PLC temp(&track_model);
+       for(int i=1;i<5;i++){
+           PLC temp(&track_model,i,0);
            waysides.push_back(temp);
        }
 
     } else {// red
-
+        for(int i=1;i<4;i++){
+            PLC temp(&track_model,i,1);
+            waysides.push_back(temp);
+        }
     }
 }
 

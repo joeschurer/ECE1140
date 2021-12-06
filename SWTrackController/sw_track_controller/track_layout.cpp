@@ -38,13 +38,10 @@ bool track_layout::create_line(int line){
     tempYard.yard=true;
     new_block(tempYard);
 
-    //std::ifstream trackFile;
-    //trackFile.open("C:\\Users\\daisy1\\Documents\\GitHub\\ECE1140\\train_sim\\GreenLine.txt");
     std::string fLine;
     QString fileName(":/line/GreenLine.txt");
     QFile inputFile(fileName);
-    //getline(trackFile, fLine);
-    //qDebug() << QString::fromStdString(fLine);
+
     if (inputFile.open(QIODevice::ReadOnly))
     {
         QTextStream in(&inputFile);

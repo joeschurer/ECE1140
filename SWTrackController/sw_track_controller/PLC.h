@@ -9,11 +9,15 @@ private:
     track_layout track_model;
     PLC* nextPLC = nullptr;
     PLC* prevPLC = nullptr;
+    track_layout * track=nullptr;
+    vector<int> ownedBlocks;
+    int index;
+    int line = -1;//0 = green, 1= red
 
 
 public:
     PLC();
-    PLC(vector<block>);
+    PLC(track_layout*,int,int);
     ~PLC();
     bool update_occupancy(int);
     void heater(int,bool);

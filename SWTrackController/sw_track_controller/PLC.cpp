@@ -6,8 +6,13 @@ PLC::PLC(){
 
 }
 
-PLC::PLC(track_layout *in){
+PLC::PLC(track_layout *in,int ind,int l){
     track = in;
+    index = ind;
+    line = 0;
+    string lFile = "g";
+    if(l==1){lFile = "r";}
+    string fName = "PLCdefault"+lFile+std::to_string(ind)+".plc";
 }
 
 PLC::~PLC(){

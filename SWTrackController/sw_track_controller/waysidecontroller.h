@@ -6,11 +6,13 @@ class WaysideController{
 private:
     track_layout track_model;
     //PLC waysides[10];
-    PLC wayside;
+    vector<PLC> waysides;
 
 public:
-    WaysideController();
+    WaysideController(int =0);
+    //0 == gren, 1 == red
     ~WaysideController();
+
     bool update_occupancy(int);
     void heater(int,bool);
     bool ctc_reccomend(bool[50]);
