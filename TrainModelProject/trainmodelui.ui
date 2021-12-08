@@ -491,7 +491,7 @@
     <string notr="true">background-color: rgb(255, 85, 0)</string>
    </property>
    <property name="text">
-    <string>Power Failure</string>
+    <string>Brake Failure</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_4">
@@ -607,6 +607,45 @@
     <string>update my UI</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="serviceBrakeButton">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>350</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Service Brake</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="standardModeButton">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>340</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>GO</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>280</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
   <action name="actiontrainWeight">
    <property name="text">
     <string>trainWeight</string>
@@ -657,6 +696,9 @@
   <zorder>murphy_label</zorder>
   <zorder>passenger_label</zorder>
   <zorder>pushButton</zorder>
+  <zorder>serviceBrakeButton</zorder>
+  <zorder>standardModeButton</zorder>
+  <zorder>pushButton_5</zorder>
  </widget>
  <resources/>
  <connections/>

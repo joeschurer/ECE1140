@@ -15,7 +15,7 @@ trainCalculate::trainCalculate()
     currentMode = 0;
     lastVelocity = 0;
     currentForce = 0;
-    currentWeight = 37104;
+    currentWeight = 40900;
     lastTime = 0;
     currentTime = 1;
     lastPosition = 0;
@@ -26,7 +26,7 @@ trainCalculate::trainCalculate()
 
 void trainCalculate::setPower(double power){
     if(currentMode == 2){
-        currentPower = 0;
+        currentPower = 0; //if service brake is pulled, TC sends 0 power.
     }else{
         currentPower = power;
     }
@@ -35,7 +35,7 @@ void trainCalculate::setPower(double power){
     } else if((lastVelocity && currentPower == 0) || emergencyBrake == true){
         currentForce = 0;
     }else if(lastVelocity == 0){
-        currentForce = .5*currentWeight;
+        currentForce = currentPower;
     }else{
         currentForce = currentPower / lastVelocity;
     }
@@ -58,9 +58,29 @@ void trainCalculate:: calcTime(){
 
 }
 
+void trainCalculate:: resetValues(){
+    passengersOff = 0;
+    lastAcc = 0;
+    currentAcc = 0;
+    currentMode = 0;
+    currentForce = 0;
+}
+
 double trainCalculate::calculateVelocity(){
+    lastVelocity = currentVelocity;
     lastAcc = currentAcc;
+
+    if(lastVelocity != 0){
+        currentForce = (currentPower / lastVelocity)-(40*lastVelocity*lastVelocity);
+    }
     currentAcc = currentForce/currentWeight;
+    if(currentMode == 5){ //service brake
+        lastAcc = -1.2;
+        currentAcc = -1.2;
+    }else if (currentMode == 6){ //emergency brake
+        lastAcc = -2.73;
+        currentAcc = -2.73;
+    }
     if(currentAcc > .5){
         currentAcc = .5;
     }
@@ -72,6 +92,7 @@ double trainCalculate::calculateVelocity(){
     if(currentKPH > 70){
         currentKPH = 70;
     }
+
     return currentKPH;
 }
 

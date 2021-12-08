@@ -112,6 +112,7 @@ void TrainModelUI::on_inputPowerConfirm_clicked()
 void TrainModelUI::on_emergencyBrake_clicked()
 {
     ui->currentModeValue->setText("Emergency Brake Pulled");
+    train.currentMode = 6;
     emit eBrakeSetTC(true);
 }
 
@@ -196,7 +197,7 @@ void currSpeed(int currSpeed);
 void currentPassengers(int passengers);
 
 
-//length of blokc
+//length of block
 //grade
 //speedlimit
 //commanded speed
@@ -205,5 +206,27 @@ void currentPassengers(int passengers);
 void TrainModelUI::on_pushButton_clicked()
 {
     updateUI();
+}
+
+
+void TrainModelUI::on_serviceBrakeButton_clicked()
+{
+    ui->currentModeValue->setText("Service Brake Pulled");
+    train.currentMode = 5;
+
+}
+
+
+void TrainModelUI::on_standardModeButton_clicked()
+{
+    ui->currentModeValue->setText("Standard");
+    train.currentMode = 0;
+    train.resetValues();
+}
+
+
+void TrainModelUI::on_pushButton_5_clicked()
+{
+    int i = 1;
 }
 

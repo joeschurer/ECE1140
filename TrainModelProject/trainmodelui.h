@@ -53,20 +53,29 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_serviceBrakeButton_clicked();
+
+    void on_standardModeButton_clicked();
+
+    void on_pushButton_5_clicked();
+
 private:
     Ui::TrainModelUI *ui;
 
 
 public slots:
+    //TC slots
     void receivePower(int power);
     void DestinationDifferent(std::string destination);
-    void DistanceDifferent(std::string distance);
-    void TimeDifferent(std::string time);
-    void SpeedLimitDifferent(int speed);
-    void CommandedSpeedDifferent(int speed);
-    void CurrentSpeedDifferent(int power);
-    void EmergencyBrakeDifferent(std::string state);
+    void DistanceDifferent(std::string distance); //the size of the block
+    void TimeDifferent(std::string time); //take in current time?
+    void SpeedLimitDifferent(int speed); //tkae in speed limit, emit it to TC
+    void CommandedSpeedDifferent(int speed); //take in commanded speed, emit to TC
+    void CurrentSpeedDifferent(int power); //receive power, call setPower
+    void EmergencyBrakeDifferent(std::string state); //receive
     void FailureDifferent(std::string state);
+
+    //TM slots
     void boardingPassengersFromTM(int numPassengers);
     void trackSignalFromTM(int meters, int grade, int limit, int comm);
 

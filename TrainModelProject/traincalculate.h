@@ -18,6 +18,7 @@ public:
     void leftDoors();
     void rightDoors();
     void calcTime();
+    void resetValues();
 
 
 //acceleration and deceleration set values
