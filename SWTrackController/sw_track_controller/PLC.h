@@ -4,6 +4,7 @@
 #include "models.h"
 
 
+
 class PLC{
 private:
     track_layout track_model;
@@ -11,13 +12,17 @@ private:
     PLC* prevPLC = nullptr;
     track_layout * track=nullptr;
     vector<int> ownedBlocks;
+    vector<vector<string>> plcContainer;
     int index;
     int line = -1;//0 = green, 1= red
-
+    vector<int> * toggledSwitches;
 
 public:
+    vector<int> parsePLC();
+    bool readPLCFile(string);
+    vector<int> returnOwned();
     PLC();
-    PLC(track_layout*,int,int);
+    PLC(track_layout*,int,int,vector<int>*);
     ~PLC();
     bool update_occupancy(int);
     void heater(int,bool);

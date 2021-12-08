@@ -3,7 +3,6 @@
 #include <string>
 #include <iostream>
 #include <QDebug>
-#include <QFile>
 #include "models.h"
 
 

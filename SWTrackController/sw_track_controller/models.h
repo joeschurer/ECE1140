@@ -39,4 +39,6 @@ struct TrainEntry{
     vector<bool> authority;
 };
 
+
+
 #endif // MODELS_H

@@ -1,4 +1,19 @@
 #include "PLC.h"
+#include <QTextStream>
+#include <QDebug>
+
+std::vector<std::string> linetoStrings(std::string s, std::string delimeter) {
+    std::vector<std::string> result;
+    int start = 0;
+    int end = s.find(delimeter);
+    while(end!=-1) {
+        result.push_back(s.substr(start, end-start));
+        start = end + delimeter.size();
+        end = s.find(delimeter, start);
+    }
+    result.push_back(s.substr(start, end-start));
+    return result;
+}
 
 PLC::PLC(){
     //create the blue line
@@ -6,32 +21,120 @@ PLC::PLC(){
 
 }
 
-PLC::PLC(track_layout *in,int ind,int l){
+bool PLC::readPLCFile(string file){
+    QString fName = QString::fromStdString(file);
+    QFile inputFile(fName);
+    int start = 0;
+    if (inputFile.open(QIODevice::ReadOnly)){
+        QTextStream in(&inputFile);
+        QString temp = in.readLine();// strip the comment from top
+
+        while (!in.atEnd()){
+            QString line = in.readLine();
+            std::string inputString = line.toStdString();
+            if(start==0){
+                inputString.erase(0,6);
+                qDebug() << QString::fromStdString(inputString);
+                std::vector<std::string> temp = linetoStrings(inputString,",");
+                for(int i=0;i<temp.size();i++){
+                    ownedBlocks.push_back(std::stoi(temp[i]));
+                }
+                start++;
+            } else if(start ==1){
+                inputString.erase(0,6);
+                qDebug() << QString::fromStdString(inputString);
+                std::vector<std::string> temp = linetoStrings(inputString,",");
+                for(int i=0;i<temp.size();i++){
+                    ownedBlocks.push_back(std::stoi(temp[i]));
+                }
+                start++;
+            } else {
+                std::vector<std::string> fileLines;
+                qDebug() << QString::fromStdString(inputString);
+                if(inputString[0] != '#'){
+                    fileLines = linetoStrings(inputString," ");
+                    plcContainer.push_back(fileLines);
+                }
+            }
+        }
+    } else{
+        qDebug() << "File could not be opened." << fName;
+        return false;
+    }
+    inputFile.close();
+    return true;
+}
+
+vector<int> PLC::parsePLC(){
+    vector<int> toggle;
+    for(int i=0;i< plcContainer.size();i++){
+        int BL, SWPOS;
+        if(plcContainer[i][0] == "IF" && plcContainer[i][2]=="THEN"){
+            if (plcContainer[i][1].substr(0,2) == "BL"){
+                BL = std::stoi(plcContainer[i][1].substr(2,plcContainer[i][1].length()));
+                SWPOS = std::stoi(plcContainer[i][3].substr(2,plcContainer[i][3].length()));
+
+                //toggle switch
+                if(track->track[BL].occupancy==true){
+
+                } else {
+                   // track->track[SWPOS]=false;
+                }
+            }
+            else if (plcContainer[i][1].substr(0,4) == "AUTH"){
+                BL = std::stoi(plcContainer[i][1].substr(4,plcContainer[i][1].length()));
+                SWPOS = std::stoi(plcContainer[i][3].substr(2,plcContainer[i][3].length()));
+                //check for occupancy on switch
+                if(track->track[SWPOS].occupancy==true){
+                    qDebug() << "Avoiding switching occupied switch";
+                } else {
+                    if(track->track[SWPOS].tailConnect!=BL){
+                        track->toggle_switch(SWPOS);
+                        toggle.push_back(SWPOS);
+                        qDebug()<< "Toggled switch: " << SWPOS;
+                    }
+                }
+
+            }
+        } else if(plcContainer[i][0] == "CROSSING"){
+            int cross = std::stoi(plcContainer[i][1]);
+            if(track->track[cross].occupancy == true){
+                track->track[cross].crossing == true;
+                qDebug() << "Crossing active at: " << cross;
+            } else{
+                track->track[cross].crossing == false;
+            }
+        }
+    }
+    return toggle;
+}
+
+vector<int> PLC::returnOwned(){
+    return ownedBlocks;
+}
+
+PLC::PLC(track_layout *in,int ind,int l,vector<int>* switchVector){
     track = in;
     index = ind;
     line = 0;
     string lFile = "g";
     if(l==1){lFile = "r";}
     string fName = "PLCdefault"+lFile+std::to_string(ind)+".plc";
+    toggledSwitches= switchVector;
+    readPLCFile(fName);
 }
 
 PLC::~PLC(){
     nextPLC = nullptr;
     prevPLC = nullptr;
     track=nullptr;
+    toggledSwitches= nullptr;
 }
 
 bool PLC::update_occupancy(int index){
-    bool curr_occ = track_model.track[index].occupancy;
-    if(curr_occ == false){
-        track_model.track[index].occupancy = true;
-        track_model.track[index].lights = 2;//set the light to red
-        updateBlocks();
-        return true;
-    } else {
-        //not good...
-        return false;
-    }
+    track->track[index].occupancy == true;
+    parsePLC();
+    return true;
 }
 
 std::vector<int> PLC::ctc_reccomend(std::vector<bool> a){

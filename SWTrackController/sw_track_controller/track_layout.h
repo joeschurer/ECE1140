@@ -1,7 +1,7 @@
 #ifndef TRACK_LAYOUT_H
 #define TRACK_LAYOUT_H
 #include <vector>
-
+#include <QFile>
 struct block{
     //true is left item in switch declaration,false is right
     bool switch_pos= true;

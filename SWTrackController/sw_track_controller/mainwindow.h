@@ -6,7 +6,7 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <QMessageBox>
-#include "PLC.h"
+#include "waysidecontroller.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -43,7 +43,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QString fileName = "";
-    PLC plc;
+    WaysideController waysideController;
 
 signals:
    void sendCTCOcc(std::vector<bool>);

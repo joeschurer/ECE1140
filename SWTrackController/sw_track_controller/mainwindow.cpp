@@ -71,13 +71,13 @@ void MainWindow::sel_line(){
     //determine which line is selected
     if(ui->line_select->currentText() == "Red Line"){
         //red
-        num_waysides = 10;
+        num_waysides = 5;
         curr_line = "red";
         ui->sel_line->setText(QStringLiteral("Red Line"));
     }
     else if(ui->line_select->currentText() == "Green Line"){
         //green
-        num_waysides = 12;
+        num_waysides = 4;
         curr_line = "green";
         ui->sel_line->setText(QStringLiteral("Green Line"));
     } else {
@@ -105,7 +105,7 @@ void MainWindow::sel_block(){
     ui->sel_block->setText(QStringLiteral("Block ")+ QString::number(selection));
 
     //get block info
-    block temp_block = plc.get_block(selection);
+    block temp_block = waysideController.get_block(selection);
 
     //get heater status
     if(selection==0){
@@ -221,7 +221,7 @@ void MainWindow::check_heater_line(){
 
 void MainWindow::track_test(){
     int index = ui->occupancy_edit->text().toInt();
-    plc.update_occupancy(index);
+    waysideController.update_occupancy(index);
     if(block_selected){
         sel_block();
     }
@@ -230,7 +230,7 @@ void MainWindow::track_test(){
 void MainWindow::track_heater(){
     int index = ui->heater_test->text().toInt();
     bool state = ui->heater_state->isChecked();
-    plc.heater(index,state);
+    waysideController.heater(index,state);
     if(block_selected){
         sel_block();
     }
@@ -255,9 +255,9 @@ void MainWindow::on_uploadButton_clicked(){
 
 void MainWindow::on_maintenance_submit_clicked(){
     int index = ui->maintenance_test->text().toInt();
-    bool check = plc.get_maintenance_mode(index);
-    plc.set_maintenance_mode(index,!check);
-    block temp = plc.get_block(index);
+    bool check = waysideController.get_maintenance_mode(index);
+    waysideController.set_maintenance_mode(index,!check);
+    block temp = waysideController.get_block(index);
     if(temp.switch_head == true){
         if(!check == true){
             ui->maintenance_toggle->setEnabled(true);
@@ -276,7 +276,7 @@ void MainWindow::on_maintenance_submit_clicked(){
 void MainWindow::on_maintenance_toggle_clicked()
 {
     int index = ui->maintenance_test->text().toInt();
-    plc.toggleSwitch(index);
+    waysideController.toggleSwitch(index);
 
     if(block_selected){
         sel_block();
@@ -289,17 +289,17 @@ void MainWindow::on_maintenance_toggle_clicked()
 }*/
 
 void  MainWindow::receiveOcc(std::vector<bool> occ){
-    plc.receiveOcc(occ);
-    std::vector<bool> temp =plc.sendCTCOcc();
+    waysideController.receiveOcc(occ);
+    std::vector<bool> temp =waysideController.sendCTCOcc();
     emit sendCTCOcc(temp);
 
 }
 
 void MainWindow::recieveAuth(TrainEntry t){
     std::vector<bool> auth = t.authority;
-    std::vector<int> sw = plc.ctc_reccomend(auth);
+    std::vector<int> sw = waysideController.ctc_reccomend(auth);
     emit sendTrackModelSwitches(sw);
-    std::vector<bool> temp = plc.getAuth();
+    std::vector<bool> temp = waysideController.sendTrackModelAuth();
     //emit sendTrackModelAuth(temp);
     std::string auth_string;
     for(int i=0;i<temp.size();i++){
@@ -319,12 +319,12 @@ void MainWindow::recieveAuth(TrainEntry t){
 
 void MainWindow::getMaintenaceMode(std::vector<bool> blocks){
     for(int i=0; i< blocks.size(); i++){
-        plc.set_maintenance_mode(i,blocks[i]);
+        waysideController.set_maintenance_mode(i,blocks[i]);
     }
 }
 
 void MainWindow::changeSwitch(std::vector<int> pos){
-    bool change = plc.maintenance_mode_switch(pos[0],pos[1]);
+    bool change = waysideController.maintenance_mode_switch(pos[0],pos[1]);
     if(change==true){
         std::vector<int> temp;
         temp.push_back(pos[0]);
