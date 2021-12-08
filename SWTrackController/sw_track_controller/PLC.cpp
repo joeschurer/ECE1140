@@ -119,6 +119,7 @@ PLC::PLC(track_layout *in,int ind,int l,vector<int>* switchVector){
     line = 0;
     string lFile = "g";
     if(l==1){lFile = "r";}
+    //figure out pathing...
     string fName = "PLCdefault"+lFile+std::to_string(ind)+".plc";
     toggledSwitches= switchVector;
     readPLCFile(fName);
