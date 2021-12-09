@@ -87,9 +87,6 @@ Layout::Layout() {
             }
             else if (s1 == "SWITCH ") {
                 b.hasSwitch = true;
-                //All switches have crossings
-                b.hasCrossing = true;
-                b.crossingLights = false;
                 string sw = infrastructure.substr(0, 16);
                 if (sw == "SWITCH TO YARD (") {
                     f = infrastructure.find("(");
@@ -232,13 +229,13 @@ Layout::Layout() {
         line->blocks.push_back(b);
     }
 
-    //Add lights before and after a station
+    //Add lights before and after a switch
     for (int i=0; i<line->blocks.size(); i++) {
-        if (line->blocks[i].hasStation) {
-            line->blocks[i-1].hasCrossing = true;
-            line->blocks[i-1].crossingLights = false;
-            line->blocks[i+1].hasCrossing = true;
-            line->blocks[i+1].crossingLights = false;
+        if (line->blocks[i].hasSwitch) {
+            line->blocks[line->blocks[i].swtch.block1_1-1].hasCrossing = true;
+            line->blocks[line->blocks[i].swtch.block1_2-1].hasCrossing = true;
+            line->blocks[line->blocks[i].swtch.block2_1-1].hasCrossing = true;
+            line->blocks[line->blocks[i].swtch.block2_2-1].hasCrossing = true;
         }
     }
 }
