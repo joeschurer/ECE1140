@@ -1,6 +1,7 @@
 #include "PLC.h"
 #include <QTextStream>
 #include <QDebug>
+#include <sstream>
 
 std::vector<std::string> linetoStrings(std::string s, std::string delimeter) {
     std::vector<std::string> result;
@@ -13,6 +14,24 @@ std::vector<std::string> linetoStrings(std::string s, std::string delimeter) {
     }
     result.push_back(s.substr(start, end-start));
     return result;
+}
+
+std::vector<int> GetValues(std::string str)
+{
+    std::vector<int> v;
+    std::stringstream ss(str);
+
+    int i;
+
+    while (ss >> i)
+    {
+        v.push_back(i);
+        //qDebug() << i;
+        if (ss.peek() == ',')
+            ss.ignore();
+    }
+
+    return v;
 }
 
 PLC::PLC(){
@@ -35,17 +54,14 @@ bool PLC::readPLCFile(string file){
             if(start==0){
                 inputString.erase(0,6);
                 qDebug() << QString::fromStdString(inputString);
-                std::vector<std::string> temp = linetoStrings(inputString,",");
-                for(int i=0;i<temp.size();i++){
-                    ownedBlocks.push_back(std::stoi(temp[i]));
-                }
+                ownedBlocks = GetValues(inputString);
                 start++;
             } else if(start ==1){
                 inputString.erase(0,6);
                 qDebug() << QString::fromStdString(inputString);
-                std::vector<std::string> temp = linetoStrings(inputString,",");
+                std::vector<int> temp = GetValues(inputString);
                 for(int i=0;i<temp.size();i++){
-                    ownedBlocks.push_back(std::stoi(temp[i]));
+                    ownedBlocks.push_back((temp[i]));
                 }
                 start++;
             } else {
@@ -61,6 +77,10 @@ bool PLC::readPLCFile(string file){
         qDebug() << "File could not be opened." << fName;
         return false;
     }
+
+    //for(int i=0;i<ownedBlocks.size();i++){
+       // qDebug() << ownedBlocks[i];
+    //}
     inputFile.close();
     return true;
 }
@@ -85,8 +105,8 @@ vector<int> PLC::parsePLC(){
                 BL = std::stoi(plcContainer[i][1].substr(4,plcContainer[i][1].length()));
                 SWPOS = std::stoi(plcContainer[i][3].substr(2,plcContainer[i][3].length()));
                 //check for occupancy on switch
-                if(track->track[SWPOS].occupancy==true){
-                    qDebug() << "Avoiding switching occupied switch";
+                if(track->track[SWPOS].occupancy==true || track->track[SWPOS].maintenance == true){
+                    qDebug() << "Avoiding switching occupied/maintenance switch";
                 } else {
                     if(track->track[SWPOS].tailConnect!=BL){
                         track->toggle_switch(SWPOS);

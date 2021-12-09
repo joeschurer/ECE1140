@@ -147,15 +147,17 @@ bool track_layout::toggle_switch(int index){
     if(track[index].occupancy==true){
         return false;
     }
-    int current = track[index].headConnect;
-    int nPos = track[index].headOptions[1];
-    if(track[index].headOptions[1]==current){
-        nPos = track[index].headOptions[0];
+    if(track[index].occupancy == false){
+        int currentConnect = track[index].headConnect;
+        track[currentConnect].tailConnect = -1;
+
+        int newConnect = track[index].headOptions[0];
+        if(track[index].headOptions[0] == currentConnect){
+            newConnect = track[index].headOptions[1];
+        }
+        track[index].headConnect = newConnect;
+        track[newConnect].tailConnect = index;
     }
-    track[index].switch_pos= !track[index].switch_pos;
-    track[index].headConnect=nPos;
-    track[current].tailConnect=-1;
-    track[nPos].tailConnect=index;
 
     return true;
 }

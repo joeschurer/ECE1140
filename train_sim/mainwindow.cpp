@@ -185,9 +185,11 @@ void MainWindow::sel_wayside(){
     vector<int> blocks;
     blocks=waysideController.returnOwned(selection);
 
+
     //add block to the drop-down
     QString temp;
-    for(int i=0; i<=blocks.size();i++){
+    for(int i=0; i<blocks.size();i++){
+        //qDebug() << blocks[i];
         temp = "Block " + QString::number(blocks[i]);
         ui->block_select->addItem(temp);
     }
@@ -202,7 +204,7 @@ void MainWindow::ctc_test(){
     int index = ui->block_test->text().toInt();
     int auth = ui->auth_test->text().toInt();
     double speed = ui->speed_test->text().toDouble();
-    //plc.ctc_reccomend(index,auth,speed);
+    waysideController.ctc_test(index,auth,speed);
     if(block_selected){
         sel_block();
     }
@@ -255,6 +257,7 @@ void MainWindow::check_maintenance_line(){
 void MainWindow::on_uploadButton_clicked(){
     fileName = QFileDialog::getOpenFileName(this,"Open the PLC File","C://");
     if(fileName != ""){
+        //add upload here
         ui->uploadNotif->setText("Uploaded " + fileName);
     }
 }
@@ -286,7 +289,8 @@ void MainWindow::on_maintenance_toggle_clicked()
     waysideController.toggleSwitch(index);
     vector<int> temp;
     temp.push_back(index);
-    emit sendTrackModelSwitches(temp);
+    //Hmmm
+    //emit sendTrackModelSwitches(temp);
 
 
     if(block_selected){

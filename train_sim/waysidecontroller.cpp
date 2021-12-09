@@ -1,4 +1,5 @@
 #include "waysidecontroller.h"
+#include <QDebug>
 
 WaysideController::WaysideController(int lineSel){
     track_model.create_line(lineSel);
@@ -54,6 +55,21 @@ vector<int> WaysideController::ctc_reccomend(std::vector<bool> a){
 
     return toggledSwitches;
 }
+
+//CTC Test
+vector<int> WaysideController::ctc_test(int index,int auth,int speed){
+    toggledSwitches.clear();
+    track_model.track[index].auth == auth;
+    track_model.track[index].sugg_speed = speed;
+
+    for(int i=0;i<waysides.size() ;i++){
+       vector<int> toggle = waysides[i].parsePLC();
+       toggledSwitches.insert(std::end(toggledSwitches), std::begin(toggle), std::end(toggle));
+    }
+
+    return toggledSwitches;
+}
+
 
 //CTC
 std::vector<bool> WaysideController::sendCTCOcc(){
