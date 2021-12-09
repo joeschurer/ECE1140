@@ -238,4 +238,12 @@ Layout::Layout() {
             line->blocks[line->blocks[i].swtch.block2_2-1].hasCrossing = true;
         }
     }
+
+    //Add lights before and after a station
+    for (int i=0; i<line->blocks.size(); i++) {
+        if (line->blocks[i].hasStation) {
+            line->blocks[i-1].hasCrossing = true;
+            line->blocks[i+1].hasCrossing = true;
+        }
+    }
 }

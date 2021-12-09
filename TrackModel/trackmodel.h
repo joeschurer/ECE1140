@@ -33,6 +33,8 @@ public slots:
     void toggleCrossing(int cross);
     void doorsOpen(int trainNum);
     void openDoors(vector<int> train);
+    void receiveAuth(vector<bool> auth);
+    void toggleCrossings(vector<int> cross);
 
 private slots:
     void on_breakCircuit_returnPressed();
@@ -48,9 +50,10 @@ signals:
     vector<int> newBlock(vector<int> data);
     vector<string> newTrainData(vector<string> newData);
     vector<int> passengersChanged(vector<int> pass);
-    vector<int> occupancyChanged(vector<int> occ);
+    vector<bool> occupancyChanged(vector<bool> occ);
     string beaconData(string data);
     double tempChanged(double temp);
+    bool heatersOn(bool heat);
 
 private:
     Ui::TrackModel *ui;
