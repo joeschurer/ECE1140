@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/line">
+        <file>GreenLine.txt</file>
+    </qresource>
+    <qresource prefix="/PLC">
+        <file>PLCs/PLCdefaultg1.plc</file>
+        <file>PLCs/PLCdefaultg2.plc</file>
+        <file>PLCs/PLCdefaultg3.plc</file>
+        <file>PLCs/PLCdefaultg4.plc</file>
+    </qresource>
+</RCC>
