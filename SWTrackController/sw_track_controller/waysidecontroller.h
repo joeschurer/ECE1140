@@ -30,11 +30,15 @@ public:
     bool maintenance_mode_switch(int,int);
 
     //Track Model
-    void receiveOcc(std::vector<bool> occ);
+    vector<int> receiveOcc(std::vector<bool> occ);
     std::vector<bool> sendTrackModelAuth();
     //std::vector<int>  sendTrackModelSpeed();
     int sendTrackModelSpeed();
     std::vector<int> sendSwitchPos();
+
+    //For UI
+    vector<int> returnOwned(int);
+    int returnNumWaysides();
 
     /*
     //CTC;

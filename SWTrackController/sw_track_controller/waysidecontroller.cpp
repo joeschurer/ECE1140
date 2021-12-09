@@ -23,6 +23,14 @@ WaysideController::WaysideController(int lineSel){
     }
 }
 
+vector<int> WaysideController::returnOwned(int index){
+    return waysideOwned[index-1];
+}
+
+int WaysideController::returnNumWaysides(){
+    return waysides.size();
+}
+
 WaysideController::~WaysideController(){}
 
 bool WaysideController::update_occupancy(int index){
@@ -58,16 +66,24 @@ std::vector<bool> WaysideController::sendCTCOcc(){
 }
 
 //Track Model
-void WaysideController::receiveOcc(std::vector<bool> occ){
+vector<int> WaysideController::receiveOcc(std::vector<bool> occ){
     for(int i=0;i<occ.size(); i++){
         track_model.track[i].occupancy = occ[i];
     }
+
+    vector<int> toggle;
+    for(int i=0;i<waysides.size(); i++){
+        vector<int> temp = waysides[i].parsePLC();
+        toggle.insert(std::end(toggle), std::begin(temp), std::end(temp));
+    }
+    return toggle;
 }
 
 std::vector<bool> WaysideController::sendTrackModelAuth(){
     std::vector<bool> temp;
     for(int i=0;i<track_model.track.size(); i++){
         temp.push_back(track_model.track[i].auth);
+
     }
 
     return temp;

@@ -91,6 +91,7 @@ bool track_layout::create_line(int line){
                     //std::cout << temp.headOptions[0] << " : "<<temp.headOptions[1] <<std::endl;
 
                 } else {
+
                     std::string left = sw.substr(0, sw.find(';'));
                     sw.erase(0, sw.find(';')+2);
                     std::string right = sw;

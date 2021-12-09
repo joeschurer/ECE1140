@@ -87,6 +87,9 @@ void MainWindow::sel_line(){
         ui->sel_line->setText(QStringLiteral("Blue Line"));
     }
 
+    //get the num of waysides
+    num_waysides = waysideController.returnNumWaysides();
+
     //Add the waysides to the box
     QString temp;
     for(int i=1; i<=num_waysides;i++){
@@ -101,6 +104,14 @@ void MainWindow::sel_line(){
 
 void MainWindow::sel_block(){
     int selection = ui->block_select->currentIndex();
+    QString selected = ui->block_select->currentText();
+    //qDebug() << selected;
+
+    string sel_string = selected.toStdString();
+    sel_string.erase(0,6);
+    //qDebug() << QString::fromStdString(sel_string);
+    selection = std::stoi(sel_string);
+
 
     ui->sel_block->setText(QStringLiteral("Block ")+ QString::number(selection));
 
@@ -163,28 +174,24 @@ void MainWindow::sel_block(){
 }
 
 void MainWindow::sel_wayside(){
+    int selection = ui->wayside_select->currentIndex() +1;
+    qDebug() << selection;
     //clear the drop-down
     block_selected=false;
     ui->block_select->clear();
     ui->sel_block->setText(QStringLiteral("Block "));
 
-    //set the number of blocks
-    int num_blocks = -1;
-    if(curr_line=="blue"){
-       num_blocks = 15;
-    } else if(curr_line == "red") {
-        num_blocks = 20;
-    } else {
-        num_blocks = 151;
-    }
+    //get owned blocks
+    vector<int> blocks;
+    blocks=waysideController.returnOwned(selection);
 
     //add block to the drop-down
     QString temp;
-    for(int i=0; i<=num_blocks;i++){
-        temp = "Block " + QString::number(i);
+    for(int i=0; i<=blocks.size();i++){
+        temp = "Block " + QString::number(blocks[i]);
         ui->block_select->addItem(temp);
     }
-    int selection = ui->wayside_select->currentIndex() +1;
+
     ui->sel_wayside->setText(QStringLiteral("Wayside #")+ QString::number(selection));
 
     //enable block selection
@@ -289,9 +296,10 @@ void MainWindow::on_maintenance_toggle_clicked()
 }*/
 
 void  MainWindow::receiveOcc(std::vector<bool> occ){
-    waysideController.receiveOcc(occ);
+    std::vector<int> switches = waysideController.receiveOcc(occ);
     std::vector<bool> temp =waysideController.sendCTCOcc();
     emit sendCTCOcc(temp);
+    emit sendTrackModelSwitches(switches);
 
 }
 
