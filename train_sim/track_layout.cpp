@@ -70,7 +70,7 @@ bool track_layout::create_line(int line){
                 temp.crossing= true;
                 temp.crossingState = false;
                 //std::cout<<  temp.crossing<<std::endl;
-            }else if(inf.find("SWITCH") != std::string::npos){
+            }if(inf.find("SWITCH") != std::string::npos){
                 //std::cout << "SWITCH: ";
                 std::string sw = inf.substr(inf.find('(')+1,inf.find(')'));
                 sw.pop_back();

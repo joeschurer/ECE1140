@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     //define the options for the options for the line selection
     ui->line_select->addItem("Red Line");
     ui->line_select->addItem("Green Line");
-    ui->line_select->addItem("Blue Line");
+    //ui->line_select->addItem("Blue Line");
 
     connect(ui->line_select,SIGNAL(activated(int)),this,SLOT(sel_line()));
     connect(ui->wayside_select,SIGNAL(activated(int)),this,SLOT(sel_wayside()));
