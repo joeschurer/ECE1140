@@ -2,7 +2,7 @@
 #include "ui_engineer.h"
 
 Engineer::Engineer(QWidget *parent) :
-    QWidget(parent),
+    QMainWindow(parent),
     ui(new Ui::Engineer)
 {
     ui->setupUi(this);
@@ -16,12 +16,11 @@ Engineer::~Engineer()
 void Engineer::on_SubmitButton_released()
 {
     QString Kp = ui->KpBox->text();
-    KpValue = Kp.toInt();
+    KpValue = Kp.toDouble();
 
     QString Ki = ui->KiBox->text();
-    KiValue = Ki.toInt();
+    KiValue = Ki.toDouble();
 
     emit SubmitKpKi(KpValue, KiValue);
     close();
 }
-

@@ -1,9 +1,9 @@
-#include "swtraincontrollerui.h"
-#include "ui_swtraincontrollerui.h"
+#include "swtcui.h"
+#include "ui_swtcui.h"
 
-SWTrainControllerUI::SWTrainControllerUI(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::SWTrainControllerUI)
+SWTCUI::SWTCUI(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::SWTCUI)
 {
     ui->setupUi(this);
 
@@ -18,63 +18,61 @@ SWTrainControllerUI::SWTrainControllerUI(QWidget *parent)
     ui->FailureBox->setText(QString::fromStdString("None"));
     ui->TimeDistanceBox->setText(QString::fromStdString("30 Seconds and 0.15mi"));
 
-
     QPushButton *numButtons[10];
     for(int i = 0; i < 10; i++)
     {
         switch (i)
         {
             case 0:
-                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("PlusSpeedButton");
+                numButtons[i] = SWTCUI::findChild<QPushButton *>("PlusSpeedButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(PlusSpeedPressed()));
                 break;
             case 1:
-                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("MinusSpeedButton");
+                numButtons[i] = SWTCUI::findChild<QPushButton *>("MinusSpeedButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(MinusSpeedPressed()));
                 break;
             case 2:
-                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("BrakeButton");
+                numButtons[i] = SWTCUI::findChild<QPushButton *>("BrakeButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(BrakePressed()));
                 break;
             case 3:
-                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("MinusACButton");
+                numButtons[i] = SWTCUI::findChild<QPushButton *>("MinusACButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(MinusTempPressed()));
                 break;
             case 4:
-                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("PlusACButton");
+                numButtons[i] = SWTCUI::findChild<QPushButton *>("PlusACButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(PlusTempPressed()));
                 break;
             case 5:
-                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("OperateLeftDoorsButton");
+                numButtons[i] = SWTCUI::findChild<QPushButton *>("OperateLeftDoorsButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(OperateLeftDoorsPressed()));
                 break;
             case 6:
-                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("OperateRightDoorsButton");
+                numButtons[i] = SWTCUI::findChild<QPushButton *>("OperateRightDoorsButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(OperateRightDoorsPressed()));
                 break;
             case 7:
-                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("OperateLightsButton");
+                numButtons[i] = SWTCUI::findChild<QPushButton *>("OperateLightsButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(LightsButtonPressed()));
                 break;
             case 8:
-                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("AutomaticModeButton");
+                numButtons[i] = SWTCUI::findChild<QPushButton *>("AutomaticModeButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(AutomaticModeButtonPressed()));
                 break;
             case 9:
-                numButtons[i] = SWTrainControllerUI::findChild<QPushButton *>("EBrakeButton");
+                numButtons[i] = SWTCUI::findChild<QPushButton *>("EBrakeButton");
                 connect(numButtons[i], SIGNAL(released()), this, SLOT(EBrakePressed()));
                 break;
         }
     }
 }
 
-SWTrainControllerUI::~SWTrainControllerUI()
+SWTCUI::~SWTCUI()
 {
     delete ui;
 }
 
-
-void SWTrainControllerUI::PlusSpeedPressed() {
+void SWTCUI::PlusSpeedPressed() {
     int newSpeed = ++SetSpeed;
     if(SetSpeed > 43)
     {
@@ -86,7 +84,7 @@ void SWTrainControllerUI::PlusSpeedPressed() {
     emit SetSpeedDifferent(SetSpeed);
 }
 
-void SWTrainControllerUI::MinusSpeedPressed() {
+void SWTCUI::MinusSpeedPressed() {
     int newSpeed = --SetSpeed;
     if(SetSpeed <= 0)
     {
@@ -102,28 +100,29 @@ void SWTrainControllerUI::MinusSpeedPressed() {
     emit SetSpeedDifferent(SetSpeed);
 }
 
-void SWTrainControllerUI::PlusTempPressed() {
+void SWTCUI::PlusTempPressed() {
     int newTemp = ++CurrentTemp;
     ui->CurrentTempBox->setText(QString::number(newTemp, 'g', 3));
     emit TempDifferent(newTemp);
 }
 
-void SWTrainControllerUI::MinusTempPressed() {
+void SWTCUI::MinusTempPressed() {
     int newTemp = --CurrentTemp;
     ui->CurrentTempBox->setText(QString::number(newTemp, 'g', 3));
     emit TempDifferent(newTemp);
 }
 
-void SWTrainControllerUI::BrakePressed() {
+void SWTCUI::BrakePressed() {
     int newSpeed = 0;
-    CurrentSpeed = 0;
+    SetSpeed = 0;
     BrakeState = true;
     Power = 0;
     ui->SetSpeedBox->setText(QString::number(newSpeed, 'g', 3));
-    emit SetSpeedDifferent(CurrentSpeed);
+    CalculatePower();
+    emit SetSpeedDifferent(SetSpeed);
 }
 
-void SWTrainControllerUI::OperateLeftDoorsPressed() {
+void SWTCUI::OperateLeftDoorsPressed() {
     if(LeftDoorsOpen)
     {
         LeftDoorsOpen = false;
@@ -136,7 +135,7 @@ void SWTrainControllerUI::OperateLeftDoorsPressed() {
 
 }
 
-void SWTrainControllerUI::OperateRightDoorsPressed() {
+void SWTCUI::OperateRightDoorsPressed() {
     if(RightDoorsOpen)
     {
         RightDoorsOpen = false;
@@ -148,7 +147,7 @@ void SWTrainControllerUI::OperateRightDoorsPressed() {
     emit RightDoorsDifferent(RightDoorsOpen);
 }
 
-void SWTrainControllerUI::LightsButtonPressed() {
+void SWTCUI::LightsButtonPressed() {
     if(LightsOn)
     {
         LightsOn = false;
@@ -160,7 +159,7 @@ void SWTrainControllerUI::LightsButtonPressed() {
     emit LightsDifferent(LightsOn);
 }
 
-void SWTrainControllerUI::AutomaticModeButtonPressed() {
+void SWTCUI::AutomaticModeButtonPressed() {
     if(AutomaticModeState)
     {
         AutomaticModeState = false;
@@ -174,9 +173,9 @@ void SWTrainControllerUI::AutomaticModeButtonPressed() {
     emit AutomaticModeDifferent(AutomaticModeState);
 }
 
-void SWTrainControllerUI::EBrakePressed() {
+void SWTCUI::EBrakePressed() {
     int newSpeed = 0;
-    CurrentSpeed = 0;
+    SetSpeed = 0;
     if(EmergencyBrakeState)
     {
         EmergencyBrakeState = false;
@@ -189,55 +188,61 @@ void SWTrainControllerUI::EBrakePressed() {
     }
     ui->SetSpeedBox->setText(QString::number(newSpeed, 'g', 3));
     emit EmergencyBrakeDifferent(EmergencyBrakeState);
-    emit SetSpeedDifferent(CurrentSpeed);
+    emit SetSpeedDifferent(SetSpeed);
+    CalculatePower();
 }
 
-void SWTrainControllerUI::DestinationChanged(std::string destination)
+void SWTCUI::DestinationChanged(std::string destination)
 {
     ui->DestinationDisplay->setText(QString::fromStdString(destination));
 }
 
-void SWTrainControllerUI::DistanceChanged(std::string distance)
+void SWTCUI::DistanceChanged(std::string distance)
 {
     ui->TimeDistanceBox->setText(QString::fromStdString(distance));
 }
 
-void SWTrainControllerUI::TimeChanged(std::string time)
+void SWTCUI::TimeChanged(std::string time)
 {
     ui->ClockDisplay->setText(QString::fromStdString(time));
 }
 
-void SWTrainControllerUI::SpeedLimitChanged(int speed)
+void SWTCUI::SpeedLimitChanged(int speed)
 {
     ui->SpeedLimitBox->setText(QString::number(speed));
     SpeedLimit = speed;
 }
 
-void SWTrainControllerUI::CommandedSpeedChanged(int speed)
+void SWTCUI::CommandedSpeedChanged(int speed)
 {
     ui->CommandedSpeedBox->setText(QString::number(speed));
     CommandedSpeed = speed;
 }
 
-void SWTrainControllerUI::CurrentSpeedChanged(int speed)
+void SWTCUI::CurrentSpeedChanged(int speed)
 {
     ui->CurrentSpeedBox->setText(QString::number(speed));
     CurrentSpeed = speed;
     CalculatePower();
 }
 
-void SWTrainControllerUI::EmergencyBrakeChanged(std::string state)
+void SWTCUI::EmergencyBrakeChanged(std::string state)
 {
     ui->EBrakeBox->setText(QString::fromStdString(state));
 }
 
-void SWTrainControllerUI::KpKiChanged(int Kp, int Ki)
+void SWTCUI::FailureChanged(std::string state)
+{
+    ui->FailureBox->setText(QString::fromStdString(state));
+}
+
+void SWTCUI::KpKiChanged(double Kp, double Ki)
 {
     KpValue = Kp;
     KiValue = Ki;
 }
 
-void SWTrainControllerUI::CalculatePower()
+void SWTCUI::CalculatePower()
 {
     SpeedPower = SetSpeed * 1.60934;
     CurrentKPH = CurrentSpeed * 1.60934;
@@ -254,9 +259,13 @@ void SWTrainControllerUI::CalculatePower()
         Power = 120000;
         Ukminus1 = Power;
     }
+
+    if(Power < 0)
+    {
+        Power = 0;
+        Ukminus1 = Power;
+    }
+
     emit PowerCalculated(Power);
 }
-
-
-
 

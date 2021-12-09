@@ -1,13 +1,13 @@
 #ifndef ENGINEER_H
 #define ENGINEER_H
 
-#include <QWidget>
+#include <QMainWindow>
 
 namespace Ui {
 class Engineer;
 }
 
-class Engineer : public QWidget
+class Engineer : public QMainWindow
 {
     Q_OBJECT
 
@@ -16,16 +16,15 @@ public:
     ~Engineer();
 
 signals:
-    void SubmitKpKi(int Kp, int Ki);
+    void SubmitKpKi(double Kp, double Ki);
 
 private slots:
     void on_SubmitButton_released();
 
 private:
     Ui::Engineer *ui;
-    int KpValue;
-    int KiValue;
-
+    double KpValue;
+    double KiValue;
 };
 
 #endif // ENGINEER_H

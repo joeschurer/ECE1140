@@ -1,19 +1,19 @@
-#ifndef SWTRAINCONTROLLERUI_H
-#define SWTRAINCONTROLLERUI_H
+#ifndef SWTCUI_H
+#define SWTCUI_H
 
 #include <QMainWindow>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class SWTrainControllerUI; }
-QT_END_NAMESPACE
+namespace Ui {
+class SWTCUI;
+}
 
-class SWTrainControllerUI : public QMainWindow
+class SWTCUI : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    SWTrainControllerUI(QWidget *parent = nullptr);
-    ~SWTrainControllerUI();
+    explicit SWTCUI(QWidget *parent = nullptr);
+    ~SWTCUI();
 
 public slots:
     void DestinationChanged(std::string destination);
@@ -23,7 +23,8 @@ public slots:
     void CommandedSpeedChanged(int speed);
     void CurrentSpeedChanged(int speed);
     void EmergencyBrakeChanged(std::string state);
-    void KpKiChanged(int Kp, int Ki);
+    void FailureChanged(std::string state);
+    void KpKiChanged(double Kp, double Ki);
 
 signals:
     void SetSpeedDifferent(int speed);
@@ -33,10 +34,10 @@ signals:
     void TempDifferent(int temp);
     void EmergencyBrakeDifferent(bool state);
     void AutomaticModeDifferent(bool state);
-    void PowerCalculated(double power);
+    void PowerCalculated(int power);
 
 private:
-    Ui::SWTrainControllerUI *ui;
+    Ui::SWTCUI *ui;
     void CalculatePower();
     int SetSpeed = 0;
     int CurrentSpeed = 0;
@@ -52,7 +53,7 @@ private:
     bool BrakeState = false;
     bool AutomaticModeState = false;
     std::string Destination = "Heinz Field 0.5mi";
-    double Power;
+    int Power;
     double KpValue;
     double KiValue;
     double Uk;
@@ -72,6 +73,6 @@ private slots:
     void AutomaticModeButtonPressed();
     void BrakePressed();
     void EBrakePressed();
-
 };
-#endif // SWTRAINCONTROLLERUI_H
+
+#endif // SWTCUI_H

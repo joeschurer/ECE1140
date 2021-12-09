@@ -11,15 +11,15 @@ CONFIG += c++11
 SOURCES += \
     engineer.cpp \
     main.cpp \
-    swtraincontrollerui.cpp
+    swtcui.cpp
 
 HEADERS += \
     engineer.h \
-    swtraincontrollerui.h
+    swtcui.h
 
 FORMS += \
     engineer.ui \
-    swtraincontrollerui.ui
+    swtcui.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
