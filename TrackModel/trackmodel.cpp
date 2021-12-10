@@ -537,14 +537,14 @@ void TrackModel::on_breakCircuit_returnPressed() {
     occ.push_back(false);
     for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back('1');
+            occ.push_back(true);
         }
         else {
-            occ.push_back('0');
+            occ.push_back(false);
         }
     }
     for (int i=0; i<(int)layout.line->trains.size(); i++) {
-        occ[layout.line->trains[i].location] = '1';
+        occ[layout.line->trains[i].location] = true;
     }
     emit occupancyChanged(occ);
 
@@ -574,14 +574,14 @@ void TrackModel::on_breakTrack_returnPressed() {
     occ.push_back(false);
     for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back('1');
+            occ.push_back(true);
         }
         else {
-            occ.push_back('0');
+            occ.push_back(false);
         }
     }
     for (int i=0; i<(int)layout.line->trains.size(); i++) {
-        occ[layout.line->trains[i].location] = '1';
+        occ[layout.line->trains[i].location] = true;
     }
     emit occupancyChanged(occ);
 
@@ -611,14 +611,14 @@ void TrackModel::on_breakPower_returnPressed() {
     occ.push_back(false);
     for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back('1');
+            occ.push_back(true);
         }
         else {
-            occ.push_back('0');
+            occ.push_back(false);
         }
     }
     for (int i=0; i<(int)layout.line->trains.size(); i++) {
-        occ[layout.line->trains[i].location] = '1';
+        occ[layout.line->trains[i].location] = true;
     }
     emit occupancyChanged(occ);
 
@@ -724,14 +724,14 @@ void TrackModel::fixBlock(int num) {
     occ.push_back(false);
     for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back('1');
+            occ.push_back(true);
         }
         else {
-            occ.push_back('0');
+            occ.push_back(false);
         }
     }
     for (int i=0; i<(int)layout.line->trains.size(); i++) {
-        occ[layout.line->trains[i].location] = '1';
+        occ[layout.line->trains[i].location] = true;
     }
     emit occupancyChanged(occ);
 
