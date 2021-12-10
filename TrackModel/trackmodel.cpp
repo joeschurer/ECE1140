@@ -83,11 +83,15 @@ void TrackModel::trackModelDisplay() {
     QColor green(0, 250, 0, 125);
     QColor nor(100, 100, 100, 0);
     QColor gray(100, 100, 100, 100);
+    QColor yell(255, 255, 143, 125);
     QColor col;
 
     for (int i=0; i<bn; i++) {
         if (layout.line->blocks[i].circuitBroken || layout.line->blocks[i].trackBroken || layout.line->blocks[i].powerBroken) {
             col = red;
+        }
+        else if (layout.line->blocks[i].closed) {
+            col = yell;
         }
         else {
             col = nor;
@@ -441,7 +445,10 @@ void TrackModel::trainUpdated(vector<string> item) {
         layout.line->trains.push_back(train);
     }
 
-    emit newTrainData(item);
+    vector<int> data;
+    data.push_back(id);
+    data.push_back(com);
+    emit trainData(data);
     trackModelDisplay();
 }
 
@@ -735,5 +742,17 @@ void TrackModel::fixBlock(int num) {
     }
     emit occupancyChanged(occ);
 
+    trackModelDisplay();
+}
+
+void TrackModel::closeBlocks(vector<bool> closed) {
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
+        if (closed[i+1] == true) {
+            layout.line->blocks[i].closed = true;
+        }
+        else {
+            layout.line->blocks[i].closed = false;
+        }
+    }
     trackModelDisplay();
 }
