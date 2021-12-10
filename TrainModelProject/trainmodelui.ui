@@ -18,12 +18,12 @@
     <rect>
      <x>20</x>
      <y>90</y>
-     <width>71</width>
+     <width>111</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Train Weight</string>
+    <string>Train Weight (kg)</string>
    </property>
   </widget>
   <widget class="QListView" name="listView">
@@ -41,12 +41,12 @@
     <rect>
      <x>20</x>
      <y>110</y>
-     <width>71</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Train Length</string>
+    <string>Train Length (m)</string>
    </property>
   </widget>
   <widget class="QLabel" name="passengersOnTrain">
@@ -176,7 +176,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>75F</string>
+    <string>75</string>
    </property>
   </widget>
   <widget class="QLabel" name="currentModeValue">
@@ -453,7 +453,7 @@
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>340</y>
+     <y>400</y>
      <width>111</width>
      <height>22</height>
     </rect>
@@ -466,7 +466,7 @@
    <property name="geometry">
     <rect>
      <x>370</x>
-     <y>500</y>
+     <y>540</y>
      <width>131</width>
      <height>22</height>
     </rect>
@@ -482,7 +482,7 @@
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>500</y>
+     <y>540</y>
      <width>111</width>
      <height>22</height>
     </rect>
@@ -498,7 +498,7 @@
    <property name="geometry">
     <rect>
      <x>650</x>
-     <y>500</y>
+     <y>540</y>
      <width>111</width>
      <height>22</height>
     </rect>
@@ -514,7 +514,7 @@
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>450</y>
+     <y>510</y>
      <width>141</width>
      <height>16</height>
     </rect>
@@ -566,7 +566,7 @@
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>410</y>
+     <y>470</y>
      <width>131</width>
      <height>31</height>
     </rect>
@@ -582,7 +582,7 @@
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>270</y>
+     <y>340</y>
      <width>141</width>
      <height>41</height>
     </rect>
@@ -597,8 +597,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>380</y>
+     <x>410</x>
+     <y>440</y>
      <width>80</width>
      <height>22</height>
     </rect>
@@ -611,7 +611,7 @@
    <property name="geometry">
     <rect>
      <x>660</x>
-     <y>350</y>
+     <y>410</y>
      <width>80</width>
      <height>22</height>
     </rect>
@@ -624,7 +624,7 @@
    <property name="geometry">
     <rect>
      <x>410</x>
-     <y>340</y>
+     <y>400</y>
      <width>80</width>
      <height>22</height>
     </rect>
@@ -633,17 +633,102 @@
     <string>GO</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
+  <widget class="QLabel" name="nextStationLabel">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>280</y>
+     <x>20</x>
+     <y>10</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Next Station:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nextStationValue">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>10</y>
+     <width>211</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentTempLabel">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>250</y>
+     <width>91</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Current Temp</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="inputCurrentTempValue">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>250</y>
+     <width>113</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="inputTempConfirm">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>250</y>
      <width>80</width>
      <height>22</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Confirm</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="PassengersOnBoardLabel">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>290</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Passengers on Board</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="inputPassengersOnBoard">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>290</y>
+     <width>113</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="passengersConfirm">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>290</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Confirm</string>
    </property>
   </widget>
   <action name="actiontrainWeight">
@@ -698,7 +783,14 @@
   <zorder>pushButton</zorder>
   <zorder>serviceBrakeButton</zorder>
   <zorder>standardModeButton</zorder>
-  <zorder>pushButton_5</zorder>
+  <zorder>nextStationLabel</zorder>
+  <zorder>nextStationValue</zorder>
+  <zorder>currentTempLabel</zorder>
+  <zorder>inputCurrentTempValue</zorder>
+  <zorder>inputTempConfirm</zorder>
+  <zorder>PassengersOnBoardLabel</zorder>
+  <zorder>inputPassengersOnBoard</zorder>
+  <zorder>passengersConfirm</zorder>
  </widget>
  <resources/>
  <connections/>

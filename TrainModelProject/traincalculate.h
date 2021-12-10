@@ -19,7 +19,7 @@ public:
     void rightDoors();
     void calcTime();
     void resetValues();
-
+    void trainAtStation();
 
 //acceleration and deceleration set values
     double accelLimit = 0.5;
@@ -28,6 +28,7 @@ public:
 
 //variables
     double trainLength = 0;
+    double percentCapacity = 0.0;
     int numCars;
     int numPassengers = 0;
     int currentPower;
@@ -42,6 +43,8 @@ public:
     int currentPosition;
     double currentTime;
     double lastTime;
+    int crewMembers = 1;
+    bool atStation = false;
     int maxCapacity = 222;
     int newPassengers = 0;
     int passengersOff = 0;
@@ -53,6 +56,7 @@ public:
     int timespan = 5;
     int trainWeight;
     int blockSize;
+    bool serviceBrake = false;
 
 };
 

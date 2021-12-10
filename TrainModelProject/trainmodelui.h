@@ -15,10 +15,10 @@ public:
     TrainModelUI(QWidget *parent = nullptr);
     ~TrainModelUI();
     void makeTrain(trainCalculate);
-    void updateUI();
+    //void updateUI();
     void setUI();
-    void setLength(double);
-    void setMass(double);
+    void setLength();
+    void setWeight();
     void getPower(int);
     void getVelocity(float);
     void getAcceleration(float);
@@ -59,23 +59,40 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void on_pushme_clicked();
+
+    void on_inputTempConfirm_clicked();
+
+    void on_passengersConfirm_clicked();
+
 private:
     Ui::TrainModelUI *ui;
 
 
 public slots:
-    //TC slots
-    void receivePower(int power);
-    void DestinationDifferent(std::string destination);
-    void DistanceDifferent(std::string distance); //the size of the block
-    void TimeDifferent(std::string time); //take in current time?
-    void SpeedLimitDifferent(int speed); //tkae in speed limit, emit it to TC
-    void CommandedSpeedDifferent(int speed); //take in commanded speed, emit to TC
-    void CurrentSpeedDifferent(int power); //receive power, call setPower
-    void EmergencyBrakeDifferent(std::string state); //receive
-    void FailureDifferent(std::string state);
+    void updateUI();
+    void SetSpeedChanged(int SetSpeed);
+    void LightsChanged(bool state);
+    void LeftDoorsChanged(bool state);
+    void RightDoorsChanged(bool state);
+    void TempChanged(int temp);
+    void EmergencyBrakeChanged(bool state);
+    void AutomaticModeChanged(bool state);
+    void PowerChanged(int power);
 
-    //TM slots
+
+
+
+    //TC slots
+//    void DistanceDifferent(std::string distance); //the size of the block
+//    void TimeDifferent(std::string time); //take in current time?
+//    void SpeedLimitDifferent(int speed); //tkae in speed limit, emit it to TC
+//    void CommandedSpeedDifferent(int speed); //take in commanded speed, emit to TC
+    void CurrentSpeedDifferent(int power); //receive power, call setPower
+//    void EmergencyBrakeDifferent(std::string state); //receive
+//    void FailureDifferent(std::string state);
+
+//    //TM slots
     void boardingPassengersFromTM(int numPassengers);
     void trackSignalFromTM(int meters, int grade, int limit, int comm);
 
@@ -95,6 +112,6 @@ signals:
 
     //to track model
     void currSpeed(int currSpeed);
-    void currentPassengers(int passengers);
+    void offPassengers(int passengers);
 };
 #endif // TRAINMODELUI_H

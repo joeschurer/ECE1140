@@ -16,6 +16,7 @@ trainCalculate::trainCalculate()
     lastVelocity = 0;
     currentForce = 0;
     currentWeight = 40900;
+    trainWeight = 40900;
     lastTime = 0;
     currentTime = 1;
     lastPosition = 0;
@@ -24,8 +25,13 @@ trainCalculate::trainCalculate()
 }
 
 
+//modes:
+//mode 1: standard mode
+//mode 2: signal pickup failure
+//mode 3 brake failure
+//mode 4: train engine failure (power failure)
 void trainCalculate::setPower(double power){
-    if(currentMode == 2){
+    if(currentMode == 4 || emergencyBrake == true || serviceBrake == true){
         currentPower = 0; //if service brake is pulled, TC sends 0 power.
     }else{
         currentPower = power;
@@ -66,7 +72,16 @@ void trainCalculate:: resetValues(){
     currentForce = 0;
 }
 
+void trainCalculate::trainAtStation(){
+    if(currentVelocity == 0 & serviceBrake == true){
+        atStation = true;
+    }
+}
+
 double trainCalculate::calculateVelocity(){
+    if(currentVelocity == 0 & atStation == true){
+        resetValues();
+    }
     lastVelocity = currentVelocity;
     lastAcc = currentAcc;
 
@@ -74,10 +89,10 @@ double trainCalculate::calculateVelocity(){
         currentForce = (currentPower / lastVelocity)-(40*lastVelocity*lastVelocity);
     }
     currentAcc = currentForce/currentWeight;
-    if(currentMode == 5){ //service brake
+    if(serviceBrake == true){ //service brake
         lastAcc = -1.2;
         currentAcc = -1.2;
-    }else if (currentMode == 6){ //emergency brake
+    }else if (emergencyBrake == true){ //emergency brake
         lastAcc = -2.73;
         currentAcc = -2.73;
     }
@@ -113,7 +128,10 @@ int trainCalculate::calcCapacity(int newPassengers){
         if(numPassengers > maxCapacity){
             numPassengers = maxCapacity;
         }
+        percentCapacity = numPassengers/maxCapacity * 100;
         calcWeight(numPassengers);
+
+        serviceBrake = false; //not sure if this is the right place to put this
     return numPassengers;
 }
 void trainCalculate::leftDoors(){
