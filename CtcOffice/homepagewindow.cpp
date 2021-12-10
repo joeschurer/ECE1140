@@ -298,6 +298,8 @@ void HomepageWindow::updateOccupancyTable(vector<bool> occupancy) {
   if(totalOccupancy>totalDispatchedTrains) {
       ui->trackFailureAlertTextEdit->setTextColor(QColor("red"));
       ui->trackFailureAlertTextEdit->setText("Alert: Occupancies>DispatchedTrains, Potential Track Failure");
+  } else {
+      ui->trackFailureAlertTextEdit->clear();
   }
 }
 
