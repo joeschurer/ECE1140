@@ -54,7 +54,7 @@ void Line::moveTrain(int trainNum) {
         //See if the block is connected to a switch
         bool con = false;
         int n = current;
-        for (int i=0; i<blocks.size(); i++) {
+        for (int i=0; i<(int)blocks.size(); i++) {
             if (blocks[i].hasSwitch) {
                 if (blocks[i].swtch.point1 == true) {
                    if (blocks[i].swtch.block1_1 == blocks[current-1].blockNum) {

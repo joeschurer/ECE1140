@@ -230,7 +230,7 @@ Layout::Layout() {
     }
 
     //Add lights before and after a switch
-    for (int i=0; i<line->blocks.size(); i++) {
+    for (int i=0; i<(int)line->blocks.size(); i++) {
         if (line->blocks[i].hasSwitch) {
             line->blocks[line->blocks[i].swtch.block1_1-1].hasCrossing = true;
             line->blocks[line->blocks[i].swtch.block1_2-1].hasCrossing = true;
@@ -240,7 +240,7 @@ Layout::Layout() {
     }
 
     //Add lights before and after a station
-    for (int i=0; i<line->blocks.size(); i++) {
+    for (int i=0; i<(int)line->blocks.size(); i++) {
         if (line->blocks[i].hasStation) {
             line->blocks[i-1].hasCrossing = true;
             line->blocks[i+1].hasCrossing = true;
