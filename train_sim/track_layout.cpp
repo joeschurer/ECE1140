@@ -63,9 +63,9 @@ bool track_layout::create_line(int line){
                 //std::cout << "STATION: ";
                 temp.station = true;
                 //std::cout<<  temp.station<<std::endl;
-            } else if(inf.find("UNDERGROUND") != std::string::npos){
+            }if(inf.find("UNDERGROUND") != std::string::npos){
                 temp.underground = true;
-            }else if(inf.find("RAILWAY") != std::string::npos){
+            }if(inf.find("RAILWAY") != std::string::npos){
                 //std::cout << "CROSSING: ";
                 temp.crossing= true;
                 temp.crossingState = false;

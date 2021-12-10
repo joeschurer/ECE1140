@@ -40,6 +40,13 @@ struct TrainEntry{
     vector<bool> authority;
 };
 
+//update data for track model
+struct updateData{
+    vector<int> toggledSwitches;
+    vector<int> toggledCrossings;
+    vector<bool> auth;
+};
+
 struct compare {
     bool operator()(ScheduleEntry const& t1, ScheduleEntry const& t2){
         return t1.departureTime.first*60*60 + t1.departureTime.second*60 >  t2.departureTime.first*60*60 + t2.departureTime.second*60;

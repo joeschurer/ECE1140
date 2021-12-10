@@ -155,9 +155,13 @@ void MainWindow::sel_block(){
         if(temp_block.switch_head == true){
             switchString = "Connected to " + QString::number(temp_block.headConnect);
         }
-        QString crossing = "Inactive";
-        if(temp_block.crossingState==true){
-            crossing = "Active";
+        QString crossing = "-";
+        if(temp_block.crossing == true){
+            if(temp_block.crossingState==true){
+                crossing = "Active";
+            } else {
+                crossing = "Inactive";
+            }
         }
         ui->maintenance_status->setText(mode);
         ui->heater_status->setText(state);

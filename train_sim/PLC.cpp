@@ -108,7 +108,8 @@ vector<vector<int>> PLC::parsePLC(){
                 if(track->track[SWPOS].occupancy==true || track->track[SWPOS].maintenance == true){
                     qDebug() << "Avoiding switching occupied/maintenance switch";
                 } else {
-                    if(track->track[SWPOS].tailConnect!=BL){
+                    if(track->track[SWPOS].headConnect!=BL){
+                        qDebug() << "Switch: " << SWPOS << "auth for: " << BL << "curr conn:" <<track->track[SWPOS].headConnect;
                         track->toggle_switch(SWPOS);
                         toggleSW.push_back(SWPOS);
                         qDebug()<< "Toggled switch: " << SWPOS;
@@ -127,6 +128,25 @@ vector<vector<int>> PLC::parsePLC(){
             }
         }
     }
+
+    //update authority with gap
+    vector<bool> newAuth;
+    int gap = 2;//maybe read from PLC
+    for(int i=0;i<track->track.size(); i++){
+        if(track->track[i].occupancy==true){
+            //search for trains in 3 blocks on either side
+        }
+    }
+
+    //also consider updating authority for empty blocks
+    //something like looking for non-switch blocks and if not near a train flip back to one
+    //am tired but it might be that if there is only one train you can still give authority
+    //count maintenance mode as an occupancy for these purposes
+    //probably needs to happen last
+    updateData toSend;
+    toSend.toggledCrossings = toggleCROSS;
+    toSend.toggledSwitches = toggleSW;
+    toSend.auth = newAuth;
 
     vector<vector<int>> temp;
     temp.push_back(toggleSW);

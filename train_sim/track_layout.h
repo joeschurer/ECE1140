@@ -24,6 +24,7 @@ struct block{
     bool maintenance = false;
     int headConnect = -1;
     int tailConnect = -1;
+    bool hasLights;
     char section;
     bool crossing;
     //0 is inactive, 1 active
