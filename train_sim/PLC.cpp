@@ -85,8 +85,8 @@ bool PLC::readPLCFile(string file){
     return true;
 }
 
-vector<int> PLC::parsePLC(){
-    vector<int> toggle;
+vector<vector<int>> PLC::parsePLC(){
+    vector<int> toggleSW,toggleCROSS;
     for(int i=0;i< plcContainer.size();i++){
         int BL, SWPOS;
         if(plcContainer[i][0] == "IF" && plcContainer[i][2]=="THEN"){
@@ -110,7 +110,7 @@ vector<int> PLC::parsePLC(){
                 } else {
                     if(track->track[SWPOS].tailConnect!=BL){
                         track->toggle_switch(SWPOS);
-                        toggle.push_back(SWPOS);
+                        toggleSW.push_back(SWPOS);
                         qDebug()<< "Toggled switch: " << SWPOS;
                     }
                 }
@@ -122,18 +122,22 @@ vector<int> PLC::parsePLC(){
                 track->track[cross].crossing == true;
                 qDebug() << "Crossing active at: " << cross;
             } else{
+                toggleCROSS.push_back(cross);
                 track->track[cross].crossing == false;
             }
         }
     }
-    return toggle;
-}
 
+    vector<vector<int>> temp;
+    temp.push_back(toggleSW);
+    temp.push_back(toggleCROSS);
+    return temp;
+}
 vector<int> PLC::returnOwned(){
     return ownedBlocks;
 }
 
-PLC::PLC(track_layout *in,int ind,int l,vector<int>* switchVector){
+PLC::PLC(track_layout *in,int ind,int l,vector<int>* switchVector, vector<int> *crossingVector){
     track = in;
     index = ind;
     line = 0;
@@ -141,6 +145,7 @@ PLC::PLC(track_layout *in,int ind,int l,vector<int>* switchVector){
     if(l==1){lFile = "r";}
     string fName = ":/PLC/PLCs/PLCdefault"+lFile+std::to_string(ind)+".plc";
     toggledSwitches= switchVector;
+    toggledCrossings = crossingVector;
     readPLCFile(fName);
 }
 

@@ -1,4 +1,4 @@
-﻿#include "trainsimwindow.h"
+#include "trainsimwindow.h"
 #include "mainwindow.h"
 #include "lineselect.h"
 #include "trackmodel.h"
@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
     QObject::connect(&wayTest, SIGNAL(trainChanged(vector<string>)), &window, SLOT(trainUpdated(vector<string>)));
     QObject::connect(&wayTest, SIGNAL(toggleSwitch(vector<int>)), &window, SLOT(toggleSwitch(vector<int>)));
     QObject::connect(&wayTest, SIGNAL(toggleCrossing(int)), &window, SLOT(toggleCrossing(int)));
-
+    QObject::connect(&wui, &MainWindow::activateCrossing, &window, &TrackModel::toggleCrossings);
+    QObject::connect(&window, &TrackModel::heatersOn, &wui, &MainWindow::receiveHeater);
     return a.exec();
 }

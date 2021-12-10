@@ -50,9 +50,12 @@ signals:
    void sendTrackModelAuth(std::vector<bool>);
    void sendTrackModelSwitches(std::vector<int>);
    void sendTrainDispatch(std::vector<std::string>);
+   void sendCTCHeater(bool);
+   void activateCrossing(vector<int>);
 
 public slots:
     void receiveOcc(std::vector<bool> occ);
+    void receiveHeater(bool);
     void recieveAuth(TrainEntry);
     void getMaintenaceMode(std::vector<bool> blocks);
     void changeSwitch(std::vector<int> pos);

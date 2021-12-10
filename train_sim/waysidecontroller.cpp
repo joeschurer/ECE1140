@@ -7,13 +7,13 @@ WaysideController::WaysideController(int lineSel){
     //divide sections between PLCs
     if(lineSel==0){//green
        for(int i=1;i<5;i++){
-           PLC temp(&track_model,i,0,&toggledSwitches);
+           PLC temp(&track_model,i,0,&toggledSwitches,&toggledCrossings);
            waysides.push_back(temp);
        }
 
     } else {// red
         for(int i=1;i<4;i++){
-            PLC temp(&track_model,i,1,&toggledSwitches);
+            PLC temp(&track_model,i,1,&toggledSwitches,&toggledCrossings);
             waysides.push_back(temp);
         }
     }
@@ -43,31 +43,42 @@ bool WaysideController::update_occupancy(int index){
     return true;
 }
 
-vector<int> WaysideController::ctc_reccomend(std::vector<bool> a){
+vector<vector<int>> WaysideController::ctc_reccomend(std::vector<bool> a){
     toggledSwitches.clear();
     for(int i=0;i<track_model.track.size();i++){
         track_model.track[i].auth == a[i];
     }
-    for(int i=0;i<waysides.size() ;i++){
-       vector<int> toggle = waysides[i].parsePLC();
-       toggledSwitches.insert(std::end(toggledSwitches), std::begin(toggle), std::end(toggle));
+
+    vector<int> toggleSW,toggleCR;
+    vector<vector<int>> temp;
+    for(int i=0;i<waysides.size(); i++){
+        vector<vector<int>>temp = waysides[i].parsePLC();
+        toggleSW.insert(std::end(toggleSW), std::begin(temp[0]), std::end(temp[0]));
+        toggleCR.insert(std::end(toggleCR), std::begin(temp[1]), std::end(temp[1]));
     }
 
-    return toggledSwitches;
+    temp.push_back(toggleSW);
+    temp.push_back(toggleCR);
+    return temp;
 }
 
 //CTC Test
-vector<int> WaysideController::ctc_test(int index,int auth,int speed){
+vector<vector<int>> WaysideController::ctc_test(int index,int auth,int speed){
     toggledSwitches.clear();
     track_model.track[index].auth == auth;
     track_model.track[index].sugg_speed = speed;
 
-    for(int i=0;i<waysides.size() ;i++){
-       vector<int> toggle = waysides[i].parsePLC();
-       toggledSwitches.insert(std::end(toggledSwitches), std::begin(toggle), std::end(toggle));
+    vector<int> toggleSW,toggleCR;
+    vector<vector<int>> temp;
+    for(int i=0;i<waysides.size(); i++){
+        vector<vector<int>>temp = waysides[i].parsePLC();
+        toggleSW.insert(std::end(toggleSW), std::begin(temp[0]), std::end(temp[0]));
+        toggleCR.insert(std::end(toggleCR), std::begin(temp[1]), std::end(temp[1]));
     }
 
-    return toggledSwitches;
+    temp.push_back(toggleSW);
+    temp.push_back(toggleCR);
+    return temp;
 }
 
 
@@ -82,17 +93,22 @@ std::vector<bool> WaysideController::sendCTCOcc(){
 }
 
 //Track Model
-vector<int> WaysideController::receiveOcc(std::vector<bool> occ){
+vector<vector<int>> WaysideController::receiveOcc(std::vector<bool> occ){
     for(int i=0;i<occ.size(); i++){
         track_model.track[i].occupancy = occ[i];
     }
 
-    vector<int> toggle;
+    vector<int> toggleSW,toggleCR;
+    vector<vector<int>> temp;
     for(int i=0;i<waysides.size(); i++){
-        vector<int> temp = waysides[i].parsePLC();
-        toggle.insert(std::end(toggle), std::begin(temp), std::end(temp));
+        vector<vector<int>>temp = waysides[i].parsePLC();
+        toggleSW.insert(std::end(toggleSW), std::begin(temp[0]), std::end(temp[0]));
+        toggleCR.insert(std::end(toggleCR), std::begin(temp[1]), std::end(temp[1]));
     }
-    return toggle;
+
+    temp.push_back(toggleSW);
+    temp.push_back(toggleCR);
+    return temp;
 }
 
 std::vector<bool> WaysideController::sendTrackModelAuth(){
@@ -114,8 +130,10 @@ block WaysideController::get_block(int index){
     return track_model.track[index];
 }
 
-void WaysideController::heater(int index,bool state){
-    track_model.track[index].heater = state;
+void WaysideController::heater(bool state){
+    for(int i=0;i<track_model.track.size(); i++){
+        track_model.track[i].heater = state;
+    }
 }
 
 void WaysideController::set_maintenance_mode(int index, bool state){

@@ -239,7 +239,7 @@ void MainWindow::track_test(){
 void MainWindow::track_heater(){
     int index = ui->heater_test->text().toInt();
     bool state = ui->heater_state->isChecked();
-    waysideController.heater(index,state);
+    waysideController.heater(state);
     if(block_selected){
         sel_block();
     }
@@ -289,8 +289,8 @@ void MainWindow::on_maintenance_toggle_clicked()
     waysideController.toggleSwitch(index);
     vector<int> temp;
     temp.push_back(index);
-    //Hmmm
-    //emit sendTrackModelSwitches(temp);
+
+    emit sendTrackModelSwitches(temp);
 
 
     if(block_selected){
@@ -306,17 +306,28 @@ void MainWindow::on_maintenance_toggle_clicked()
 }*/
 
 void  MainWindow::receiveOcc(std::vector<bool> occ){
-    std::vector<int> switches = waysideController.receiveOcc(occ);
+    vector<vector<int>> changes = waysideController.receiveOcc(occ);
+
+    vector<int> switches = changes[0];
+    vector<int> cross = changes[1];
+
     std::vector<bool> temp =waysideController.sendCTCOcc();
     emit sendCTCOcc(temp);
     emit sendTrackModelSwitches(switches);
+    emit activateCrossing(cross);
+
+
 
 }
 
 void MainWindow::recieveAuth(TrainEntry t){
     std::vector<bool> auth = t.authority;
-    std::vector<int> sw = waysideController.ctc_reccomend(auth);
+    vector<vector<int>> changes = waysideController.ctc_reccomend(auth);
+
+    vector<int> sw = changes[0];
+    vector<int> cross = changes[1];
     emit sendTrackModelSwitches(sw);
+    emit activateCrossing(cross);
     std::vector<bool> temp = waysideController.sendTrackModelAuth();
     //emit sendTrackModelAuth(temp);
     std::string auth_string;
@@ -350,4 +361,9 @@ void MainWindow::changeSwitch(std::vector<int> pos){
         emit sendTrackModelSwitches(temp);
     }
 
+}
+
+void MainWindow::receiveHeater(bool state){
+    waysideController.heater(state);
+    emit sendCTCHeater(state);
 }

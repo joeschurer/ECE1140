@@ -23,8 +23,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_TrackModel_t {
-    const uint offsetsAndSize[66];
-    char stringdata0[397];
+    const uint offsetsAndSize[76];
+    char stringdata0[445];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_TrackModel_t, stringdata0) + ofs), len 
@@ -47,32 +47,38 @@ QT_MOC_LITERAL(131, 10), // "beaconData"
 QT_MOC_LITERAL(142, 6), // "string"
 QT_MOC_LITERAL(149, 11), // "tempChanged"
 QT_MOC_LITERAL(161, 4), // "temp"
-QT_MOC_LITERAL(166, 10), // "trainMoved"
-QT_MOC_LITERAL(177, 8), // "trainNum"
-QT_MOC_LITERAL(186, 18), // "actualSpeedChanged"
-QT_MOC_LITERAL(205, 4), // "item"
-QT_MOC_LITERAL(210, 12), // "trainUpdated"
-QT_MOC_LITERAL(223, 12), // "toggleSwitch"
-QT_MOC_LITERAL(236, 2), // "sw"
-QT_MOC_LITERAL(239, 14), // "toggleCrossing"
-QT_MOC_LITERAL(254, 5), // "cross"
-QT_MOC_LITERAL(260, 9), // "doorsOpen"
-QT_MOC_LITERAL(270, 9), // "openDoors"
-QT_MOC_LITERAL(280, 5), // "train"
-QT_MOC_LITERAL(286, 29), // "on_breakCircuit_returnPressed"
-QT_MOC_LITERAL(316, 27), // "on_breakTrack_returnPressed"
-QT_MOC_LITERAL(344, 27), // "on_breakPower_returnPressed"
-QT_MOC_LITERAL(372, 24) // "on_setTemp_returnPressed"
+QT_MOC_LITERAL(166, 9), // "heatersOn"
+QT_MOC_LITERAL(176, 4), // "heat"
+QT_MOC_LITERAL(181, 10), // "trainMoved"
+QT_MOC_LITERAL(192, 8), // "trainNum"
+QT_MOC_LITERAL(201, 18), // "actualSpeedChanged"
+QT_MOC_LITERAL(220, 4), // "item"
+QT_MOC_LITERAL(225, 12), // "trainUpdated"
+QT_MOC_LITERAL(238, 12), // "toggleSwitch"
+QT_MOC_LITERAL(251, 2), // "sw"
+QT_MOC_LITERAL(254, 14), // "toggleCrossing"
+QT_MOC_LITERAL(269, 5), // "cross"
+QT_MOC_LITERAL(275, 9), // "doorsOpen"
+QT_MOC_LITERAL(285, 9), // "openDoors"
+QT_MOC_LITERAL(295, 5), // "train"
+QT_MOC_LITERAL(301, 11), // "receiveAuth"
+QT_MOC_LITERAL(313, 4), // "auth"
+QT_MOC_LITERAL(318, 15), // "toggleCrossings"
+QT_MOC_LITERAL(334, 29), // "on_breakCircuit_returnPressed"
+QT_MOC_LITERAL(364, 27), // "on_breakTrack_returnPressed"
+QT_MOC_LITERAL(392, 27), // "on_breakPower_returnPressed"
+QT_MOC_LITERAL(420, 24) // "on_setTemp_returnPressed"
 
     },
     "TrackModel\0newBlock\0vector<int>\0\0data\0"
     "newTrainData\0vector<string>\0newData\0"
     "passengersChanged\0pass\0occupancyChanged\0"
     "vector<bool>\0occ\0beaconData\0string\0"
-    "tempChanged\0temp\0trainMoved\0trainNum\0"
-    "actualSpeedChanged\0item\0trainUpdated\0"
-    "toggleSwitch\0sw\0toggleCrossing\0cross\0"
-    "doorsOpen\0openDoors\0train\0"
+    "tempChanged\0temp\0heatersOn\0heat\0"
+    "trainMoved\0trainNum\0actualSpeedChanged\0"
+    "item\0trainUpdated\0toggleSwitch\0sw\0"
+    "toggleCrossing\0cross\0doorsOpen\0openDoors\0"
+    "train\0receiveAuth\0auth\0toggleCrossings\0"
     "on_breakCircuit_returnPressed\0"
     "on_breakTrack_returnPressed\0"
     "on_breakPower_returnPressed\0"
@@ -86,33 +92,36 @@ static const uint qt_meta_data_TrackModel[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      17,   14, // methods
+      20,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       6,       // signalCount
+       7,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  116,    3, 0x06,    1 /* Public */,
-       5,    1,  119,    3, 0x06,    3 /* Public */,
-       8,    1,  122,    3, 0x06,    5 /* Public */,
-      10,    1,  125,    3, 0x06,    7 /* Public */,
-      13,    1,  128,    3, 0x06,    9 /* Public */,
-      15,    1,  131,    3, 0x06,   11 /* Public */,
+       1,    1,  134,    3, 0x06,    1 /* Public */,
+       5,    1,  137,    3, 0x06,    3 /* Public */,
+       8,    1,  140,    3, 0x06,    5 /* Public */,
+      10,    1,  143,    3, 0x06,    7 /* Public */,
+      13,    1,  146,    3, 0x06,    9 /* Public */,
+      15,    1,  149,    3, 0x06,   11 /* Public */,
+      17,    1,  152,    3, 0x06,   13 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      17,    1,  134,    3, 0x0a,   13 /* Public */,
-      19,    1,  137,    3, 0x0a,   15 /* Public */,
-      21,    1,  140,    3, 0x0a,   17 /* Public */,
-      22,    1,  143,    3, 0x0a,   19 /* Public */,
-      24,    1,  146,    3, 0x0a,   21 /* Public */,
-      26,    1,  149,    3, 0x0a,   23 /* Public */,
-      27,    1,  152,    3, 0x0a,   25 /* Public */,
-      29,    0,  155,    3, 0x08,   27 /* Private */,
-      30,    0,  156,    3, 0x08,   28 /* Private */,
-      31,    0,  157,    3, 0x08,   29 /* Private */,
-      32,    0,  158,    3, 0x08,   30 /* Private */,
+      19,    1,  155,    3, 0x0a,   15 /* Public */,
+      21,    1,  158,    3, 0x0a,   17 /* Public */,
+      23,    1,  161,    3, 0x0a,   19 /* Public */,
+      24,    1,  164,    3, 0x0a,   21 /* Public */,
+      26,    1,  167,    3, 0x0a,   23 /* Public */,
+      28,    1,  170,    3, 0x0a,   25 /* Public */,
+      29,    1,  173,    3, 0x0a,   27 /* Public */,
+      31,    1,  176,    3, 0x0a,   29 /* Public */,
+      33,    1,  179,    3, 0x0a,   31 /* Public */,
+      34,    0,  182,    3, 0x08,   33 /* Private */,
+      35,    0,  183,    3, 0x08,   34 /* Private */,
+      36,    0,  184,    3, 0x08,   35 /* Private */,
+      37,    0,  185,    3, 0x08,   36 /* Private */,
 
  // signals: parameters
     0x80000000 | 2, 0x80000000 | 2,    4,
@@ -121,15 +130,18 @@ static const uint qt_meta_data_TrackModel[] = {
     0x80000000 | 11, 0x80000000 | 11,   12,
     0x80000000 | 14, 0x80000000 | 14,    4,
     QMetaType::Double, QMetaType::Double,   16,
+    QMetaType::Bool, QMetaType::Bool,   18,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::Int,   18,
-    QMetaType::Void, QMetaType::QString,   20,
-    QMetaType::Void, 0x80000000 | 6,   20,
-    QMetaType::Void, 0x80000000 | 2,   23,
-    QMetaType::Void, QMetaType::Int,   25,
-    QMetaType::Void, QMetaType::Int,   18,
-    QMetaType::Void, 0x80000000 | 2,   28,
+    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::QString,   22,
+    QMetaType::Void, 0x80000000 | 6,   22,
+    QMetaType::Void, 0x80000000 | 2,   25,
+    QMetaType::Void, QMetaType::Int,   27,
+    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, 0x80000000 | 2,   30,
+    QMetaType::Void, 0x80000000 | 11,   32,
+    QMetaType::Void, 0x80000000 | 2,   27,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -156,17 +168,21 @@ void TrackModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             if (_a[0]) *reinterpret_cast< string*>(_a[0]) = std::move(_r); }  break;
         case 5: { double _r = _t->tempChanged((*reinterpret_cast< double(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< double*>(_a[0]) = std::move(_r); }  break;
-        case 6: _t->trainMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 7: _t->actualSpeedChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 8: _t->trainUpdated((*reinterpret_cast< vector<string>(*)>(_a[1]))); break;
-        case 9: _t->toggleSwitch((*reinterpret_cast< vector<int>(*)>(_a[1]))); break;
-        case 10: _t->toggleCrossing((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 11: _t->doorsOpen((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 12: _t->openDoors((*reinterpret_cast< vector<int>(*)>(_a[1]))); break;
-        case 13: _t->on_breakCircuit_returnPressed(); break;
-        case 14: _t->on_breakTrack_returnPressed(); break;
-        case 15: _t->on_breakPower_returnPressed(); break;
-        case 16: _t->on_setTemp_returnPressed(); break;
+        case 6: { bool _r = _t->heatersOn((*reinterpret_cast< bool(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
+        case 7: _t->trainMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 8: _t->actualSpeedChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 9: _t->trainUpdated((*reinterpret_cast< vector<string>(*)>(_a[1]))); break;
+        case 10: _t->toggleSwitch((*reinterpret_cast< vector<int>(*)>(_a[1]))); break;
+        case 11: _t->toggleCrossing((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 12: _t->doorsOpen((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 13: _t->openDoors((*reinterpret_cast< vector<int>(*)>(_a[1]))); break;
+        case 14: _t->receiveAuth((*reinterpret_cast< vector<bool>(*)>(_a[1]))); break;
+        case 15: _t->toggleCrossings((*reinterpret_cast< vector<int>(*)>(_a[1]))); break;
+        case 16: _t->on_breakCircuit_returnPressed(); break;
+        case 17: _t->on_breakTrack_returnPressed(); break;
+        case 18: _t->on_breakPower_returnPressed(); break;
+        case 19: _t->on_setTemp_returnPressed(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -213,6 +229,13 @@ void TrackModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
                 return;
             }
         }
+        {
+            using _t = bool (TrackModel::*)(bool );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&TrackModel::heatersOn)) {
+                *result = 6;
+                return;
+            }
+        }
     }
 }
 
@@ -223,8 +246,8 @@ const QMetaObject TrackModel::staticMetaObject = { {
     qt_static_metacall,
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_TrackModel_t
-, QtPrivate::TypeAndForceComplete<TrackModel, std::true_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<string>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<string>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<bool>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<bool>, std::false_type>, QtPrivate::TypeAndForceComplete<string, std::false_type>, QtPrivate::TypeAndForceComplete<string, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<string>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<TrackModel, std::true_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<string>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<string>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<bool>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<bool>, std::false_type>, QtPrivate::TypeAndForceComplete<string, std::false_type>, QtPrivate::TypeAndForceComplete<string, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<string>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<bool>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,
@@ -251,13 +274,13 @@ int TrackModel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 17)
+        if (_id < 20)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 17;
+        _id -= 20;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 17)
+        if (_id < 20)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 17;
+        _id -= 20;
     }
     return _id;
 }
@@ -313,6 +336,15 @@ double TrackModel::tempChanged(double _t1)
     double _t0{};
     void *_a[] = { const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t0))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 5, _a);
+    return _t0;
+}
+
+// SIGNAL 6
+bool TrackModel::heatersOn(bool _t1)
+{
+    bool _t0{};
+    void *_a[] = { const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t0))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 6, _a);
     return _t0;
 }
 QT_WARNING_POP

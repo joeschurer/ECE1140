@@ -9,15 +9,16 @@ private:
     vector<PLC> waysides;
     vector<vector<int>> waysideOwned;
     vector<int> toggledSwitches;
+    vector<int> toggledCrossings;
 public:
     WaysideController(int =0);
     //0 == gren, 1 == red
     ~WaysideController();
 
     bool update_occupancy(int);
-    void heater(int,bool);
-    vector<int> ctc_reccomend(std::vector<bool> a);//here get switch changes
-    vector<int> ctc_test(int,int,int);
+    void heater(bool);
+    vector<vector<int>> ctc_reccomend(std::vector<bool> a);//here get switch changes
+    vector<vector<int>> ctc_test(int,int,int);
     block get_block(int);
     void set_maintenance_mode(int,bool);
     bool get_maintenance_mode(int);
@@ -31,7 +32,7 @@ public:
     bool maintenance_mode_switch(int,int);
 
     //Track Model
-    vector<int> receiveOcc(std::vector<bool> occ);
+    vector<vector<int>> receiveOcc(std::vector<bool> occ);
     std::vector<bool> sendTrackModelAuth();
     //std::vector<int>  sendTrackModelSpeed();
     int sendTrackModelSpeed();

@@ -16,13 +16,14 @@ private:
     int index;
     int line = -1;//0 = green, 1= red
     vector<int> * toggledSwitches;
+    vector<int> * toggledCrossings;
 
 public:
-    vector<int> parsePLC();
+    vector<vector<int>> parsePLC();
     bool readPLCFile(string);
     vector<int> returnOwned();
     PLC();
-    PLC(track_layout*,int,int,vector<int>*);
+    PLC(track_layout*,int,int,vector<int>*,vector<int>*);
     ~PLC();
     bool update_occupancy(int);
     void heater(int,bool);
