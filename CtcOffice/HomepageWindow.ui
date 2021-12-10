@@ -85,7 +85,7 @@
        <string>Throughput Green (tickets/hour)</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="greenThroughputLineEdit">
       <property name="geometry">
        <rect>
         <x>290</x>
@@ -108,7 +108,7 @@
        <string>Throughput Red (tickets/Hour)</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="redThroughputLineEdit">
       <property name="geometry">
        <rect>
         <x>290</x>

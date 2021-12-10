@@ -18,6 +18,7 @@ public:
 
 public slots:
     void receiveOccupancy(vector<bool> occupancy);
+    void receiveTicketSales(int tickets);
     void timerSlot();
 
 signals:

@@ -81,10 +81,13 @@ public:
     std::unordered_set<int> getClosedBlocks();
     bool checkForDispatch(int time);
     Time toTimeFromSeconds(int time);
+    void setTickets(int tickets);
+    int getTickets();
     vector<TrainEntry> getDispatchedTrains();
     int getTrainFromOccupancy(int block);
     int getTotalOccupanccy();
     std::priority_queue<ScheduleEntry, vector<ScheduleEntry>, compare> getTrainHeap();
+    TrackLine getCurrentLine();
 
 private:
     std::unordered_map<int, std::vector<ScheduleEntry>> schedule_;
@@ -109,5 +112,6 @@ private:
     std::unordered_map<int,int> trackSwitchNodes;
     // TODO: Use set for closed tracks
     void updateAuthorityGivenOccupancy();
+    int tickets;
 };
 #endif // CTCOFFICE_H

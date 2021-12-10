@@ -36,6 +36,7 @@ CtcOffice::CtcOffice(TrackLine line)
 {
     numTrains_ = 0;
     setupLine(line);
+    tickets = 0;
 }
 
 void CtcOffice::setupLine(TrackLine line){
@@ -86,6 +87,10 @@ Time CtcOffice::toPairTime(string time){
     auto splitResult = utility::split(time,":");
     return {stoi(splitResult[0]),stoi(splitResult[1])};
 
+}
+
+TrackLine CtcOffice::getCurrentLine(){
+    return currentLine;
 }
 
 string CtcOffice::toStringTime(Time time){
@@ -177,6 +182,14 @@ Time CtcOffice::toTimeFromSeconds(int time){
     int hour = time/3600;
     int minute = (time%3600)/60;
     return {hour, minute};
+}
+
+void CtcOffice::setTickets(int tickets) {
+    this->tickets=tickets;
+}
+
+int CtcOffice::getTickets(){
+    return tickets;
 }
 
 void CtcOffice::addScheduleEntry(int trainNumber, string start, string destination, string arrivalTime){
