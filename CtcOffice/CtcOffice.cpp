@@ -327,6 +327,8 @@ vector<bool> CtcOffice::sendClosedBlocks(){
         for(int i = 0; i<150; i++) {
             if(closedBlocks.count(i)==1){
                 isBlockClosed[i] = true;
+            } else {
+                isBlockClosed[i] = false;
             }
         }
     } else {
@@ -334,6 +336,8 @@ vector<bool> CtcOffice::sendClosedBlocks(){
         for(int i = 0; i<76; i++) {
             if(closedBlocks.count(i)==1){
                 isBlockClosed[i] = true;
+            } else {
+                isBlockClosed[i] = false;
             }
         }
     }
@@ -508,8 +512,8 @@ int CtcOffice::computeSuggestedSpeed(vector<int> route){
     return suggestedSpeed;
 }
 
-std::unordered_set<int> CtcOffice::getClosedBlocks(){
-    return closedBlocks;
+std::unordered_set<int>* CtcOffice::getClosedBlocks(){
+    return &closedBlocks;
 }
 
 vector<bool> CtcOffice::computeAuthority(vector<int> route){

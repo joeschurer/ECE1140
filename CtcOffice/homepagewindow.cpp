@@ -209,7 +209,7 @@ void HomepageWindow::on_addTrackSectionButton_clicked() {
                    [](string c) -> int { return stoi(c); });
     auto trackTable = ui->trackSectionTable;
     for (auto block : intBlocks) {
-      if (ctcOffice_->getClosedBlocks().count(block) == 0) {
+      if (ctcOffice_->getClosedBlocks()->count(block) == 0) {
         int numRows = trackTable->rowCount();
         trackTable->insertRow(numRows);
         trackTable->setItem(
@@ -262,8 +262,8 @@ void HomepageWindow::on_addSwitchButton_clicked() {
   vector<string> switchString =
       utility::split(ui->switchLineEdit->text().toStdString(), "->");
   auto closedBlocks = ctcOffice_->getClosedBlocks();
-  if (closedBlocks.count(stoi(switchString[0])) == 1 &&
-      closedBlocks.count(stoi(switchString[1])) == 1) {
+  if (closedBlocks->count(stoi(switchString[0])) == 1 &&
+      closedBlocks->count(stoi(switchString[1])) == 1) {
     int numRows = switchTable->rowCount();
     switchTable->insertRow(numRows);
     switchTable->setItem(numRows, 0,
@@ -360,7 +360,7 @@ void HomepageWindow::on_removeTrackButton_clicked()
         for(auto item: selectedItems){
             auto closedBlocks = ctcOffice_->getClosedBlocks();
             auto block = item->text().toInt();
-            closedBlocks.erase(block);
+            closedBlocks->erase(block);
             trackTable->removeRow(item->row());
         }
         auto closedBlocksVector = ctcOffice_->sendClosedBlocks();

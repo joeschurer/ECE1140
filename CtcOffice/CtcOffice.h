@@ -79,7 +79,7 @@ public:
     Time toPairTime(string time);
     string toStringTime(Time Time);
     void addClosedBlocks(vector<int> blocks);
-    std::unordered_set<int> getClosedBlocks();
+    std::unordered_set<int>* getClosedBlocks();
     bool checkForDispatch(int time);
     Time toTimeFromSeconds(int time);
     void setTickets(int tickets);
