@@ -681,6 +681,7 @@ void TrackModel::on_setTemp_returnPressed() {
             emit heatersOn(false);
         }
     }
+    emit tempChanged(temp);
     trackModelDisplay();
 }
 
@@ -749,10 +750,34 @@ void TrackModel::closeBlocks(vector<bool> closed) {
     for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (closed[i+1] == true) {
             layout.line->blocks[i].closed = true;
+            layout.line->blocks[i].circuitBroken = false;
+            ui->breakCircuit->clear();
+            layout.line->blocks[i].trackBroken = false;
+            ui->breakTrack->clear();
+            layout.line->blocks[i].powerBroken = false;
+            ui->breakPower->clear();
         }
         else {
             layout.line->blocks[i].closed = false;
         }
     }
+
+    //Get occupancy and send it to the wayside
+    vector<bool> occ;
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
+        if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
+            occ.push_back(true);
+        }
+        else {
+            occ.push_back(false);
+        }
+    }
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
+        occ[layout.line->trains[i].location] = true;
+    }
+    emit occupancyChanged(occ);
+
     trackModelDisplay();
 }
