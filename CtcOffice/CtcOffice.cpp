@@ -321,10 +321,20 @@ vector<int> CtcOffice::sendSwitchPosition(int switchNode, int blockToConnect){
 }
 
 vector<bool> CtcOffice::sendClosedBlocks(){
-    vector<bool> isBlockClosed(150);
-    for(int i = 0; i<150; i++) {
-        if(closedBlocks.count(i)==1){
-            isBlockClosed[i] = true;
+    vector<bool> isBlockClosed;
+    if(currentLine==Green){
+        isBlockClosed = vector<bool>(150);
+        for(int i = 0; i<150; i++) {
+            if(closedBlocks.count(i)==1){
+                isBlockClosed[i] = true;
+            }
+        }
+    } else {
+        isBlockClosed = vector<bool>(76);
+        for(int i = 0; i<76; i++) {
+            if(closedBlocks.count(i)==1){
+                isBlockClosed[i] = true;
+            }
         }
     }
     return isBlockClosed;
