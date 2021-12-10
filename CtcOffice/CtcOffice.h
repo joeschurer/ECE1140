@@ -11,6 +11,9 @@
 using std::string;
 using std::vector;
 
+extern int systemClock;
+extern int simulationSpeed;
+
 typedef std::pair<int, int> Time;
 enum TrackLine {Green, Red};
 
