@@ -46,7 +46,8 @@ bool WaysideController::update_occupancy(int index){
 vector<vector<int>> WaysideController::ctc_reccomend(std::vector<bool> a){
     toggledSwitches.clear();
     for(int i=0;i<track_model.track.size();i++){
-        track_model.track[i].auth == a[i];
+        qDebug() << a[i];
+        track_model.track[i].auth = a[i];
     }
 
     vector<int> toggleSW,toggleCR;

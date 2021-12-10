@@ -5,6 +5,12 @@
 #include "beacon.h"
 #include "trainmodel.h"
 #include "wayside.h"
+#include "homepagewindow.h"
+#include <QTimer>
+#include "trainmodelui.h"
+#include "traincalculate.h"
+#include "engineer.h"
+#include "swtcui.h"
 
 #include <QApplication>
 
@@ -28,6 +34,11 @@ int main(int argc, char *argv[])
     Beacon beacon;
     beacon.show();
 
+    //CTC office
+    CtcOffice ctcOffice;
+    HomepageWindow ctc(nullptr, &ctcOffice);
+    ctc.show();
+
     //Wayside UI
     MainWindow wui;
     wui.show();
@@ -35,11 +46,37 @@ int main(int argc, char *argv[])
     Wayside wayTest;
     wayTest.show();
 
-    //Train Model Test UI
+    Engineer e;
+    SWTCUI s;
+    TrainModelUI w;
+    trainCalculate m;
+    w.makeTrain(m);
+    w.show();
+    s.show();
+    e.show();
+    QObject::connect(&e, SIGNAL(SubmitKpKi(double,double)), &s, SLOT(KpKiChanged(double,double)));
+    QObject::connect(&s, SIGNAL(TempDifferent(int)), &w, SLOT(TempChanged(int)));
+    QObject::connect(&s, SIGNAL(LeftDoorsDifferent(bool)), &w, SLOT(LeftDoorsChanged(bool)));
+    QObject::connect(&s, SIGNAL(RightDoorsDifferent(bool)), &w, SLOT(RightDoorsChanged(bool)));
+    QObject::connect(&s, SIGNAL(LightsDifferent(bool)), &w, SLOT(LightsChanged(bool)));
+    QObject::connect(&s, SIGNAL(PowerCalculated(int)), &w, SLOT(PowerChanged(int)));
+    QObject::connect(&s, SIGNAL(EmergencyBrakeDifferent(bool)), &w, SLOT(EmergencyBrakeChanged(bool)));
+
+
     TrainModel trainUI;
     trainUI.setGeometry(860, 350, 300, 300);
     trainUI.show();
 
+    QTimer timer;
+    timer.start(1000/simulationSpeed);
+    //QObject::connect(&timer, &QTimer::timeout, &ctc, &HomepageWindow::timerSlot);
+    QObject::connect(&timer, &QTimer::timeout, &w, &TrainModelUI::updateUI);
+    QObject::connect(&wui, &MainWindow::sendCTCOcc,&ctc, &HomepageWindow::receiveOccupancy);
+    QObject::connect(&ctc, &HomepageWindow::sendClosedBlocks,&wui, &MainWindow::getMaintenaceMode);
+    QObject::connect(&ctc, &HomepageWindow::sendSwitchPosition,&wui, &MainWindow::changeSwitch);
+    QObject::connect(&ctc, &HomepageWindow::sendDispatchInfo,&wui, &MainWindow::recieveAuth);
+
+    QObject::connect(&wui, &MainWindow::sendTrainDispatch,&window, &TrackModel::trainUpdated);
     QObject::connect(&trainUI, SIGNAL(trainMoved(int)), &window, SLOT(trainMoved(int)));
     QObject::connect(&trainUI, SIGNAL(trainSpeedUpdated(QString)), &window, SLOT(actualSpeedChanged(QString)));
     QObject::connect(&wui, &MainWindow::sendTrainDispatch, &window, &TrackModel::trainUpdated);

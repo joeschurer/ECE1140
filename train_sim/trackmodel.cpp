@@ -1,4 +1,4 @@
-#include "trackmodel.h"
+﻿#include "trackmodel.h"
 #include "layout.h"
 #include "QTableWidget"
 #include "ui_trackmodel.h"
@@ -431,10 +431,26 @@ void TrackModel::trainUpdated(vector<string> item) {
     }
 
     if (!found) {
-        int star = stoi(item[3]);
-        Train train(id, com, star);
+        Train train(id, com, 63);
         layout.line->trains.push_back(train);
     }
+
+    //Get occupancy and send it to the wayside
+    vector<bool> occ;
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=1; i<=layout.line->blocks.size(); i++) {
+        if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
+            occ.push_back(true);
+        }
+        else {
+            occ.push_back(false);
+        }
+    }
+    for (int i=0; i<layout.line->trains.size(); i++) {
+        occ[layout.line->trains[i].location] = true;
+    }
+    emit occupancyChanged(occ);
 
     emit newTrainData(item);
     trackModelDisplay();
@@ -475,16 +491,18 @@ void TrackModel::trainMoved(int trainNum) {
 
     //Get occupancy and send it to the wayside
     vector<bool> occ;
-    for (int i=0; i<layout.line->blocks.size(); i++) {
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=1; i<=layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back('1');
+            occ.push_back(true);
         }
         else {
-            occ.push_back('0');
+            occ.push_back(false);
         }
     }
     for (int i=0; i<layout.line->trains.size(); i++) {
-        occ[i] = '1';
+        occ[layout.line->trains[i].location] = true;
     }
     emit occupancyChanged(occ);
 
@@ -526,16 +544,18 @@ void TrackModel::on_breakCircuit_returnPressed() {
 
     //Get occupancy and send it to the wayside
     vector<bool> occ;
-    for (int i=0; i<layout.line->blocks.size(); i++) {
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=1; i<=layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back('1');
+            occ.push_back(true);
         }
         else {
-            occ.push_back('0');
+            occ.push_back(false);
         }
     }
     for (int i=0; i<layout.line->trains.size(); i++) {
-        occ[i] = '1';
+        occ[layout.line->trains[i].location] = true;
     }
     emit occupancyChanged(occ);
 
@@ -561,16 +581,18 @@ void TrackModel::on_breakTrack_returnPressed() {
 
     //Get occupancy and send it to the wayside
     vector<bool> occ;
-    for (int i=0; i<layout.line->blocks.size(); i++) {
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=1; i<=layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back('1');
+            occ.push_back(true);
         }
         else {
-            occ.push_back('0');
+            occ.push_back(false);
         }
     }
     for (int i=0; i<layout.line->trains.size(); i++) {
-        occ[i] = '1';
+        occ[layout.line->trains[i].location] = true;
     }
     emit occupancyChanged(occ);
 
@@ -596,16 +618,18 @@ void TrackModel::on_breakPower_returnPressed() {
 
     //Get occupancy and send it to the wayside
     vector<bool> occ;
-    for (int i=0; i<layout.line->blocks.size(); i++) {
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=1; i<=layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back('1');
+            occ.push_back(true);
         }
         else {
-            occ.push_back('0');
+            occ.push_back(false);
         }
     }
     for (int i=0; i<layout.line->trains.size(); i++) {
-        occ[i] = '1';
+        occ[layout.line->trains[i].location] = true;
     }
     emit occupancyChanged(occ);
 

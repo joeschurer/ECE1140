@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TrainModelUI</class>
+ <widget class="QWidget" name="TrainModelUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TrainModelUI</string>
+  </property>
+  <widget class="QLabel" name="trainWeightButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>90</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Train Weight</string>
+   </property>
+  </widget>
+  <widget class="QListView" name="listView">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>341</width>
+     <height>211</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="trainLengthButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>110</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Train Length</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="passengersOnTrain">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>150</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string># of Passengers</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="percentCapacity">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>170</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>% Capacity</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentTemp">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>190</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Current Temperature (F)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentMode">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>210</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Current Mode</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>80</y>
+     <width>21</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="trainWeightV">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>90</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="trainLengthValue">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>110</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="passengersOnTrainValue">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>150</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="percentCapacityValue">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>170</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentTempValue">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>190</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>75F</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentModeValue">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>210</y>
+     <width>171</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Standard</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>330</y>
+     <width>256</width>
+     <height>192</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentSpeedLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>330</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Current Speed</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentAccelerationLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>360</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Current Acceleration</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentPowerLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>390</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Current Power Draw</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentSpeedValue">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>330</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0 m/s</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentAccelerationValue">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>360</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0 m/s/s</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentPowerValue">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>390</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0V</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>330</y>
+     <width>21</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="toggleLights">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>170</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Turn On/Off Train Lights</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="inputPowerConfirm">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>210</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Confirm</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="toggleDoorLeft">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>90</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Open/Close Left Doors</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="inputPowerResult">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>210</y>
+     <width>113</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentVelocityLabel">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>210</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Input Power</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="test_module_label">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>50</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Nirmala UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Test Module</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lightStateLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>230</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Light State</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="leftDoorStateLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>250</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Left Door State</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lightStateValue">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>230</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OFF</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="leftDoorStateValue">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>250</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CLOSED</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="crewMembers">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>130</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string># of Crew Members</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="crewMembersValue">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>130</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="emergencyBrake">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>340</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Emergency Brake</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>500</y>
+     <width>131</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 0)</string>
+   </property>
+   <property name="text">
+    <string>Signal Pickup Failure</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>500</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 85, 0)</string>
+   </property>
+   <property name="text">
+    <string>Brake Failure</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>500</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 0, 0)</string>
+   </property>
+   <property name="text">
+    <string>Train Engine Failure</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>450</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Engage Failure Modes</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="rightDoorStateLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>270</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Right Door State</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="rightDoorStateValue">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>270</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CLOSED</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="toggleDoorRight">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>130</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Open/Close Right Doors</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="murphy_label">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>410</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Kristen ITC&quot;;</string>
+   </property>
+   <property name="text">
+    <string>MURPHY</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="passenger_label">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>270</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;MS Gothic&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Passengers</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>380</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>update my UI</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="serviceBrakeButton">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>350</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Service Brake</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="standardModeButton">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>340</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>GO</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>280</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushme">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>250</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nextStationLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Next Station:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nextStationValue">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>10</y>
+     <width>211</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <action name="actiontrainWeight">
+   <property name="text">
+    <string>trainWeight</string>
+   </property>
+  </action>
+  <zorder>listView</zorder>
+  <zorder>trainWeightButton</zorder>
+  <zorder>trainLengthButton</zorder>
+  <zorder>passengersOnTrain</zorder>
+  <zorder>percentCapacity</zorder>
+  <zorder>currentTemp</zorder>
+  <zorder>currentMode</zorder>
+  <zorder>line</zorder>
+  <zorder>trainWeightV</zorder>
+  <zorder>trainLengthValue</zorder>
+  <zorder>passengersOnTrainValue</zorder>
+  <zorder>percentCapacityValue</zorder>
+  <zorder>currentTempValue</zorder>
+  <zorder>currentModeValue</zorder>
+  <zorder>tableWidget</zorder>
+  <zorder>currentSpeedLabel</zorder>
+  <zorder>currentAccelerationLabel</zorder>
+  <zorder>currentPowerLabel</zorder>
+  <zorder>currentSpeedValue</zorder>
+  <zorder>currentAccelerationValue</zorder>
+  <zorder>currentPowerValue</zorder>
+  <zorder>line_2</zorder>
+  <zorder>toggleLights</zorder>
+  <zorder>inputPowerConfirm</zorder>
+  <zorder>toggleDoorLeft</zorder>
+  <zorder>inputPowerResult</zorder>
+  <zorder>currentVelocityLabel</zorder>
+  <zorder>test_module_label</zorder>
+  <zorder>lightStateLabel</zorder>
+  <zorder>leftDoorStateLabel</zorder>
+  <zorder>lightStateValue</zorder>
+  <zorder>leftDoorStateValue</zorder>
+  <zorder>crewMembers</zorder>
+  <zorder>crewMembersValue</zorder>
+  <zorder>emergencyBrake</zorder>
+  <zorder>pushButton_2</zorder>
+  <zorder>pushButton_3</zorder>
+  <zorder>pushButton_4</zorder>
+  <zorder>label_2</zorder>
+  <zorder>rightDoorStateLabel</zorder>
+  <zorder>rightDoorStateValue</zorder>
+  <zorder>toggleDoorRight</zorder>
+  <zorder>murphy_label</zorder>
+  <zorder>passenger_label</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>serviceBrakeButton</zorder>
+  <zorder>standardModeButton</zorder>
+  <zorder>pushButton_5</zorder>
+  <zorder>pushme</zorder>
+  <zorder>nextStationLabel</zorder>
+  <zorder>nextStationValue</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

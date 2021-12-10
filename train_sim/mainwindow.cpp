@@ -322,6 +322,7 @@ void  MainWindow::receiveOcc(std::vector<bool> occ){
 
 void MainWindow::recieveAuth(TrainEntry t){
     std::vector<bool> auth = t.authority;
+
     vector<vector<int>> changes = waysideController.ctc_reccomend(auth);
 
     vector<int> sw = changes[0];
@@ -366,4 +367,8 @@ void MainWindow::changeSwitch(std::vector<int> pos){
 void MainWindow::receiveHeater(bool state){
     waysideController.heater(state);
     emit sendCTCHeater(state);
+
+    if(block_selected){
+        sel_block();
+    }
 }
