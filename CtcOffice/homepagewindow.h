@@ -59,6 +59,8 @@ private slots:
 
     void on_submitBlockButton_clicked();
 
+    void on_removeTrackButton_clicked();
+
 private:
     Ui::HomepageWindow *ui;
     CtcOffice *ctcOffice_;

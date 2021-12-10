@@ -239,6 +239,36 @@ void CtcOffice::addScheduleEntry(int trainNumber, string start, string destinati
     string s = "hi";
 }
 
+void CtcOffice::addScheduleEntry(int trainNumber, string start, int destination, string arrivalTime){
+    ScheduleEntry scheduleEntry;
+    scheduleEntry.arrivalTime=toPairTime(arrivalTime);
+    scheduleEntry.trainNumber = trainNumber;
+    int size = stationMap[start].size();
+    int startBlock;
+    // station can be accesed from multiple blocks. Must start at block where the last schedule entry ended.
+    auto scheduleSize = schedule_[trainNumber].size();
+    if(size>1 && scheduleSize>0) {
+        startBlock = schedule_[trainNumber][scheduleSize-1].destination;
+        scheduleEntry.start = startBlock;
+    } else {
+        startBlock = stationMap[start][0];
+        scheduleEntry.start = startBlock;
+    }
+        scheduleEntry.destination = destination;
+        auto route = getRoute(startBlock, destination);
+        scheduleEntry.authority = computeAuthority(route);
+        scheduleEntry.suggestedSpeed = computeSuggestedSpeed(route);
+        int timeToDestination = computeTimeToDestination(route);
+        auto pairArrivalTime = toPairTime(arrivalTime);
+        auto arrivalTimeInSeconds = pairArrivalTime.first*60*60 + pairArrivalTime.second*60;
+        scheduleEntry.departureTime = toTimeFromSeconds(arrivalTimeInSeconds-timeToDestination);
+
+    schedule_[trainNumber].push_back(scheduleEntry);
+    trainHeap.push(scheduleEntry);
+    auto top = trainHeap.top();
+    string s = "hi";
+}
+
 std::priority_queue<ScheduleEntry, vector<ScheduleEntry>, compare> CtcOffice::getTrainHeap(){
     return trainHeap;
 }

@@ -73,8 +73,8 @@ void HomepageWindow::updateTrainTable(
       string trainString = "Train " + std::to_string(element.first);
       trainTableWidget->setItem(numRows, 0,
                                 new QTableWidgetItem(trainString.c_str()));
-      string destinationString = scheduleEntry.destinationString + ", " +
-                                 std::to_string(scheduleEntry.destination);
+      string destinationString = scheduleEntry.destinationString.length()>0? scheduleEntry.destinationString + ", " +
+                                 std::to_string(scheduleEntry.destination):std::to_string(scheduleEntry.destination);
       trainTableWidget->setItem(
           numRows, 1, new QTableWidgetItem(destinationString.c_str()));
       string arrivalTime = ctcOffice_->toStringTime(scheduleEntry.arrivalTime);
@@ -159,9 +159,20 @@ void HomepageWindow::on_plusButton_clicked() {
   auto scheduleArrivalText = ui->scheduleArrivalLineEdit->text();
   if (!scheduleTrainText.isEmpty() && !scheduleDestinationText.isEmpty() &&
       !scheduleArrivalText.isEmpty()) {
-    ctcOffice_->addScheduleEntry(stoi(scheduleTrainText.toStdString()), "Yard",
-                                 scheduleDestinationText.toStdString(),
-                                 scheduleArrivalText.toStdString());
+    auto destinationStr = scheduleDestinationText.toStdString();
+    if(!destinationStr.empty() && std::find_if(destinationStr.begin(),
+            destinationStr.end(), [](unsigned char c) { return !std::isdigit(c); }) == destinationStr.end()){
+            // is block
+        ctcOffice_->addScheduleEntry(stoi(scheduleTrainText.toStdString()), "Yard",
+                                     stoi(destinationStr),
+                                     scheduleArrivalText.toStdString());
+
+    } else {
+        // is station
+        ctcOffice_->addScheduleEntry(stoi(scheduleTrainText.toStdString()), "Yard",
+                                     scheduleDestinationText.toStdString(),
+                                     scheduleArrivalText.toStdString());
+    }
     updateTrainTable(ctcOffice_->getSchedule());
   }
 
@@ -340,3 +351,20 @@ void HomepageWindow::on_submitBlockButton_clicked() {
       std::stoi(ui->destinationBlockLineEdit->text().toStdString());
   ctcOffice_->getRoute(startBlock, destinationBlock);
 }
+
+void HomepageWindow::on_removeTrackButton_clicked()
+{
+    auto trackTable = ui->trackSectionTable;
+    auto selectedItems = trackTable->selectedItems();
+    if(selectedItems.size()>0){
+        for(auto item: selectedItems){
+            auto closedBlocks = ctcOffice_->getClosedBlocks();
+            auto block = item->text().toInt();
+            closedBlocks.erase(block);
+            trackTable->removeRow(item->row());
+        }
+        auto closedBlocksVector = ctcOffice_->sendClosedBlocks();
+        emit sendClosedBlocks(closedBlocksVector);
+    }
+}
+

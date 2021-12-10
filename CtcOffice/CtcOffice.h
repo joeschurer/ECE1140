@@ -75,6 +75,7 @@ public:
     TrainEntry dispatchTrain(int trainNumber, ScheduleEntry scheduleEntry);
     vector<bool> sendClosedBlocks();
     void addScheduleEntry(int trainNumber, string start, string destination, string arrivalTime);
+    void addScheduleEntry(int trainNumber, string start, int destination, string arrivalTime);
     Time toPairTime(string time);
     string toStringTime(Time Time);
     void addClosedBlocks(vector<int> blocks);
