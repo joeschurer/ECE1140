@@ -214,7 +214,7 @@ void TrainModelUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 5: _t->failureState((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->currSpeed((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 7: _t->currentPassengers((*reinterpret_cast< int(*)>(_a[1]))); break;
-        //case 8: _t->on_toggleDoor_clicked(); break;
+      //  case 8: _t->on_toggleDoor_clicked(); break;
         case 9: _t->on_toggleLights_clicked(); break;
         case 10: _t->on_inputPowerConfirm_clicked(); break;
         case 11: _t->on_emergencyBrake_clicked(); break;
@@ -228,12 +228,12 @@ void TrainModelUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 19: _t->on_standardModeButton_clicked(); break;
         case 20: _t->on_pushButton_5_clicked(); break;
         case 21: _t->on_pushme_clicked(); break;
-      //  case 22: _t->SetSpeedChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+     //   case 22: _t->SetSpeedChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 23: _t->LightsChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 24: _t->LeftDoorsChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 25: _t->RightDoorsChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 26: _t->TempChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-      ///  case 27: _t->EmergencyBrakeChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
+     //   case 27: _t->EmergencyBrakeChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
       //  case 28: _t->AutomaticModeChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 29: _t->PowerChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 30: _t->updateUI(); break;

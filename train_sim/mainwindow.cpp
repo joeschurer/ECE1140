@@ -354,6 +354,9 @@ void MainWindow::recieveAuth(TrainEntry t){
 void MainWindow::getMaintenaceMode(std::vector<bool> blocks){
     for(int i=0; i< blocks.size(); i++){
         waysideController.set_maintenance_mode(i,blocks[i]);
+        if(waysideController.get_maintenance_mode(i)== true){
+            emit sendMaintenace(i);
+        }
     }
 }
 
@@ -375,4 +378,8 @@ void MainWindow::receiveHeater(bool state){
     if(block_selected){
         sel_block();
     }
+}
+
+void MainWindow::receiveThroughput(int index){
+    emit sendThroughput(index);
 }

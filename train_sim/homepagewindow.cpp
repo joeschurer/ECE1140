@@ -271,6 +271,10 @@ void HomepageWindow::receiveOccupancy(vector<bool> occupancy) {
   updateOccupancyTable(occupancy);
 }
 
+void HomepageWindow::receiveTicketSales(int tickets){
+    ctcOffice_->setTickets(tickets);
+}
+
 void HomepageWindow::updateOccupancyTable(vector<bool> occupancy) {
   auto occupancyTable = ui->occupancyTableWidget;
   occupancyTable->clearContents();
@@ -294,6 +298,8 @@ void HomepageWindow::updateOccupancyTable(vector<bool> occupancy) {
   if(totalOccupancy>totalDispatchedTrains) {
       ui->trackFailureAlertTextEdit->setTextColor(QColor("red"));
       ui->trackFailureAlertTextEdit->setText("Alert: Occupancies>DispatchedTrains, Potential Track Failure");
+  } else {
+      ui->trackFailureAlertTextEdit->clear();
   }
 }
 
@@ -311,6 +317,20 @@ void HomepageWindow::timerSlot() {
 
   if (trainDispatched) {
     emit sendDispatchInfo(ctcOffice_->getDispatchedTrains().back());
+  }
+  auto currentLine = ctcOffice_->getCurrentLine();
+  double ticketsPerHour;
+  auto s = systemClock;
+  if(systemClock>0){
+    ticketsPerHour = (double)ctcOffice_->getTickets()/((double)systemClock/3600);
+  } else {
+    ticketsPerHour = 0;
+  }
+
+  if(currentLine==Green){
+    ui->greenThroughputLineEdit->setText(QString::number(ticketsPerHour));
+  } else {
+    ui->redThroughputLineEdit->setText(QString::number(ticketsPerHour));
   }
 }
 

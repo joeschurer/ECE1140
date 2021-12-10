@@ -672,6 +672,7 @@ debug/moc_homepagewindow.cpp: ../train_sim/homepagewindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
 		../train_sim/CtcOffice.h \
+		../train_sim/models.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
 	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\homepagewindow.h -o debug\moc_homepagewindow.cpp
@@ -1271,34 +1272,6 @@ debug/moc_trackmodel.cpp: ../train_sim/trackmodel.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpen.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextoption.h \
 		ui_trackmodel.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmutex.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qexception.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qapplicationpermission.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMenuBar \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenubar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenu.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qaction.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QStatusBar \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qstatusbar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QWidget \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
 	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\trackmodel.h -o debug\moc_trackmodel.cpp
@@ -1926,6 +1899,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 ####### Compile
 
 debug/CtcOffice.o: ../train_sim/CtcOffice.cpp ../train_sim/CtcOffice.h \
+		../train_sim/models.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/QDebug \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdebug.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qalgorithms.h \
@@ -2230,41 +2204,7 @@ debug/beacon.o: ../train_sim/beacon.cpp ../train_sim/beacon.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qloggingcategory.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
-		ui_beacon.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmutex.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qexception.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qapplicationpermission.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qlocale.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QLabel \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlabel.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qframe.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpicture.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextdocument.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMenuBar \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenubar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenu.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qaction.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QStatusBar \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qstatusbar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QWidget
+		ui_beacon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\beacon.o ..\train_sim\beacon.cpp
 
 debug/beacons.o: ../train_sim/beacons.cpp ../train_sim/beacons.h
@@ -2612,6 +2552,7 @@ debug/homepagewindow.o: ../train_sim/homepagewindow.cpp ../train_sim/HomepageWin
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
 		../train_sim/CtcOffice.h \
+		../train_sim/models.h \
 		ui_HomepageWindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QFileDialog \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qfiledialog.h \
@@ -2910,36 +2851,7 @@ debug/lineselect.o: ../train_sim/lineselect.cpp ../train_sim/lineselect.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/QTransform \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qloggingcategory.h \
-		ui_lineselect.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmutex.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qexception.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qapplicationpermission.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qlocale.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QGroupBox \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qgroupbox.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qframe.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QPushButton \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qpushbutton.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h
+		ui_lineselect.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\lineselect.o ..\train_sim\lineselect.cpp
 
 debug/main.o: ../train_sim/main.cpp ../train_sim/trainsimwindow.h \
@@ -3134,7 +3046,19 @@ debug/main.o: ../train_sim/main.cpp ../train_sim/trainsimwindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpen.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextoption.h \
 		ui_trackmodel.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
+		../train_sim/beacon.h \
+		../train_sim/trainmodel.h \
+		../train_sim/wayside.h \
+		../train_sim/homepagewindow.h \
+		../train_sim/CtcOffice.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h \
+		../train_sim/trainmodelui.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QWidget \
+		../train_sim/traincalculate.h \
+		../train_sim/engineer.h \
+		../train_sim/swtcui.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qapplication.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -3154,22 +3078,7 @@ debug/main.o: ../train_sim/main.cpp ../train_sim/trainsimwindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication_platform.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMenuBar \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenubar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenu.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qaction.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QStatusBar \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qstatusbar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QWidget \
-		../train_sim/beacon.h \
-		../train_sim/trainmodel.h \
-		../train_sim/wayside.h \
-		../train_sim/homepagewindow.h \
-		../train_sim/CtcOffice.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\train_sim\main.cpp
 
 debug/mainwindow.o: ../train_sim/mainwindow.cpp ../train_sim/mainwindow.h \
@@ -3322,67 +3231,7 @@ debug/mainwindow.o: ../train_sim/mainwindow.cpp ../train_sim/mainwindow.h \
 		../train_sim/track_layout.h \
 		../train_sim/PLC.h \
 		../train_sim/models.h \
-		ui_mainwindow.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmutex.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qexception.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qapplicationpermission.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QCheckBox \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qcheckbox.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QComboBox \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qcombobox.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qstyleoption.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qvalidator.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qregularexpression.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qslider.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qabstractslider.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qstyle.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtabbar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qrubberband.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qframe.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QFrame \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QGridLayout \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qgridlayout.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlayout.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qboxlayout.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QHBoxLayout \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QLabel \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlabel.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpicture.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextdocument.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QLineEdit \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlineedit.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextcursor.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextformat.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpen.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextoption.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QPushButton \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qpushbutton.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QSpacerItem \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QVBoxLayout \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QWidget
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\train_sim\mainwindow.cpp
 
 debug/station.o: ../train_sim/station.cpp ../train_sim/station.h \
@@ -3851,34 +3700,6 @@ debug/trackmodel.o: ../train_sim/trackmodel.cpp ../train_sim/trackmodel.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpen.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextoption.h \
 		ui_trackmodel.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmutex.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qexception.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qapplicationpermission.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMenuBar \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenubar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenu.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qaction.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QStatusBar \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qstatusbar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QWidget \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QTextEdit \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtextedit.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QPushButton \
@@ -4052,47 +3873,7 @@ debug/trainmodel.o: ../train_sim/trainmodel.cpp ../train_sim/trainmodel.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qstyle.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtabbar.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qrubberband.h \
-		ui_trainmodel.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmutex.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qexception.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qapplicationpermission.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QGroupBox \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qgroupbox.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QLabel \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlabel.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpicture.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextdocument.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QLineEdit \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlineedit.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextcursor.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextformat.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpen.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextoption.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMenuBar \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenubar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenu.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qaction.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QStatusBar \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qstatusbar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QWidget
+		ui_trainmodel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\trainmodel.o ..\train_sim\trainmodel.cpp
 
 debug/trainmodelui.o: ../train_sim/trainmodelui.cpp ../train_sim/trainmodelui.h \
@@ -4381,36 +4162,7 @@ debug/trainsimwindow.o: ../train_sim/trainsimwindow.cpp ../train_sim/trainsimwin
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qloggingcategory.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
-		ui_trainsimwindow.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmutex.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qexception.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qapplicationpermission.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qlocale.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMenuBar \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenubar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenu.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qaction.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QStatusBar \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qstatusbar.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QWidget
+		ui_trainsimwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\trainsimwindow.o ..\train_sim\trainsimwindow.cpp
 
 debug/wayside.o: ../train_sim/wayside.cpp ../train_sim/wayside.h \
@@ -4544,43 +4296,6 @@ debug/wayside.o: ../train_sim/wayside.cpp ../train_sim/wayside.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qloggingcategory.h \
 		ui_wayside.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmutex.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qexception.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qapplicationpermission.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qlocale.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QLabel \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlabel.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qframe.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpicture.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextdocument.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QLineEdit \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qlineedit.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextcursor.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextformat.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qpen.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qtextoption.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QPushButton \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qpushbutton.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
 		../train_sim/layout.h \
 		../train_sim/line.h \
 		../train_sim/block.h \

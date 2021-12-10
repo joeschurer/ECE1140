@@ -69,13 +69,14 @@ int main(int argc, char *argv[])
 
     QTimer timer;
     timer.start(1000/simulationSpeed);
-    //QObject::connect(&timer, &QTimer::timeout, &ctc, &HomepageWindow::timerSlot);
+    QObject::connect(&timer, &QTimer::timeout, &ctc, &HomepageWindow::timerSlot);
     QObject::connect(&timer, &QTimer::timeout, &w, &TrainModelUI::updateUI);
+    QObject::connect(&wui, &MainWindow::sendThroughput, &ctc, &HomepageWindow::receiveTicketSales);
     QObject::connect(&wui, &MainWindow::sendCTCOcc,&ctc, &HomepageWindow::receiveOccupancy);
     QObject::connect(&ctc, &HomepageWindow::sendClosedBlocks,&wui, &MainWindow::getMaintenaceMode);
     QObject::connect(&ctc, &HomepageWindow::sendSwitchPosition,&wui, &MainWindow::changeSwitch);
     QObject::connect(&ctc, &HomepageWindow::sendDispatchInfo,&wui, &MainWindow::recieveAuth);
-
+    QObject::connect(&wui, &MainWindow::sendMaintenace, &window,&TrackModel::fixBlock);
     QObject::connect(&wui, &MainWindow::sendTrainDispatch,&window, &TrackModel::trainUpdated);
     QObject::connect(&trainUI, SIGNAL(trainMoved(int)), &window, SLOT(trainMoved(int)));
     QObject::connect(&trainUI, SIGNAL(trainSpeedUpdated(QString)), &window, SLOT(actualSpeedChanged(QString)));
@@ -90,5 +91,7 @@ int main(int argc, char *argv[])
     QObject::connect(&wayTest, SIGNAL(toggleCrossing(int)), &window, SLOT(toggleCrossing(int)));
     QObject::connect(&wui, &MainWindow::activateCrossing, &window, &TrackModel::toggleCrossings);
     QObject::connect(&window, &TrackModel::heatersOn, &wui, &MainWindow::receiveHeater);
+    QObject::connect(&window, &TrackModel::throughput,&wui, &MainWindow::receiveThroughput);
+    //QObject::connect(&ctc. &HomepageWindow:: , &wui, &MainWindow::sendThroughput);
     return a.exec();
 }

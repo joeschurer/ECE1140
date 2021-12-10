@@ -36,6 +36,7 @@ CtcOffice::CtcOffice(TrackLine line)
 {
     numTrains_ = 0;
     setupLine(line);
+    tickets = 0;
 }
 
 void CtcOffice::setupLine(TrackLine line){
@@ -88,6 +89,10 @@ Time CtcOffice::toPairTime(string time){
 
 }
 
+TrackLine CtcOffice::getCurrentLine(){
+    return currentLine;
+}
+
 string CtcOffice::toStringTime(Time time){
     string hourString = time.first<10? "0" + std::to_string(time.first): std::to_string(time.first);
     string minuteString = time.second<10? "0" + std::to_string(time.second): std::to_string(time.second);
@@ -101,7 +106,7 @@ void CtcOffice::parseTrack(std::string path) {
     QFile inputFile(fileName);
     if(inputFile.open(QIODevice::ReadOnly)){
         QTextStream in(&inputFile);
-        QString temp = in.readLine();
+        in.readLine();
         while (!in.atEnd()) {
             QString qline = in.readLine();
             std::string line = qline.toStdString();
@@ -115,9 +120,17 @@ void CtcOffice::parseTrack(std::string path) {
 vector<int> CtcOffice::getRoute(int startingBlock, int destinationBlock) {
     std::queue<int> q;
     vector<int> route;
-    vector<bool>visited (151, false);
+    vector<bool> visited;
+    vector<int> prev;
+    if(currentLine==Green){
+        visited = vector<bool>(151, false);
+        prev = vector<int>(151);
+    } else if(currentLine==Red) {
+         visited = vector<bool>(77, false);
+         prev = vector<int>(77);
+    }
 
-    vector<int> prev(151);
+
     q.push(startingBlock);
     visited[startingBlock]=true;
     prev[startingBlock]=-1;
@@ -169,6 +182,14 @@ Time CtcOffice::toTimeFromSeconds(int time){
     int hour = time/3600;
     int minute = (time%3600)/60;
     return {hour, minute};
+}
+
+void CtcOffice::setTickets(int tickets) {
+    this->tickets=tickets;
+}
+
+int CtcOffice::getTickets(){
+    return tickets;
 }
 
 void CtcOffice::addScheduleEntry(int trainNumber, string start, string destination, string arrivalTime){
@@ -244,16 +265,19 @@ void CtcOffice::buildGreenLineStationMap() {
 TrainEntry CtcOffice::dispatchTrain(int trainNumber, ScheduleEntry scheduleEntry){
     TrainEntry t = {trainNumber, scheduleEntry.suggestedSpeed, scheduleEntry.authority};
     dispatchedTrains.push_back(t);
+    qDebug() << "dispatching train";
     return t;
 }
 
 bool CtcOffice::checkForDispatch(int time){
-    auto scheduleEntry = trainHeap.top();
-    auto departureTime = trainHeap.top().departureTime;
-    if(time == departureTime.first*60*60 + departureTime.second*60) {
-        dispatchTrain(scheduleEntry.trainNumber, scheduleEntry);
-        trainHeap.pop();
-        return true;
+    if(!trainHeap.empty()){
+        auto scheduleEntry = trainHeap.top();
+        auto departureTime = trainHeap.top().departureTime;
+        if(time == departureTime.first*60*60 + departureTime.second*60) {
+            dispatchTrain(scheduleEntry.trainNumber, scheduleEntry);
+            trainHeap.pop();
+            return true;
+        }
     }
     return false;
 }
@@ -296,7 +320,7 @@ void CtcOffice::updateAuthorityGivenOccupancy(){
     for(int i = 0; i<occupancies.size(); i++){
         if(occupancies[i]){
             auto train = getTrainFromOccupancy(i);
-
+            // TODO: IDK how to do this really
         }
     }
 }
@@ -449,7 +473,12 @@ std::unordered_set<int> CtcOffice::getClosedBlocks(){
 }
 
 vector<bool> CtcOffice::computeAuthority(vector<int> route){
-    vector<bool> authority(151,false);
+    vector<bool> authority;
+    if(currentLine==Green) {
+        authority = vector<bool>(151,false);
+    } else {
+        authority = vector<bool>(77,false);
+    }
     for(auto block: route) {
         authority[block]=true;
     }

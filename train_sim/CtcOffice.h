@@ -1,56 +1,28 @@
 #ifndef CTCOFFICE_H
 #define CTCOFFICE_H
-#include "models.h"
 #include <list>
+#include "models.h"
 #include <fstream>
 #include <string>
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
 #include <queue>
-/*
+
 using std::string;
 using std::vector;
 
+extern int systemClock;
+extern int simulationSpeed;
+
 typedef std::pair<int, int> Time;
-enum TrackLine {Green, Red};
 
-struct ScheduleEntry {
-    int trainNumber;
-    int destination;
-    string destinationString;
-    int start;
-    Time arrivalTime;
-    Time departureTime;
-    int suggestedSpeed;
-    vector<bool> authority;
-};
-
-struct TrackEntry {
-    string line;
-    string section;
-    int speedLimit;
-    int blockLength;
-    string infrastructure;
-};
-
-struct TrainEntry{
-    int trainNumber;
-    int suggestedSpeed;
-    vector<bool> authority;
-};
-
-struct compare {
-    bool operator()(ScheduleEntry const& t1, ScheduleEntry const& t2){
-        return t1.departureTime.first*60*60 + t1.departureTime.second*60 >  t2.departureTime.first*60*60 + t2.departureTime.second*60;
-    }
-};
 
 namespace utility {
 vector<string> split(string s, string delimeter);
 string convertMinutesToMinuteAndSecond(string time);
 }
-*/
+
 class CtcOffice
 {
 public:
@@ -79,10 +51,13 @@ public:
     std::unordered_set<int> getClosedBlocks();
     bool checkForDispatch(int time);
     Time toTimeFromSeconds(int time);
+    void setTickets(int tickets);
+    int getTickets();
     vector<TrainEntry> getDispatchedTrains();
     int getTrainFromOccupancy(int block);
     int getTotalOccupanccy();
     std::priority_queue<ScheduleEntry, vector<ScheduleEntry>, compare> getTrainHeap();
+    TrackLine getCurrentLine();
 
 private:
     std::unordered_map<int, std::vector<ScheduleEntry>> schedule_;
@@ -107,5 +82,6 @@ private:
     std::unordered_map<int,int> trackSwitchNodes;
     // TODO: Use set for closed tracks
     void updateAuthorityGivenOccupancy();
+    int tickets;
 };
 #endif // CTCOFFICE_H

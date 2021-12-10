@@ -133,6 +133,9 @@ vector<vector<int>> PLC::parsePLC(){
     vector<bool> newAuth;
     int gap = 2;//maybe read from PLC
     for(int i=0;i<track->track.size(); i++){
+        //remove this eventually
+        newAuth.push_back(track->track[i].auth);
+
         if(track->track[i].occupancy==true){
             //search for trains in 3 blocks on either side
         }

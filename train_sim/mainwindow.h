@@ -52,6 +52,8 @@ signals:
    void sendTrainDispatch(std::vector<std::string>);
    void sendCTCHeater(bool);
    void activateCrossing(vector<int>);
+   void sendThroughput(int);
+   void sendMaintenace(int);
 
 public slots:
     void receiveOcc(std::vector<bool> occ);
@@ -59,6 +61,7 @@ public slots:
     void recieveAuth(TrainEntry);
     void getMaintenaceMode(std::vector<bool> blocks);
     void changeSwitch(std::vector<int> pos);
+    void receiveThroughput(int);
 
 
 };

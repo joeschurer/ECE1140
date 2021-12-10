@@ -35,6 +35,7 @@ public slots:
     void openDoors(vector<int> train);
     void receiveAuth(vector<bool> auth);
     void toggleCrossings(vector<int> cross);
+    void fixBlock(int num);
 
 private slots:
     void on_breakCircuit_returnPressed();
@@ -54,6 +55,7 @@ signals:
     string beaconData(string data);
     double tempChanged(double temp);
     bool heatersOn(bool heat);
+    int throughput(int through);
 
 private:
     Ui::TrackModel *ui;

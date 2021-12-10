@@ -15,6 +15,7 @@ public:
     string name;
     vector<int> switched;
     double temp = 72.5;
+    int throughput = 0;
 
     static Line& getLine() {
         static Line line;

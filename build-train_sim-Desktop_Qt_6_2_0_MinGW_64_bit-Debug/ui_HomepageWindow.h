@@ -37,9 +37,9 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *homepage;
     QLabel *systemThroughput;
-    QLineEdit *lineEdit;
+    QLineEdit *greenThroughputLineEdit;
     QLabel *label_3;
-    QLineEdit *lineEdit_2;
+    QLineEdit *redThroughputLineEdit;
     QTableWidget *occupancyTableWidget;
     QTextEdit *trackFailureAlertTextEdit;
     QLineEdit *totalOccupancyLineEdit;
@@ -144,15 +144,15 @@ public:
         systemThroughput = new QLabel(homepage);
         systemThroughput->setObjectName(QString::fromUtf8("systemThroughput"));
         systemThroughput->setGeometry(QRect(30, 380, 231, 20));
-        lineEdit = new QLineEdit(homepage);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(290, 380, 113, 21));
+        greenThroughputLineEdit = new QLineEdit(homepage);
+        greenThroughputLineEdit->setObjectName(QString::fromUtf8("greenThroughputLineEdit"));
+        greenThroughputLineEdit->setGeometry(QRect(290, 380, 113, 21));
         label_3 = new QLabel(homepage);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(30, 420, 241, 16));
-        lineEdit_2 = new QLineEdit(homepage);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(290, 420, 113, 21));
+        redThroughputLineEdit = new QLineEdit(homepage);
+        redThroughputLineEdit->setObjectName(QString::fromUtf8("redThroughputLineEdit"));
+        redThroughputLineEdit->setGeometry(QRect(290, 420, 113, 21));
         occupancyTableWidget = new QTableWidget(homepage);
         if (occupancyTableWidget->columnCount() < 2)
             occupancyTableWidget->setColumnCount(2);

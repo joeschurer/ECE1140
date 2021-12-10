@@ -177,7 +177,11 @@ void TrackModel::trackModelDisplay() {
 
         string s = "";
         if (layout.line->blocks[i].hasStation) {
+            int bef = layout.line->blocks[i].station.passengers;
             layout.line->blocks[i].station.addPassengers();
+            int aft = layout.line->blocks[i].station.passengers;
+            int added = aft-bef;
+            layout.line->throughput += added;
             s = layout.line->blocks[i].station.name + ", " + to_string(layout.line->blocks[i].station.passengers);
         }
         QTableWidgetItem* sta = new QTableWidgetItem(QString::fromStdString(s));
@@ -270,6 +274,8 @@ void TrackModel::trackModelDisplay() {
             blockdata->setItem(i, 12, beac[i]);
         }
     }
+
+    emit throughput(layout.line->throughput);
 
     blockdata->setGeometry(10, 10, 1030, 600);
     blockdata->setColumnWidth(0, 50);
@@ -717,4 +723,34 @@ void TrackModel::toggleCrossings(vector<int> cross) {
     for (int i=0; i<cross.size(); i++) {
         layout.line->blocks[cross[i]-1].swtch.point1 = !layout.line->blocks[cross[i]-1].swtch.point1;
     }
+}
+
+void TrackModel::fixBlock(int num) {
+    if (num <= (int)layout.line->blocks.size()) {
+        layout.line->blocks[num-1].circuitBroken = false;
+        ui->breakCircuit->clear();
+        layout.line->blocks[num-1].trackBroken = false;
+        ui->breakTrack->clear();
+        layout.line->blocks[num-1].powerBroken = false;
+        ui->breakPower->clear();
+    }
+
+    //Get occupancy and send it to the wayside
+    vector<bool> occ;
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
+        if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
+            occ.push_back(true);
+        }
+        else {
+            occ.push_back(false);
+        }
+    }
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
+        occ[layout.line->trains[i].location] = true;
+    }
+    emit occupancyChanged(occ);
+
+    trackModelDisplay();
 }

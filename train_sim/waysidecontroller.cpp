@@ -66,7 +66,7 @@ vector<vector<int>> WaysideController::ctc_reccomend(std::vector<bool> a){
 //CTC Test
 vector<vector<int>> WaysideController::ctc_test(int index,int auth,int speed){
     toggledSwitches.clear();
-    track_model.track[index].auth == auth;
+    track_model.track[index].auth = auth;
     track_model.track[index].sugg_speed = speed;
 
     vector<int> toggleSW,toggleCR;
