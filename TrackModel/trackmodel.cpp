@@ -711,8 +711,29 @@ void TrackModel::toggleCrossings(vector<int> cross) {
 void TrackModel::fixBlock(int num) {
     if (num <= (int)layout.line->blocks.size()) {
         layout.line->blocks[num-1].circuitBroken = false;
+        ui->breakCircuit->clear();
         layout.line->blocks[num-1].trackBroken = false;
+        ui->breakTrack->clear();
         layout.line->blocks[num-1].powerBroken = false;
+        ui->breakPower->clear();
     }
+
+    //Get occupancy and send it to the wayside
+    vector<bool> occ;
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
+        if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
+            occ.push_back('1');
+        }
+        else {
+            occ.push_back('0');
+        }
+    }
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
+        occ[layout.line->trains[i].location] = '1';
+    }
+    emit occupancyChanged(occ);
+
     trackModelDisplay();
 }
