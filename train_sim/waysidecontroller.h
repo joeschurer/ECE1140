@@ -25,6 +25,7 @@ public:
     bool updateBlocks();
     void toggleSwitch(int);
     void authUpdate(bool[151]);
+    bool uploadPLC(int,string fname);
 
 
     //CTC

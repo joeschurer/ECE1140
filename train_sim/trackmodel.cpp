@@ -83,11 +83,15 @@ void TrackModel::trackModelDisplay() {
     QColor green(0, 250, 0, 125);
     QColor nor(100, 100, 100, 0);
     QColor gray(100, 100, 100, 100);
+    QColor yell(255, 255, 143, 125);
     QColor col;
 
     for (int i=0; i<bn; i++) {
         if (layout.line->blocks[i].circuitBroken || layout.line->blocks[i].trackBroken || layout.line->blocks[i].powerBroken) {
             col = red;
+        }
+        else if (layout.line->blocks[i].closed) {
+            col = yell;
         }
         else {
             col = nor;
@@ -733,6 +737,42 @@ void TrackModel::fixBlock(int num) {
         ui->breakTrack->clear();
         layout.line->blocks[num-1].powerBroken = false;
         ui->breakPower->clear();
+    }
+
+    //Get occupancy and send it to the wayside
+    vector<bool> occ;
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
+        if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
+            occ.push_back(true);
+        }
+        else {
+            occ.push_back(false);
+        }
+    }
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
+        occ[layout.line->trains[i].location] = true;
+    }
+    emit occupancyChanged(occ);
+
+    trackModelDisplay();
+}
+
+void TrackModel::closeBlocks(vector<bool> closed) {
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
+        if (closed[i+1] == true) {
+            layout.line->blocks[i].closed = true;
+            layout.line->blocks[i].circuitBroken = false;
+            ui->breakCircuit->clear();
+            layout.line->blocks[i].trackBroken = false;
+            ui->breakTrack->clear();
+            layout.line->blocks[i].powerBroken = false;
+            ui->breakPower->clear();
+        }
+        else {
+            layout.line->blocks[i].closed = false;
+        }
     }
 
     //Get occupancy and send it to the wayside

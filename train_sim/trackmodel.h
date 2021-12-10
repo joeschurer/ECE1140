@@ -36,6 +36,7 @@ public slots:
     void receiveAuth(vector<bool> auth);
     void toggleCrossings(vector<int> cross);
     void fixBlock(int num);
+    void closeBlocks(vector<bool> closed);
 
 private slots:
     void on_breakCircuit_returnPressed();

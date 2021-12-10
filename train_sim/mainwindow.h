@@ -53,7 +53,8 @@ signals:
    void sendCTCHeater(bool);
    void activateCrossing(vector<int>);
    void sendThroughput(int);
-   void sendMaintenace(int);
+   void sendFixed(int);
+   void sendMaintenace(vector<bool>);
 
 public slots:
     void receiveOcc(std::vector<bool> occ);

@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->heater_submit->setEnabled(false);
     ui->maintenance_submit->setEnabled(false);
     ui->maintenance_toggle->setEnabled(false);
+    ui->uploadButton->setEnabled(false);
 
     //define the options for the options for the line selection
     ui->line_select->addItem("Red Line");
@@ -202,6 +203,7 @@ void MainWindow::sel_wayside(){
 
     //enable block selection
     ui->block_select->setEnabled(true);
+    ui->uploadButton->setEnabled(true);
 }
 
 void MainWindow::ctc_test(){
@@ -260,9 +262,15 @@ void MainWindow::check_maintenance_line(){
 
 void MainWindow::on_uploadButton_clicked(){
     fileName = QFileDialog::getOpenFileName(this,"Open the PLC File","C://");
+    string fName = fileName.toStdString();
     if(fileName != ""){
+        int selection = ui->wayside_select->currentIndex() +1;
+        waysideController.uploadPLC(selection, fName);
         //add upload here
         ui->uploadNotif->setText("Uploaded " + fileName);
+    }
+    if(block_selected){
+        sel_block();
     }
 }
 
@@ -319,7 +327,9 @@ void  MainWindow::receiveOcc(std::vector<bool> occ){
     emit sendCTCOcc(temp);
     emit sendTrackModelSwitches(switches);
     emit activateCrossing(cross);
-
+    if(block_selected){
+        sel_block();
+    }
 
 
 }
@@ -349,14 +359,21 @@ void MainWindow::recieveAuth(TrainEntry t){
     out.push_back(std::to_string(t.suggestedSpeed));
     out.push_back(auth_string);
     emit sendTrainDispatch(out);
+    if(block_selected){
+        sel_block();
+    }
 }
 
 void MainWindow::getMaintenaceMode(std::vector<bool> blocks){
+    emit sendMaintenace(blocks);
     for(int i=0; i< blocks.size(); i++){
         waysideController.set_maintenance_mode(i,blocks[i]);
         if(waysideController.get_maintenance_mode(i)== true){
-            emit sendMaintenace(i);
+            emit sendFixed(i);
         }
+    }
+    if(block_selected){
+        sel_block();
     }
 }
 
@@ -367,6 +384,9 @@ void MainWindow::changeSwitch(std::vector<int> pos){
         temp.push_back(pos[0]);
 
         emit sendTrackModelSwitches(temp);
+    }
+    if(block_selected){
+        sel_block();
     }
 
 }
@@ -382,4 +402,7 @@ void MainWindow::receiveHeater(bool state){
 
 void MainWindow::receiveThroughput(int index){
     emit sendThroughput(index);
+    if(block_selected){
+        sel_block();
+    }
 }

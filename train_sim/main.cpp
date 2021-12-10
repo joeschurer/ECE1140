@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
     QObject::connect(&ctc, &HomepageWindow::sendClosedBlocks,&wui, &MainWindow::getMaintenaceMode);
     QObject::connect(&ctc, &HomepageWindow::sendSwitchPosition,&wui, &MainWindow::changeSwitch);
     QObject::connect(&ctc, &HomepageWindow::sendDispatchInfo,&wui, &MainWindow::recieveAuth);
-    QObject::connect(&wui, &MainWindow::sendMaintenace, &window,&TrackModel::fixBlock);
+    QObject::connect(&wui, &MainWindow::sendFixed, &window,&TrackModel::fixBlock);
     QObject::connect(&wui, &MainWindow::sendTrainDispatch,&window, &TrackModel::trainUpdated);
     QObject::connect(&trainUI, SIGNAL(trainMoved(int)), &window, SLOT(trainMoved(int)));
     QObject::connect(&trainUI, SIGNAL(trainSpeedUpdated(QString)), &window, SLOT(actualSpeedChanged(QString)));
@@ -85,6 +85,7 @@ int main(int argc, char *argv[])
     QObject::connect(&window, SIGNAL(beaconData(string)), &beacon, SLOT(transmitting(string)));
     QObject::connect(&trainUI, SIGNAL(doorsOpen(int)), &window, SLOT(doorsOpen(int)));
     QObject::connect(&window, &TrackModel::occupancyChanged, &wui, &MainWindow::receiveOcc);
+    QObject::connect(&wui, &MainWindow::sendMaintenace, &window, &TrackModel::closeBlocks);
 
     QObject::connect(&wayTest, SIGNAL(trainChanged(vector<string>)), &window, SLOT(trainUpdated(vector<string>)));
     QObject::connect(&wayTest, SIGNAL(toggleSwitch(vector<int>)), &window, SLOT(toggleSwitch(vector<int>)));

@@ -1,13 +1,13 @@
 #ifndef CTCOFFICE_H
 #define CTCOFFICE_H
 #include <list>
-#include "models.h"
 #include <fstream>
 #include <string>
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
 #include <queue>
+#include "models.h"
 
 using std::string;
 using std::vector;
@@ -45,10 +45,11 @@ public:
     TrainEntry dispatchTrain(int trainNumber, ScheduleEntry scheduleEntry);
     vector<bool> sendClosedBlocks();
     void addScheduleEntry(int trainNumber, string start, string destination, string arrivalTime);
+    void addScheduleEntry(int trainNumber, string start, int destination, string arrivalTime);
     Time toPairTime(string time);
     string toStringTime(Time Time);
     void addClosedBlocks(vector<int> blocks);
-    std::unordered_set<int> getClosedBlocks();
+    std::unordered_set<int>* getClosedBlocks();
     bool checkForDispatch(int time);
     Time toTimeFromSeconds(int time);
     void setTickets(int tickets);

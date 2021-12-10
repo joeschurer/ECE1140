@@ -98,7 +98,7 @@ vector<vector<int>> PLC::parsePLC(){
                 if(track->track[BL].occupancy==true){
 
                 } else {
-                   // track->track[SWPOS]=false;
+
                 }
             }
             else if (plcContainer[i][1].substr(0,4) == "AUTH"){
@@ -138,6 +138,13 @@ vector<vector<int>> PLC::parsePLC(){
 
         if(track->track[i].occupancy==true){
             //search for trains in 3 blocks on either side
+        }
+    }
+
+    for(int i=0;i<ownedBlocks.size();i++){
+        if(track->track[i].occupancy==true){
+            //search for trains in GAP blocks on either side
+
         }
     }
 
