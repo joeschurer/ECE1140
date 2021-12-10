@@ -108,6 +108,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release/qrc_track.cpp
 release/qrc_track.cpp: ../CtcOffice/track.qrc \
 		C:/Qt/6.2.0/mingw81_64/bin/rcc.exe \
+		../CtcOffice/Red_Track_Layout.csv \
 		../CtcOffice/Green_Track_Layout.csv
 	'C:\Qt\6.2.0\mingw81_64\bin\rcc.exe' -name track ../CtcOffice/track.qrc -o release/qrc_track.cpp
 

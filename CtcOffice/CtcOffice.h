@@ -6,6 +6,7 @@
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
+#include <queue>
 
 using std::string;
 using std::vector;
@@ -14,6 +15,7 @@ typedef std::pair<int, int> Time;
 enum TrackLine {Green, Red};
 
 struct ScheduleEntry {
+    int trainNumber;
     int destination;
     string destinationString;
     int start;
@@ -37,6 +39,12 @@ struct TrainEntry{
     vector<bool> authority;
 };
 
+struct compare {
+    bool operator()(ScheduleEntry const& t1, ScheduleEntry const& t2){
+        return t1.departureTime.first*60*60 + t1.departureTime.second*60 >  t2.departureTime.first*60*60 + t2.departureTime.second*60;
+    }
+};
+
 namespace utility {
 vector<string> split(string s, string delimeter);
 string convertMinutesToMinuteAndSecond(string time);
@@ -47,7 +55,7 @@ class CtcOffice
 public:
     CtcOffice(TrackLine line = Green);
     void parseSchedule(std::ifstream &scheduleFile);
-    void parseTrack();
+    void parseTrack(std::string path);
     std::unordered_map<int, std::vector<ScheduleEntry>> getSchedule();
     std::list<TrackEntry> getTrack();
     int computeRouteAuthority(std::string route);
@@ -69,11 +77,18 @@ public:
     void addClosedBlocks(vector<int> blocks);
     std::unordered_set<int> getClosedBlocks();
     bool checkForDispatch(int time);
+    Time toTimeFromSeconds(int time);
+    vector<TrainEntry> getDispatchedTrains();
+    int getTrainFromOccupancy(int block);
+    int getTotalOccupanccy();
+    std::priority_queue<ScheduleEntry, vector<ScheduleEntry>, compare> getTrainHeap();
 
 private:
     std::unordered_map<int, std::vector<ScheduleEntry>> schedule_;
     void buildGreenLineGraph();
-    void buildGreenStationMap();
+    void buildGreenLineStationMap();
+    void buildRedLineGraph();
+    void buildRedLineStationMap();
     void setupLine(TrackLine line);
     TrackLine currentLine;
     std::unordered_map<std::string, vector<int>> stationMap;
@@ -84,11 +99,12 @@ private:
     vector<bool> occupancies;
     vector<TrainEntry> dispatchedTrains;
     int totalOccupancies;
-
+    std::priority_queue<ScheduleEntry, vector<ScheduleEntry>, compare> trainHeap;
     // maps node (track before switch) to it's preceeding track.
     // trains cannot back up
     // can only use switches if you were traveling in the direction of the switch
     std::unordered_map<int,int> trackSwitchNodes;
     // TODO: Use set for closed tracks
+    void updateAuthorityGivenOccupancy();
 };
 #endif // CTCOFFICE_H

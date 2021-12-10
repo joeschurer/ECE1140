@@ -35,17 +35,18 @@ string convertMinutesToMinuteAndSecond(string time){
 CtcOffice::CtcOffice(TrackLine line)
 {
     numTrains_ = 0;
-    parseTrack();
     setupLine(line);
 }
 
 void CtcOffice::setupLine(TrackLine line){
     currentLine = line;
     if (line==Green) {
+        parseTrack("://Green_Track_Layout.csv");
         buildGreenLineGraph();
-        buildGreenStationMap();
+        buildGreenLineStationMap();
         // can only use switches if you were traveling in the direction of the switch
         //63 to 62 or 63 to yard
+        //TODO: Don't need this, could fnid preceeding switch with a function
         trackSwitchNodes = {{13,14},
                             {29, 28},
                             {57, 56},
@@ -54,16 +55,27 @@ void CtcOffice::setupLine(TrackLine line){
                             {63,64}
                            };
     }
+    else if (line==Red) {
+        parseTrack("://Red_Track_Layout.csv");
+        buildRedLineGraph();
+        buildRedLineStationMap();
+        trackSwitchNodes = {{9,8},
+                            {27, 26},
+                            {16,17},
+                            {33, 34},
+                            {38,37},
+                            {44,45},
+                            {52,51}
+                           };
+    }
 }
 void CtcOffice::parseSchedule(std::ifstream &scheduleFile) {
     std::string line;
-    // get line for column headers
-    std::getline(scheduleFile, line);
     while(std::getline(scheduleFile, line)){
-        vector<string> splitLine = utility::split(line, ",");
-        addScheduleEntry(stoi(splitLine[0]), splitLine[1], splitLine[2], splitLine[3]);
-        //ScheduleEntry entry = {splitLine[1], toPairTime(splitLine[2])};
-        //schedule_[stoi(splitLine[0])].push_back(entry);
+        if(line!=""){
+            vector<string> splitLine = utility::split(line, ",");
+            addScheduleEntry(stoi(splitLine[0]), splitLine[1], splitLine[2], splitLine[3]);
+        }
     }
     // maybe not neccesary, want to track number of dispatched trains
     numTrains_++;
@@ -83,9 +95,9 @@ string CtcOffice::toStringTime(Time time){
 
 }
 
-void CtcOffice::parseTrack() {
+void CtcOffice::parseTrack(std::string path) {
     std::ifstream trackFile;
-    QString fileName("://Green_Track_Layout.csv");
+    QString fileName(path.c_str());
     QFile inputFile(fileName);
     if(inputFile.open(QIODevice::ReadOnly)){
         QTextStream in(&inputFile);
@@ -98,17 +110,6 @@ void CtcOffice::parseTrack() {
             track_.push_back(entry);
         }
     }
-    /*
-    trackFile.open("C:\\Users\\akina\\OneDrive - University of Pittsburgh\\PITT\\PITT Senior Year\\Semester 1\\ECE 1140-Systems and Project Engineering\\Green_Track_Layout.csv");
-    // get line for column headers
-    string line="chicken";
-    std::getline(trackFile, line);
-    while(std::getline(trackFile, line)){
-        vector<string> splitLine = utility::split(line, ",");
-        TrackEntry entry = {splitLine[0], splitLine[1], stoi(splitLine[5]), stoi(splitLine[3]), splitLine[6]};
-        track_.push_back(entry);
-    }
-    */
 }
 
 vector<int> CtcOffice::getRoute(int startingBlock, int destinationBlock) {
@@ -130,7 +131,7 @@ vector<int> CtcOffice::getRoute(int startingBlock, int destinationBlock) {
                if(v>=77){
                     string s = "hi";
                }
-               bool isTrainBackingUp = trackSwitchNodes.count(v)==1 && prev[v]!=trackSwitchNodes[v] && std::abs(u-v)!=1 && v!=startingBlock;
+               bool isTrainBackingUp = trackSwitchNodes.count(v)==1 && prev[v]!=trackSwitchNodes[v] && v!=startingBlock && u!=trackSwitchNodes[v];
                bool isIllegallyEnteringYard = u==0 && destinationBlock!=0;
                 if(!visited[u] && !isTrainBackingUp && closedBlocks.count(u)==0 && !isIllegallyEnteringYard) {
                    visited[u]=true;
@@ -163,14 +164,23 @@ vector<int> CtcOffice::getRoute(int startingBlock, int destinationBlock) {
     }
 }
 
+
+Time CtcOffice::toTimeFromSeconds(int time){
+    int hour = time/3600;
+    int minute = (time%3600)/60;
+    return {hour, minute};
+}
+
 void CtcOffice::addScheduleEntry(int trainNumber, string start, string destination, string arrivalTime){
     ScheduleEntry scheduleEntry;
     scheduleEntry.arrivalTime=toPairTime(arrivalTime);
+    scheduleEntry.trainNumber = trainNumber;
     int size = stationMap[start].size();
     int startBlock;
     // station can be accesed from multiple blocks. Must start at block where the last schedule entry ended.
-    if(size>1 && schedule_[trainNumber].size()>0) {
-        startBlock = schedule_[trainNumber][size-1].destination;
+    auto scheduleSize = schedule_[trainNumber].size();
+    if(size>1 && scheduleSize>0) {
+        startBlock = schedule_[trainNumber][scheduleSize-1].destination;
         scheduleEntry.start = startBlock;
     } else {
         startBlock = stationMap[start][0];
@@ -186,21 +196,34 @@ void CtcOffice::addScheduleEntry(int trainNumber, string start, string destinati
         auto route = getRoute(startBlock, destinationBlock);
         scheduleEntry.authority = computeAuthority(route);
         scheduleEntry.suggestedSpeed = computeSuggestedSpeed(route);
+        int timeToDestination = computeTimeToDestination(route);
+        auto pairArrivalTime = toPairTime(arrivalTime);
+        auto arrivalTimeInSeconds = pairArrivalTime.first*60*60 + pairArrivalTime.second*60;
+        scheduleEntry.departureTime = toTimeFromSeconds(arrivalTimeInSeconds-timeToDestination);
     } else {
         scheduleEntry.destinationString = destination;
-        auto route1 = getRoute(0, stationBlocks[0]);
-        auto route2 = getRoute(0, stationBlocks[1]);
+        auto route1 = getRoute(startBlock, stationBlocks[0]);
+        auto route2 = getRoute(startBlock, stationBlocks[1]);
         scheduleEntry.destination = route1.size()<route2.size()? stationBlocks[0]: stationBlocks[1];
         scheduleEntry.authority = route1.size()<route2.size()? computeAuthority(route1): computeAuthority(route2);
         scheduleEntry.suggestedSpeed = route1.size()<route2.size()? computeSuggestedSpeed(route1): computeSuggestedSpeed(route2);
-        int departureTime = route1.size()<route2.size()? computeTimeToDestination(route1): computeTimeToDestination(route2);
-        scheduleEntry.departureTime = {0, departureTime};
-       qDebug() << "Departure Time: " << departureTime;
+        int timeToDestination = route1.size()<route2.size()? computeTimeToDestination(route1): computeTimeToDestination(route2);
+        auto pairArrivalTime = toPairTime(arrivalTime);
+        auto arrivalTimeInSeconds = pairArrivalTime.first*60*60 + pairArrivalTime.second*60;
+        scheduleEntry.departureTime = toTimeFromSeconds(arrivalTimeInSeconds-timeToDestination);
     }
     schedule_[trainNumber].push_back(scheduleEntry);
+    trainHeap.push(scheduleEntry);
+    auto top = trainHeap.top();
+    string s = "hi";
 }
 
-void CtcOffice::buildGreenStationMap() {
+std::priority_queue<ScheduleEntry, vector<ScheduleEntry>, compare> CtcOffice::getTrainHeap(){
+    return trainHeap;
+}
+
+void CtcOffice::buildGreenLineStationMap() {
+    // TODO: Make stationmap entries lowercase. Convert input form gui to lowercase
     stationMap["Yard"] = {0};
     stationMap["Pioneer"] = {2};
     stationMap["Edgebrook"] = {9};
@@ -212,7 +235,7 @@ void CtcOffice::buildGreenStationMap() {
     stationMap["Overbrook"] = {57,123};
     stationMap["Glenbury"] = {65,114};
     stationMap["Dormont"] = {105,73};
-    stationMap["Mt Lebanon"] = {77};
+    stationMap["MT Lebanon"] = {77};
     stationMap["Poplar"] = {88};
     stationMap["Castle Shannon"] = {96};
 
@@ -225,16 +248,18 @@ TrainEntry CtcOffice::dispatchTrain(int trainNumber, ScheduleEntry scheduleEntry
 }
 
 bool CtcOffice::checkForDispatch(int time){
-    for(auto element: schedule_) {
-        for(auto scheduleEntry: element.second){
-            int timeInSeconds = scheduleEntry.departureTime.first*60*60 + scheduleEntry.departureTime.second*60;
-           if(timeInSeconds==time){
-               dispatchTrain(element.first, scheduleEntry);
-               return true;
-           }
-        }
+    auto scheduleEntry = trainHeap.top();
+    auto departureTime = trainHeap.top().departureTime;
+    if(time == departureTime.first*60*60 + departureTime.second*60) {
+        dispatchTrain(scheduleEntry.trainNumber, scheduleEntry);
+        trainHeap.pop();
+        return true;
     }
     return false;
+}
+
+vector<TrainEntry> CtcOffice::getDispatchedTrains(){
+return dispatchedTrains;
 }
 
 vector<int> CtcOffice::sendSwitchPosition(int switchNode, int blockToConnect){
@@ -251,10 +276,33 @@ vector<bool> CtcOffice::sendClosedBlocks(){
     return isBlockClosed;
 }
 
+int CtcOffice::getTrainFromOccupancy(int block){
+    for(auto entry: dispatchedTrains) {
+        if(entry.authority[block]){
+            return entry.trainNumber;
+        }
+    }
+    // occupancy is not from a train
+    return -1;
+}
+
 void CtcOffice::updateOccupancy(vector<bool> occupancy){
-    // TODO: Check for track failure
     occupancies = occupancy;
+    totalOccupancies = std::count(occupancy.begin(), occupancy.end(), 1);
     // TODO: update authority, need a slot for this
+}
+
+void CtcOffice::updateAuthorityGivenOccupancy(){
+    for(int i = 0; i<occupancies.size(); i++){
+        if(occupancies[i]){
+            auto train = getTrainFromOccupancy(i);
+
+        }
+    }
+}
+
+int CtcOffice::getTotalOccupanccy(){
+    return totalOccupancies;
 }
 
 void CtcOffice::buildGreenLineGraph() {
@@ -313,6 +361,53 @@ void CtcOffice::buildGreenLineGraph() {
 
 }
 
+void CtcOffice::buildRedLineGraph(){
+    // TODO: Fix this
+    trackGraph = vector<vector<int>>(77);
+    trackGraph[1].push_back(2);
+    trackGraph[1].push_back(16);
+    for(int i =2; i<76; i++) {
+        trackGraph[i].push_back(i+1);
+        trackGraph[i].push_back(i-1);
+    }
+    //switches
+    trackGraph[72].pop_back();
+    trackGraph[72].push_back(33);
+    trackGraph[71].clear();
+    trackGraph[71].push_back(70);
+    trackGraph[71].push_back(38);
+    trackGraph[67].pop_back();
+    trackGraph[67].push_back(44);
+    trackGraph[66].clear();
+    trackGraph[66].push_back(65);
+    trackGraph[66].push_back(52);
+    trackGraph[9].push_back(0);
+    trackGraph[0].push_back(9);
+    trackGraph[16].push_back(1);
+    trackGraph[27].push_back(76);
+    trackGraph[33].push_back(72);
+    trackGraph[38].push_back(71);
+    trackGraph[44].push_back(67);
+    trackGraph[52].push_back(66);
+
+
+    trackGraph[76].push_back(75);
+    trackGraph[76].push_back(27);
+}
+
+void CtcOffice::buildRedLineStationMap(){
+    // TODO: Make stationmap entries lowercase. Convert input form gui to lowercase
+    stationMap["Yard"] = {0};
+    stationMap["Shadyside"]={7};
+    stationMap["Herron Ave"] = {16};
+    stationMap["Swissville"] = {21};
+    stationMap["Penn Station"] = {25};
+    stationMap["Steel Plaza"] = {35};
+    stationMap["First Ave"] = {45};
+    stationMap["Station Square"] = {48};
+    stationMap["South Hills Junction"] = {60};
+}
+
 int CtcOffice::computeTimeToDestination(vector<int> route) {
     double timeToDestination = 0;
     int suggestedSpeed = computeSuggestedSpeed(route);
@@ -329,15 +424,12 @@ int CtcOffice::computeTimeToDestination(vector<int> route) {
             stationsToStopAt++;
             // TODO: Don't include destination station in time
         }
-
-        // 0.60 is arbritary. Trying to account for acceleration and stuff;
-        // in minutes
-
     }
     // in seconds
     timeToDestination = ((totalBlockLength/1000.00)/suggestedSpeed)*60*60 + stationsToStopAt*30;
+    return ceil(timeToDestination);
     // return time in minutes
-    return std::ceil(timeToDestination/60);
+    //return std::ceil(timeToDestination/60);
 }
 
 int CtcOffice::computeSuggestedSpeed(vector<int> route){
@@ -367,7 +459,6 @@ void CtcOffice::addClosedBlocks(vector<int> blocks) {
     for(auto block: blocks){
         closedBlocks.insert(block);
     }
-    sendClosedBlocks();
 }
 
 std::unordered_map<int, std::vector<ScheduleEntry>> CtcOffice::getSchedule(){

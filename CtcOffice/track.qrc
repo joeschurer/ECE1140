@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>Green_Track_Layout.csv</file>
+        <file>Red_Track_Layout.csv</file>
     </qresource>
 </RCC>
