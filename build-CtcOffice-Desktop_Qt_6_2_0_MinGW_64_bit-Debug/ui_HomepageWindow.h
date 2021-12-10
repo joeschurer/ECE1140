@@ -50,6 +50,8 @@ public:
     QLineEdit *timeMinuteLineEdit;
     QLabel *label_13;
     QLabel *label_14;
+    QLabel *label_19;
+    QLineEdit *trackLineLineEdit;
     QWidget *mangeTrainsPage;
     QPushButton *uploadScheduleButton;
     QTableWidget *trainTableWidget;
@@ -193,6 +195,13 @@ public:
         label_14 = new QLabel(homepage);
         label_14->setObjectName(QString::fromUtf8("label_14"));
         label_14->setGeometry(QRect(30, 30, 47, 14));
+        label_19 = new QLabel(homepage);
+        label_19->setObjectName(QString::fromUtf8("label_19"));
+        label_19->setGeometry(QRect(30, 80, 81, 16));
+        trackLineLineEdit = new QLineEdit(homepage);
+        trackLineLineEdit->setObjectName(QString::fromUtf8("trackLineLineEdit"));
+        trackLineLineEdit->setGeometry(QRect(100, 80, 113, 21));
+        trackLineLineEdit->setStyleSheet(QString::fromUtf8(""));
         stackedWidget->addWidget(homepage);
         mangeTrainsPage = new QWidget();
         mangeTrainsPage->setObjectName(QString::fromUtf8("mangeTrainsPage"));
@@ -405,7 +414,7 @@ public:
 
         retranslateUi(HomepageWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(HomepageWindow);
@@ -425,6 +434,8 @@ public:
         label_12->setText(QCoreApplication::translate("HomepageWindow", "Number of Dispatched Trains", nullptr));
         label_13->setText(QCoreApplication::translate("HomepageWindow", ":", nullptr));
         label_14->setText(QCoreApplication::translate("HomepageWindow", "Time: ", nullptr));
+        label_19->setText(QCoreApplication::translate("HomepageWindow", "Current Line:", nullptr));
+        trackLineLineEdit->setText(QString());
         uploadScheduleButton->setText(QCoreApplication::translate("HomepageWindow", "Upload Schedule", nullptr));
         QTableWidgetItem *___qtablewidgetitem2 = trainTableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem2->setText(QCoreApplication::translate("HomepageWindow", "Train", nullptr));

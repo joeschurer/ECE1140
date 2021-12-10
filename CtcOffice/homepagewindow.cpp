@@ -17,6 +17,14 @@ int simulationSpeed = 15;
 HomepageWindow::HomepageWindow(QWidget *parent, CtcOffice *ctcOffice)
     : QMainWindow(parent), ui(new Ui::HomepageWindow), ctcOffice_(ctcOffice) {
   ui->setupUi(this);
+  auto line = ui->trackLineLineEdit;
+  if(ctcOffice_->getCurrentLine()==Green){
+      line->setStyleSheet("color: ""green""");
+      line->setText("Green");
+  } else {
+      line->setStyleSheet("color: ""red""");
+      line->setText("Red");
+  }
   initializeTestInterfaceUi();
 }
 
@@ -91,58 +99,6 @@ void HomepageWindow::updateTrainTable(
     }
   }
 }
-void HomepageWindow::updateTrainTable(std::list<ScheduleEntry> schedule) {
-  /*
-  std::list<ScheduleEntry>::iterator current=schedule.begin();
-  auto next = std::next(current,1);
-  auto trainTableWidget = ui->trainTableWidget;
-  // from yard to first station
-  int numRows = trainTableWidget->rowCount();
-  trainTableWidget->insertRow(numRows);
-  auto numTrains = ctcOffice_->getNumTrains();
-  string trainString = "Train " + std::to_string(numTrains);
-  trainTableWidget->setItem(numRows, 0, new
-  QTableWidgetItem(trainString.c_str())); string routeString = "Yard->" +
-  current->infrastructure; trainTableWidget->setItem(numRows, 1, new
-  QTableWidgetItem(routeString.c_str()));
-  // dwell is one minute
-  auto arrivalTime = std::stod(current->timeToStation) -1;
-  double previousDepartureTime = arrivalTime+1;
-  string timeString =
-  utility::convertMinutesToMinuteAndSecond(std::to_string(arrivalTime));
-  trainTableWidget->setItem(numRows, 2, new
-  QTableWidgetItem(timeString.c_str())); auto suggestedSpeed =
-  ctcOffice_->computeRouteSuggestedSpeed(routeString);
-  trainTableWidget->setItem(numRows, 3, new
-  QTableWidgetItem(std::to_string(suggestedSpeed).c_str())); auto authority =
-  ctcOffice_->computeRouteAuthority(routeString);
-  trainTableWidget->setItem(numRows, 4, new
-  QTableWidgetItem(std::to_string(authority).c_str()));
-  ctcOffice_->getRouteBlockList(routeString);
-  // other station
-  for (current = schedule.begin(); next != schedule.end(); ++current){
-      int numRows = trainTableWidget->rowCount();
-      trainTableWidget->insertRow(numRows);
-      trainTableWidget->setItem(numRows, 0, new QTableWidgetItem("Train 1"));
-      routeString = current->infrastructure + "->" + next->infrastructure;
-      trainTableWidget->setItem(numRows, 1, new
-  QTableWidgetItem(routeString.c_str())); auto arrivalTime =
-  std::stod(next->timeToStation) + previousDepartureTime -1; string timeString =
-  utility::convertMinutesToMinuteAndSecond(std::to_string(arrivalTime));
-      trainTableWidget->setItem(numRows, 2, new
-  QTableWidgetItem(timeString.c_str())); auto suggestedSpeed =
-  ctcOffice_->computeRouteSuggestedSpeed(routeString);
-      trainTableWidget->setItem(numRows, 3, new
-  QTableWidgetItem(std::to_string(suggestedSpeed).c_str())); auto authority =
-  ctcOffice_->computeRouteAuthority(routeString);
-      trainTableWidget->setItem(numRows, 4, new
-  QTableWidgetItem(std::to_string(authority).c_str()));
-      ctcOffice_->getRouteBlockList(routeString);
-      next++;
-      // 1 minute dwell
-      previousDepartureTime = arrivalTime + 1;
-  }*/
-}
 
 void HomepageWindow::updateTrainComboBox() {
   /*
@@ -175,28 +131,6 @@ void HomepageWindow::on_plusButton_clicked() {
     }
     updateTrainTable(ctcOffice_->getSchedule());
   }
-
-  /*
-  if(!scheduleTrainText.isEmpty() && !scheduleRouteText.isEmpty() &&
-  !scheduleArrivalText.isEmpty()){ auto trainTableWidget = ui->trainTableWidget;
-      int numRows = trainTableWidget->rowCount();
-      trainTableWidget->insertRow(numRows);
-      trainTableWidget->setItem(numRows, 0, new
-  QTableWidgetItem(scheduleTrainText)); trainTableWidget->setItem(numRows, 1,
-  new QTableWidgetItem(scheduleRouteText)); string timeString =
-  utility::convertMinutesToMinuteAndSecond(scheduleArrivalText.toStdString());
-      trainTableWidget->setItem(numRows, 2, new
-  QTableWidgetItem(timeString.c_str()));
-   //   auto suggestedSpeed =
-  ctcOffice_->computeRouteSuggestedSpeed(scheduleRouteText.toStdString());
-      trainTableWidget->setItem(numRows, 3, new
-  QTableWidgetItem(std::to_string(suggestedSpeed).c_str()));
-    //  auto authority =
-  ctcOffice_->computeRouteAuthority(scheduleRouteText.toStdString());
-      trainTableWidget->setItem(numRows, 4, new
-  QTableWidgetItem(std::to_string(authority).c_str()));
-      ctcOffice_->getRouteBlockList(scheduleRouteText.toStdString());
-  }*/
 }
 
 void HomepageWindow::on_addTrackSectionButton_clicked() {
