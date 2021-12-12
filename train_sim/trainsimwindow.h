@@ -14,8 +14,12 @@ class trainsimwindow : public QMainWindow
 public:
     trainsimwindow(QWidget *parent = nullptr);
     ~trainsimwindow();
+    int selectedLine;
 
 private:
     Ui::trainsimwindow *ui;
+
+public slots:
+    void setLine(int);
 };
 #endif // TRAINSIMWINDOW_H

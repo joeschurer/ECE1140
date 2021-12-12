@@ -7,8 +7,7 @@ int curr_block = -1;
 bool block_selected = false;
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     //PLC plc;
     ui->setupUi(this);
@@ -61,6 +60,7 @@ void MainWindow::upload_clicked(){
 }
 
 void MainWindow::sel_line(){
+    //qDebug() << globalLine;
     block_selected= false;
     //first clear the drop-down
     ui->wayside_select->clear();
@@ -72,7 +72,7 @@ void MainWindow::sel_line(){
     //determine which line is selected
     if(ui->line_select->currentText() == "Red Line"){
         //red
-        num_waysides = 5;
+        num_waysides = 3;
         curr_line = "red";
         ui->sel_line->setText(QStringLiteral("Red Line"));
     }

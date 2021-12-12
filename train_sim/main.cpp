@@ -11,8 +11,10 @@
 #include "traincalculate.h"
 #include "engineer.h"
 #include "swtcui.h"
+#include "models.h"
 
 #include <QApplication>
+int globalLine = 0;
 
 int main(int argc, char *argv[])
 {
@@ -30,6 +32,8 @@ int main(int argc, char *argv[])
     window.setWindowTitle("Track Model");
     window.show();
 
+    //globalLine = ts.selectedLine;
+    //qDebug() << "line is" << globalLine;
     //Beacon Test UI
     Beacon beacon;
     beacon.show();
@@ -54,6 +58,7 @@ int main(int argc, char *argv[])
     w.show();
     s.show();
     e.show();
+
     QObject::connect(&e, SIGNAL(SubmitKpKi(double,double)), &s, SLOT(KpKiChanged(double,double)));
     QObject::connect(&s, SIGNAL(TempDifferent(int)), &w, SLOT(TempChanged(int)));
     QObject::connect(&s, SIGNAL(LeftDoorsDifferent(bool)), &w, SLOT(LeftDoorsChanged(bool)));

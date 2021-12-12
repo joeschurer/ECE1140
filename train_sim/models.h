@@ -7,10 +7,12 @@
 #include <unordered_map>
 #include <unordered_set>
 
+
 using std::string;
 using std::vector;
 extern int systemClock;
 extern int simulationSpeed;
+extern int globalLine;
 
 typedef std::pair<int, int> Time;
 enum TrackLine {Green, Red};

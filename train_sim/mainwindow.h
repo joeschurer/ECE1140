@@ -43,7 +43,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QString fileName = "";
-    //add line here
     WaysideController waysideController;
 
 signals:

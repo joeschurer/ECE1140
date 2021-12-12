@@ -1,7 +1,10 @@
 #include "waysidecontroller.h"
 #include <QDebug>
+#include "models.h"
 
 WaysideController::WaysideController(int lineSel){
+    lineSel =globalLine;//temp set to red
+    qDebug() << "Sel line is" << lineSel;
     track_model.create_line(lineSel);
 
     //divide sections between PLCs

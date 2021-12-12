@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include "models.h"
 
 using namespace std;
 
@@ -35,13 +36,14 @@ void LineSelect::on_selectgreen_clicked()
 
     ifile.close();
     ofile.close();
-
+    globalLine = 0;
     this->close();
 }
 
 
 void LineSelect::on_selectred_clicked()
 {
+
     ifstream ifile;
     ifile.open("C:/Users/Lexi/Documents/ECE 1140/TrackModel/RedLine.txt");
 
@@ -56,7 +58,7 @@ void LineSelect::on_selectred_clicked()
 
     ifile.close();
     ofile.close();
-
+    globalLine = 1;
     this->close();
 }
 

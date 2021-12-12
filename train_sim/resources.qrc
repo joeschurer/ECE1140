@@ -8,5 +8,8 @@
         <file>PLCs/PLCdefaultg2.plc</file>
         <file>PLCs/PLCdefaultg3.plc</file>
         <file>PLCs/PLCdefaultg4.plc</file>
+        <file>PLCs/PLCdefaultr1.plc</file>
+        <file>PLCs/PLCdefaultr2.plc</file>
+        <file>PLCs/PLCdefaultr3.plc</file>
     </qresource>
 </RCC>

@@ -99,6 +99,7 @@ bool PLC::readPLCFile(string file){
                 inputString.erase(0,6);
                 qDebug() << QString::fromStdString(inputString);
                 ownedBlocks = GetValues(inputString);
+
                 start++;
             } else if(start ==1){
                 inputString.erase(0,6);
@@ -122,9 +123,9 @@ bool PLC::readPLCFile(string file){
         return false;
     }
 
-    //for(int i=0;i<ownedBlocks.size();i++){
-       // qDebug() << ownedBlocks[i];
-    //}
+    for(int i=0;i<ownedBlocks.size();i++){
+        qDebug() << ownedBlocks[i];
+    }
     inputFile.close();
     return true;
 }

@@ -13,3 +13,7 @@ trainsimwindow::~trainsimwindow()
     delete ui;
 }
 
+void trainsimwindow::setLine(int line){
+    selectedLine =line;
+}
+
