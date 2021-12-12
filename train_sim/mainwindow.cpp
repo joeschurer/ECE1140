@@ -406,3 +406,7 @@ void MainWindow::receiveThroughput(int index){
         sel_block();
     }
 }
+
+void MainWindow::receiveLine(string line){
+
+}

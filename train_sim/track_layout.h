@@ -29,6 +29,10 @@ struct block{
     bool crossing;
     //0 is inactive, 1 active
     bool crossingState;
+    int prev;
+    std::vector<int> check;
+    block* prevBlock = nullptr;
+    block* nextBlock = nullptr;
 
     //0 = green, 1 = yellow, 2 = red
     int lights = 0;

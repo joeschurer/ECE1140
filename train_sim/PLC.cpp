@@ -16,22 +16,66 @@ std::vector<std::string> linetoStrings(std::string s, std::string delimeter) {
     return result;
 }
 
-std::vector<int> GetValues(std::string str)
-{
+std::vector<int> GetValues(std::string str){
     std::vector<int> v;
     std::stringstream ss(str);
-
     int i;
-
-    while (ss >> i)
-    {
+    while (ss >> i){
         v.push_back(i);
         //qDebug() << i;
         if (ss.peek() == ',')
             ss.ignore();
     }
-
     return v;
+}
+
+//returns
+void PLC::setPrev(int index,int gap =3){
+    //starting behind the train
+
+
+    int tempIndex=index;
+    bool otherOcc=false;
+    vector<int> prevVec;
+    for(int i=0; i< gap+2;i++){
+        if(track->track[tempIndex].occupancy==true && i>0){
+            otherOcc=true;
+            break;
+        }
+
+        if(track->track[tempIndex].switch_tail==true){
+            int nextPrev = switchPrev(tempIndex);
+            if(nextPrev == -1){
+                break;
+            }
+            prevVec.push_back(nextPrev);
+            tempIndex = nextPrev;
+        }else{
+            tempIndex = track->track[tempIndex].prev;
+            prevVec.push_back(track->track[tempIndex].prev);
+        }
+
+    }
+
+    for(int i=0;i<prevVec.size();i++){
+        track->track[prevVec[i]].auth= (!otherOcc);
+    }
+
+}
+
+//return the index of the previous block if it is a switch
+int PLC::switchPrev(int index){
+    //do switch heads matter here, maybe not...
+    int prev = track->track[index].prev;
+    //is the previous a switch connecting to it
+    if(track->track[prev].switch_head==true){
+        if(track->track[prev].tailConnect == index){
+            return prev;
+
+        } else {
+            return -1;
+        }
+    }
 }
 
 PLC::PLC(){
@@ -108,23 +152,93 @@ vector<vector<int>> PLC::parsePLC(){
                 if(track->track[SWPOS].occupancy==true || track->track[SWPOS].maintenance == true){
                     qDebug() << "Avoiding switching occupied/maintenance switch";
                 } else {
-                    if(track->track[SWPOS].headConnect!=BL){
-                        qDebug() << "Switch: " << SWPOS << "auth for: " << BL << "curr conn:" <<track->track[SWPOS].headConnect;
-                        track->toggle_switch(SWPOS);
-                        toggleSW.push_back(SWPOS);
-                        qDebug()<< "Toggled switch: " << SWPOS;
+
+                    //Check the check blocks
+                    bool safe = true;
+                    for(int i=0; i<track->track[SWPOS].check.size(); i++){
+                        int index = track->track[SWPOS].check[i];
+                        if(track->track[index].occupancy == true){
+                            safe = false;
+                            qDebug() << "Stopped unsafe switching at " << SWPOS << " due to occ at "<< index;
+                        }
                     }
+
+                    //get the auth of tails to do routing
+                    bool authBL = track->track[BL].auth;
+                    bool auth2 = track->track[track->track[SWPOS].headOptions[1]].auth;
+                    if(track->track[SWPOS].headOptions[0] != BL){
+                        auth2 = track->track[track->track[SWPOS].headOptions[0]].auth;
+                    }
+
+
+                    //check for auth on the block
+                    if(track->track[BL].auth == true || (auth2 == true && authBL ==true)){
+                         qDebug() << "Switch: " << SWPOS << "auth for: " << BL << "curr conn:" <<track->track[SWPOS].headConnect;
+                        if(track->track[SWPOS].headConnect!=BL){
+                            //if safe switch
+                            if(safe == true){
+                                track->toggle_switch(SWPOS);
+                                toggleSW.push_back(SWPOS);
+                                qDebug()<< "Toggled switch: " << SWPOS;
+
+                                //set the authority in the proper position
+                            }
+                        }
+                    } else {
+                        if(track->track[SWPOS].headConnect==BL){
+                            qDebug() << "Switch: " << SWPOS << "auth for: " << BL << "curr conn:" <<track->track[SWPOS].headConnect;
+                            //if safe switch
+                            if(safe == true){
+                                track->toggle_switch(SWPOS);
+                                toggleSW.push_back(SWPOS);
+                                qDebug()<< "Toggled switch: " << SWPOS;
+
+                            }
+                        }
+                    }
+
+                    int authSel;
+                    vector<int> lauthVec,rauthVec;
+                    lauthVec = GetValues(plcContainer[i][5]);
+                    rauthVec = GetValues(plcContainer[i][7]);
+                    if(track->track[SWPOS].headConnect==BL){//USE LAUTH
+                        if(lauthVec[0]!= -1){
+                            for(int i=0; i< lauthVec.size();i++){
+                                track->track[lauthVec[i]].auth = false;
+                            }
+                        }
+                        if(rauthVec[0]!= -1){
+                            for(int i=0; i< rauthVec.size();i++){
+                                track->track[rauthVec[i]].auth = true;
+                            }
+                        }
+                    }else {
+                        if(lauthVec[0]!= -1){
+                            for(int i=0; i< lauthVec.size();i++){
+                                track->track[lauthVec[i]].auth = true;
+                            }
+                        }
+                        if(rauthVec[0]!= -1){
+                            for(int i=0; i< rauthVec.size();i++){
+                                track->track[rauthVec[i]].auth = false;
+                            }
+                        }
+                    }
+
+
+
+
                 }
 
             }
         } else if(plcContainer[i][0] == "CROSSING"){
             int cross = std::stoi(plcContainer[i][1]);
             if(track->track[cross].occupancy == true){
-                track->track[cross].crossing == true;
+                track->track[cross].crossing = true;
                 qDebug() << "Crossing active at: " << cross;
             } else{
                 toggleCROSS.push_back(cross);
-                track->track[cross].crossing == false;
+                track->track[cross].crossing = false;
             }
         }
     }
@@ -132,19 +246,11 @@ vector<vector<int>> PLC::parsePLC(){
     //update authority with gap
     vector<bool> newAuth;
     int gap = 2;//maybe read from PLC
-    for(int i=0;i<track->track.size(); i++){
-        //remove this eventually
-        newAuth.push_back(track->track[i].auth);
-
-        if(track->track[i].occupancy==true){
-            //search for trains in 3 blocks on either side
-        }
-    }
+    vector<int> occVector;
 
     for(int i=0;i<ownedBlocks.size();i++){
-        if(track->track[i].occupancy==true){
-            //search for trains in GAP blocks on either side
-
+        if(track->track[ownedBlocks[i]].occupancy==true){
+           setPrev(i);
         }
     }
 

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <QDebug>
 #include "models.h"
+#include <sstream>
 
 
 std::vector<std::string> lineSplit(std::string s, std::string delimeter) {
@@ -17,6 +18,19 @@ std::vector<std::string> lineSplit(std::string s, std::string delimeter) {
     }
     result.push_back(s.substr(start, end-start));
     return result;
+}
+
+std::vector<int> splitValues(std::string str){
+    std::vector<int> v;
+    std::stringstream ss(str);
+    int i;
+    while (ss >> i){
+        v.push_back(i);
+        //qDebug() << i;
+        if (ss.peek() == ':')
+            ss.ignore();
+    }
+    return v;
 }
 
 track_layout::track_layout(){
@@ -58,6 +72,8 @@ bool track_layout::create_line(int line){
             temp.speed_limit = std::stoi(splitLine[5]);
             //std::cout<< temp.speed_limit<<std::endl;
             std::string inf = splitLine[6];
+            temp.prev = std::stoi(splitLine[10]);
+            qDebug() << temp.prev;
             //std::cout<<  inf<<std::endl;
             if(inf.find("STATION") != std::string::npos){
                 //std::cout << "STATION: ";
@@ -76,6 +92,7 @@ bool track_layout::create_line(int line){
                 sw.pop_back();
                 //std::cout<<  sw<<std::endl;
                 temp.switch_head=true;
+                temp.check = splitValues(splitLine[11]);
                 if(sw.find("ard") != std::string::npos){
                     std::string left = sw.substr(0, sw.find('-'));
                     sw.erase(0, sw.find('-')+1);

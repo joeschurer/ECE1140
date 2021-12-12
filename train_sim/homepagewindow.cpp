@@ -316,7 +316,7 @@ void HomepageWindow::updateOccupancyTable(vector<bool> occupancy) {
 
 void HomepageWindow::timerSlot() {
   systemClock += 1;
-  qDebug() << systemClock;
+  //qDebug() << systemClock;
   bool trainDispatched = ctcOffice_->checkForDispatch(systemClock);
   Time currentTime = ctcOffice_->toTimeFromSeconds(systemClock);
   ui->timeHourLineEdit->setText(std::to_string(currentTime.first).c_str());

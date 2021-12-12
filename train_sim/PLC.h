@@ -18,6 +18,10 @@ private:
     vector<int> * toggledSwitches;
     vector<int> * toggledCrossings;
 
+    void setPrev(int,int);
+    int switchPrev(int);
+
+
 public:
     vector<vector<int>> parsePLC();
     bool readPLCFile(string);

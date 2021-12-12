@@ -43,6 +43,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QString fileName = "";
+    //add line here
     WaysideController waysideController;
 
 signals:
@@ -63,6 +64,7 @@ public slots:
     void getMaintenaceMode(std::vector<bool> blocks);
     void changeSwitch(std::vector<int> pos);
     void receiveThroughput(int);
+    void receiveLine(string);
 
 
 };
