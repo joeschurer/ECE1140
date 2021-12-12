@@ -53,26 +53,24 @@ void HWTrainController::sendCommandStr() {
 	else
 		sprintf(power, "%.1f", commandedPower);
 	std::string tmp = power;
-	std::cout << tmp << std::endl;
 	command += std::to_string(temperature) + tmp;
 
 	for(int i = 0; i < LENGTH; i++) {
 		commandArr[i] = command.at(i);
 	}
-	/*
-	for (int i = 0; i < 9; i++) {
-		commandArr[i+8] = power[i];
+
+	for (int i = 0; i < LENGTH; i++) {
+		std::cout << commandArr[i];
 	}
-	*/
-	std::cout << commandArr << " " << setpointSpeed << std::endl;
+	std::cout << std::endl;
 	serWrite(fd, commandArr, command.length());
 }
 
 void HWTrainController::readTrackSignal() {
 	int count = 0;
-	char tmp[25];
+	char tmp[14];
 	trackSignal = "";
-	if ((count = serRead(fd, tmp, 25)) == 25) {
+	if ((count = serRead(fd, tmp, 14)) == 14) {
 		std::cout << count << std::endl;
 		std::cout << tmp << std::endl;
 	}

@@ -2,13 +2,12 @@
 #define HWTRAINCONTROLLER_H
 
 #include <string>
-#include <wiringSerial.h>
+#include <pigpio.h>
 #include <unistd.h>
 #include "ExternalInputs.hpp"
 
 #define LENGTH 15
 #define MAX_POWER 120000
-#define TRAIN_MASS 1
 #define T 1
 
 class HWTrainController {

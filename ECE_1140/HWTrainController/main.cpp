@@ -1,10 +1,5 @@
 #include <iostream>
-#include <cstring>
 #include <pigpio.h>
-//#include <wiringPi.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <termios.h>
 #include "HWTrainController.hpp"
 #include "ExternalInputs.hpp"
 #include "i2cControl.hpp"
@@ -23,8 +18,6 @@
 #define lcdAddr 0x27
 
 void pinSetup();
-int connect(int);
-void setBlocking(int);
 void displayValues(ExternalInputs, HWTrainController);
 
 I2cControl *i2c = new I2cControl(1);
@@ -34,21 +27,9 @@ int main() {
 
 	pinSetup();
 
-	/*
-	char portname[] = "/dev/ttyS0";
-	int fd = open(portname, O_RDWR | O_NOCTTY | O_SYNC);
-	if (fd < 0) {
-		std::cout << "Error opening port\n";
-		return 1;
-	}
-	*/
-
-	//connect(fd);
-	//setBlocking(fd);
-
 	char command[LENGTH];	// LENGTH is inherited from HWTrainController.hpp
 	int serialPort;
-	if ((serialPort = serOpen("/dev/ttyS0", 9600, 0)) < 0) {
+	if ((serialPort = serOpen("/dev/ttyAMA0", 9600, 0)) < 0) {
 		std::cout << "Unable to open serial device\n";
 		return 1;
 	}
@@ -132,7 +113,7 @@ int main() {
 		gpioDelay(500);
 		tc.sendCommandStr();
 		displayValues(exInputs, tc);
-		//tc.readTrackSignal();
+		tc.readTrackSignal();
 	}
 
 	delete i2c;
@@ -164,58 +145,6 @@ void displayValues(ExternalInputs e, HWTrainController tc) {
 	lcd.lcdString("Speed Limit:");
 	lcd.setCursorPositionRowCol(4, 13);
 	lcd.lcdString(e.getSpeedLimitStr());
-}
-
-int connect(int fd) {
-		
-	struct termios tty;
-	if (tcgetattr(fd, &tty) != 0) {
-		std::cout << "tcgetattr error\n";
-		return -1;
-	}
-
-	cfsetospeed(&tty, B9600);
-	cfsetispeed(&tty, B9600);
-
-	tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8;		// 8-bit chars
-
-	//disable IGNBRK for mismatched speed tests; otherwise receive break
-	// as \000 chars
-	tty.c_iflag &= ~IGNBRK;		// disable break processing
-	tty.c_lflag = 0;			// no signaling chars, no echo, no canonical processing
-	tty.c_oflag = 0;                // no remapping, no delays
-    tty.c_cc[VMIN]  = 0;            // read doesn't block
-	tty.c_cc[VTIME] = 5;            // 0.5 seconds read timeout
-
-    tty.c_iflag &= ~(IXON | IXOFF | IXANY); // shut off xon/xoff ctrl
-
-    tty.c_cflag |= (CLOCAL | CREAD);// ignore modem controls,
-                                        // enable reading
-    tty.c_cflag &= ~(PARENB | PARODD);      // shut off parity
-    tty.c_cflag |= 0;	// no parity
-    tty.c_cflag &= ~CSTOPB;
-    tty.c_cflag &= ~CRTSCTS;
-
-    if (tcsetattr (fd, TCSANOW, &tty) != 0) {
-		std::cout << "Error from tcssetarr\n";
-        return -1;
-    }
-    return 0;
-}
-
-void setBlocking (int fd) {
-        struct termios tty;
-        memset (&tty, 0, sizeof tty);
-        if (tcgetattr (fd, &tty) != 0) {
-        	std::cout << "Error from tggetattr\n";
-            return;
-        }
-
-        tty.c_cc[VMIN]  = 0;	// no blocking
-        tty.c_cc[VTIME] = 1;    // 0.5 seconds read timeout
-
-        if (tcsetattr (fd, TCSANOW, &tty) != 0)
-    		std::cout << "Error setting term attributes\n";
 }
 
 void pinSetup() {
