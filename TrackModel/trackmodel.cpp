@@ -83,16 +83,20 @@ void TrackModel::trackModelDisplay() {
     QColor green(0, 250, 0, 125);
     QColor nor(100, 100, 100, 0);
     QColor gray(100, 100, 100, 100);
+    QColor yell(255, 255, 143, 125);
     QColor col;
 
     for (int i=0; i<bn; i++) {
         if (layout.line->blocks[i].circuitBroken || layout.line->blocks[i].trackBroken || layout.line->blocks[i].powerBroken) {
             col = red;
         }
+        else if (layout.line->blocks[i].closed) {
+            col = yell;
+        }
         else {
             col = nor;
         }
-        for (int j=0; j<layout.line->trains.size(); j++) {
+        for (int j=0; j<(int)layout.line->trains.size(); j++) {
             if (layout.line->trains[j].location == i+1) col = blue;
         }
 
@@ -177,7 +181,12 @@ void TrackModel::trackModelDisplay() {
 
         string s = "";
         if (layout.line->blocks[i].hasStation) {
+            int bef = layout.line->blocks[i].station.passengers;
             layout.line->blocks[i].station.addPassengers();
+            int aft = layout.line->blocks[i].station.passengers;
+            int added = aft-bef;
+            layout.line->throughput += added;
+            emit throughput(layout.line->throughput);
             s = layout.line->blocks[i].station.name + ", " + to_string(layout.line->blocks[i].station.passengers);
         }
         QTableWidgetItem* sta = new QTableWidgetItem(QString::fromStdString(s));
@@ -419,11 +428,11 @@ void TrackModel::trainUpdated(vector<string> item) {
     bool found = false;
     int com = stoi(item[1]);
     string a = item[2];
-    for (int i=0; i<layout.line->blocks.size(); i++) {
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (a[i] == '0') layout.line->blocks[i].authority = false;
         else layout.line->blocks[i].authority = true;
     }
-    for (int i=0; i<layout.line->trains.size(); i++) {
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
         if (layout.line->trains[i].id == id && found == false) {
             layout.line->trains[i].commandedSpeed = com;
             found = true;
@@ -436,7 +445,10 @@ void TrackModel::trainUpdated(vector<string> item) {
         layout.line->trains.push_back(train);
     }
 
-    emit newTrainData(item);
+    vector<int> data;
+    data.push_back(id);
+    data.push_back(com);
+    emit trainData(data);
     trackModelDisplay();
 }
 
@@ -475,16 +487,18 @@ void TrackModel::trainMoved(int trainNum) {
 
     //Get occupancy and send it to the wayside
     vector<bool> occ;
-    for (int i=0; i<layout.line->blocks.size(); i++) {
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back('1');
+            occ.push_back(true);
         }
         else {
-            occ.push_back('0');
+            occ.push_back(false);
         }
     }
-    for (int i=0; i<layout.line->trains.size(); i++) {
-        occ[i] = '1';
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
+        occ[layout.line->trains[i].location] = true;
     }
     emit occupancyChanged(occ);
 
@@ -510,11 +524,11 @@ void TrackModel::actualSpeedChanged(QString item) {
 void TrackModel::on_breakCircuit_returnPressed() {
     QString item = ui->breakCircuit->text();
     int block = item.toInt();
-    if (block > layout.line->blocks.size()) {
+    if (block > (int)layout.line->blocks.size()) {
         ui->breakCircuit->clear();
     }
     else {
-        for (int i=0; i<layout.line->blocks.size(); i++) {
+        for (int i=0; i<(int)layout.line->blocks.size(); i++) {
             layout.line->blocks[i].circuitBroken = false;
             layout.line->blocks[i].trackBroken = false;
             layout.line->blocks[i].powerBroken = false;
@@ -526,16 +540,18 @@ void TrackModel::on_breakCircuit_returnPressed() {
 
     //Get occupancy and send it to the wayside
     vector<bool> occ;
-    for (int i=0; i<layout.line->blocks.size(); i++) {
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back('1');
+            occ.push_back(true);
         }
         else {
-            occ.push_back('0');
+            occ.push_back(false);
         }
     }
-    for (int i=0; i<layout.line->trains.size(); i++) {
-        occ[i] = '1';
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
+        occ[layout.line->trains[i].location] = true;
     }
     emit occupancyChanged(occ);
 
@@ -545,11 +561,11 @@ void TrackModel::on_breakCircuit_returnPressed() {
 void TrackModel::on_breakTrack_returnPressed() {
     QString item = ui->breakTrack->text();
     int block = item.toInt();
-    if (block > layout.line->blocks.size()) {
+    if (block > (int)layout.line->blocks.size()) {
         ui->breakTrack->clear();
     }
     else {
-        for (int i=0; i<layout.line->blocks.size(); i++) {
+        for (int i=0; i<(int)layout.line->blocks.size(); i++) {
             layout.line->blocks[i].circuitBroken = false;
             layout.line->blocks[i].trackBroken = false;
             layout.line->blocks[i].powerBroken = false;
@@ -561,16 +577,18 @@ void TrackModel::on_breakTrack_returnPressed() {
 
     //Get occupancy and send it to the wayside
     vector<bool> occ;
-    for (int i=0; i<layout.line->blocks.size(); i++) {
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back('1');
+            occ.push_back(true);
         }
         else {
-            occ.push_back('0');
+            occ.push_back(false);
         }
     }
-    for (int i=0; i<layout.line->trains.size(); i++) {
-        occ[i] = '1';
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
+        occ[layout.line->trains[i].location] = true;
     }
     emit occupancyChanged(occ);
 
@@ -580,11 +598,11 @@ void TrackModel::on_breakTrack_returnPressed() {
 void TrackModel::on_breakPower_returnPressed() {
     QString item = ui->breakPower->text();
     int block = item.toInt();
-    if (block > layout.line->blocks.size()) {
+    if (block > (int)layout.line->blocks.size()) {
         ui->breakPower->clear();
     }
     else {
-        for (int i=0; i<layout.line->blocks.size(); i++) {
+        for (int i=0; i<(int)layout.line->blocks.size(); i++) {
             layout.line->blocks[i].circuitBroken = false;
             layout.line->blocks[i].trackBroken = false;
             layout.line->blocks[i].powerBroken = false;
@@ -596,16 +614,18 @@ void TrackModel::on_breakPower_returnPressed() {
 
     //Get occupancy and send it to the wayside
     vector<bool> occ;
-    for (int i=0; i<layout.line->blocks.size(); i++) {
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
-            occ.push_back('1');
+            occ.push_back(true);
         }
         else {
-            occ.push_back('0');
+            occ.push_back(false);
         }
     }
-    for (int i=0; i<layout.line->trains.size(); i++) {
-        occ[i] = '1';
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
+        occ[layout.line->trains[i].location] = true;
     }
     emit occupancyChanged(occ);
 
@@ -613,7 +633,7 @@ void TrackModel::on_breakPower_returnPressed() {
 }
 
 void TrackModel::toggleSwitch(vector<int> sw) {
-    for (int i=0; i<sw.size(); i++) {
+    for (int i=0; i<(int)sw.size(); i++) {
         if (layout.line->blocks[sw[i]-1].hasSwitch == true) {
             layout.line->blocks[sw[i]-1].swtch.point1 = !layout.line->blocks[sw[i]-1].swtch.point1;
         }
@@ -622,7 +642,7 @@ void TrackModel::toggleSwitch(vector<int> sw) {
 
 void TrackModel::doorsOpen(int trainNum) {
     int a = -1;//layout.line->trains[trainNum-1].location;
-    for (int i=0; i<layout.line->trains.size(); i++) {
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
         if (layout.line->trains[i].id == trainNum) a = i;
     }
     if (a >= 0) {
@@ -651,7 +671,7 @@ void TrackModel::on_setTemp_returnPressed() {
     string a = ui->setTemp->text().toStdString();
     double temp = stod(a);
     layout.line->temp = temp;
-    for (int i=0; i<layout.line->blocks.size(); i++) {
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (temp < 32) {
             layout.line->blocks[i].heatersOn = true;
             emit heatersOn(true);
@@ -661,13 +681,14 @@ void TrackModel::on_setTemp_returnPressed() {
             emit heatersOn(false);
         }
     }
+    emit tempChanged(temp);
     trackModelDisplay();
 }
 
 void TrackModel::openDoors(vector<int> train) {
     int tn = train[0];
     int a = -1;
-    for (int i=0; i<layout.line->trains.size(); i++) {
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
         if (layout.line->trains[i].id == tn) a = i;
     }
     if (a >= 0) {
@@ -684,13 +705,79 @@ void TrackModel::openDoors(vector<int> train) {
 }
 
 void TrackModel::receiveAuth(vector<bool> auth) {
-    for (int i=0; i<auth.size(); i++) {
+    for (int i=0; i<(int)auth.size(); i++) {
         layout.line->blocks[i].authority = auth[i];
     }
 }
 
 void TrackModel::toggleCrossings(vector<int> cross) {
-    for (int i=0; i<cross.size(); i++) {
+    for (int i=0; i<(int)cross.size(); i++) {
         layout.line->blocks[cross[i]-1].swtch.point1 = !layout.line->blocks[cross[i]-1].swtch.point1;
     }
+}
+
+void TrackModel::fixBlock(int num) {
+    if (num <= (int)layout.line->blocks.size()) {
+        layout.line->blocks[num-1].circuitBroken = false;
+        ui->breakCircuit->clear();
+        layout.line->blocks[num-1].trackBroken = false;
+        ui->breakTrack->clear();
+        layout.line->blocks[num-1].powerBroken = false;
+        ui->breakPower->clear();
+    }
+
+    //Get occupancy and send it to the wayside
+    vector<bool> occ;
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
+        if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
+            occ.push_back(true);
+        }
+        else {
+            occ.push_back(false);
+        }
+    }
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
+        occ[layout.line->trains[i].location] = true;
+    }
+    emit occupancyChanged(occ);
+
+    trackModelDisplay();
+}
+
+void TrackModel::closeBlocks(vector<bool> closed) {
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
+        if (closed[i+1] == true) {
+            layout.line->blocks[i].closed = true;
+            layout.line->blocks[i].circuitBroken = false;
+            ui->breakCircuit->clear();
+            layout.line->blocks[i].trackBroken = false;
+            ui->breakTrack->clear();
+            layout.line->blocks[i].powerBroken = false;
+            ui->breakPower->clear();
+        }
+        else {
+            layout.line->blocks[i].closed = false;
+        }
+    }
+
+    //Get occupancy and send it to the wayside
+    vector<bool> occ;
+    occ.push_back(false);
+    occ.push_back(false);
+    for (int i=0; i<(int)layout.line->blocks.size(); i++) {
+        if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
+            occ.push_back(true);
+        }
+        else {
+            occ.push_back(false);
+        }
+    }
+    for (int i=0; i<(int)layout.line->trains.size(); i++) {
+        occ[layout.line->trains[i].location] = true;
+    }
+    emit occupancyChanged(occ);
+
+    trackModelDisplay();
 }

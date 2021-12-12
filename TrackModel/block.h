@@ -29,6 +29,7 @@ public:
     bool authority = false;
     bool inbound = false;
     bool outbound = false;
+    bool closed = false;
     string section;
     Beacons beacon;
     Station station;
