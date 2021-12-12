@@ -53,6 +53,10 @@ bool track_layout::create_line(int line){
 
     std::string fLine;
     QString fileName(":/line/GreenLine.txt");
+    if(line ==1){
+        fileName = ":/line/RedLine.txt";
+    }
+
     QFile inputFile(fileName);
 
     if (inputFile.open(QIODevice::ReadOnly))

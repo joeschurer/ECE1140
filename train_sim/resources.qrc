@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/line">
         <file>GreenLine.txt</file>
+        <file>RedLine.txt</file>
     </qresource>
     <qresource prefix="/PLC">
         <file>PLCs/PLCdefaultg1.plc</file>
