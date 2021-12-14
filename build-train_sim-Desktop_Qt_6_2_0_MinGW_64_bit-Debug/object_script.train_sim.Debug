@@ -17,6 +17,7 @@ debug/track_layout.o
 debug/trackmodel.o
 debug/train.o
 debug/traincalculate.o
+debug/trainfactory.o
 debug/trainmodel.o
 debug/trainmodelui.o
 debug/trainsimwindow.o
@@ -31,6 +32,7 @@ debug/moc_lineselect.o
 debug/moc_mainwindow.o
 debug/moc_swtcui.o
 debug/moc_trackmodel.o
+debug/moc_trainfactory.o
 debug/moc_trainmodel.o
 debug/moc_trainmodelui.o
 debug/moc_trainsimwindow.o

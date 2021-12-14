@@ -17,6 +17,7 @@ release/track_layout.o
 release/trackmodel.o
 release/train.o
 release/traincalculate.o
+release/trainfactory.o
 release/trainmodel.o
 release/trainmodelui.o
 release/trainsimwindow.o
@@ -31,6 +32,7 @@ release/moc_lineselect.o
 release/moc_mainwindow.o
 release/moc_swtcui.o
 release/moc_trackmodel.o
+release/moc_trainfactory.o
 release/moc_trainmodel.o
 release/moc_trainmodelui.o
 release/moc_trainsimwindow.o

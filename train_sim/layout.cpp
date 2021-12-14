@@ -12,8 +12,9 @@ Layout::Layout() {
 
     //Read data in from file line by line to create the blocks
     while (getline(layoutFile, text)) {
-        //Find and remove line name
+        //Find line name
         int div = text.find(",");
+        line->name = text.substr(0, div);
         text.erase(0, div+1);
         //Find section name
         div = text.find(",");
@@ -211,6 +212,12 @@ Layout::Layout() {
                 f = infrastructure.find(";");
                 if (f >= 0) infrastructure.erase(0, f+2);
             }
+            if (infrastructure[0] == ';') {
+                infrastructure.erase(0, 1);
+            }
+            if (infrastructure[0] == ' ') {
+                infrastructure.erase(0, 1);
+            }
         }
 
         if (dir == "Both") {
@@ -233,9 +240,13 @@ Layout::Layout() {
     for (int i=0; i<(int)line->blocks.size(); i++) {
         if (line->blocks[i].hasSwitch) {
             line->blocks[line->blocks[i].swtch.block1_1-1].hasCrossing = true;
+            line->blocks[line->blocks[i].swtch.block1_1-1].crossingLights = 2;
             line->blocks[line->blocks[i].swtch.block1_2-1].hasCrossing = true;
+            line->blocks[line->blocks[i].swtch.block1_2-1].crossingLights = 2;
             line->blocks[line->blocks[i].swtch.block2_1-1].hasCrossing = true;
+            line->blocks[line->blocks[i].swtch.block2_1-1].crossingLights = 2;
             line->blocks[line->blocks[i].swtch.block2_2-1].hasCrossing = true;
+            line->blocks[line->blocks[i].swtch.block2_2-1].crossingLights = 2;
         }
     }
 

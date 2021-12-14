@@ -28,6 +28,7 @@ SOURCES += \
     trackmodel.cpp \
     train.cpp \
     traincalculate.cpp \
+    trainfactory.cpp \
     trainmodel.cpp \
     trainmodelui.cpp \
     trainsimwindow.cpp \
@@ -54,6 +55,7 @@ HEADERS += \
     trackmodel.h \
     train.h \
     traincalculate.h \
+    trainfactory.h \
     trainmodel.h \
     trainmodelui.h \
     trainsimwindow.h \
@@ -68,6 +70,7 @@ FORMS += \
     mainwindow.ui \
     swtcui.ui \
     trackmodel.ui \
+    trainfactory.ui \
     trainmodel.ui \
     trainmodelui.ui \
     trainsimwindow.ui \
@@ -80,23 +83,37 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 SUBDIRS += \
     CtcOffice.pro \
+    CtcOffice.pro \
+    CtcOffice.pro \
     TrackModel.pro \
     TrackModel.pro \
+    TrackModel.pro \
+    TrackModel.pro \
+    sw_track_controller.pro \
+    sw_track_controller.pro \
     sw_track_controller.pro
 
 RESOURCES += \
     resources.qrc \
     resources.qrc \
+    resources.qrc \
+    resources.qrc \
+    track.qrc \
+    track.qrc \
     track.qrc
 
 DISTFILES += \
+    .gitignore \
     Blue_line_track_layout.csv \
     GreenLine.txt \
     GreenLine_CopyTest.txt \
     GreenLine_Test.csv \
     GreenLine_Test.txt \
     Green_Track_Layout.csv \
+    RedLine.txt \
     Red_Track_Layout.csv \
+    Track Layout & Vehicle Data vF.csv \
+    Track Layout & Vehicle Data vF.csv \
     Track Layout & Vehicle Data vF.csv \
     TrackModel.pro.user \
     TrackModel.pro.user.82a18af \

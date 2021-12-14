@@ -30,12 +30,13 @@ public:
     QPushButton *testYard;
     QLineEdit *toggleCrossing;
     QLabel *label_2;
+    QPushButton *red_test;
 
     void setupUi(QDialog *Wayside)
     {
         if (Wayside->objectName().isEmpty())
             Wayside->setObjectName(QString::fromUtf8("Wayside"));
-        Wayside->resize(209, 298);
+        Wayside->resize(209, 451);
         test1 = new QPushButton(Wayside);
         test1->setObjectName(QString::fromUtf8("test1"));
         test1->setGeometry(QRect(40, 20, 121, 22));
@@ -64,6 +65,9 @@ public:
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(40, 200, 121, 20));
         label_2->setAlignment(Qt::AlignCenter);
+        red_test = new QPushButton(Wayside);
+        red_test->setObjectName(QString::fromUtf8("red_test"));
+        red_test->setGeometry(QRect(40, 290, 121, 25));
 
         retranslateUi(Wayside);
 
@@ -80,6 +84,7 @@ public:
         cont1_3->setText(QCoreApplication::translate("Wayside", "Continue Test Train 3", nullptr));
         testYard->setText(QCoreApplication::translate("Wayside", "Test Yard", nullptr));
         label_2->setText(QCoreApplication::translate("Wayside", "Toggle Crossing #", nullptr));
+        red_test->setText(QCoreApplication::translate("Wayside", "Red Test", nullptr));
     } // retranslateUi
 
 };

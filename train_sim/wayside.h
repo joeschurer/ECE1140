@@ -33,6 +33,9 @@ private slots:
 
     void on_toggleCrossing_returnPressed();
 
+
+    void on_red_test_clicked();
+
 signals:
     int addedPassengers(int added);
     vector<string> trainChanged(vector<string> data);

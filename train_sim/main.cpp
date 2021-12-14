@@ -12,6 +12,7 @@
 #include "engineer.h"
 #include "swtcui.h"
 #include "models.h"
+#include "trainfactory.h"
 
 #include <QApplication>
 int globalLine = 0;
@@ -52,12 +53,19 @@ int main(int argc, char *argv[])
 
     Engineer e;
     SWTCUI s;
+    TrainFactory f;
     TrainModelUI w;
     trainCalculate m;
-    w.makeTrain(m);
-    w.show();
     s.show();
     e.show();
+
+//    QObject::connect(&window, &TrackModel::trainData, &f, &TrainFactory::dispatchTrain);
+//    QObject::connect(&window, &TrackModel::tempChanged, &f, &TrainFactory::temperatureChange);
+//    QObject::connect(&window, &TrackModel::beaconData, &f, &TrainFactory::receiveBeacon);
+//    QObject::connect(&window, &TrackModel::passengersChanged, &f, &TrainFactory::boardingPassengers);
+//    QObject::connect(&w, &TrainModelUI::currSpeedTM, &window, &TrackModel::actualSpeedChanged);
+
+
 
     QObject::connect(&e, SIGNAL(SubmitKpKi(double,double)), &s, SLOT(KpKiChanged(double,double)));
     QObject::connect(&s, SIGNAL(TempDifferent(int)), &w, SLOT(TempChanged(int)));

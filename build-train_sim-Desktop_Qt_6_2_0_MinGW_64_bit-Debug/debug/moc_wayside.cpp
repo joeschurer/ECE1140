@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Wayside_t {
-    const uint offsetsAndSize[38];
-    char stringdata0[271];
+    const uint offsetsAndSize[40];
+    char stringdata0[291];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_Wayside_t, stringdata0) + ofs), len 
@@ -47,7 +47,8 @@ QT_MOC_LITERAL(149, 31), // "on_toggleSwitch_editingFinished"
 QT_MOC_LITERAL(181, 18), // "on_cont1_2_clicked"
 QT_MOC_LITERAL(200, 18), // "on_cont1_3_clicked"
 QT_MOC_LITERAL(219, 19), // "on_testYard_clicked"
-QT_MOC_LITERAL(239, 31) // "on_toggleCrossing_returnPressed"
+QT_MOC_LITERAL(239, 31), // "on_toggleCrossing_returnPressed"
+QT_MOC_LITERAL(271, 19) // "on_red_test_clicked"
 
     },
     "Wayside\0addedPassengers\0\0added\0"
@@ -56,7 +57,8 @@ QT_MOC_LITERAL(239, 31) // "on_toggleCrossing_returnPressed"
     "cross\0on_test1_clicked\0on_cont1_1_clicked\0"
     "on_toggleSwitch_editingFinished\0"
     "on_cont1_2_clicked\0on_cont1_3_clicked\0"
-    "on_testYard_clicked\0on_toggleCrossing_returnPressed"
+    "on_testYard_clicked\0on_toggleCrossing_returnPressed\0"
+    "on_red_test_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -66,7 +68,7 @@ static const uint qt_meta_data_Wayside[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -74,19 +76,20 @@ static const uint qt_meta_data_Wayside[] = {
        4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   80,    2, 0x06,    1 /* Public */,
-       4,    1,   83,    2, 0x06,    3 /* Public */,
-       7,    1,   86,    2, 0x06,    5 /* Public */,
-      10,    1,   89,    2, 0x06,    7 /* Public */,
+       1,    1,   86,    2, 0x06,    1 /* Public */,
+       4,    1,   89,    2, 0x06,    3 /* Public */,
+       7,    1,   92,    2, 0x06,    5 /* Public */,
+      10,    1,   95,    2, 0x06,    7 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      12,    0,   92,    2, 0x08,    9 /* Private */,
-      13,    0,   93,    2, 0x08,   10 /* Private */,
-      14,    0,   94,    2, 0x08,   11 /* Private */,
-      15,    0,   95,    2, 0x08,   12 /* Private */,
-      16,    0,   96,    2, 0x08,   13 /* Private */,
-      17,    0,   97,    2, 0x08,   14 /* Private */,
-      18,    0,   98,    2, 0x08,   15 /* Private */,
+      12,    0,   98,    2, 0x08,    9 /* Private */,
+      13,    0,   99,    2, 0x08,   10 /* Private */,
+      14,    0,  100,    2, 0x08,   11 /* Private */,
+      15,    0,  101,    2, 0x08,   12 /* Private */,
+      16,    0,  102,    2, 0x08,   13 /* Private */,
+      17,    0,  103,    2, 0x08,   14 /* Private */,
+      18,    0,  104,    2, 0x08,   15 /* Private */,
+      19,    0,  105,    2, 0x08,   16 /* Private */,
 
  // signals: parameters
     QMetaType::Int, QMetaType::Int,    3,
@@ -95,6 +98,7 @@ static const uint qt_meta_data_Wayside[] = {
     QMetaType::Int, QMetaType::Int,   11,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -127,6 +131,7 @@ void Wayside::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 8: _t->on_cont1_3_clicked(); break;
         case 9: _t->on_testYard_clicked(); break;
         case 10: _t->on_toggleCrossing_returnPressed(); break;
+        case 11: _t->on_red_test_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -170,7 +175,7 @@ const QMetaObject Wayside::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_Wayside_t
 , QtPrivate::TypeAndForceComplete<Wayside, std::true_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<vector<string>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<string>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,
@@ -197,13 +202,13 @@ int Wayside::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 12;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 12)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 11;
+        _id -= 12;
     }
     return _id;
 }
