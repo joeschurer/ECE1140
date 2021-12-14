@@ -32,7 +32,7 @@
      <x>10</x>
      <y>80</y>
      <width>341</width>
-     <height>211</height>
+     <height>241</height>
     </rect>
    </property>
   </widget>
@@ -92,7 +92,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>210</y>
+     <y>230</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -183,7 +183,7 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>210</y>
+     <y>230</y>
      <width>171</width>
      <height>16</height>
     </rect>
@@ -375,7 +375,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>230</y>
+     <y>250</y>
      <width>71</width>
      <height>16</height>
     </rect>
@@ -388,7 +388,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>250</y>
+     <y>270</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -401,7 +401,7 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>230</y>
+     <y>250</y>
      <width>71</width>
      <height>16</height>
     </rect>
@@ -414,7 +414,7 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>250</y>
+     <y>270</y>
      <width>71</width>
      <height>16</height>
     </rect>
@@ -527,7 +527,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>270</y>
+     <y>290</y>
      <width>101</width>
      <height>16</height>
     </rect>
@@ -540,7 +540,7 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>270</y>
+     <y>290</y>
      <width>71</width>
      <height>16</height>
     </rect>
@@ -643,7 +643,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Next Station:</string>
+    <string>Current Station:</string>
    </property>
   </widget>
   <widget class="QLabel" name="nextStationValue">
@@ -731,6 +731,32 @@
     <string>Confirm</string>
    </property>
   </widget>
+  <widget class="QLabel" name="tempControlLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>210</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Temp. Control</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="tempControlValue">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>210</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Heater On</string>
+   </property>
+  </widget>
   <action name="actiontrainWeight">
    <property name="text">
     <string>trainWeight</string>
@@ -791,6 +817,8 @@
   <zorder>PassengersOnBoardLabel</zorder>
   <zorder>inputPassengersOnBoard</zorder>
   <zorder>passengersConfirm</zorder>
+  <zorder>tempControlLabel</zorder>
+  <zorder>tempControlValue</zorder>
  </widget>
  <resources/>
  <connections/>

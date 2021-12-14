@@ -114,15 +114,37 @@ void TrainModelUI::on_inputPowerConfirm_clicked()
 
 
 
-
-
 void TrainModelUI::on_emergencyBrake_clicked()
 {
-    ui->currentModeValue->setText("Emergency Brake Pulled");
-    calcs.emergencyBrake = true;
-    emit eBrakeSetTC(calcs.id, true);
+    if(calcs.emergencyBrake == false){
+        ui->currentModeValue->setText("Emergency Brake Pulled");
+        calcs.emergencyBrake = true;
+        emit eBrakeSetTC(calcs.id, true);
+    }else{
+        ui->currentModeValue->setText("Standard Mode");
+        calcs.emergencyBrake = false;
+        calcs.resetValues();
+    }
+
+
+
 }
 
+void TrainModelUI::stationValues(string stationName, string side){
+    std::string station = stationName;
+    QString qstr = QString::fromStdString(station);
+
+    std::string doorSide = side;
+    QString doorname = QString::fromStdString(doorSide);
+    ui->nextStationValue->setText(qstr);
+    if(side == "left"){
+        on_toggleDoorLeft_clicked();
+    }else{
+        on_toggleDoorRight_clicked();
+    }
+    vector byebye = calcs.passengersLeavingTrain();
+    emit offPassengers(byebye);
+}
 
 void TrainModelUI::on_pushButton_3_clicked()
 {
@@ -186,21 +208,27 @@ void TrainModelUI::CurrentSpeedDifferent(int power){
     calcs.setPower(power);
     int speed = calcs.calculateVelocity();
     emit currSpeedTC(calcs.id, speed);
+    QString speedToTM = QString::number(speed);
+    emit currSpeedTM(speedToTM);
 }
 
 void TrainModelUI::boardingPassengersFromTM(int numPassengers){
-   int newtotal = calcs.calcCapacity(numPassengers);
+    int newtotal = calcs.calcCapacity(numPassengers);
     ui->passengersOnTrainValue->setText(QString::number(newtotal));
     ui->percentCapacityValue->setText(QString::number(calcs.percentCapacity));
-    emit offPassengers(calcs.passengersOff);
 }
-void TrainModelUI::trackSignalFromTM(int meters, int grade, int limit, int comm){
+void TrainModelUI::trackSignal(int i, int l, int bL, int g, int sL, int c){
+    int id = i;
+    int loc = l;
+    int blockLength = bL;
+    int grade = g;
+    int speedLimit = sL;
+    int comm = c;
+
     if(calcs.currentMode == 2){
-        emit speedLimitTC(calcs.id, 100);
-        emit commandedSpeedTC(calcs.id,100);
+        emit trackSignalTC(id, 0, 0);
     }else{
-        emit speedLimitTC(calcs.id, limit);
-        emit commandedSpeedTC(calcs.id, comm);
+        emit trackSignalTC(id, speedLimit, comm);
     }
 
 
@@ -239,7 +267,10 @@ void TrainModelUI::on_standardModeButton_clicked()
 {
     ui->currentModeValue->setText("Standard");
     calcs.currentMode = 0;
+    calcs.emergencyBrake = false;
+    calcs.serviceBrake = false;
     calcs.resetValues();
+
 }
 
 void TrainModelUI::TempChanged(int temp)
@@ -289,6 +320,13 @@ void TrainModelUI::PowerChanged(int power)
     updateUI();
 }
 
+void  TrainModelUI::calcTemp(){
+    if(calcs.currentTemp > calcs.outsideTemp){
+        ui->tempControlValue->setText("AC on");
+    }else{
+        ui->tempControlValue->setText("Heater on");
+    }
+}
 
 void TrainModelUI::on_inputTempConfirm_clicked()
 {

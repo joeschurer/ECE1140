@@ -1,17 +1,18 @@
 #include "traincalculate.h"
 #include <cstdlib>
 #include <iostream>
+#include <vector>
 trainCalculate::trainCalculate()
 {
     numCars = 2;
-    numPassengers = 0;
-    passengersOff = 0;
+    numPassengers = 0.00;
+    passengersOff = 0.00;
     currentPower = 0;
     currentVelocity = 0;
     lastAcc = 0;
     currentAcc = 0;
     trainLength = 105.6;
-    maxCapacity = 222;
+    maxCapacity = 222.00;
     currentMode = 0;
     lastVelocity = 0;
     currentForce = 0;
@@ -53,7 +54,9 @@ void trainCalculate::setPower(double power){
     return;
 }
 
-double trainCalculate::distTraveled(){
+
+
+double trainCalculate::distTraveled(int blockLength){
     if(lastTime == 0){
         lastPosition = 0;
     }
@@ -122,11 +125,20 @@ int trainCalculate::calcWeight(int numPassengers){
     currentWeight = trainWeight + passWeight;
     return currentWeight;
 }
-int trainCalculate::calcCapacity(int newPassengers){
+
+vector<int> trainCalculate::passengersLeavingTrain(){
     if(numPassengers > 0){
-        //passengersOff = rand() % numPassengers;
+        int aaah = rand() % (int)numPassengers;
+        passengersOff = aaah;
     }
         numPassengers = numPassengers-passengersOff;
+    vector<int> result;
+    result[0] = id;
+    result[1] = passengersOff;
+    return result;
+}
+
+int trainCalculate::calcCapacity(int newPassengers){
         numPassengers += newPassengers;
         if(numPassengers > maxCapacity){
             numPassengers = maxCapacity;

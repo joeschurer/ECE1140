@@ -32,7 +32,8 @@ public:
     void getTemp(int);
     void selectTrain(int);
     void updateALL();
-
+    void stationValues(string, string);
+    void calcTemp();
 private slots:
     void on_toggleLights_clicked();
 
@@ -88,9 +89,10 @@ public slots:
 
 //    //TM slots
     void boardingPassengersFromTM(int numPassengers);
-    void trackSignalFromTM(int meters, int grade, int limit, int comm);
+    void trackSignal(int, int, int, int, int, int);
     void outsideTemperature(int tt);
     void internalTemperature(int sett);
+
 
     //length of blokc
     //grade
@@ -100,15 +102,14 @@ public slots:
 signals:
     //to train controller
     void currSpeedTC(int id,int);
-    void speedLimitTC(int id,int speedL);
-    void distLeftTC(int id,int dist);
     void eBrakeSetTC(int id,bool state);
     void failureState(int id, int mode);
-    void commandedSpeedTC(int id, int cSpeed);
-
+    void trackSignalTC(int id, int speedLimit, int cSpeed);
+    void createTC(int id, int comm);
 
     //to track model
-    void currSpeed(int currSpeed);
-    void offPassengers(int passengers);
+    void currSpeedTM(QString currSpeed);
+    void offPassengers(vector<int>);
+
 };
 #endif // TRAINMODELUI_H

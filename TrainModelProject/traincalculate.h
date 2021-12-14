@@ -2,7 +2,8 @@
 #define TRAINCALCULATE_H
 #include <cstdlib>
 #include <iostream>
-
+#include <vector>
+using namespace std;
 class trainCalculate
 {
 
@@ -11,7 +12,7 @@ public:
     //trainCalculate();
     void setPower(double);
     double calculateVelocity();
-    double distTraveled();
+    double distTraveled(int);
     int calcWeight(int);
     double getLength();
     int calcCapacity(int);
@@ -20,7 +21,7 @@ public:
     void calcTime();
     void resetValues();
     void trainAtStation();
-    void calcTemp();
+    vector<int> passengersLeavingTrain();
 
 //acceleration and deceleration set values
     double accelLimit = 0.5;
@@ -30,9 +31,9 @@ public:
 //variables
     int id;
     double trainLength = 0;
-    float percentCapacity = 0.0;
+    double percentCapacity = 0.0;
     int numCars;
-    float numPassengers = 0;
+    double numPassengers = 0;
     int currentPower;
     double currentVelocity;
     double currentMPH;
@@ -47,9 +48,9 @@ public:
     double lastTime;
     int crewMembers = 1;
     bool atStation = false;
-    float maxCapacity = 222;
-    int newPassengers = 0;
-    int passengersOff = 0;
+    double maxCapacity = 222;
+    double newPassengers = 0;
+    double passengersOff = 0;
     bool leftDoorsVal = false;
     bool rightDoorsVal = false;
     int currentMode = 0;
