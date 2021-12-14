@@ -1,13 +1,20 @@
 #include "trainfactory.h"
+#include "ui_trainfactory.h"
 #include <vector>
 #include "trainmodelui.h"
 #include "ui_trainmodelui.h"
 #include "traincalculate.h"
-TrainFactory::TrainFactory()
+TrainFactory::TrainFactory(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::TrainFactory)
 {
-//    vector<TrainModelUI> temp(0,0);
-//    trains = temp;
+    ui->setupUi(this);
     globalTemp = 72;
+}
+
+TrainFactory::~TrainFactory()
+{
+    delete ui;
 }
 
 void TrainFactory::dispatchTrain(vector<int> trainData){
@@ -81,4 +88,3 @@ void TrainFactory::receiveStationInfo(int id, string stationName, string side){
     trains[id]->stationValues(stationName, side);
     trains[id]->updateUI();
 }
-

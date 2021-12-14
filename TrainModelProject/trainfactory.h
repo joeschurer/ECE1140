@@ -1,14 +1,22 @@
 #ifndef TRAINFACTORY_H
 #define TRAINFACTORY_H
 #include <vector>
-#include "traincalculate.h"
+#include <QMainWindow>
 #include "trainmodelui.h"
+#include "traincalculate.h"
 using namespace std;
+QT_BEGIN_NAMESPACE
+namespace Ui { class TrainFactory; }
+QT_END_NAMESPACE
 
-class TrainFactory
+class TrainFactory : public QMainWindow
 {
+    Q_OBJECT
+
 public:
-    TrainFactory();
+    TrainFactory(QWidget *parent = nullptr);
+    ~TrainFactory();
+
     void makeTrain(trainCalculate, int, int);
     vector<TrainModelUI*> trains;
     int globalTemp;
@@ -31,8 +39,9 @@ public slots:
         //slots from TC
         void receiveStationInfo(int, string, string);
 
+private:
+    Ui::TrainFactory *ui;
+
+
 };
-
-
-
 #endif // TRAINFACTORY_H
