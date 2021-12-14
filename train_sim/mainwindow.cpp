@@ -358,9 +358,12 @@ void MainWindow::recieveAuth(TrainEntry t){
 
     vector<int> sw = changes[0];
     vector<int> cross = changes[1];
+    vector<int> tempAuth = changes[2];
     emit sendTrackModelSwitches(sw);
     emit activateCrossing(cross);
-    std::vector<bool> temp = waysideController.sendTrackModelAuth();
+
+    std::vector<bool> temp = waysideController.sendTrackModelAuth();\
+    emit sendTrackModelAuth(temp);
     //emit sendTrackModelAuth(temp);
     std::string auth_string;
     for(int i=0;i<temp.size();i++){

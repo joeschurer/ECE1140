@@ -88,6 +88,7 @@ int PLC::switchPrev(int index){
             return -1;
         }
     }
+    return prev;
 }
 
 PLC::PLC(){
@@ -144,11 +145,10 @@ bool PLC::readPLCFile(string file){
 
 vector<vector<int>> PLC::parsePLC(){
     vector<int> toggleSW,toggleCROSS;
+    vector<vector<int>> temp;
     for(int i=0;i< plcContainer.size();i++){
         int authSel;
         vector<int> lauthVec,rauthVec;
-        lauthVec = GetValues(plcContainer[i][5]);
-        rauthVec = GetValues(plcContainer[i][7]);
         bool waiting = false;
         bool letGo = false;
         int BL, SWPOS;
@@ -165,6 +165,8 @@ vector<vector<int>> PLC::parsePLC(){
                 }
             }
             else if (plcContainer[i][1].substr(0,4) == "AUTH"){
+                lauthVec = GetValues(plcContainer[i][5]);
+                rauthVec = GetValues(plcContainer[i][7]);
                 BL = std::stoi(plcContainer[i][1].substr(4,plcContainer[i][1].length()));
                 SWPOS = std::stoi(plcContainer[i][3].substr(2,plcContainer[i][3].length()));
                 //check for occupancy on switch
@@ -253,23 +255,21 @@ vector<vector<int>> PLC::parsePLC(){
                             for(int i=0; i< rauthVec.size();i++){
                                 track->track[rauthVec[i]].auth = false;
                             }
+                        } else {
+                            qDebug() << "hi";
                         }
                     }
-
-
-
-
                 }
-
             }
         } else if(plcContainer[i][0] == "CROSSING"){
-            int cross = std::stoi(plcContainer[i][1]);
+           int cross = std::stoi(plcContainer[i][1]);
             if(track->track[cross].occupancy == true || track->track[cross-1].occupancy == true ||track->track[cross+1].occupancy == true ){
-                track->track[cross].crossing = true;
+                track->track[cross].crossingState = true;
                 qDebug() << "Crossing active at: " << cross;
-            } else{
                 toggleCROSS.push_back(cross);
-                track->track[cross].crossing = false;
+            } else if(track->track[cross].crossingState == true){
+                track->track[cross].crossingState = false;
+                toggleCROSS.push_back(cross);
             }
         }
     }
@@ -280,7 +280,7 @@ vector<vector<int>> PLC::parsePLC(){
     vector<int> occVector;
 
     for(int i=0;i<ownedBlocks.size();i++){
-        if(track->track[ownedBlocks[i]].occupancy==true||track->track[ownedBlocks[i]].maintenance == true){
+        if(track->track[ownedBlocks[i]].occupancy==true || track->track[ownedBlocks[i]].maintenance == true){
            setPrev(i);
         }
     }
@@ -312,12 +312,12 @@ vector<vector<int>> PLC::parsePLC(){
         }
     }
 
-    updateData toSend;
+  /*  updateData toSend;
     toSend.toggledCrossings = toggleCROSS;
     toSend.toggledSwitches = toggleSW;
+    */
     //toSend.auth = newAuth;
 
-    vector<vector<int>> temp;
     temp.push_back(toggleSW);
     temp.push_back(toggleCROSS);
     temp.push_back(newAuth);
@@ -353,7 +353,7 @@ bool PLC::update_occupancy(int index){
 }
 
 std::vector<int> PLC::ctc_reccomend(std::vector<bool> a){
-    //find occupied blocks
+    /*ind occupied blocks
     std::vector<int> occBlocks;
     int trackLength = static_cast<int>(track_model.track.size());
     for(int i=0;i<trackLength;i++){
@@ -377,6 +377,8 @@ std::vector<int> PLC::ctc_reccomend(std::vector<bool> a){
         }
     }
     updateBlocks();
+    */
+    vector<int> temp;
     return temp;
 }
 
