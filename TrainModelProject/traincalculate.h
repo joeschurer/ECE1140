@@ -20,6 +20,7 @@ public:
     void calcTime();
     void resetValues();
     void trainAtStation();
+    void calcTemp();
 
 //acceleration and deceleration set values
     double accelLimit = 0.5;
@@ -27,10 +28,11 @@ public:
     double emergencyDecel = -2.73;
 
 //variables
+    int id;
     double trainLength = 0;
-    double percentCapacity = 0.0;
+    float percentCapacity = 0.0;
     int numCars;
-    int numPassengers = 0;
+    float numPassengers = 0;
     int currentPower;
     double currentVelocity;
     double currentMPH;
@@ -45,7 +47,7 @@ public:
     double lastTime;
     int crewMembers = 1;
     bool atStation = false;
-    int maxCapacity = 222;
+    float maxCapacity = 222;
     int newPassengers = 0;
     int passengersOff = 0;
     bool leftDoorsVal = false;
@@ -57,6 +59,9 @@ public:
     int trainWeight;
     int blockSize;
     bool serviceBrake = false;
+    int setTemp;
+    int outsideTemp;
+    int currentTemp;
 
 };
 

@@ -22,6 +22,9 @@ trainCalculate::trainCalculate()
     lastPosition = 0;
     currentPosition = 0;
     blockSize = 50;
+    setTemp = 0;
+    outsideTemp = 0;
+    currentTemp = 70;
 }
 
 
@@ -73,13 +76,13 @@ void trainCalculate:: resetValues(){
 }
 
 void trainCalculate::trainAtStation(){
-    if(currentVelocity == 0 & serviceBrake == true){
+    if(currentVelocity == 0 && serviceBrake == true){
         atStation = true;
     }
 }
 
 double trainCalculate::calculateVelocity(){
-    if(currentVelocity == 0 & atStation == true){
+    if(currentVelocity == 0 && atStation == true){
         resetValues();
     }
     lastVelocity = currentVelocity;
@@ -121,14 +124,14 @@ int trainCalculate::calcWeight(int numPassengers){
 }
 int trainCalculate::calcCapacity(int newPassengers){
     if(numPassengers > 0){
-        passengersOff = rand() % numPassengers;
+        //passengersOff = rand() % numPassengers;
     }
         numPassengers = numPassengers-passengersOff;
         numPassengers += newPassengers;
         if(numPassengers > maxCapacity){
             numPassengers = maxCapacity;
         }
-        percentCapacity = numPassengers/maxCapacity * 100;
+        percentCapacity = (numPassengers/maxCapacity) * 100;
         calcWeight(numPassengers);
 
         serviceBrake = false; //not sure if this is the right place to put this

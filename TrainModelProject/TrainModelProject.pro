@@ -11,10 +11,12 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     traincalculate.cpp \
+    trainfactory.cpp \
     trainmodelui.cpp
 
 HEADERS += \
     traincalculate.h \
+    trainfactory.h \
     trainmodelui.h
 
 FORMS += \

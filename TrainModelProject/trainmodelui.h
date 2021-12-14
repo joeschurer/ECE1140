@@ -1,8 +1,9 @@
 #ifndef TRAINMODELUI_H
 #define TRAINMODELUI_H
-
+#include <vector>
 #include <QWidget>
 #include "traincalculate.h"
+using namespace std;
 QT_BEGIN_NAMESPACE
 namespace Ui { class TrainModelUI; }
 QT_END_NAMESPACE
@@ -14,7 +15,7 @@ class TrainModelUI : public QWidget
 public:
     TrainModelUI(QWidget *parent = nullptr);
     ~TrainModelUI();
-    void makeTrain(trainCalculate);
+    trainCalculate calcs;
     //void updateUI();
     void setUI();
     void setLength();
@@ -31,10 +32,8 @@ public:
     void getTemp(int);
     void selectTrain(int);
     void updateALL();
-    trainCalculate train;
-private slots:
-    void on_toggleDoor_clicked();
 
+private slots:
     void on_toggleLights_clicked();
 
     void on_inputPowerConfirm_clicked();
@@ -57,10 +56,6 @@ private slots:
 
     void on_standardModeButton_clicked();
 
-    void on_pushButton_5_clicked();
-
-    void on_pushme_clicked();
-
     void on_inputTempConfirm_clicked();
 
     void on_passengersConfirm_clicked();
@@ -82,7 +77,6 @@ public slots:
 
 
 
-
     //TC slots
 //    void DistanceDifferent(std::string distance); //the size of the block
 //    void TimeDifferent(std::string time); //take in current time?
@@ -95,6 +89,8 @@ public slots:
 //    //TM slots
     void boardingPassengersFromTM(int numPassengers);
     void trackSignalFromTM(int meters, int grade, int limit, int comm);
+    void outsideTemperature(int tt);
+    void internalTemperature(int sett);
 
     //length of blokc
     //grade
@@ -103,12 +99,13 @@ public slots:
     //passengers
 signals:
     //to train controller
-    void currSpeedTC(int);
-    void speedLimitTC(int speedL);
-    void commandedSpeedTC(int cSpeed);
-    void distLeftTC(int dist);
-    void eBrakeSetTC(bool state);
-    void failureState(int mode);
+    void currSpeedTC(int id,int);
+    void speedLimitTC(int id,int speedL);
+    void distLeftTC(int id,int dist);
+    void eBrakeSetTC(int id,bool state);
+    void failureState(int id, int mode);
+    void commandedSpeedTC(int id, int cSpeed);
+
 
     //to track model
     void currSpeed(int currSpeed);
