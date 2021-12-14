@@ -49,6 +49,8 @@ signals:
    void sendCTCOcc(std::vector<bool>);
    void sendTrackModelAuth(std::vector<bool>);
    void sendTrackModelSwitches(std::vector<int>);
+   void sendTrackModelCrossings(std::vector<int>);
+   void sendTrackModelLights(std::vector<int>);
    void sendTrainDispatch(std::vector<std::string>);
    void sendCTCHeater(bool);
    void activateCrossing(vector<int>);

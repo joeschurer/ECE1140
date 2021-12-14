@@ -29,6 +29,18 @@ std::vector<int> GetValues(std::string str){
     return v;
 }
 
+void push_range_or_number(const std::string &str, std::vector<int> &out) {
+    size_t hyphen_index;
+    int first = std::stoi(str, &hyphen_index);
+    out.push_back(first);
+    if (hyphen_index != str.size()) {
+        int second = std::stoi(str.substr(hyphen_index + 1), &hyphen_index);
+        for (int i = first + 1; i <= second; ++i) {
+            out.push_back(i);
+        }
+    }
+}
+
 //returns
 void PLC::setPrev(int index,int gap =3){
     //starting behind the train
@@ -252,7 +264,7 @@ vector<vector<int>> PLC::parsePLC(){
             }
         } else if(plcContainer[i][0] == "CROSSING"){
             int cross = std::stoi(plcContainer[i][1]);
-            if(track->track[cross].occupancy == true){
+            if(track->track[cross].occupancy == true || track->track[cross-1].occupancy == true ||track->track[cross+1].occupancy == true ){
                 track->track[cross].crossing = true;
                 qDebug() << "Crossing active at: " << cross;
             } else{
@@ -263,24 +275,52 @@ vector<vector<int>> PLC::parsePLC(){
     }
 
     //update authority with gap
-    vector<bool> newAuth;
-    int gap = 2;//maybe read from PLC
+    vector<int> newAuth;
+    int gap = 3;//maybe read from PLC
     vector<int> occVector;
 
     for(int i=0;i<ownedBlocks.size();i++){
-        if(track->track[ownedBlocks[i]].occupancy==true){
+        if(track->track[ownedBlocks[i]].occupancy==true||track->track[ownedBlocks[i]].maintenance == true){
            setPrev(i);
+        }
+    }
+
+    //Handle Lights
+    for(int i=0;i<ownedBlocks.size();i++){
+        if(track->track[ownedBlocks[i]].hasLights==true){
+            bool inCheck= false;
+            for(int i=0;i<track->track[ownedBlocks[i]].check.size();i++){
+                if(track->track[ownedBlocks[i]].auth == false){
+                    track->track[ownedBlocks[i]].lights = 1;
+                    inCheck = true;
+                }
+            }
+
+            if(track->track[ownedBlocks[i]].auth== false){
+                track->track[ownedBlocks[i]].lights = 2;
+            } else if(inCheck==false){
+                track->track[ownedBlocks[i]].lights = 0;
+            }
+        }
+    }
+
+    for(int i=0;i<track->track.size();i++){
+        if(track->track[i].auth==0){
+            newAuth.push_back(0);
+        } else {
+            newAuth.push_back(1);
         }
     }
 
     updateData toSend;
     toSend.toggledCrossings = toggleCROSS;
     toSend.toggledSwitches = toggleSW;
-    toSend.auth = newAuth;
+    //toSend.auth = newAuth;
 
     vector<vector<int>> temp;
     temp.push_back(toggleSW);
     temp.push_back(toggleCROSS);
+    temp.push_back(newAuth);
     return temp;
 }
 vector<int> PLC::returnOwned(){

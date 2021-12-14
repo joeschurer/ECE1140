@@ -176,7 +176,7 @@ void MainWindow::sel_block(){
         ui->crossing_status->setText(crossing);
         ui->auth_status->setText(QString::number(temp_block.auth));
         ui->sugg_status->setText(QString::number(temp_block.sugg_speed)+ " mph");
-        ui->commanded_status->setText(QString::number(temp_block.comm_speed)+ " mph");
+        ui->commanded_status->setText(QString::number(temp_block.speed_limit/1.609)+ " mph");
         ui->presence_status->setText(QString::number(temp_block.occupancy));
     }
     block_selected = true;
@@ -328,11 +328,22 @@ void  MainWindow::receiveOcc(std::vector<bool> occ){
 
     vector<int> switches = changes[0];
     vector<int> cross = changes[1];
+    vector<int> tempAuth = changes[2];
 
     std::vector<bool> temp =waysideController.sendCTCOcc();
+    vector<bool> newAuth;
+    for(int i=0;i<tempAuth.size();i++){
+        if(tempAuth[i] == 0){
+            newAuth.push_back(false);
+        } else{
+            newAuth.push_back(true);
+        }
+    }
     emit sendCTCOcc(temp);
     emit sendTrackModelSwitches(switches);
     emit activateCrossing(cross);
+    emit sendTrackModelAuth(newAuth);
+
     if(block_selected){
         sel_block();
     }

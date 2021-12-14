@@ -33,7 +33,7 @@ struct block{
     block* prevBlock = nullptr;
     block* nextBlock = nullptr;
 
-    //0 = green, 1 = yellow, 2 = red
+    //0 = green, 1 = yellow, 2 = red, -1 no light
     int lights = 0;
 };
 

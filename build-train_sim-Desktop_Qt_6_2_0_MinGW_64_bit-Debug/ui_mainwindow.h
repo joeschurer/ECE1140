@@ -444,7 +444,7 @@ public:
         auth_status->setText(QString());
         auth_label->setText(QCoreApplication::translate("MainWindow", "Authority", nullptr));
         suggested_label->setText(QCoreApplication::translate("MainWindow", "Suggested Speed", nullptr));
-        commanded_label->setText(QCoreApplication::translate("MainWindow", "Commanded Speed", nullptr));
+        commanded_label->setText(QCoreApplication::translate("MainWindow", "Spped Limit", nullptr));
         sugg_status->setText(QString());
         label->setText(QCoreApplication::translate("MainWindow", "Testing", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "CTC", nullptr));

@@ -38,10 +38,14 @@ int WaysideController::returnNumWaysides(){
 WaysideController::~WaysideController(){}
 
 bool WaysideController::update_occupancy(int index){
-    for(int i=0; i<waysides.size() ;i++){
-        if(std::find(waysideOwned[i].begin(),waysideOwned[i].end(),index)!=waysideOwned[i].end()){
-             waysides[i].update_occupancy(i);
-        }
+    track_model.track[index].occupancy = true;
+
+    vector<int> toggleSW,toggleCR;
+    vector<vector<int>> temp;
+    for(int i=0;i<waysides.size(); i++){
+        vector<vector<int>>temp = waysides[i].parsePLC();
+        toggleSW.insert(std::end(toggleSW), std::begin(temp[0]), std::end(temp[0]));
+        toggleCR.insert(std::end(toggleCR), std::begin(temp[1]), std::end(temp[1]));
     }
     return true;
 }
