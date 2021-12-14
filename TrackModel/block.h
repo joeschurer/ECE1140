@@ -18,7 +18,7 @@ public:
     bool heatersOn;
     bool presenceDetected;
     bool hasCrossing;
-    bool crossingLights;
+    int crossingLights = -1;
     bool underground;
     bool hasStation;
     bool hasBeacon = false;

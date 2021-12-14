@@ -43,7 +43,7 @@ void LineSelect::on_selectgreen_clicked()
 void LineSelect::on_selectred_clicked()
 {
     ifstream ifile;
-    ifile.open("C:/Users/Lexi/Documents/ECE 1140/TrackModel/RedLine.txt");
+    ifile.open("RedLine.txt");
 
     ofstream ofile;
     ofile.open("layoutfile.txt");

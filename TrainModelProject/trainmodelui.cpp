@@ -7,7 +7,7 @@ TrainModelUI::TrainModelUI(QWidget *parent)
     , ui(new Ui::TrainModelUI)
 {
     ui->setupUi(this);
-    trainCalculate hah;
+    trainCalculate calcs;
 }
 
 TrainModelUI::~TrainModelUI()
@@ -15,22 +15,24 @@ TrainModelUI::~TrainModelUI()
     delete ui;
 }
 
-void TrainModelUI::makeTrain(trainCalculate calcs){
-    train = calcs;
+
+
+
+
+
+void TrainModelUI::setLength(){
+    ui->trainLengthValue->setText(QString::number(calcs.trainLength));
+
 }
 
-void TrainModelUI::setLength(double length){
-    ui->trainLengthValue->setText(QString::number(length));
+void TrainModelUI::setWeight(){
 
-}
-
-void TrainModelUI::setMass(double weight){
-    ui->trainWeightV->setText(QString::number(weight));
+    ui->trainWeightV->setText(QString::number(calcs.currentWeight));
 }
 
 
 void TrainModelUI::getPower(int power){
-    train.setPower(power);
+    calcs.setPower(power);
     ui->currentPowerValue->setText(QString::number((power)));
 
 }
@@ -84,9 +86,6 @@ void TrainModelUI::getPassengers(int passengers){
 }
 
 
-
-
-
 void TrainModelUI::on_toggleLights_clicked()
 {
     if(ui->lightStateValue->text() == "OFF" ){
@@ -96,32 +95,62 @@ void TrainModelUI::on_toggleLights_clicked()
     }
 }
 
+void TrainModelUI::outsideTemperature(int tt){
+    calcs.outsideTemp = tt;
+    return;
+}
+void TrainModelUI::internalTemperature(int sett){
+    calcs.setTemp = sett;
+}
+
 
 void TrainModelUI::on_inputPowerConfirm_clicked()
 {
     QString x = ui->inputPowerResult->text();
     double powerval = x.toDouble();
-    train.setPower(powerval);
+    calcs.setPower(powerval);
 
 }
-
-
 
 
 
 void TrainModelUI::on_emergencyBrake_clicked()
 {
-    ui->currentModeValue->setText("Emergency Brake Pulled");
-    train.emergencyBrake = true;
-    emit eBrakeSetTC(true);
+    if(calcs.emergencyBrake == false){
+        ui->currentModeValue->setText("Emergency Brake Pulled");
+        calcs.emergencyBrake = true;
+        emit eBrakeSetTC(calcs.id, true);
+    }else{
+        ui->currentModeValue->setText("Standard Mode");
+        calcs.emergencyBrake = false;
+        calcs.resetValues();
+    }
+
+
+
 }
 
+void TrainModelUI::stationValues(string stationName, string side){
+    std::string station = stationName;
+    QString qstr = QString::fromStdString(station);
+
+    std::string doorSide = side;
+    QString doorname = QString::fromStdString(doorSide);
+    ui->nextStationValue->setText(qstr);
+    if(side == "left"){
+        on_toggleDoorLeft_clicked();
+    }else{
+        on_toggleDoorRight_clicked();
+    }
+    vector byebye = calcs.passengersLeavingTrain();
+    emit offPassengers(byebye);
+}
 
 void TrainModelUI::on_pushButton_3_clicked()
 {
     ui->currentModeValue->setText("POWER FAILURE");
     int i = 2;
-    emit failureState(i);
+    emit failureState(calcs.id, i);
 }
 
 
@@ -150,7 +179,7 @@ void TrainModelUI::on_pushButton_2_clicked()
 {
     ui->currentModeValue->setText("SIGNAL PICKUP FAILURE");
     int i = 1;
-    emit failureState(i);
+    emit failureState(calcs.id, i);
 }
 
 
@@ -158,31 +187,49 @@ void TrainModelUI::on_pushButton_4_clicked()
 {
     ui->currentModeValue->setText("TRAIN ENGINE FAILURE");
     int i = 3;
-    emit failureState(i);
+    emit failureState(calcs.id, i);
 }
 
 void TrainModelUI::updateUI(){
-    ui->currentSpeedValue->setText(QString::number(train.calculateVelocity()));
-    ui->currentAccelerationValue->setText(QString::number(train.currentAcc));
-    ui->currentPowerValue->setText(QString::number(train.currentPower));
+    ui->currentSpeedValue->setText(QString::number(calcs.calculateVelocity()));
+    ui->currentAccelerationValue->setText(QString::number(calcs.currentAcc));
+    ui->currentPowerValue->setText(QString::number(calcs.currentPower));
     //train.lastTime = train.currentTime;
     //train.currentTime = train.clockTime;
+    ui->passengersOnTrainValue->setText(QString::number(calcs.numPassengers));
+    setLength();
+    setWeight();
+    ui->crewMembersValue->setText(QString::number(calcs.crewMembers));
+
 }
 
 
 void TrainModelUI::CurrentSpeedDifferent(int power){
-    train.setPower(power);
-    int speed = train.calculateVelocity();
-    emit currSpeedTC(speed);
+    calcs.setPower(power);
+    int speed = calcs.calculateVelocity();
+    emit currSpeedTC(calcs.id, speed);
+    QString speedToTM = QString::number(speed);
+    emit currSpeedTM(speedToTM);
 }
 
 void TrainModelUI::boardingPassengersFromTM(int numPassengers){
-   int newtotal = train.calcCapacity(numPassengers);
+    int newtotal = calcs.calcCapacity(numPassengers);
     ui->passengersOnTrainValue->setText(QString::number(newtotal));
+    ui->percentCapacityValue->setText(QString::number(calcs.percentCapacity));
 }
-void TrainModelUI::trackSignalFromTM(int meters, int grade, int limit, int comm){
-    emit speedLimitTC(limit);
-    emit commandedSpeedTC(comm);
+void TrainModelUI::trackSignal(int i, int l, int bL, int g, int sL, int c){
+    int id = i;
+    int loc = l;
+    int blockLength = bL;
+    int grade = g;
+    int speedLimit = sL;
+    int comm = c;
+
+    if(calcs.currentMode == 2){
+        emit trackSignalTC(id, 0, 0);
+    }else{
+        emit trackSignalTC(id, speedLimit, comm);
+    }
 
 
 }
@@ -212,22 +259,18 @@ void TrainModelUI::on_pushButton_clicked()
 void TrainModelUI::on_serviceBrakeButton_clicked()
 {
     ui->currentModeValue->setText("Service Brake Pulled");
-    train.serviceBrake = true;
-
+    calcs.serviceBrake = true;
 }
 
 
 void TrainModelUI::on_standardModeButton_clicked()
 {
     ui->currentModeValue->setText("Standard");
-    train.currentMode = 0;
-    train.resetValues();
-}
+    calcs.currentMode = 0;
+    calcs.emergencyBrake = false;
+    calcs.serviceBrake = false;
+    calcs.resetValues();
 
-
-void TrainModelUI::on_pushButton_5_clicked()
-{
-    int i = 1;
 }
 
 void TrainModelUI::TempChanged(int temp)
@@ -273,12 +316,31 @@ void TrainModelUI::LightsChanged(bool state)
 
 void TrainModelUI::PowerChanged(int power)
 {
-    train.setPower(power);
+    calcs.setPower(power);
     updateUI();
 }
 
-void TrainModelUI::on_pushme_clicked()
+void  TrainModelUI::calcTemp(){
+    if(calcs.currentTemp > calcs.outsideTemp){
+        ui->tempControlValue->setText("AC on");
+    }else{
+        ui->tempControlValue->setText("Heater on");
+    }
+}
+
+void TrainModelUI::on_inputTempConfirm_clicked()
 {
-    int i = 0;
+    QString x = ui->inputCurrentTempValue->text();
+    double tempval = x.toDouble();
+    ui->currentTempValue->setText(QString::number(tempval));
+
+}
+
+
+void TrainModelUI::on_passengersConfirm_clicked()
+{
+    int input = ui->inputPassengersOnBoard->text().toInt();
+    boardingPassengersFromTM(input);
+
 }
 

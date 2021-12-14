@@ -195,14 +195,20 @@ void TrackModel::trackModelDisplay() {
         blockdata->setItem(i, 7, stations[i]);
 
         if (layout.line->blocks[i].hasCrossing) {
-            if (layout.line->blocks[i].crossingLights) {
-                QTableWidgetItem* cl = new QTableWidgetItem("On");
+            if (layout.line->blocks[i].crossingLights == 0) {
+                QTableWidgetItem* cl = new QTableWidgetItem("Green");
                 cl->setBackground(col);
                 crossings[i] = cl;
                 blockdata->setItem(i, 8, crossings[i]);
             }
-            else {
-                QTableWidgetItem* cl = new QTableWidgetItem("Off");
+            else if (layout.line->blocks[i].crossingLights == 1) {
+                QTableWidgetItem* cl = new QTableWidgetItem("Yellow");
+                cl->setBackground(col);
+                crossings[i] = cl;
+                blockdata->setItem(i, 8, crossings[i]);
+            }
+            else if (layout.line->blocks[i].crossingLights == 2) {
+                QTableWidgetItem* cl = new QTableWidgetItem("Red");
                 cl->setBackground(col);
                 crossings[i] = cl;
                 blockdata->setItem(i, 8, crossings[i]);
@@ -440,7 +446,13 @@ void TrackModel::trainUpdated(vector<string> item) {
     }
 
     if (!found) {
-        int star = stoi(item[3]);
+        int star = 1;
+        if (layout.line->name == "Green") {
+            star = 63;
+        }
+        else if (layout.line->name == "Red") {
+            star = 9;
+        }
         Train train(id, com, star);
         layout.line->trains.push_back(train);
     }
@@ -449,11 +461,26 @@ void TrackModel::trainUpdated(vector<string> item) {
     data.push_back(id);
     data.push_back(com);
     emit trainData(data);
+    for (int i=0; i<layout.line->trains.size(); i++) {
+        if (layout.line->trains[i].id == id) {
+            int bn = layout.line->trains[i].location;
+            vector<int> data;
+            data.push_back(id);
+            data.push_back(layout.line->trains[i].location);
+            data.push_back(layout.line->blocks[bn-1].length);
+            data.push_back(layout.line->blocks[bn-1].grade);
+            data.push_back(layout.line->blocks[bn-1].speedLimit);
+            data.push_back(layout.line->trains[id-1].commandedSpeed);
+            emit newBlock(data);
+        }
+    }
     trackModelDisplay();
 }
 
 void TrackModel::trainMoved(int trainNum) {
     int a = layout.line->trains.size();
+    vector<string> beac;
+    beac.push_back(to_string(trainNum));
     int tb = -1;
     for (int i=0; i<a; i++) {
         if (layout.line->trains[i].id == trainNum) {
@@ -477,11 +504,8 @@ void TrackModel::trainMoved(int trainNum) {
             string e = layout.line->blocks[bn-1].beacon.name;
             if (layout.line->blocks[bn-1].beacon.left) e += ",LEFT";
             if (layout.line->blocks[bn-1].beacon.right) e+= ",RIGHT";
-            emit beaconData(e);
-        }
-        else {
-            string e = "Waiting for input";
-            emit beaconData(e);
+            beac.push_back(e);
+            emit beaconData(beac);
         }
     }
 
@@ -498,7 +522,9 @@ void TrackModel::trainMoved(int trainNum) {
         }
     }
     for (int i=0; i<(int)layout.line->trains.size(); i++) {
-        occ[layout.line->trains[i].location] = true;
+        if (layout.line->trains[i].location >= 0) {
+            occ[layout.line->trains[i].location] = true;
+        }
     }
     emit occupancyChanged(occ);
 
@@ -551,7 +577,9 @@ void TrackModel::on_breakCircuit_returnPressed() {
         }
     }
     for (int i=0; i<(int)layout.line->trains.size(); i++) {
-        occ[layout.line->trains[i].location] = true;
+        if (layout.line->trains[i].location >= 0) {
+            occ[layout.line->trains[i].location] = true;
+        }
     }
     emit occupancyChanged(occ);
 
@@ -588,7 +616,9 @@ void TrackModel::on_breakTrack_returnPressed() {
         }
     }
     for (int i=0; i<(int)layout.line->trains.size(); i++) {
-        occ[layout.line->trains[i].location] = true;
+        if (layout.line->trains[i].location >= 0) {
+            occ[layout.line->trains[i].location] = true;
+        }
     }
     emit occupancyChanged(occ);
 
@@ -625,7 +655,9 @@ void TrackModel::on_breakPower_returnPressed() {
         }
     }
     for (int i=0; i<(int)layout.line->trains.size(); i++) {
-        occ[layout.line->trains[i].location] = true;
+        if (layout.line->trains[i].location >= 0) {
+            occ[layout.line->trains[i].location] = true;
+        }
     }
     emit occupancyChanged(occ);
 
@@ -780,4 +812,22 @@ void TrackModel::closeBlocks(vector<bool> closed) {
     emit occupancyChanged(occ);
 
     trackModelDisplay();
+}
+
+void TrackModel::stopped(int train) {
+    vector<int> data;
+    data.push_back(train);
+    for (int i=0; i<(int)layout.line->trains.size(); i++ ) {
+        if (layout.line->trains[i].id == train) {
+            int b = layout.line->trains[i].location;
+            if (layout.line->blocks[b-1].hasStation == true) {
+                data.push_back(1);
+            }
+            else {
+                data.push_back(1);
+            }
+            emit atStation(data);
+            i = 100;
+        }
+    }
 }
