@@ -212,6 +212,12 @@ Layout::Layout() {
                 f = infrastructure.find(";");
                 if (f >= 0) infrastructure.erase(0, f+2);
             }
+            if (infrastructure[0] == ';') {
+                infrastructure.erase(0, 1);
+            }
+            if (infrastructure[0] == ' ') {
+                infrastructure.erase(0, 1);
+            }
         }
 
         if (dir == "Both") {
