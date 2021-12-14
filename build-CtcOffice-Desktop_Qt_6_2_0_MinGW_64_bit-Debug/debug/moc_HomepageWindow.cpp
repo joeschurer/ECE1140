@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HomepageWindow_t {
     const uint offsetsAndSize[64];
-    char stringdata0[714];
+    char stringdata0[718];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_HomepageWindow_t, stringdata0) + ofs), len 
@@ -55,12 +55,12 @@ QT_MOC_LITERAL(410, 30), // "on_testInterfaceButton_clicked"
 QT_MOC_LITERAL(441, 25), // "on_homepageButton_clicked"
 QT_MOC_LITERAL(467, 29), // "on_manageTrainsButton_clicked"
 QT_MOC_LITERAL(497, 29), // "on_manageTracksButton_clicked"
-QT_MOC_LITERAL(527, 37), // "on_submitTestTrackInputButton..."
-QT_MOC_LITERAL(565, 37), // "on_submitTestTrainInputButton..."
-QT_MOC_LITERAL(603, 26), // "on_addSwitchButton_clicked"
-QT_MOC_LITERAL(630, 25), // "on_dispatchButton_clicked"
-QT_MOC_LITERAL(656, 28), // "on_submitBlockButton_clicked"
-QT_MOC_LITERAL(685, 28) // "on_removeTrackButton_clicked"
+QT_MOC_LITERAL(527, 26), // "on_addSwitchButton_clicked"
+QT_MOC_LITERAL(554, 25), // "on_dispatchButton_clicked"
+QT_MOC_LITERAL(580, 28), // "on_submitBlockButton_clicked"
+QT_MOC_LITERAL(609, 28), // "on_removeTrackButton_clicked"
+QT_MOC_LITERAL(638, 40), // "on_submitTestOccupancyPushBut..."
+QT_MOC_LITERAL(679, 38) // "on_SubmitTestTicketsSoldButto..."
 
     },
     "HomepageWindow\0sendClosedBlocks\0\0"
@@ -78,12 +78,12 @@ QT_MOC_LITERAL(685, 28) // "on_removeTrackButton_clicked"
     "on_homepageButton_clicked\0"
     "on_manageTrainsButton_clicked\0"
     "on_manageTracksButton_clicked\0"
-    "on_submitTestTrackInputButton_clicked\0"
-    "on_submitTestTrainInputButton_clicked\0"
     "on_addSwitchButton_clicked\0"
     "on_dispatchButton_clicked\0"
     "on_submitBlockButton_clicked\0"
-    "on_removeTrackButton_clicked"
+    "on_removeTrackButton_clicked\0"
+    "on_submitTestOccupancyPushButton_clicked\0"
+    "on_SubmitTestTicketsSoldButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -180,12 +180,12 @@ void HomepageWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 14: _t->on_homepageButton_clicked(); break;
         case 15: _t->on_manageTrainsButton_clicked(); break;
         case 16: _t->on_manageTracksButton_clicked(); break;
-        case 17: _t->on_submitTestTrackInputButton_clicked(); break;
-        case 18: _t->on_submitTestTrainInputButton_clicked(); break;
-        case 19: _t->on_addSwitchButton_clicked(); break;
-        case 20: _t->on_dispatchButton_clicked(); break;
-        case 21: _t->on_submitBlockButton_clicked(); break;
-        case 22: _t->on_removeTrackButton_clicked(); break;
+        case 17: _t->on_addSwitchButton_clicked(); break;
+        case 18: _t->on_dispatchButton_clicked(); break;
+        case 19: _t->on_submitBlockButton_clicked(); break;
+        case 20: _t->on_removeTrackButton_clicked(); break;
+        case 21: _t->on_submitTestOccupancyPushButton_clicked(); break;
+        case 22: _t->on_SubmitTestTicketsSoldButton_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

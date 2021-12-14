@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -56,7 +55,6 @@ public:
     QPushButton *uploadScheduleButton;
     QTableWidget *trainTableWidget;
     QPushButton *plusButton;
-    QPushButton *minusButton;
     QLineEdit *scheduleTrainLineEdit;
     QLineEdit *scheduleDestinationLineEdit;
     QLineEdit *scheduleArrivalLineEdit;
@@ -76,34 +74,21 @@ public:
     QLineEdit *trackLineEdit;
     QCheckBox *maintenanceModeCheckBox;
     QPushButton *addSwitchButton;
-    QPushButton *removeSwitchButton;
     QLineEdit *switchLineEdit;
     QLabel *label_15;
     QLabel *label_16;
     QLineEdit *timeMinuteLineEdit_2;
     QLineEdit *timeHourLineEdit_2;
     QWidget *testInterfacePage;
-    QComboBox *testTrackComboBox;
-    QLabel *trackInputLabel;
-    QComboBox *testTrackConditionComboBox;
-    QLabel *trackInputLabel_2;
-    QComboBox *testLocationComboBox;
-    QComboBox *testTrainComboBox;
-    QLineEdit *testSpeedLineEdit;
-    QLineEdit *testAuthorityLineEdit;
-    QLabel *label_4;
-    QLabel *label_5;
-    QLabel *label_6;
-    QLabel *label_7;
-    QPushButton *submitTestTrackInputButton;
-    QPushButton *submitTestTrainInputButton;
-    QLabel *label_8;
-    QLabel *label_9;
-    QLineEdit *testDestinationLineEdit;
-    QLabel *label_10;
     QPushButton *submitBlockButton;
     QLineEdit *startBlockLineEdit;
     QLineEdit *destinationBlockLineEdit;
+    QLineEdit *testOccupancyLineEdit;
+    QLabel *label_4;
+    QPushButton *submitTestOccupancyPushButton;
+    QLabel *label_5;
+    QLineEdit *testTicketsSoldLineEdit;
+    QPushButton *SubmitTestTicketsSoldButton;
     QPushButton *homepageButton;
     QPushButton *manageTrainsButton;
     QPushButton *manageTracksButton;
@@ -229,10 +214,7 @@ public:
         trainTableWidget->setGeometry(QRect(290, 30, 501, 241));
         plusButton = new QPushButton(mangeTrainsPage);
         plusButton->setObjectName(QString::fromUtf8("plusButton"));
-        plusButton->setGeometry(QRect(700, 280, 41, 22));
-        minusButton = new QPushButton(mangeTrainsPage);
-        minusButton->setObjectName(QString::fromUtf8("minusButton"));
-        minusButton->setGeometry(QRect(750, 280, 41, 22));
+        plusButton->setGeometry(QRect(750, 280, 41, 22));
         scheduleTrainLineEdit = new QLineEdit(mangeTrainsPage);
         scheduleTrainLineEdit->setObjectName(QString::fromUtf8("scheduleTrainLineEdit"));
         scheduleTrainLineEdit->setGeometry(QRect(300, 280, 91, 21));
@@ -302,10 +284,6 @@ public:
         addSwitchButton->setObjectName(QString::fromUtf8("addSwitchButton"));
         addSwitchButton->setEnabled(false);
         addSwitchButton->setGeometry(QRect(470, 290, 41, 22));
-        removeSwitchButton = new QPushButton(manageTracksPage);
-        removeSwitchButton->setObjectName(QString::fromUtf8("removeSwitchButton"));
-        removeSwitchButton->setEnabled(false);
-        removeSwitchButton->setGeometry(QRect(530, 290, 41, 22));
         switchLineEdit = new QLineEdit(manageTracksPage);
         switchLineEdit->setObjectName(QString::fromUtf8("switchLineEdit"));
         switchLineEdit->setEnabled(false);
@@ -326,60 +304,6 @@ public:
         stackedWidget->addWidget(manageTracksPage);
         testInterfacePage = new QWidget();
         testInterfacePage->setObjectName(QString::fromUtf8("testInterfacePage"));
-        testTrackComboBox = new QComboBox(testInterfacePage);
-        testTrackComboBox->setObjectName(QString::fromUtf8("testTrackComboBox"));
-        testTrackComboBox->setGeometry(QRect(190, 80, 191, 22));
-        trackInputLabel = new QLabel(testInterfacePage);
-        trackInputLabel->setObjectName(QString::fromUtf8("trackInputLabel"));
-        trackInputLabel->setGeometry(QRect(190, 40, 101, 16));
-        testTrackConditionComboBox = new QComboBox(testInterfacePage);
-        testTrackConditionComboBox->setObjectName(QString::fromUtf8("testTrackConditionComboBox"));
-        testTrackConditionComboBox->setGeometry(QRect(190, 120, 191, 22));
-        trackInputLabel_2 = new QLabel(testInterfacePage);
-        trackInputLabel_2->setObjectName(QString::fromUtf8("trackInputLabel_2"));
-        trackInputLabel_2->setGeometry(QRect(560, 30, 101, 16));
-        testLocationComboBox = new QComboBox(testInterfacePage);
-        testLocationComboBox->setObjectName(QString::fromUtf8("testLocationComboBox"));
-        testLocationComboBox->setGeometry(QRect(560, 100, 191, 22));
-        testTrainComboBox = new QComboBox(testInterfacePage);
-        testTrainComboBox->setObjectName(QString::fromUtf8("testTrainComboBox"));
-        testTrainComboBox->setGeometry(QRect(560, 60, 191, 22));
-        testSpeedLineEdit = new QLineEdit(testInterfacePage);
-        testSpeedLineEdit->setObjectName(QString::fromUtf8("testSpeedLineEdit"));
-        testSpeedLineEdit->setGeometry(QRect(560, 140, 113, 21));
-        testAuthorityLineEdit = new QLineEdit(testInterfacePage);
-        testAuthorityLineEdit->setObjectName(QString::fromUtf8("testAuthorityLineEdit"));
-        testAuthorityLineEdit->setGeometry(QRect(560, 180, 113, 21));
-        label_4 = new QLabel(testInterfacePage);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(500, 60, 47, 14));
-        label_5 = new QLabel(testInterfacePage);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(490, 110, 47, 14));
-        label_6 = new QLabel(testInterfacePage);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(490, 150, 47, 14));
-        label_7 = new QLabel(testInterfacePage);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setGeometry(QRect(480, 180, 61, 20));
-        submitTestTrackInputButton = new QPushButton(testInterfacePage);
-        submitTestTrackInputButton->setObjectName(QString::fromUtf8("submitTestTrackInputButton"));
-        submitTestTrackInputButton->setGeometry(QRect(240, 180, 80, 22));
-        submitTestTrainInputButton = new QPushButton(testInterfacePage);
-        submitTestTrainInputButton->setObjectName(QString::fromUtf8("submitTestTrainInputButton"));
-        submitTestTrainInputButton->setGeometry(QRect(620, 250, 80, 22));
-        label_8 = new QLabel(testInterfacePage);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
-        label_8->setGeometry(QRect(100, 80, 47, 14));
-        label_9 = new QLabel(testInterfacePage);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
-        label_9->setGeometry(QRect(100, 120, 101, 20));
-        testDestinationLineEdit = new QLineEdit(testInterfacePage);
-        testDestinationLineEdit->setObjectName(QString::fromUtf8("testDestinationLineEdit"));
-        testDestinationLineEdit->setGeometry(QRect(560, 210, 113, 21));
-        label_10 = new QLabel(testInterfacePage);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-        label_10->setGeometry(QRect(480, 210, 81, 20));
         submitBlockButton = new QPushButton(testInterfacePage);
         submitBlockButton->setObjectName(QString::fromUtf8("submitBlockButton"));
         submitBlockButton->setGeometry(QRect(80, 320, 80, 22));
@@ -389,6 +313,24 @@ public:
         destinationBlockLineEdit = new QLineEdit(testInterfacePage);
         destinationBlockLineEdit->setObjectName(QString::fromUtf8("destinationBlockLineEdit"));
         destinationBlockLineEdit->setGeometry(QRect(170, 270, 113, 21));
+        testOccupancyLineEdit = new QLineEdit(testInterfacePage);
+        testOccupancyLineEdit->setObjectName(QString::fromUtf8("testOccupancyLineEdit"));
+        testOccupancyLineEdit->setGeometry(QRect(130, 40, 171, 21));
+        label_4 = new QLabel(testInterfacePage);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(30, 40, 71, 16));
+        submitTestOccupancyPushButton = new QPushButton(testInterfacePage);
+        submitTestOccupancyPushButton->setObjectName(QString::fromUtf8("submitTestOccupancyPushButton"));
+        submitTestOccupancyPushButton->setGeometry(QRect(170, 70, 80, 22));
+        label_5 = new QLabel(testInterfacePage);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(30, 120, 101, 16));
+        testTicketsSoldLineEdit = new QLineEdit(testInterfacePage);
+        testTicketsSoldLineEdit->setObjectName(QString::fromUtf8("testTicketsSoldLineEdit"));
+        testTicketsSoldLineEdit->setGeometry(QRect(130, 120, 113, 21));
+        SubmitTestTicketsSoldButton = new QPushButton(testInterfacePage);
+        SubmitTestTicketsSoldButton->setObjectName(QString::fromUtf8("SubmitTestTicketsSoldButton"));
+        SubmitTestTicketsSoldButton->setGeometry(QRect(150, 150, 80, 22));
         stackedWidget->addWidget(testInterfacePage);
         homepageButton = new QPushButton(centralwidget);
         homepageButton->setObjectName(QString::fromUtf8("homepageButton"));
@@ -414,7 +356,7 @@ public:
 
         retranslateUi(HomepageWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(HomepageWindow);
@@ -448,7 +390,6 @@ public:
         QTableWidgetItem *___qtablewidgetitem6 = trainTableWidget->horizontalHeaderItem(4);
         ___qtablewidgetitem6->setText(QCoreApplication::translate("HomepageWindow", "S. Speed(mph)", nullptr));
         plusButton->setText(QCoreApplication::translate("HomepageWindow", "+", nullptr));
-        minusButton->setText(QCoreApplication::translate("HomepageWindow", "-", nullptr));
         scheduleTrainLineEdit->setPlaceholderText(QCoreApplication::translate("HomepageWindow", "Enter Train #", nullptr));
         scheduleDestinationLineEdit->setPlaceholderText(QCoreApplication::translate("HomepageWindow", "Enter Destination", nullptr));
         scheduleArrivalLineEdit->setText(QString());
@@ -467,28 +408,15 @@ public:
         label->setText(QString());
         maintenanceModeCheckBox->setText(QCoreApplication::translate("HomepageWindow", "Maintenance Mode", nullptr));
         addSwitchButton->setText(QCoreApplication::translate("HomepageWindow", "+", nullptr));
-        removeSwitchButton->setText(QCoreApplication::translate("HomepageWindow", "-", nullptr));
         label_15->setText(QCoreApplication::translate("HomepageWindow", "Time: ", nullptr));
         label_16->setText(QCoreApplication::translate("HomepageWindow", ":", nullptr));
-        testTrackComboBox->setPlaceholderText(QCoreApplication::translate("HomepageWindow", "Select Track", nullptr));
-        trackInputLabel->setText(QCoreApplication::translate("HomepageWindow", "Enter Track Input", nullptr));
-        testTrackConditionComboBox->setPlaceholderText(QCoreApplication::translate("HomepageWindow", "Select Track", nullptr));
-        trackInputLabel_2->setText(QCoreApplication::translate("HomepageWindow", "Enter Train Input", nullptr));
-        testLocationComboBox->setPlaceholderText(QCoreApplication::translate("HomepageWindow", "Select Location", nullptr));
-        testTrainComboBox->setPlaceholderText(QCoreApplication::translate("HomepageWindow", "Select Train", nullptr));
-        testSpeedLineEdit->setPlaceholderText(QCoreApplication::translate("HomepageWindow", "Enter Current Speed", nullptr));
-        testAuthorityLineEdit->setPlaceholderText(QCoreApplication::translate("HomepageWindow", "Enter Authority", nullptr));
-        label_4->setText(QCoreApplication::translate("HomepageWindow", "Train:", nullptr));
-        label_5->setText(QCoreApplication::translate("HomepageWindow", "Location:", nullptr));
-        label_6->setText(QCoreApplication::translate("HomepageWindow", "Speed:", nullptr));
-        label_7->setText(QCoreApplication::translate("HomepageWindow", "Authority:", nullptr));
-        submitTestTrackInputButton->setText(QCoreApplication::translate("HomepageWindow", "Submit", nullptr));
-        submitTestTrainInputButton->setText(QCoreApplication::translate("HomepageWindow", "Submit", nullptr));
-        label_8->setText(QCoreApplication::translate("HomepageWindow", "Track:", nullptr));
-        label_9->setText(QCoreApplication::translate("HomepageWindow", "Condition:", nullptr));
-        testDestinationLineEdit->setPlaceholderText(QCoreApplication::translate("HomepageWindow", "Enter Destination", nullptr));
-        label_10->setText(QCoreApplication::translate("HomepageWindow", "Destination:", nullptr));
         submitBlockButton->setText(QCoreApplication::translate("HomepageWindow", "submit", nullptr));
+        testOccupancyLineEdit->setPlaceholderText(QCoreApplication::translate("HomepageWindow", "Enter CSV of occupied blocks", nullptr));
+        label_4->setText(QCoreApplication::translate("HomepageWindow", "Occupancy:", nullptr));
+        submitTestOccupancyPushButton->setText(QCoreApplication::translate("HomepageWindow", "Submit", nullptr));
+        label_5->setText(QCoreApplication::translate("HomepageWindow", "Enter Tickets Sold:", nullptr));
+        testTicketsSoldLineEdit->setPlaceholderText(QCoreApplication::translate("HomepageWindow", "Enter tickets sold", nullptr));
+        SubmitTestTicketsSoldButton->setText(QCoreApplication::translate("HomepageWindow", "Submit", nullptr));
         homepageButton->setText(QCoreApplication::translate("HomepageWindow", "Homepage", nullptr));
         manageTrainsButton->setText(QCoreApplication::translate("HomepageWindow", "Manage Trains", nullptr));
         manageTracksButton->setText(QCoreApplication::translate("HomepageWindow", "Manage Tracks", nullptr));

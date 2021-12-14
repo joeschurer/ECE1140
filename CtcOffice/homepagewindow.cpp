@@ -31,14 +31,7 @@ HomepageWindow::HomepageWindow(QWidget *parent, CtcOffice *ctcOffice)
 HomepageWindow::~HomepageWindow() { delete ui; }
 
 void HomepageWindow::initializeTestInterfaceUi() {
-  ui->testTrackComboBox->insertItems(0, {"Blue:A", "Blue:B", "Blue:C"});
-  ui->testTrackConditionComboBox->insertItems(
-      0, {"Broken Rail", "Track Circuit Failure", "Power Failure"});
-  ui->testTrainComboBox->insertItems(0, {"Train 1", "Train 2", "Train 3"});
-  ui->testLocationComboBox->insertItems(
-      0, {"Blue:A:1", "Blue:A:2", "Blue:A:3", "Blue:A:4", "Blue:A:5",
-          "Blue:B:6", "Blue:B:7", "Blue:B:8", "Blue:B:9", "Blue:B:10",
-          "Blue:C:11", "Blue:C:12", "Blue:C:13", "Blue:C:14", "Blue:C:15"});
+
 }
 
 void HomepageWindow::on_homepageButton_clicked() {
@@ -160,35 +153,11 @@ void HomepageWindow::on_maintenanceModeCheckBox_stateChanged(int arg1) {
   auto checkbox = ui->maintenanceModeCheckBox;
   if (checkbox->isChecked()) {
     ui->addSwitchButton->setEnabled(true);
-    ui->removeSwitchButton->setEnabled(true);
     ui->switchLineEdit->setEnabled(true);
   } else {
     ui->addSwitchButton->setEnabled(false);
-    ui->removeSwitchButton->setEnabled(false);
     ui->switchLineEdit->setEnabled(false);
   }
-}
-
-void HomepageWindow::on_submitTestTrackInputButton_clicked() {
-  auto trackTable = ui->trackSectionTable;
-  int numRows = trackTable->rowCount();
-  trackTable->insertRow(numRows);
-  trackTable->setItem(
-      numRows, 0, new QTableWidgetItem(ui->testTrackComboBox->currentText()));
-  ui->stackedWidget->setCurrentIndex(2);
-}
-
-void HomepageWindow::on_submitTestTrainInputButton_clicked() {
-  /*
-  auto comboBox = ui->selectTrainComboBox;
-  comboBox->insertItem(0, ui->testTrainComboBox->currentText());
-  comboBox->setCurrentIndex(0);
-  ui->speedLineEdit->setText(ui->testSpeedLineEdit->text());
-  ui->authorityLineEdit->setText(ui->testAuthorityLineEdit->text());
-  ui->locationLineEdit->setText(ui->testLocationComboBox->currentText());
-  ui->destinationLineEdit->setText(ui->testDestinationLineEdit->text());
-  ui->stackedWidget->setCurrentIndex(0);
-  */
 }
 
 void HomepageWindow::on_addSwitchButton_clicked() {
@@ -242,7 +211,7 @@ void HomepageWindow::updateOccupancyTable(vector<bool> occupancy) {
   ui->dispatchedTrainsCountLineEdit->setText(QString::number(totalDispatchedTrains));
   if(totalOccupancy>totalDispatchedTrains) {
       ui->trackFailureAlertTextEdit->setTextColor(QColor("red"));
-      ui->trackFailureAlertTextEdit->setText("Alert: Occupancies>DispatchedTrains, Potential Track Failure");
+      ui->trackFailureAlertTextEdit->setText("Alert: Occupancies>Dispatched Trains, Potential Track Failure");
   } else {
       ui->trackFailureAlertTextEdit->clear();
   }
@@ -250,12 +219,12 @@ void HomepageWindow::updateOccupancyTable(vector<bool> occupancy) {
 
 void HomepageWindow::timerSlot() {
   systemClock += 1;
-  qDebug() << systemClock;
+  //qDebug() << systemClock;
   bool trainDispatched = ctcOffice_->checkForDispatch(systemClock);
   Time currentTime = ctcOffice_->toTimeFromSeconds(systemClock);
   ui->timeHourLineEdit->setText(std::to_string(currentTime.first).c_str());
   ui->timeHourLineEdit_2->setText(std::to_string(currentTime.first).c_str());
-  ui->timeHourLineEdit_2->setText(std::to_string(currentTime.first).c_str());
+  ui->timeHourLineEdit_3->setText(std::to_string(currentTime.first).c_str());
   ui->timeMinuteLineEdit->setText(std::to_string(currentTime.second).c_str());
   ui->timeMinuteLineEdit_2->setText(std::to_string(currentTime.second).c_str());
   ui->timeMinuteLineEdit_3->setText(std::to_string(currentTime.second).c_str());
@@ -300,5 +269,31 @@ void HomepageWindow::on_removeTrackButton_clicked()
         auto closedBlocksVector = ctcOffice_->sendClosedBlocks();
         emit sendClosedBlocks(closedBlocksVector);
     }
+}
+
+
+void HomepageWindow::on_submitTestOccupancyPushButton_clicked()
+{
+    vector<bool> occupancy;
+    if(ctcOffice_->getCurrentLine()==Green){
+        occupancy = vector<bool>(150, false);
+
+    } else {
+        occupancy = vector<bool>(76, false);
+    }
+    auto occupiedBlocksString = ui->testOccupancyLineEdit->text().toStdString();
+    auto blockVector = utility::split(occupiedBlocksString, ",");
+    for(auto block: blockVector){
+        occupancy[stoi(block)]=true;
+    }
+    ctcOffice_->updateOccupancy(occupancy);
+    updateOccupancyTable(occupancy);
+}
+
+
+void HomepageWindow::on_SubmitTestTicketsSoldButton_clicked()
+{
+    auto tickets = ui->testTicketsSoldLineEdit->text().toInt();
+    ctcOffice_->setTickets(tickets);
 }
 
