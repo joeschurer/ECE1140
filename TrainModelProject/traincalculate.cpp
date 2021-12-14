@@ -1,26 +1,31 @@
 #include "traincalculate.h"
 #include <cstdlib>
 #include <iostream>
+#include <vector>
 trainCalculate::trainCalculate()
 {
     numCars = 2;
-    numPassengers = 0;
-    passengersOff = 0;
+    numPassengers = 0.00;
+    passengersOff = 0.00;
     currentPower = 0;
     currentVelocity = 0;
     lastAcc = 0;
     currentAcc = 0;
     trainLength = 105.6;
-    maxCapacity = 222;
+    maxCapacity = 222.00;
     currentMode = 0;
     lastVelocity = 0;
     currentForce = 0;
     currentWeight = 40900;
+    trainWeight = 40900;
     lastTime = 0;
     currentTime = 1;
     lastPosition = 0;
     currentPosition = 0;
     blockSize = 50;
+    setTemp = 0;
+    outsideTemp = 0;
+    currentTemp = 70;
 }
 
 
@@ -49,7 +54,9 @@ void trainCalculate::setPower(double power){
     return;
 }
 
-double trainCalculate::distTraveled(){
+
+
+double trainCalculate::distTraveled(int blockLength){
     if(lastTime == 0){
         lastPosition = 0;
     }
@@ -71,7 +78,16 @@ void trainCalculate:: resetValues(){
     currentForce = 0;
 }
 
+void trainCalculate::trainAtStation(){
+    if(currentVelocity == 0 && serviceBrake == true){
+        atStation = true;
+    }
+}
+
 double trainCalculate::calculateVelocity(){
+    if(currentVelocity == 0 && atStation == true){
+        resetValues();
+    }
     lastVelocity = currentVelocity;
     lastAcc = currentAcc;
 
@@ -79,7 +95,7 @@ double trainCalculate::calculateVelocity(){
         currentForce = (currentPower / lastVelocity)-(40*lastVelocity*lastVelocity);
     }
     currentAcc = currentForce/currentWeight;
-    if(currentMode == 5){ //service brake
+    if(serviceBrake == true){ //service brake
         lastAcc = -1.2;
         currentAcc = -1.2;
     }else if (emergencyBrake == true){ //emergency brake
@@ -109,16 +125,28 @@ int trainCalculate::calcWeight(int numPassengers){
     currentWeight = trainWeight + passWeight;
     return currentWeight;
 }
-int trainCalculate::calcCapacity(int newPassengers){
+
+vector<int> trainCalculate::passengersLeavingTrain(){
     if(numPassengers > 0){
-        passengersOff = rand() % numPassengers;
+        int aaah = rand() % (int)numPassengers;
+        passengersOff = aaah;
     }
         numPassengers = numPassengers-passengersOff;
+    vector<int> result;
+    result[0] = id;
+    result[1] = passengersOff;
+    return result;
+}
+
+int trainCalculate::calcCapacity(int newPassengers){
         numPassengers += newPassengers;
         if(numPassengers > maxCapacity){
             numPassengers = maxCapacity;
         }
+        percentCapacity = (numPassengers/maxCapacity) * 100;
         calcWeight(numPassengers);
+
+        serviceBrake = false; //not sure if this is the right place to put this
     return numPassengers;
 }
 void trainCalculate::leftDoors(){
