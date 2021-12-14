@@ -52,9 +52,9 @@ bool track_layout::create_line(int line){
     new_block(tempYard);
 
     std::string fLine;
-    QString fileName(":/line/GreenLine.txt");
+    QString fileName(":/line/lines/GreenLine.txt");
     if(line ==1){
-        fileName = ":/line/RedLine.txt";
+        fileName = ":/line/lines/RedLine.txt";
     }
 
     QFile inputFile(fileName);

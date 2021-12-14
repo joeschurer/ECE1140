@@ -133,6 +133,12 @@ bool PLC::readPLCFile(string file){
 vector<vector<int>> PLC::parsePLC(){
     vector<int> toggleSW,toggleCROSS;
     for(int i=0;i< plcContainer.size();i++){
+        int authSel;
+        vector<int> lauthVec,rauthVec;
+        lauthVec = GetValues(plcContainer[i][5]);
+        rauthVec = GetValues(plcContainer[i][7]);
+        bool waiting = false;
+        bool letGo = false;
         int BL, SWPOS;
         if(plcContainer[i][0] == "IF" && plcContainer[i][2]=="THEN"){
             if (plcContainer[i][1].substr(0,2) == "BL"){
@@ -171,13 +177,29 @@ vector<vector<int>> PLC::parsePLC(){
                         auth2 = track->track[track->track[SWPOS].headOptions[0]].auth;
                     }
 
+                    //Check for an occupancy to allow switching
+                    //if LAUTH is occupied and CHECK is clear allow that train to leave
+                    for(int i=0;i<lauthVec.size();i++){
+                        if(track->track[lauthVec[i]].occupancy == true){
+                            waiting = true;//train waiting to leave loop
+                        }
+                    }
+                    if(track->track[i].headConnect==BL){
+                        if(waiting==true && safe==true){
+                            qDebug()<< "Toggling to allow passing of switch: " << SWPOS;
+                            track->toggle_switch(SWPOS);
+                            toggleSW.push_back(SWPOS);
+                            qDebug()<< "Toggled switch: " << SWPOS;
+                            letGo = true;
+                        }
+                    }
 
                     //check for auth on the block
                     if(track->track[BL].auth == true || (auth2 == true && authBL ==true)){
                          qDebug() << "Switch: " << SWPOS << "auth for: " << BL << "curr conn:" <<track->track[SWPOS].headConnect;
                         if(track->track[SWPOS].headConnect!=BL){
                             //if safe switch
-                            if(safe == true){
+                            if(safe == true && letGo == false){
                                 track->toggle_switch(SWPOS);
                                 toggleSW.push_back(SWPOS);
                                 qDebug()<< "Toggled switch: " << SWPOS;
@@ -189,7 +211,7 @@ vector<vector<int>> PLC::parsePLC(){
                         if(track->track[SWPOS].headConnect==BL){
                             qDebug() << "Switch: " << SWPOS << "auth for: " << BL << "curr conn:" <<track->track[SWPOS].headConnect;
                             //if safe switch
-                            if(safe == true){
+                            if(safe == true && letGo == false){
                                 track->toggle_switch(SWPOS);
                                 toggleSW.push_back(SWPOS);
                                 qDebug()<< "Toggled switch: " << SWPOS;
@@ -198,10 +220,6 @@ vector<vector<int>> PLC::parsePLC(){
                         }
                     }
 
-                    int authSel;
-                    vector<int> lauthVec,rauthVec;
-                    lauthVec = GetValues(plcContainer[i][5]);
-                    rauthVec = GetValues(plcContainer[i][7]);
                     if(track->track[SWPOS].headConnect==BL){//USE LAUTH
                         if(lauthVec[0]!= -1){
                             for(int i=0; i< lauthVec.size();i++){
@@ -255,11 +273,6 @@ vector<vector<int>> PLC::parsePLC(){
         }
     }
 
-    //also consider updating authority for empty blocks
-    //something like looking for non-switch blocks and if not near a train flip back to one
-    //am tired but it might be that if there is only one train you can still give authority
-    //count maintenance mode as an occupancy for these purposes
-    //probably needs to happen last
     updateData toSend;
     toSend.toggledCrossings = toggleCROSS;
     toSend.toggledSwitches = toggleSW;

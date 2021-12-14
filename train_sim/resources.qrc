@@ -2,6 +2,8 @@
     <qresource prefix="/line">
         <file>GreenLine.txt</file>
         <file>RedLine.txt</file>
+        <file>lines/GreenLine.txt</file>
+        <file>lines/RedLine.txt</file>
     </qresource>
     <qresource prefix="/PLC">
         <file>PLCs/PLCdefaultg1.plc</file>

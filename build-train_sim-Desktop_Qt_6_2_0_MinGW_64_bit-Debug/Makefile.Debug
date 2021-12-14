@@ -238,6 +238,8 @@ debug/qrc_resources.cpp: ../train_sim/resources.qrc \
 		C:/Qt/6.2.0/mingw81_64/bin/rcc.exe \
 		../train_sim/RedLine.txt \
 		../train_sim/GreenLine.txt \
+		../train_sim/lines/RedLine.txt \
+		../train_sim/lines/GreenLine.txt \
 		../train_sim/PLCs/PLCdefaultg3.plc \
 		../train_sim/PLCs/PLCdefaultr2.plc \
 		../train_sim/PLCs/PLCdefaultg4.plc \
@@ -251,6 +253,8 @@ debug/qrc_resources.cpp: ../train_sim/resources.qrc \
 		C:/Qt/6.2.0/mingw81_64/bin/rcc.exe \
 		../train_sim/RedLine.txt \
 		../train_sim/GreenLine.txt \
+		../train_sim/lines/RedLine.txt \
+		../train_sim/lines/GreenLine.txt \
 		../train_sim/PLCs/PLCdefaultg3.plc \
 		../train_sim/PLCs/PLCdefaultr2.plc \
 		../train_sim/PLCs/PLCdefaultg4.plc \
@@ -3055,7 +3059,8 @@ debug/lineselect.o: ../train_sim/lineselect.cpp ../train_sim/lineselect.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QPushButton \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qpushbutton.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
+		../train_sim/models.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\lineselect.o ..\train_sim\lineselect.cpp
 
 debug/main.o: ../train_sim/main.cpp ../train_sim/trainsimwindow.h \
