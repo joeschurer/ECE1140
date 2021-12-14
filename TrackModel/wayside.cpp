@@ -45,12 +45,10 @@ void Wayside::on_test1_clicked()
     string y = "000";
     string z = "0";
     string auth = a+b+c+d+e+f+g+h+i+j+k+l+m+n+o+p+q+r+s+t+u+v+w+x+y+z;
-    string star = "63"; //Start at K-63, block right outside yard
     vector<string> vec;
     vec.push_back(name);
     vec.push_back(com);
     vec.push_back(auth);
-    vec.push_back(star);
     emit trainChanged(vec);
 }
 
@@ -200,15 +198,15 @@ void Wayside::on_testYard_clicked()
     string f = "00000000";
     string g = "0000";
     string h = "000";
-    string i = "0000000000000011111111";
+    string i = "0000000000000000000000";
     string j = "00000";
-    string k = "000000";
-    string l = "00000";
-    string m = "000";
-    string n = "000000000";
-    string o = "000";
-    string p = "000000000";
-    string q = "000";
+    string k = "111111";
+    string l = "11111";
+    string m = "111";
+    string n = "111111111";
+    string o = "111";
+    string p = "111111111";
+    string q = "111";
     string r = "0";
     string s = "000";
     string t = "00000";
@@ -220,7 +218,6 @@ void Wayside::on_testYard_clicked()
     string z = "0";
     string auth = a+b+c+d+e+f+g+h+i+j+k+l+m+n+o+p+q+r+s+t+u+v+w+x+y+z;
     vec.push_back(auth);
-    vec.push_back("50"); //Start at 50, yard off 57
     emit trainChanged(vec);
 }
 

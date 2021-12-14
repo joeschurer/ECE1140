@@ -52,7 +52,7 @@ signals:
     vector<int> newBlock(vector<int> data);
     vector<int> passengersChanged(vector<int> pass);
     vector<bool> occupancyChanged(vector<bool> occ);
-    string beaconData(string data);
+    string beaconData(vector<string> data);
     double tempChanged(double temp);
     bool heatersOn(bool heat);
     int throughput(int throughput);

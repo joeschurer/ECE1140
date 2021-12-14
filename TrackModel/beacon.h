@@ -20,9 +20,10 @@ public:
     ~Beacon();
 
 private slots:
-    void transmitting(string data);
+    void transmitting(vector<string> data);
 
 signals:
+    vector<string> beaconData(vector<string> data);
 
 private:
     Ui::Beacon *ui;

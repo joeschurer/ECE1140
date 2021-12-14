@@ -15,6 +15,8 @@ Beacon::~Beacon()
     delete ui;
 }
 
-void Beacon::transmitting(string data) {
-    ui->beaconData->setText(QString::fromStdString(data));
+void Beacon::transmitting(vector<string> data) {
+    string d = data[1];
+    ui->beaconData->setText(QString::fromStdString(d));
+    emit beaconData(data);
 }
