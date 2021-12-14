@@ -97,13 +97,13 @@ bool PLC::readPLCFile(string file){
             std::string inputString = line.toStdString();
             if(start==0){
                 inputString.erase(0,6);
-                qDebug() << QString::fromStdString(inputString);
+                //qDebug() << QString::fromStdString(inputString);
                 ownedBlocks = GetValues(inputString);
 
                 start++;
             } else if(start ==1){
                 inputString.erase(0,6);
-                qDebug() << QString::fromStdString(inputString);
+                //qDebug() << QString::fromStdString(inputString);
                 std::vector<int> temp = GetValues(inputString);
                 for(int i=0;i<temp.size();i++){
                     ownedBlocks.push_back((temp[i]));
@@ -111,7 +111,7 @@ bool PLC::readPLCFile(string file){
                 start++;
             } else {
                 std::vector<std::string> fileLines;
-                qDebug() << QString::fromStdString(inputString);
+                //qDebug() << QString::fromStdString(inputString);
                 if(inputString[0] != '#'){
                     fileLines = linetoStrings(inputString," ");
                     plcContainer.push_back(fileLines);

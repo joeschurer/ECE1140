@@ -41,6 +41,7 @@ public:
         if (TrackModel->objectName().isEmpty())
             TrackModel->setObjectName(QString::fromUtf8("TrackModel"));
         TrackModel->resize(1406, 1095);
+        TrackModel->setAutoFillBackground(false);
         centralwidget = new QWidget(TrackModel);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         breakCircuit = new QLineEdit(centralwidget);

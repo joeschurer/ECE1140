@@ -14,7 +14,6 @@ class LineSelect : public QDialog
 public:
     explicit LineSelect(QWidget *parent = nullptr);
     ~LineSelect();
-    int selectedLine = 0;
 
 private slots:
     void on_selectgreen_clicked();
@@ -25,7 +24,6 @@ private slots:
 
 private:
     Ui::LineSelect *ui;
-
 };
 
 #endif // LINESELECT_H

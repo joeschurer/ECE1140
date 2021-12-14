@@ -14,7 +14,7 @@ Green,C,12,100,-3,55,BEACON( ~Both),,-3,0.5,Outbound
 Green,D,13,150,0,70,BEACON(EDGEBROOK~Left); SWITCH (12-13; 1-13),,0,0.5,Both
 Green,D,14,150,0,70,,,0,0.5,Both
 Green,D,15,150,0,70,,,0,0.5,Both
-Green,D,16,150,0,70,STATION,Both,0,0.5,Both
+Green,D,16,150,0,70,STATION; D,Both,0,0.5,Both
 Green,E,17,150,0,60,,,0,0.5,Both
 Green,E,18,150,0,60,BEACON(WHITED~Both),,0,0.5,Both
 Green,E,19,150,0,60,RAILWAY CROSSING,,0,0.5,Both

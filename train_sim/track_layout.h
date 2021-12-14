@@ -13,7 +13,6 @@ struct block{
     //0 = yard else indexed by block numbers
     int headOptions[2] = {-1,-1};
     bool auth;
-    int route;
     bool station;
     bool heater=false;
     bool underground = false;
@@ -24,7 +23,7 @@ struct block{
     bool maintenance = false;
     int headConnect = -1;
     int tailConnect = -1;
-    bool hasLights;
+    bool hasLights = false;
     char section;
     bool crossing;
     //0 is inactive, 1 active

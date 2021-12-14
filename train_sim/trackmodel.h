@@ -50,13 +50,13 @@ private slots:
 
 signals:
     vector<int> newBlock(vector<int> data);
-    vector<string> newTrainData(vector<string> newData);
     vector<int> passengersChanged(vector<int> pass);
     vector<bool> occupancyChanged(vector<bool> occ);
     string beaconData(string data);
     double tempChanged(double temp);
     bool heatersOn(bool heat);
-    int throughput(int through);
+    int throughput(int throughput);
+    vector<int> trainData(vector<int> data);
 
 private:
     Ui::TrackModel *ui;

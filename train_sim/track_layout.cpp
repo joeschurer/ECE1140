@@ -85,6 +85,9 @@ bool track_layout::create_line(int line){
                 //std::cout<<  temp.station<<std::endl;
             }if(inf.find("UNDERGROUND") != std::string::npos){
                 temp.underground = true;
+            }if(inf.find("Light") != std::string::npos){
+                temp.hasLights = true;
+                temp.lights = 0;
             }if(inf.find("RAILWAY") != std::string::npos){
                 //std::cout << "CROSSING: ";
                 temp.crossing= true;
@@ -148,6 +151,12 @@ bool track_layout::create_line(int line){
             track[track[i].headOptions[1]].switch_tail = true;
         }
         track[i].auth = true;
+    }
+    for(int i=0;i< track.size(); i++){
+        if(track[i].switch_tail == true){
+            track[i].hasLights = true;
+            track[i].lights = 0;
+        }
     }
 
     //trackFile.close();

@@ -166,7 +166,12 @@ void MainWindow::sel_block(){
         }
         ui->maintenance_status->setText(mode);
         ui->heater_status->setText(state);
-        ui->light_status->setText(light);
+        if(temp_block.hasLights == true){
+            ui->light_status->setText(light);
+        } else {
+            ui->light_status->setText("-");
+        }
+
         ui->switch_status->setText(switchString);
         ui->crossing_status->setText(crossing);
         ui->auth_status->setText(QString::number(temp_block.auth));
@@ -246,6 +251,7 @@ void MainWindow::track_heater(){
     int index = ui->heater_test->text().toInt();
     bool state = ui->heater_state->isChecked();
     waysideController.heater(state);
+
     if(block_selected){
         sel_block();
     }
@@ -382,7 +388,6 @@ void MainWindow::changeSwitch(std::vector<int> pos){
     if(change==true){
         std::vector<int> temp;
         temp.push_back(pos[0]);
-
         emit sendTrackModelSwitches(temp);
     }
     if(block_selected){
@@ -402,11 +407,9 @@ void MainWindow::receiveHeater(bool state){
 
 void MainWindow::receiveThroughput(int index){
     emit sendThroughput(index);
+
     if(block_selected){
         sel_block();
     }
 }
 
-void MainWindow::receiveLine(string line){
-
-}
