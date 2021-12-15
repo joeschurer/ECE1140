@@ -91,10 +91,10 @@ void HWTrainControllerPi::setKi(int i) {
 }
 
 void HWTrainControllerPi::increaseSpeed() {
-	//if (setpointSpeed+1 <= exInputs->getCommandedSpeed()) {
+	if (setpointSpeed+1 <= exInputs->getSuggestedSpeed()) {
 		setpointSpeed += 1;
 		calculatePower();
-	//}
+	}
 }
 
 void HWTrainControllerPi::decreaseSpeed() {
