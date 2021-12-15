@@ -20,10 +20,16 @@ HWTrainControllerPi::HWTrainControllerPi(int port, ExternalInputs *e) {
 	rightDoors = false;
 	signalReceived = false;
 	command = "";
-	trackSignal = "";
 	fd = port;
-	for (int i = 0; i < 5; i++)
-		setpointSpeedTmp[i] = '0';
+	for (int i = 0; i < 5; i++) {
+		setpointSpeedTmp[i] = 0;
+	}
+	for (int i = 0; i < READ_LENGTH; i++) {
+		commandArr[i] = 0;
+	}
+	for (int i = 0; i < WRITE_LENGTH; i++) {
+		trackSignal[i] = 0;
+	}
 }
 
 void HWTrainControllerPi::sendCommandStr() {
@@ -41,43 +47,38 @@ void HWTrainControllerPi::sendCommandStr() {
 		command.at(4) = '1';
 	
 	char power[9];
-	if (commandedPower < 10)
+	if (commandedPower < 10) {
 		sprintf(power, "%.6f", commandedPower);
-	else if (commandedPower < 100)
+	} else if (commandedPower < 100) {
 		sprintf(power, "%.5f", commandedPower);
-	else if (commandedPower < 1000)
+	} else if (commandedPower < 1000) {
 		sprintf(power, "%.4f", commandedPower);
-	else if (commandedPower < 10000)
+	} else if (commandedPower < 10000) {
 		sprintf(power, "%.3f", commandedPower);
-	else if (commandedPower < 100000)
+	} else if (commandedPower < 100000) {
 		sprintf(power, "%.2f", commandedPower);
-	else
+	} else {
 		sprintf(power, "%.1f", commandedPower);
+	}
+
 	std::string tmp = power;
 	command += std::to_string(temperature) + tmp;
 
-	for(int i = 0; i < LENGTH; i++) {
+	for(int i = 0; i < command.length(); i++) {
 		commandArr[i] = command.at(i);
 	}
+	commandArr[WRITE_LENGTH-1] = '\0';
 
-	for (int i = 0; i < LENGTH; i++) {
-		std::cout << commandArr[i];
-	}
-	std::cout << std::endl;
-	serWrite(fd, commandArr, command.length());
+	std::cout << commandArr << std::endl;
+	write(fd, commandArr, WRITE_LENGTH);
 }
 
 void HWTrainControllerPi::readTrackSignal() {
 	int count = 0;
-	char tmp[14];
-	trackSignal = "";
-	signalReceived = false;
-	while (!signalReceived) {
-		if (serRead(fd, tmp, 14)) {
-			std::cout << tmp << std::endl;
-			signalReceived = true;
-		}
-	}
+	char tmp[READ_LENGTH];
+	int bytesRead = read(fd, tmp, READ_LENGTH);
+	tmp[14] = '\0';
+	std::cout << bytesRead << ' ' << tmp << std::endl;
 	exInputs->parseTrackSignal(tmp);
 }
 

@@ -6,18 +6,19 @@
 #include <unistd.h>
 #include "ExternalInputs.hpp"
 
-#define LENGTH 15
-#define MAX_POWER 120000
-#define T 1
+#define READ_LENGTH 	15
+#define WRITE_LENGTH 	16
+#define MAX_POWER 		120000
+#define T 				1
 
 class HWTrainControllerPi {
 	private:
 		int temperature;
 		double commandedPower, setpointSpeed, ek, ekminus1, uk, ukminus1;
 		bool EBrakes, SBrakes, lights, leftDoors, rightDoors, signalReceived;
-		char commandArr[LENGTH], setpointSpeedTmp[5];
+		char commandArr[WRITE_LENGTH], trackSignal[READ_LENGTH], setpointSpeedTmp[5];
 		int fd, kp, ki;
-		std::string command, trackSignal;
+		std::string command;
 		ExternalInputs *exInputs;
 
 	public:

@@ -38,6 +38,22 @@ void ExternalInputs::setCurrentSpeed(double d) {
     currentSpeed = d;
 }
 
+void ExternalInputs::setPowerFailure(bool b) {
+    powerFailure = b;
+}
+
+void ExternalInputs::setBrakeFailure(bool b) {
+    brakeFailure = b;
+}
+
+void ExternalInputs::setSignalFailure(bool b) {
+    signalFailure = b;
+}
+
+void ExternalInputs::setAuthority(bool b) {
+    authority = b;
+}
+
 int ExternalInputs::getSpeedLimit() const {
     return speedLimit;
 }
@@ -48,6 +64,22 @@ double ExternalInputs::getCurrentSpeed() const {
 
 double ExternalInputs::getSuggestedSpeed() const {
     return suggestedSpeed;
+}
+
+bool ExternalInputs::getPowerFailure() const {
+    return powerFailure;
+}
+
+bool ExternalInputs::getBrakeFailure() const {
+    return brakeFailure;
+}
+
+bool ExternalInputs::getSignalFailure() const {
+    return signalFailure;
+}
+
+bool ExternalInputs::getAuthoriy() const {
+    return authority;
 }
 
 char *ExternalInputs::getCurrentSpeedStr() {
