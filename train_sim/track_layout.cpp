@@ -181,6 +181,7 @@ bool track_layout::toggle_switch(int index){
     if(track[index].occupancy == false){
         int currentConnect = track[index].headConnect;
         track[currentConnect].tailConnect = -1;
+        track[currentConnect].lights = 2;
 
         int newConnect = track[index].headOptions[0];
         if(track[index].headOptions[0] == currentConnect){
@@ -188,6 +189,7 @@ bool track_layout::toggle_switch(int index){
         }
         track[index].headConnect = newConnect;
         track[newConnect].tailConnect = index;
+        track[newConnect].lights = 0;
     }
 
     return true;
