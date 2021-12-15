@@ -9,6 +9,7 @@ SWTCUI::SWTCUI(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //Set the initial text when the UI first comes up
     ui->SetSpeedBox->setText(QString::number(train.SetSpeed));
     ui->CurrentSpeedBox->setText(QString::number(train.CurrentSpeed));
     ui->SpeedLimitBox->setText(QString::number(train.SpeedLimit));
@@ -21,6 +22,7 @@ SWTCUI::SWTCUI(QWidget *parent) :
     ui->FailureBox->setText(QString::fromStdString("None"));
     //ui->TimeDistanceBox->setText(QString::fromStdString("30 Seconds and 0.15mi"));
 
+    //This connects all of the buttons to each corresponding function
     QPushButton *numButtons[10];
     for(int i = 0; i < 10; i++)
     {
@@ -279,6 +281,7 @@ void SWTCUI::EmergencyBrakeChanged(int id, bool state)
 
 void SWTCUI::FailureChanged(int id, int mode)
 {
+    //Make sure it is the correct train and then update the UI based on the current failure
     if(train.id == id)
     {
         if(mode == 0)
