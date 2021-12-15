@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "trainmodelui.h"
 #include "traincalculate.h"
+#include <QTimer>
 using namespace std;
 QT_BEGIN_NAMESPACE
 namespace Ui { class TrainFactory; }
@@ -20,15 +21,20 @@ public:
     void makeTrain(trainCalculate, int, int);
     vector<TrainModelUI*> trains;
     int globalTemp;
+    QTimer *timer;
 
 signals:
     void commandedSpeedTC(int id, int cSpeed);
     void passOffTrain(vector<int>);
-    void beaconToTC(vector<string>);
+    void beaconToTC(int, string, int);
 
 public slots:
         //on train creation
         void dispatchTrain(vector<int>);
+
+
+        //timeslot
+        void timeSlot();
 
         //slots from TM
         void receiveSignal(vector<int>);

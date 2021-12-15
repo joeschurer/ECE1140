@@ -4,7 +4,7 @@
 MyTimer::MyTimer()
 {
     // create a timer
-
+    time = 0.0;
     timer = new QTimer(this);
 
     // setup signal and slot
@@ -17,9 +17,7 @@ MyTimer::MyTimer()
 
 void MyTimer::MyTimerSlot()
 {
-    qDebug() << "Timer...";
-}
+    time = time+1;
+    emit newTime(time);
 
-void MyTimer::setTrain(TrainModelUI maitrain){
-    train = maitrain;
 }

@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <QDebug>
 trainCalculate::trainCalculate()
 {
     numCars = 2;
@@ -16,7 +17,7 @@ trainCalculate::trainCalculate()
     currentMode = 0;
     lastVelocity = 0;
     currentForce = 0;
-    currentWeight = 40900;
+    currentWeight = 41050;
     trainWeight = 40900;
     lastTime = 0;
     currentTime = 1;
@@ -24,16 +25,17 @@ trainCalculate::trainCalculate()
     currentPosition = 0;
     blockSize = 50;
     setTemp = 0;
-    outsideTemp = 0;
+    outsideTemp = 72;
     currentTemp = 70;
+    distToDest = 0;
 }
 
 
 //modes:
-//mode 1: standard mode
-//mode 2: signal pickup failure
-//mode 3 brake failure
-//mode 4: train engine failure (power failure)
+//mode 0: standard mode
+//mode 1: signal pickup failure
+//mode 2 brake failure
+//mode 3: train engine failure (power failure)
 void trainCalculate::setPower(double power){
     if(currentMode == 4 || emergencyBrake == true || serviceBrake == true){
         currentPower = 0; //if service brake is pulled, TC sends 0 power.
@@ -55,19 +57,15 @@ void trainCalculate::setPower(double power){
 }
 
 
-
 double trainCalculate::distTraveled(int blockLength){
     if(lastTime == 0){
         lastPosition = 0;
     }
+
     double timeDiff = currentTime-lastTime;
     double avgVelocity = (currentVelocity+lastVelocity)/2;
     double distanceCovered = avgVelocity * (currentTime - lastTime);
     return distanceCovered;
-}
-
-void trainCalculate:: calcTime(){
-
 }
 
 void trainCalculate:: resetValues(){
@@ -85,6 +83,7 @@ void trainCalculate::trainAtStation(){
 }
 
 double trainCalculate::calculateVelocity(){
+    qDebug() << "starting calcvelocity";
     if(currentVelocity == 0 && atStation == true){
         resetValues();
     }
@@ -92,18 +91,20 @@ double trainCalculate::calculateVelocity(){
     lastAcc = currentAcc;
 
     if(lastVelocity != 0){
-        currentForce = (currentPower / lastVelocity)-(40*lastVelocity*lastVelocity);
+        currentForce = (currentPower / lastVelocity)/*-(40*lastVelocity*lastVelocity)*/;
     }
     currentAcc = currentForce/currentWeight;
-    if(serviceBrake == true){ //service brake
-        lastAcc = -1.2;
-        currentAcc = -1.2;
+    if(currentMode != 2){
+        if(serviceBrake == true){ //service brake
+            lastAcc = -1.2;
+            currentAcc = -1.2;
+        }
     }else if (emergencyBrake == true){ //emergency brake
         lastAcc = -2.73;
         currentAcc = -2.73;
     }
-    if(currentAcc > .5){
-        currentAcc = .5;
+    if(currentAcc > 1.2){
+        currentAcc = 1.2;
     }
     currentVelocity = currentVelocity + ((currentTime-lastTime)*(currentAcc+lastAcc))/2;
     if(currentVelocity < 0){
@@ -113,7 +114,7 @@ double trainCalculate::calculateVelocity(){
     if(currentKPH > 70){
         currentKPH = 70;
     }
-
+    qDebug() << currentKPH;
     return currentKPH;
 }
 
@@ -122,7 +123,8 @@ double trainCalculate::getLength(){
 }
 int trainCalculate::calcWeight(int numPassengers){
     int passWeight = 150*numPassengers;
-    currentWeight = trainWeight + passWeight;
+    int crewWeight = 150*crewMembers;
+    currentWeight = trainWeight + passWeight + crewWeight;
     return currentWeight;
 }
 
@@ -167,3 +169,20 @@ void trainCalculate::rightDoors(){
 }
 
 
+void trainCalculate::testDist(){
+    //current speed in kph * 1000 / 60 / 60 * (velocity / acceleration kph / 2)
+    double avgVelocity = (currentVelocity+lastVelocity)/2;
+    double distanceCovered = avgVelocity;
+    distToDest = distToDest - distanceCovered;
+    float distToStop = (((currentKPH * 1000) / 60) / 60);
+    distToStop = distToStop * ((currentKPH/4.32)/2);
+    if(distToDest <= distToStop){
+        if(currentMode != 2){
+            serviceBrake = true;
+            currentPower = 0;
+        }
+
+    }
+
+
+}

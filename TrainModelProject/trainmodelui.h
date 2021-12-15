@@ -16,11 +16,13 @@ public:
     TrainModelUI(QWidget *parent = nullptr);
     ~TrainModelUI();
     trainCalculate calcs;
-    //void updateUI();
+    double covered;
+    double blockLength;
+    void updateUI();
     void setUI();
     void setLength();
     void setWeight();
-    void getPower(int);
+    //void getPower(int);
     void getVelocity(float);
     void getAcceleration(float);
     void getBlock();
@@ -34,6 +36,10 @@ public:
     void updateALL();
     void stationValues(string, string);
     void calcTemp();
+    void setHeight();
+    void setWidth();
+    void dormammu(); //the time slot
+
 private slots:
     void on_toggleLights_clicked();
 
@@ -61,12 +67,17 @@ private slots:
 
     void on_passengersConfirm_clicked();
 
+    void on_stationMetersButton_clicked();
+
+    void on_moveNextBlock_clicked();
+
 private:
     Ui::TrainModelUI *ui;
 
 
 public slots:
-    void updateUI();
+    //void updateUI();
+    //void dormammu(); //the time slot
     void SetSpeedChanged(int SetSpeed);
     void LightsChanged(bool state);
     void LeftDoorsChanged(bool state);
@@ -75,8 +86,6 @@ public slots:
     void EmergencyBrakeChanged(bool state);
     void AutomaticModeChanged(bool state);
     void PowerChanged(int power);
-
-
 
     //TC slots
 //    void DistanceDifferent(std::string distance); //the size of the block
@@ -89,7 +98,7 @@ public slots:
 
 //    //TM slots
     void boardingPassengersFromTM(int numPassengers);
-    void trackSignal(int, int, int, int, int, int);
+    void trackSignal(int, int, int, int, int, int, int);
     void outsideTemperature(int tt);
     void internalTemperature(int sett);
 
@@ -104,12 +113,13 @@ signals:
     void currSpeedTC(int id,int);
     void eBrakeSetTC(int id,bool state);
     void failureState(int id, int mode);
-    void trackSignalTC(int id, int speedLimit, int cSpeed);
+    void trackSignalTC(int id, int speedLimit, int cSpeed, int auth);
     void createTC(int id, int comm);
 
     //to track model
     void currSpeedTM(QString currSpeed);
     void offPassengers(vector<int>);
+    void moveBlock(int);
 
 };
 #endif // TRAINMODELUI_H
