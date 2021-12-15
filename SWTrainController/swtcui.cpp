@@ -19,7 +19,7 @@ SWTCUI::SWTCUI(QWidget *parent) :
     ui->ClockDisplay->setText(QString::fromStdString("12:00"));
     ui->EBrakeBox->setText(QString::fromStdString("Off"));
     ui->FailureBox->setText(QString::fromStdString("None"));
-    ui->TimeDistanceBox->setText(QString::fromStdString("30 Seconds and 0.15mi"));
+    //ui->TimeDistanceBox->setText(QString::fromStdString("30 Seconds and 0.15mi"));
 
     QPushButton *numButtons[10];
     for(int i = 0; i < 10; i++)
@@ -213,6 +213,7 @@ void SWTCUI::EBrakePressed() {
     emit EmergencyBrakeDifferent(train.EmergencyBrakeState);
 }
 
+//Functions below are simple changing of UI elements
 void SWTCUI::DestinationChanged(std::string destination)
 {
     ui->StationDisplay->setText(QString::fromStdString(destination));
@@ -257,41 +258,32 @@ void SWTCUI::FailureChanged(std::string state)
     ui->FailureBox->setText(QString::fromStdString(state));
 }
 
-void SWTCUI::ReadBeacon(vector<string> data)
+//Read Beacon to update train
+void SWTCUI::ReadBeacon(int id, string Station, int DoorSide)
 {
-    string IDstring = data[0];
-    int ID = stoi(IDstring);
-    string StationName = data[1];
-    string DoorSide = data[2];
-    if(train.id == ID)
+    if(train.id == id)
     {
-        train.Destination = StationName;
-        DestinationChanged(StationName);
-        EngageBrake();
-        ArrivedAtStation();
+        train.Destination = Station;
+        train.DoorToOpen = DoorSide;
+        DestinationChanged(Station);
+        BrakePressed();
+        train.StopAtStation = true;
     }
 }
 
-void SWTCUI::ReadTrackSignal(int id, int SpeedLimit, int CSpeed)
+//Read track signal, update train and ensure it goes to right train
+void SWTCUI::ReadTrackSignal(int id, int SpeedLimit, int CSpeed, int authority)
 {
     if(train.id == id)
     {
         train.SpeedLimit = SpeedLimit;
         train.CommandedSpeed = CSpeed;
+        train.Authority = authority;
         SpeedLimitChanged(SpeedLimit);
         CommandedSpeedChanged(CSpeed);
     }
 }
 
-void SWTCUI::EngageBrake()
-{
-    train.BrakeState = true;
-}
-
-void SWTCUI::ArrivedAtStation()
-{
-
-}
 
 
 

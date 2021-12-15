@@ -20,8 +20,8 @@ public:
     ~SWTCUI();
     SWTCCalculations train;
     void DispatchTrain(vector<int> traindata);
-    void ReadBeacon(vector<string> data);
-    void ReadTrackSignal(int id, int SpeedLimit, int CSpeed);
+    void ReadBeacon(int id, string Station, int DoorSide);
+    void ReadTrackSignal(int id, int SpeedLimit, int CSpeed, int authority);
     void EngageBrake();
     void ArrivedAtStation();
 

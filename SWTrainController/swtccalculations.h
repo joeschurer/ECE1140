@@ -14,6 +14,7 @@ class SWTCCalculations
 public:
     SWTCCalculations();
     void CalculatePower();
+    void CheckStationArrival();
     int SetSpeed = 0;
     int CurrentSpeed = 0;
     int SpeedLimit = 0;
@@ -28,6 +29,7 @@ public:
     bool EmergencyBrakeState = false;
     bool BrakeState = false;
     bool AutomaticModeState = false;
+    bool StopAtStation = false;
     std::string Destination = "Heinz Field 0.5mi";
     int Power;
     double KpValue;
@@ -39,6 +41,7 @@ public:
     double Ekminus1 = 0;
     int id;
     int Authority;
+    int DoorToOpen;
 
 public slots:
     void KpKiChanged(double Kp, double Ki);
