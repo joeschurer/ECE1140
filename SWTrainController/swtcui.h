@@ -35,15 +35,15 @@ public slots:
     void FailureChanged(int id, int mode);
 
 signals:
-    void SetSpeedDifferent(int speed);
-    void LightsDifferent(bool state);
-    void LeftDoorsDifferent(bool state);
-    void RightDoorsDifferent(bool state);
-    void TempDifferent(int temp);
-    void EmergencyBrakeDifferent(bool state);
-    void ServiceBrakeDifferent(bool state);
-    void AutomaticModeDifferent(bool state);
-    void PowerCalculated(int power);
+    void SetSpeedDifferent(int id, int speed);
+    void LightsDifferent(int id, bool state);
+    void LeftDoorsDifferent(int id, bool state);
+    void RightDoorsDifferent(int id, bool state);
+    void TempDifferent(int id, int temp);
+    void EmergencyBrakeDifferent(int id, bool state);
+    void ServiceBrakeDifferent(int id, bool state);
+    void AutomaticModeDifferent(int id, bool state);
+    void PowerCalculated(int id, int power);
 
 private:
     Ui::SWTCUI *ui;
