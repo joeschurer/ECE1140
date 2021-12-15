@@ -55,13 +55,13 @@ void TrackModel::trackModelDisplay() {
     blockdata->setHorizontalHeaderItem(0, block0);
     QTableWidgetItem* b0 = new QTableWidgetItem(("Section"));
     blockdata->setHorizontalHeaderItem(1, b0);
-    QTableWidgetItem* block1 = new QTableWidgetItem(("Grade"));
+    QTableWidgetItem* block1 = new QTableWidgetItem(("Grade (%)"));
     blockdata->setHorizontalHeaderItem(2, block1);
-    QTableWidgetItem* block2 = new QTableWidgetItem(("Elevation"));
+    QTableWidgetItem* block2 = new QTableWidgetItem(("Elevation (ft)"));
     blockdata->setHorizontalHeaderItem(3, block2);
-    QTableWidgetItem* block3 = new QTableWidgetItem(("Length"));
+    QTableWidgetItem* block3 = new QTableWidgetItem(("Length (ft)"));
     blockdata->setHorizontalHeaderItem(4, block3);
-    QTableWidgetItem* block4 = new QTableWidgetItem(("Speed Limit"));
+    QTableWidgetItem* block4 = new QTableWidgetItem(("Speed Limit (mph)"));
     blockdata->setHorizontalHeaderItem(5, block4);
     QTableWidgetItem* block5 = new QTableWidgetItem(("Switch"));
     blockdata->setHorizontalHeaderItem(6, block5);
@@ -286,13 +286,13 @@ void TrackModel::trackModelDisplay() {
         }
     }
 
-    blockdata->setGeometry(10, 10, 1030, 600);
+    blockdata->setGeometry(10, 10, 1050, 600);
     blockdata->setColumnWidth(0, 50);
     blockdata->setColumnWidth(1, 50);
     blockdata->setColumnWidth(2, 60);
-    blockdata->setColumnWidth(3, 60);
-    blockdata->setColumnWidth(4, 70);
-    blockdata->setColumnWidth(5, 75);
+    blockdata->setColumnWidth(3, 75);
+    blockdata->setColumnWidth(4, 85);
+    blockdata->setColumnWidth(5, 110);
     blockdata->setColumnWidth(6, 85);
     blockdata->setColumnWidth(7, 150);
     blockdata->setColumnWidth(8, 60);
@@ -314,9 +314,9 @@ void TrackModel::trackModelDisplay() {
     traindata->setHorizontalHeaderItem(1, tl);
     QTableWidgetItem* ts = new QTableWidgetItem("Section");
     traindata->setHorizontalHeaderItem(2, ts);
-    QTableWidgetItem* tc = new QTableWidgetItem("Com Speed");
+    QTableWidgetItem* tc = new QTableWidgetItem("Com Speed (mph)");
     traindata->setHorizontalHeaderItem(3, tc);
-    QTableWidgetItem* ta = new QTableWidgetItem("Actual Speed");
+    QTableWidgetItem* ta = new QTableWidgetItem("Actual Speed (mph)");
     traindata->setHorizontalHeaderItem(4, ta);
     QTableWidgetItem* tp = new QTableWidgetItem("Passengers");
     traindata->setHorizontalHeaderItem(5, tp);
@@ -499,6 +499,12 @@ void TrackModel::trainMoved(int trainNum) {
         data.push_back(layout.line->blocks[bn-1].grade);
         data.push_back(layout.line->blocks[bn-1].speedLimit);
         data.push_back(layout.line->trains[trainNum-1].commandedSpeed);
+        if (layout.line->blocks[bn-1].authority == true) {
+            data.push_back(1);
+        }
+        else {
+            data.push_back(0);
+        }
         emit newBlock(data);
         if (layout.line->blocks[bn-1].hasBeacon) {
             string e = layout.line->blocks[bn-1].beacon.name;
@@ -515,7 +521,6 @@ void TrackModel::trainMoved(int trainNum) {
     for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
             occ.push_back(true);
-            qDebug() << i;
         }
         else {
             occ.push_back(false);
@@ -682,7 +687,7 @@ void TrackModel::doorsOpen(int trainNum) {
         if (pa > 255) layout.line->blocks[b-1].station.passengers -= pa;
         else layout.line->blocks[b-1].station.passengers = 0;
         vector<int> pass;
-        pass.push_back(trainNum);
+        pass.push_back(trainNum-1);
         pass.push_back(layout.line->trains[a].passengers);
         emit passengersChanged(pass);
         trackModelDisplay();

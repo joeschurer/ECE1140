@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
     QObject::connect(&wui, &MainWindow::sendFixed, &window,&TrackModel::fixBlock);
     QObject::connect(&wui, &MainWindow::sendTrainDispatch,&window, &TrackModel::trainUpdated);
     QObject::connect(&trainUI, SIGNAL(trainMoved(int)), &window, SLOT(trainMoved(int)));
-  QObject::connect(&trainUI, SIGNAL(trainSpeedUpdated(QString)), &window, SLOT(actualSpeedChanged(QString)));
+    QObject::connect(&trainUI, SIGNAL(trainSpeedUpdated(QString)), &window, SLOT(actualSpeedChanged(QString)));
     QObject::connect(&wui, &MainWindow::sendTrainDispatch, &window, &TrackModel::trainUpdated);
     QObject::connect(&wui, &MainWindow::sendTrackModelSwitches, &window, &TrackModel::toggleSwitch);
     QObject::connect(&window, SIGNAL(beaconData(string)), &beacon, SLOT(transmitting(string)));
