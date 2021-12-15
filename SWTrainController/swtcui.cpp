@@ -253,9 +253,28 @@ void SWTCUI::EmergencyBrakeChanged(std::string state)
     ui->EBrakeBox->setText(QString::fromStdString(state));
 }
 
-void SWTCUI::FailureChanged(std::string state)
+void SWTCUI::FailureChanged(int id, int mode)
 {
-    ui->FailureBox->setText(QString::fromStdString(state));
+    if(train.id == id)
+    {
+        if(mode == 0)
+        {
+            ui->FailureBox->setText(QString::fromStdString("None"));
+        }
+        else if(mode == 1)
+        {
+            ui->FailureBox->setText(QString::fromStdString("Signal"));
+
+        }
+        else if(mode == 2)
+        {
+            ui->FailureBox->setText(QString::fromStdString("Brake"));
+        }
+        else if(mode == 3)
+        {
+            ui->FailureBox->setText(QString::fromStdString("Power"));
+        }
+    }
 }
 
 //Read Beacon to update train
