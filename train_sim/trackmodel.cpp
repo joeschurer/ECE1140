@@ -512,7 +512,6 @@ void TrackModel::trainMoved(int trainNum) {
     //Get occupancy and send it to the wayside
     vector<bool> occ;
     occ.push_back(false);
-    //occ.push_back(false);
     for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
             occ.push_back(true);
@@ -568,7 +567,6 @@ void TrackModel::on_breakCircuit_returnPressed() {
     //Get occupancy and send it to the wayside
     vector<bool> occ;
     occ.push_back(false);
-    occ.push_back(false);
     for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
             occ.push_back(true);
@@ -607,7 +605,6 @@ void TrackModel::on_breakTrack_returnPressed() {
     //Get occupancy and send it to the wayside
     vector<bool> occ;
     occ.push_back(false);
-    occ.push_back(false);
     for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
             occ.push_back(true);
@@ -645,7 +642,6 @@ void TrackModel::on_breakPower_returnPressed() {
 
     //Get occupancy and send it to the wayside
     vector<bool> occ;
-    occ.push_back(false);
     occ.push_back(false);
     for (int i=0; i<(int)layout.line->blocks.size(); i++) {
         if (layout.line->blocks[i].trackBroken || layout.line->blocks[i].circuitBroken || layout.line->blocks[i].powerBroken) {
