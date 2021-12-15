@@ -27,6 +27,8 @@ HomepageWindow::HomepageWindow(QWidget *parent, CtcOffice *ctcOffice)
       line->setStyleSheet("color: ""red""");
       line->setText("Red");
   }
+  ui->systemStatusLineEdit->setStyleSheet("color: ""green""");
+  ui->systemStatusLineEdit->setText("System Running at 1x Speed");
   initializeTestInterfaceUi();
 }
 
@@ -310,6 +312,8 @@ void HomepageWindow::on_oneXButton_clicked()
 {
     globalTimer.start(1000);
     simulationSpeed = 1;
+    ui->systemStatusLineEdit->setStyleSheet("color: ""green""");
+    ui->systemStatusLineEdit->setText("System Running at 1x Speed");
 }
 
 
@@ -317,18 +321,26 @@ void HomepageWindow::on_tenXButton_clicked()
 {
     globalTimer.start(100);
     simulationSpeed = 10;
+    ui->systemStatusLineEdit->setStyleSheet("color: ""green""");
+    ui->systemStatusLineEdit->setText("System Running at 10x Speed");
 }
 
 void HomepageWindow::on_startSimulationButton_clicked()
 {
     if(globalTimer.isActive()) {
         globalTimer.stop();
+        ui->systemStatusLineEdit->setStyleSheet("color: ""red""");
+        ui->systemStatusLineEdit->setText("System Paused");
     } else {
         if(simulationSpeed==1){
             globalTimer.start(1000);
+            ui->systemStatusLineEdit->setStyleSheet("color: ""green""");
+            ui->systemStatusLineEdit->setText("System Running at 1x Speed");
 
         } else if(simulationSpeed==10){
             globalTimer.start(100);
+            ui->systemStatusLineEdit->setStyleSheet("color: ""green""");
+            ui->systemStatusLineEdit->setText("System Running at 10x Speed");
         }
     }
 }
