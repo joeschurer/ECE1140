@@ -218,12 +218,14 @@ void SWTCUI::EBrakePressed() {
 //Functions below are simple changing of UI elements
 void SWTCUI::DestinationChanged(int id, std::string destination)
 {
+    //Check to make sure id is correct and update destination on ui
     if(train.id == id)
     {
         ui->StationDisplay->setText(QString::fromStdString(destination));
     }
 }
 
+/*
 void SWTCUI::DistanceChanged(std::string distance)
 {
     ui->TimeDistanceBox->setText(QString::fromStdString(distance));
@@ -233,9 +235,11 @@ void SWTCUI::TimeChanged(std::string time)
 {
     ui->ClockDisplay->setText(QString::fromStdString(time));
 }
+*/
 
 void SWTCUI::SpeedLimitChanged(int id, int speed)
 {
+    //Check to make sure id is correct and update speed limit
     if(train.id == id)
     {
         ui->SpeedLimitBox->setText(QString::number(speed));
@@ -245,6 +249,7 @@ void SWTCUI::SpeedLimitChanged(int id, int speed)
 
 void SWTCUI::CommandedSpeedChanged(int id, int speed)
 {
+    //Check to make sure id is correct and update commanded speed
     if(train.id == id)
     {
         ui->CommandedSpeedBox->setText(QString::number(speed));
@@ -254,6 +259,7 @@ void SWTCUI::CommandedSpeedChanged(int id, int speed)
 
 void SWTCUI::CurrentSpeedChanged(int id, int speed)
 {
+    //Check to make sure id is correct and update current speed and calculate new power
     if(train.id == id)
     {
         ui->CurrentSpeedBox->setText(QString::number(speed));
@@ -264,12 +270,15 @@ void SWTCUI::CurrentSpeedChanged(int id, int speed)
 
 void SWTCUI::EmergencyBrakeChanged(int id, bool state)
 {
+    //Check to make sure id is correct and update Emergency Brake state and set power correctly
     if(train.id == id)
     {
         if(state)
         {
             ui->EBrakeBox->setText(QString::fromStdString("On"));
             train.EmergencyBrakeState = state;
+            train.Power = 0;
+            train.Ukminus1 = 0;
         }
         else
         {
