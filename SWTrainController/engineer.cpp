@@ -15,6 +15,7 @@ Engineer::~Engineer()
 
 void Engineer::on_SubmitButton_released()
 {
+    //Take in values for Kp and Ki from text box after submit button is pressed
     QString Kp = ui->KpBox->text();
     KpValue = Kp.toDouble();
 

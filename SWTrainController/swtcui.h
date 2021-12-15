@@ -1,19 +1,29 @@
 #ifndef SWTCUI_H
 #define SWTCUI_H
 
-#include <QMainWindow>
+#include <QWidget>
+#include <vector>
+#include "swtccalculations.h"
+
+using namespace std;
 
 namespace Ui {
 class SWTCUI;
 }
 
-class SWTCUI : public QMainWindow
+class SWTCUI : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit SWTCUI(QWidget *parent = nullptr);
+    SWTCUI(QWidget *parent = nullptr);
     ~SWTCUI();
+    SWTCCalculations train;
+    void DispatchTrain(vector<int> traindata);
+    void ReadBeacon(vector<string> data);
+    void ReadTrackSignal(int id, int SpeedLimit, int CSpeed);
+    void EngageBrake();
+    void ArrivedAtStation();
 
 public slots:
     void DestinationChanged(std::string destination);
@@ -24,7 +34,6 @@ public slots:
     void CurrentSpeedChanged(int speed);
     void EmergencyBrakeChanged(std::string state);
     void FailureChanged(std::string state);
-    void KpKiChanged(double Kp, double Ki);
 
 signals:
     void SetSpeedDifferent(int speed);
@@ -33,34 +42,12 @@ signals:
     void RightDoorsDifferent(bool state);
     void TempDifferent(int temp);
     void EmergencyBrakeDifferent(bool state);
+    void ServiceBrakeDifferent(bool state);
     void AutomaticModeDifferent(bool state);
     void PowerCalculated(int power);
 
 private:
     Ui::SWTCUI *ui;
-    void CalculatePower();
-    int SetSpeed = 0;
-    int CurrentSpeed = 0;
-    int SpeedLimit = 0;
-    int CommandedSpeed = 0;
-    double SpeedPower;
-    double CurrentKPH;
-    int CurrentTemp = 70;
-    bool LeftDoorsOpen = false;
-    bool RightDoorsOpen = false;
-    bool LightsOn = false;
-    bool EmergencyBrakeState = false;
-    bool BrakeState = false;
-    bool AutomaticModeState = false;
-    std::string Destination = "Heinz Field 0.5mi";
-    int Power;
-    double KpValue;
-    double KiValue;
-    double Uk;
-    double Ukminus1 = 0;
-    double T = 1;
-    double Ek;
-    double Ekminus1 = 0;
 
 private slots:
     void PlusSpeedPressed();

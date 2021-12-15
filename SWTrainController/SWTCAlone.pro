@@ -11,10 +11,14 @@ CONFIG += c++11
 SOURCES += \
     engineer.cpp \
     main.cpp \
+    swtccalculations.cpp \
+    swtccreator.cpp \
     swtcui.cpp
 
 HEADERS += \
     engineer.h \
+    swtccalculations.h \
+    swtccreator.h \
     swtcui.h
 
 FORMS += \

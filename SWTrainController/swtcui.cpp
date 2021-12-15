@@ -1,18 +1,21 @@
 #include "swtcui.h"
 #include "ui_swtcui.h"
+#include <vector>
+#include <QApplication>
 
 SWTCUI::SWTCUI(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::SWTCUI)
 {
     ui->setupUi(this);
 
-    ui->SetSpeedBox->setText(QString::number(SetSpeed));
-    ui->CurrentSpeedBox->setText(QString::number(CurrentSpeed));
-    ui->SpeedLimitBox->setText(QString::number(SpeedLimit));
-    ui->CommandedSpeedBox->setText(QString::number(CommandedSpeed));
-    ui->CurrentTempBox->setText(QString::number(CurrentTemp));
-    ui->DestinationDisplay->setText(QString::fromStdString(Destination));
+    ui->SetSpeedBox->setText(QString::number(train.SetSpeed));
+    ui->CurrentSpeedBox->setText(QString::number(train.CurrentSpeed));
+    ui->SpeedLimitBox->setText(QString::number(train.SpeedLimit));
+    ui->CommandedSpeedBox->setText(QString::number(train.CommandedSpeed));
+    ui->CurrentTempValue->setText(QString::number(train.CurrentTemp));
+    ui->SetTempBox->setText(QString::number(train.SetTemp));
+    ui->StationDisplay->setText(QString::fromStdString(train.Destination));
     ui->ClockDisplay->setText(QString::fromStdString("12:00"));
     ui->EBrakeBox->setText(QString::fromStdString("Off"));
     ui->FailureBox->setText(QString::fromStdString("None"));
@@ -73,128 +76,142 @@ SWTCUI::~SWTCUI()
 }
 
 void SWTCUI::PlusSpeedPressed() {
-    int newSpeed = ++SetSpeed;
-    if(SetSpeed > 43)
+    //Change set speed and make sure it does not go over 43 (Max in MPH)
+    ++train.SetSpeed;
+    if(train.SetSpeed > 43)
     {
-        SetSpeed = 43;
-        newSpeed = 43;
+        train.SetSpeed = 43;
     }
-    ui->SetSpeedBox->setText(QString::number(newSpeed, 'g', 3));
-    CalculatePower();
-    emit SetSpeedDifferent(SetSpeed);
+    ui->SetSpeedBox->setText(QString::number(train.SetSpeed, 'g', 3));
+    //Calculate Power each time set speed is changed
+    train.CalculatePower();
+    emit SetSpeedDifferent(train.SetSpeed);
 }
 
 void SWTCUI::MinusSpeedPressed() {
-    int newSpeed = --SetSpeed;
-    if(SetSpeed <= 0)
+    //Change set speed and make sure it does not go under 0
+    --train.SetSpeed;
+    if(train.SetSpeed <= 0)
     {
-        newSpeed = 0;
-        SetSpeed = 0;
-        ui->SetSpeedBox->setText(QString::number(newSpeed, 'g', 3));
+        train.SetSpeed = 0;
+        ui->SetSpeedBox->setText(QString::number(train.SetSpeed, 'g', 3));
     }
     else
     {
-        ui->SetSpeedBox->setText(QString::number(newSpeed, 'g', 3));
+        ui->SetSpeedBox->setText(QString::number(train.SetSpeed, 'g', 3));
     }
-    CalculatePower();
-    emit SetSpeedDifferent(SetSpeed);
+    //Calculate Power each time set speed is changed
+    train.CalculatePower();
+    emit SetSpeedDifferent(train.SetSpeed);
 }
 
 void SWTCUI::PlusTempPressed() {
-    int newTemp = ++CurrentTemp;
-    ui->CurrentTempBox->setText(QString::number(newTemp, 'g', 3));
-    emit TempDifferent(newTemp);
+    //Change current temperature
+    ++train.CurrentTemp;
+    ui->SetTempBox->setText(QString::number(train.CurrentTemp, 'g', 3));
+    emit TempDifferent(train.CurrentTemp);
 }
 
 void SWTCUI::MinusTempPressed() {
-    int newTemp = --CurrentTemp;
-    ui->CurrentTempBox->setText(QString::number(newTemp, 'g', 3));
-    emit TempDifferent(newTemp);
+    //Change current temperature
+    --train.CurrentTemp;
+    ui->SetTempBox->setText(QString::number(train.CurrentTemp, 'g', 3));
+    emit TempDifferent(train.CurrentTemp);
 }
 
 void SWTCUI::BrakePressed() {
-    int newSpeed = 0;
-    SetSpeed = 0;
-    BrakeState = true;
-    Power = 0;
-    ui->SetSpeedBox->setText(QString::number(newSpeed, 'g', 3));
-    CalculatePower();
-    emit SetSpeedDifferent(SetSpeed);
+    //Set speed, brake state, and power appropriately
+    train.SetSpeed = 0;
+    train.BrakeState = true;
+    train.Power = 0;
+    ui->SetSpeedBox->setText(QString::number(train.SetSpeed, 'g', 3));
+    emit SetSpeedDifferent(train.SetSpeed);
+    emit PowerCalculated(train.Power);
+    emit ServiceBrakeDifferent(train.BrakeState);
 }
 
 void SWTCUI::OperateLeftDoorsPressed() {
-    if(LeftDoorsOpen)
+    //Change left door state based on the current state
+    if(train.LeftDoorsOpen)
     {
-        LeftDoorsOpen = false;
+        train.LeftDoorsOpen = false;
     }
     else
     {
-        LeftDoorsOpen = true;
+        train.LeftDoorsOpen = true;
     }
-    emit LeftDoorsDifferent(LeftDoorsOpen);
+    emit LeftDoorsDifferent(train.LeftDoorsOpen);
 
 }
 
 void SWTCUI::OperateRightDoorsPressed() {
-    if(RightDoorsOpen)
+    //Change right door state based on the current state
+    if(train.RightDoorsOpen)
     {
-        RightDoorsOpen = false;
+        train.RightDoorsOpen = false;
     }
     else
     {
-        RightDoorsOpen = true;
+        train.RightDoorsOpen = true;
     }
-    emit RightDoorsDifferent(RightDoorsOpen);
+    emit RightDoorsDifferent(train.RightDoorsOpen);
 }
 
 void SWTCUI::LightsButtonPressed() {
-    if(LightsOn)
+    //Change light state based on the current state
+    if(train.LightsOn)
     {
-        LightsOn = false;
+        train.LightsOn = false;
     }
     else
     {
-        LightsOn = true;
+        train.LightsOn = true;
     }
-    emit LightsDifferent(LightsOn);
+    emit LightsDifferent(train.LightsOn);
 }
 
 void SWTCUI::AutomaticModeButtonPressed() {
-    if(AutomaticModeState)
+    //If current state is true then disengage automatic mode
+    //If current state is false then engage automatic mode and update values accordingly
+    if(train.AutomaticModeState)
     {
-        AutomaticModeState = false;
+        train.AutomaticModeState = false;
     }
     else
     {
-        AutomaticModeState = true;
-        SetSpeed = CommandedSpeed;
+        train.AutomaticModeState = true;
+        train.SetSpeed = train.CommandedSpeed;
+        emit SetSpeedDifferent(train.SetSpeed);
+        train.CalculatePower();
     }
-    emit SetSpeedDifferent(SetSpeed);
-    emit AutomaticModeDifferent(AutomaticModeState);
+    ui->CurrentSpeedBox->setText(QString::number(train.SetSpeed));
+    emit AutomaticModeDifferent(train.AutomaticModeState);
 }
 
 void SWTCUI::EBrakePressed() {
-    int newSpeed = 0;
-    SetSpeed = 0;
-    if(EmergencyBrakeState)
+    //If current state is true then disengage Emergency Brake and update text
+    //If current state is false then engage Emergency Brake and update values accordingly
+    if(train.EmergencyBrakeState)
     {
-        EmergencyBrakeState = false;
+        train.EmergencyBrakeState = false;
         ui->EBrakeBox->setText(QString::fromStdString("Off"));
     }
     else
     {
-        EmergencyBrakeState = true;
+        train.EmergencyBrakeState = true;
         ui->EBrakeBox->setText(QString::fromStdString("On"));
+        train.SetSpeed = 0;
+        train.Power = 0;
+        emit SetSpeedDifferent(train.SetSpeed);
+        emit PowerCalculated(train.Power);
     }
-    ui->SetSpeedBox->setText(QString::number(newSpeed, 'g', 3));
-    emit EmergencyBrakeDifferent(EmergencyBrakeState);
-    emit SetSpeedDifferent(SetSpeed);
-    CalculatePower();
+    ui->SetSpeedBox->setText(QString::number(train.SetSpeed, 'g', 3));
+    emit EmergencyBrakeDifferent(train.EmergencyBrakeState);
 }
 
 void SWTCUI::DestinationChanged(std::string destination)
 {
-    ui->DestinationDisplay->setText(QString::fromStdString(destination));
+    ui->StationDisplay->setText(QString::fromStdString(destination));
 }
 
 void SWTCUI::DistanceChanged(std::string distance)
@@ -210,20 +227,20 @@ void SWTCUI::TimeChanged(std::string time)
 void SWTCUI::SpeedLimitChanged(int speed)
 {
     ui->SpeedLimitBox->setText(QString::number(speed));
-    SpeedLimit = speed;
+    train.SpeedLimit = speed;
 }
 
 void SWTCUI::CommandedSpeedChanged(int speed)
 {
     ui->CommandedSpeedBox->setText(QString::number(speed));
-    CommandedSpeed = speed;
+    train.CommandedSpeed = speed;
 }
 
 void SWTCUI::CurrentSpeedChanged(int speed)
 {
     ui->CurrentSpeedBox->setText(QString::number(speed));
-    CurrentSpeed = speed;
-    CalculatePower();
+    train.CurrentSpeed = speed;
+    train.CalculatePower();
 }
 
 void SWTCUI::EmergencyBrakeChanged(std::string state)
@@ -236,36 +253,41 @@ void SWTCUI::FailureChanged(std::string state)
     ui->FailureBox->setText(QString::fromStdString(state));
 }
 
-void SWTCUI::KpKiChanged(double Kp, double Ki)
+void SWTCUI::ReadBeacon(vector<string> data)
 {
-    KpValue = Kp;
-    KiValue = Ki;
+    string IDstring = data[0];
+    int ID = stoi(IDstring);
+    string StationName = data[1];
+    string DoorSide = data[2];
+    if(train.id == ID)
+    {
+        train.Destination = StationName;
+        DestinationChanged(StationName);
+        EngageBrake();
+        ArrivedAtStation();
+    }
 }
 
-void SWTCUI::CalculatePower()
+void SWTCUI::ReadTrackSignal(int id, int SpeedLimit, int CSpeed)
 {
-    SpeedPower = SetSpeed * 1.60934;
-    CurrentKPH = CurrentSpeed * 1.60934;
-
-    Ek = SpeedPower - CurrentKPH;
-    Uk = Ukminus1 + ((T/2) * (Ek + Ekminus1));
-    Ekminus1 = Ek;
-    Ukminus1 = Uk;
-
-    Power = (KpValue*Ek) + (KiValue*Uk);
-
-    if(Power > 120000)
+    if(train.id == id)
     {
-        Power = 120000;
-        Ukminus1 = Power;
+        train.SpeedLimit = SpeedLimit;
+        train.CommandedSpeed = CSpeed;
+        SpeedLimitChanged(SpeedLimit);
+        CommandedSpeedChanged(CSpeed);
     }
-
-    if(Power < 0)
-    {
-        Power = 0;
-        Ukminus1 = Power;
-    }
-
-    emit PowerCalculated(Power);
 }
+
+void SWTCUI::EngageBrake()
+{
+    train.BrakeState = true;
+}
+
+void SWTCUI::ArrivedAtStation()
+{
+
+}
+
+
 
