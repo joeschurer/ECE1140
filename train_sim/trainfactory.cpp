@@ -32,7 +32,7 @@ void TrainFactory::dispatchTrain(vector<int> trainData){
     } else if(trainData.size() == 6 && present == true){
         receiveSignal(trainData);
     }else{
-        qDebug() << "somethin broke yo";
+        //qDebug() << "Entered other";
     }
 }
 

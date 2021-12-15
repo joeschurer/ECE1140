@@ -75,6 +75,14 @@ bool track_layout::create_line(int line){
             //std::cout<<   temp.block_num<<std::endl;
             temp.speed_limit = std::stoi(splitLine[5]);
             //std::cout<< temp.speed_limit<<std::endl;
+            std::string light = splitLine[4];
+            if(light.find("Light") != std::string::npos){
+                temp.hasLights = true;
+                temp.lights = 0;
+                temp.check = splitValues(splitLine[11]);
+                //qDebug() << splitLine[11];
+            }
+
             std::string inf = splitLine[6];
             temp.prev = std::stoi(splitLine[10]);
             qDebug() << temp.prev;
@@ -85,10 +93,6 @@ bool track_layout::create_line(int line){
                 //std::cout<<  temp.station<<std::endl;
             }if(inf.find("UNDERGROUND") != std::string::npos){
                 temp.underground = true;
-            }if(inf.find("Light") != std::string::npos){
-                temp.hasLights = true;
-                temp.lights = 0;
-                temp.check = splitValues(splitLine[11]);
             }if(inf.find("RAILWAY") != std::string::npos){
                 //std::cout << "CROSSING: ";
                 temp.crossing= true;

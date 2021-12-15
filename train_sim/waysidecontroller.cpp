@@ -185,7 +185,7 @@ bool WaysideController::maintenance_mode_switch(int block,int conn){
 
 
 bool WaysideController::uploadPLC(int index, string fName){
-    waysides[index].readPLCFile(fName);
+    waysides[index-1].readPLCFile(fName);
     return true;
 }
 

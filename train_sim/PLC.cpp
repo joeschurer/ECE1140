@@ -104,7 +104,8 @@ bool PLC::readPLCFile(string file){
     if (inputFile.open(QIODevice::ReadOnly)){
         QTextStream in(&inputFile);
         QString temp = in.readLine();// strip the comment from top
-
+        ownedBlocks.clear();
+        plcContainer.clear();
         while (!in.atEnd()){
             QString line = in.readLine();
             std::string inputString = line.toStdString();
@@ -256,7 +257,7 @@ vector<vector<int>> PLC::parsePLC(){
                                 track->track[rauthVec[i]].auth = false;
                             }
                         } else {
-                            qDebug() << "hi";
+                            //qDebug() << "hi";
                         }
                     }
                 }
@@ -289,8 +290,9 @@ vector<vector<int>> PLC::parsePLC(){
     for(int i=0;i<ownedBlocks.size();i++){
         if(track->track[ownedBlocks[i]].hasLights==true){
             bool inCheck= false;
-            for(int i=0;i<track->track[ownedBlocks[i]].check.size();i++){
-                if(track->track[ownedBlocks[i]].auth == false){
+            for(int j=0;j<track->track[ownedBlocks[i]].check.size();j++){
+                int block = track->track[ownedBlocks[i]].check[j];
+                if(track->track[block].occupancy== true){
                     track->track[ownedBlocks[i]].lights = 1;
                     inCheck = true;
                 }
