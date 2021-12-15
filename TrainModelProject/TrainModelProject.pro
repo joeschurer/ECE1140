@@ -10,16 +10,19 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
+    mytimer.cpp \
     traincalculate.cpp \
     trainfactory.cpp \
     trainmodelui.cpp
 
 HEADERS += \
+    mytimer.h \
     traincalculate.h \
     trainfactory.h \
     trainmodelui.h
 
 FORMS += \
+    ../TrainFactory/trainfactory.ui \
     trainmodelui.ui
 
 # Default rules for deployment.

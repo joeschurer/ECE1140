@@ -80,7 +80,7 @@ void Line::moveTrain(int trainNum) {
         }
 
         if (!con || n == -1) {
-            if (blocks[current-1].inbound && blocks[current].authority == true && current < blocks.size()) {
+            if (blocks[current-1].inbound && blocks[current].authority == true && current < (int)blocks.size()) {
                 next = current+1;
             }
             else if (current == 1) {
