@@ -85,6 +85,7 @@ void SWTCUI::PlusSpeedPressed() {
     ui->SetSpeedBox->setText(QString::number(train.SetSpeed, 'g', 3));
     //Calculate Power each time set speed is changed
     train.CalculatePower();
+    emit PowerCalculated(train.Power);
     emit SetSpeedDifferent(train.SetSpeed);
 }
 
@@ -102,6 +103,7 @@ void SWTCUI::MinusSpeedPressed() {
     }
     //Calculate Power each time set speed is changed
     train.CalculatePower();
+    emit PowerCalculated(train.Power);
     emit SetSpeedDifferent(train.SetSpeed);
 }
 
@@ -109,14 +111,14 @@ void SWTCUI::PlusTempPressed() {
     //Change current temperature
     ++train.CurrentTemp;
     ui->SetTempBox->setText(QString::number(train.CurrentTemp, 'g', 3));
-    emit TempDifferent(train.CurrentTemp);
+    emit TempDifferent(train.SetTemp);
 }
 
 void SWTCUI::MinusTempPressed() {
     //Change current temperature
     --train.CurrentTemp;
     ui->SetTempBox->setText(QString::number(train.CurrentTemp, 'g', 3));
-    emit TempDifferent(train.CurrentTemp);
+    emit TempDifferent(train.SetTemp);
 }
 
 void SWTCUI::BrakePressed() {
@@ -124,6 +126,7 @@ void SWTCUI::BrakePressed() {
     train.SetSpeed = 0;
     train.BrakeState = true;
     train.Power = 0;
+    train.Ukminus1 = 0;
     ui->SetSpeedBox->setText(QString::number(train.SetSpeed, 'g', 3));
     emit SetSpeedDifferent(train.SetSpeed);
     emit PowerCalculated(train.Power);
@@ -202,6 +205,7 @@ void SWTCUI::EBrakePressed() {
         ui->EBrakeBox->setText(QString::fromStdString("On"));
         train.SetSpeed = 0;
         train.Power = 0;
+        train.Ukminus1 = 0;
         emit SetSpeedDifferent(train.SetSpeed);
         emit PowerCalculated(train.Power);
     }

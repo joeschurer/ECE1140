@@ -34,7 +34,6 @@ void SWTCCalculations::CalculatePower()
         Power = 0;
         Ukminus1 = Power;
     }
-    //emit PowerCalculation(Power);
 }
 
 void SWTCCalculations::KpKiChanged(double Kp, double Ki)
