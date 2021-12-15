@@ -2,6 +2,7 @@
 #include "ui_trainmodelui.h"
 #include "traincalculate.h"
 #include <QApplication>
+#include <QDebug>
 TrainModelUI::TrainModelUI(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::TrainModelUI)
@@ -31,11 +32,11 @@ void TrainModelUI::setWeight(){
 }
 
 
-void TrainModelUI::getPower(int power){
-    calcs.setPower(power);
-    ui->currentPowerValue->setText(QString::number((power)));
+//void TrainModelUI::getPower(int power){
+//    calcs.setPower(power);
+//    ui->currentPowerValue->setText(QString::number((power)));
 
-}
+//}
 
 void TrainModelUI::getVelocity(float speed){
 
@@ -130,6 +131,14 @@ void TrainModelUI::on_emergencyBrake_clicked()
 
 }
 
+void TrainModelUI::dormammu(){
+    calcs.lastTime = calcs.currentTime;
+    calcs.currentTime += 1;
+    qDebug() << calcs.currentTime;
+    updateUI();
+    qDebug() << "finished updateUI";
+}
+
 void TrainModelUI::stationValues(string stationName, string side){
     std::string station = stationName;
     QString qstr = QString::fromStdString(station);
@@ -191,16 +200,15 @@ void TrainModelUI::on_pushButton_4_clicked()
 }
 
 void TrainModelUI::updateUI(){
+    qDebug() << calcs.currentPower;
     ui->currentSpeedValue->setText(QString::number(calcs.calculateVelocity()));
     ui->currentAccelerationValue->setText(QString::number(calcs.currentAcc));
     ui->currentPowerValue->setText(QString::number(calcs.currentPower));
-    //train.lastTime = train.currentTime;
-    //train.currentTime = train.clockTime;
     ui->passengersOnTrainValue->setText(QString::number(calcs.numPassengers));
     setLength();
     setWeight();
     ui->crewMembersValue->setText(QString::number(calcs.crewMembers));
-
+    qDebug() << "end updateUI";
 }
 
 
@@ -342,5 +350,14 @@ void TrainModelUI::on_passengersConfirm_clicked()
     int input = ui->inputPassengersOnBoard->text().toInt();
     boardingPassengersFromTM(input);
 
+}
+
+
+void TrainModelUI::on_stationMetersButton_clicked()
+{
+    QString x = ui->stationMetersVal->text();
+    double tempval = x.toDouble();
+    ui->distToDestVal->setText(x);
+    calcs.distToDest = tempval;
 }
 

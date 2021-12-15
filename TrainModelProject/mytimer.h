@@ -8,11 +8,13 @@ class MyTimer : public QObject
     Q_OBJECT
 public:
     MyTimer();
-    void setTrain(TrainModelUI maitrain);
     QTimer *timer;
-    TrainModelUI train;
+    float time;
 public slots:
     void MyTimerSlot();
+
+signals:
+    void newTime(float);
 };
 
 #endif // MYTIMER_H
