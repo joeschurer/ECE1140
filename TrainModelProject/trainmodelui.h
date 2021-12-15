@@ -28,6 +28,8 @@ public:
     void getBlock();
     void getLightState(bool);
     void getLeftDoorState(bool);
+    void boardingPassengersFromTM(int numPassengers);
+
     void getRightDoorState(bool);
     void getMode(int);
     void getPassengers(int);
@@ -39,6 +41,7 @@ public:
     void setHeight();
     void setWidth();
     void dormammu(); //the time slot
+    void trackSignal(int, int, int, int, int, int, int);
 
 private slots:
     void on_toggleLights_clicked();
@@ -78,27 +81,22 @@ private:
 public slots:
     //void updateUI();
     //void dormammu(); //the time slot
-    void SetSpeedChanged(int SetSpeed);
     void LightsChanged(bool state);
     void LeftDoorsChanged(bool state);
     void RightDoorsChanged(bool state);
     void TempChanged(int temp);
-    void EmergencyBrakeChanged(bool state);
-    void AutomaticModeChanged(bool state);
+
     void PowerChanged(int power);
 
     //TC slots
-//    void DistanceDifferent(std::string distance); //the size of the block
-//    void TimeDifferent(std::string time); //take in current time?
-//    void SpeedLimitDifferent(int speed); //tkae in speed limit, emit it to TC
-//    void CommandedSpeedDifferent(int speed); //take in commanded speed, emit to TC
+
     void CurrentSpeedDifferent(int power); //receive power, call setPower
 //    void EmergencyBrakeDifferent(std::string state); //receive
 //    void FailureDifferent(std::string state);
 
 //    //TM slots
-    void boardingPassengersFromTM(int numPassengers);
-    void trackSignal(int, int, int, int, int, int, int);
+
+
     void outsideTemperature(int tt);
     void internalTemperature(int sett);
 
@@ -114,7 +112,6 @@ signals:
     void eBrakeSetTC(int id,bool state);
     void failureState(int id, int mode);
     void trackSignalTC(int id, int speedLimit, int cSpeed, int auth);
-    void createTC(int id, int comm);
 
     //to track model
     void currSpeedTM(QString currSpeed);

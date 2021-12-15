@@ -81,6 +81,8 @@ void TrainModelUI::getRightDoorState(bool val){
         ui->rightDoorStateValue->setText("OPEN");
     }
 }
+
+//change failure modes or functional mode
 void TrainModelUI::getMode(int val){
     if(val == 0){
         ui->currentModeValue->setText("FUNCTIONAL MODE");
@@ -124,7 +126,7 @@ void TrainModelUI::on_inputPowerConfirm_clicked()
 }
 
 
-
+//ebrake
 void TrainModelUI::on_emergencyBrake_clicked()
 {
     if(calcs.emergencyBrake == false){
@@ -141,7 +143,7 @@ void TrainModelUI::on_emergencyBrake_clicked()
 
 
 }
-
+//the clock ticker
 void TrainModelUI::dormammu(){ //my clock
     calcs.lastTime = calcs.currentTime;
     calcs.currentTime += 1;
@@ -150,6 +152,8 @@ void TrainModelUI::dormammu(){ //my clock
     qDebug() << "finished updateUI";
 }
 
+
+//set values according to station arrived at
 void TrainModelUI::stationValues(string stationName, string side){
     std::string station = stationName;
     QString qstr = QString::fromStdString(station);
@@ -166,6 +170,9 @@ void TrainModelUI::stationValues(string stationName, string side){
     emit offPassengers(byebye);
 }
 
+
+//report brake failure
+
 void TrainModelUI::on_pushButton_3_clicked()
 {
     ui->currentModeValue->setText("BRAKE FAILURE");
@@ -174,6 +181,8 @@ void TrainModelUI::on_pushButton_3_clicked()
     emit failureState(calcs.id, i);
 }
 
+
+//door toggle
 
 void TrainModelUI::on_toggleDoorRight_clicked()
 {
@@ -187,7 +196,7 @@ void TrainModelUI::on_toggleDoorRight_clicked()
 
 }
 
-
+//door toggle
 
 void TrainModelUI::on_toggleDoorLeft_clicked()
 {
@@ -219,6 +228,7 @@ void TrainModelUI::on_pushButton_4_clicked()
     emit failureState(calcs.id, i);
 }
 
+//update the ui on clock tick
 void TrainModelUI::updateUI(){
     qDebug() << calcs.currentPower;
     qDebug() << "input power result:";
