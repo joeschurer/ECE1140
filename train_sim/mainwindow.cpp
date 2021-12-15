@@ -175,7 +175,7 @@ void MainWindow::sel_block(){
         ui->switch_status->setText(switchString);
         ui->crossing_status->setText(crossing);
         ui->auth_status->setText(QString::number(temp_block.auth));
-        ui->sugg_status->setText(QString::number(temp_block.sugg_speed)+ " mph");
+        ui->sugg_status->setText(QString::number(temp_block.sugg_speed/1.609)+ " mph");
         ui->commanded_status->setText(QString::number(temp_block.speed_limit/1.609)+ " mph");
         ui->presence_status->setText(QString::number(temp_block.occupancy));
     }
@@ -353,7 +353,8 @@ void  MainWindow::receiveOcc(std::vector<bool> occ){
 
 void MainWindow::recieveAuth(TrainEntry t){
     std::vector<bool> auth = t.authority;
-
+    int speed = t.suggestedSpeed;
+    waysideController.recSuggSpeed(speed);
     vector<vector<int>> changes = waysideController.ctc_reccomend(auth);
 
     vector<int> sw = changes[0];

@@ -26,6 +26,7 @@ public:
     void toggleSwitch(int);
     void authUpdate(bool[151]);
     bool uploadPLC(int,string fname);
+    void recSuggSpeed(int);
 
 
     //CTC

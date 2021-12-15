@@ -232,7 +232,7 @@ void TrainModelUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 23: _t->LeftDoorsChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 24: _t->RightDoorsChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 25: _t->TempChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-  //      case 26: _t->EmergencyBrakeChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
+      //  case 26: _t->EmergencyBrakeChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
     //    case 27: _t->AutomaticModeChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 28: _t->PowerChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 29: _t->CurrentSpeedDifferent((*reinterpret_cast< int(*)>(_a[1]))); break;

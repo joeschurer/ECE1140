@@ -21,7 +21,19 @@ void TrainFactory::dispatchTrain(vector<int> trainData){
     int id = trainData[0];
     int comm = trainData[1];
     trainCalculate calcs;
-    makeTrain(calcs, id, comm);
+    bool present = false;
+    for(int i = 0; i < trains.size(); i++){
+        if (trains[i]->calcs.id == id){
+            present = true;
+        }
+    }
+    if(trainData.size() == 2 && present == false){
+        makeTrain(calcs, id, comm);
+    } else if(trainData.size() == 6 && present == true){
+        receiveSignal(trainData);
+    }else{
+        qDebug() << "somethin broke yo";
+    }
 }
 
 void TrainFactory::makeTrain(trainCalculate calcs, int id, int comm){

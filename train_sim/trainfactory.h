@@ -16,7 +16,7 @@ class TrainFactory : public QMainWindow
 public:
     TrainFactory(QWidget *parent = nullptr);
     ~TrainFactory();
-
+    void receiveSignal(vector<int>);
     void makeTrain(trainCalculate, int, int);
     vector<TrainModelUI*> trains;
     int globalTemp;
@@ -31,7 +31,6 @@ public slots:
         void dispatchTrain(vector<int>);
 
         //slots from TM
-        void receiveSignal(vector<int>);
         void boardingPassengers(vector<int>);
         void receiveBeacon(vector<string>);
         void temperatureChange(double);

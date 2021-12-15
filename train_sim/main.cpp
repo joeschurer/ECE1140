@@ -59,11 +59,11 @@ int main(int argc, char *argv[])
     s.show();
     e.show();
 
-//    QObject::connect(&window, &TrackModel::trainData, &f, &TrainFactory::dispatchTrain);
-//    QObject::connect(&window, &TrackModel::tempChanged, &f, &TrainFactory::temperatureChange);
-//    QObject::connect(&window, &TrackModel::beaconData, &f, &TrainFactory::receiveBeacon);
-//    QObject::connect(&window, &TrackModel::passengersChanged, &f, &TrainFactory::boardingPassengers);
-//    QObject::connect(&w, &TrainModelUI::currSpeedTM, &window, &TrackModel::actualSpeedChanged);
+    QObject::connect(&window, &TrackModel::trainData, &f, &TrainFactory::dispatchTrain);
+   QObject::connect(&window, &TrackModel::tempChanged, &f, &TrainFactory::temperatureChange);
+    QObject::connect(&window, &TrackModel::beaconData, &f, &TrainFactory::receiveBeacon);
+   QObject::connect(&window, &TrackModel::passengersChanged, &f, &TrainFactory::boardingPassengers);
+    QObject::connect(&w, &TrainModelUI::currSpeedTM, &window, &TrackModel::actualSpeedChanged);
 
 
 

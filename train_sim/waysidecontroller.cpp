@@ -185,4 +185,8 @@ bool WaysideController::uploadPLC(int index, string fName){
 }
 
 
-
+void WaysideController::recSuggSpeed(int speed){
+    for(int i=0; i< track_model.track.size();i++){
+        track_model.track[i].sugg_speed = speed;
+    }
+}

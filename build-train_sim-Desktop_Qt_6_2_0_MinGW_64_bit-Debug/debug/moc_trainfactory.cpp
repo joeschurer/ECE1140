@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_TrainFactory_t {
-    const uint offsetsAndSize[32];
-    char stringdata0[197];
+    const uint offsetsAndSize[30];
+    char stringdata0[183];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_TrainFactory_t, stringdata0) + ofs), len 
@@ -39,20 +39,19 @@ QT_MOC_LITERAL(54, 11), // "vector<int>"
 QT_MOC_LITERAL(66, 10), // "beaconToTC"
 QT_MOC_LITERAL(77, 14), // "vector<string>"
 QT_MOC_LITERAL(92, 13), // "dispatchTrain"
-QT_MOC_LITERAL(106, 13), // "receiveSignal"
-QT_MOC_LITERAL(120, 18), // "boardingPassengers"
-QT_MOC_LITERAL(139, 13), // "receiveBeacon"
-QT_MOC_LITERAL(153, 17), // "temperatureChange"
-QT_MOC_LITERAL(171, 18), // "receiveStationInfo"
-QT_MOC_LITERAL(190, 6) // "string"
+QT_MOC_LITERAL(106, 18), // "boardingPassengers"
+QT_MOC_LITERAL(125, 13), // "receiveBeacon"
+QT_MOC_LITERAL(139, 17), // "temperatureChange"
+QT_MOC_LITERAL(157, 18), // "receiveStationInfo"
+QT_MOC_LITERAL(176, 6) // "string"
 
     },
     "TrainFactory\0commandedSpeedTC\0\0id\0"
     "cSpeed\0passOffTrain\0vector<int>\0"
     "beaconToTC\0vector<string>\0dispatchTrain\0"
-    "receiveSignal\0boardingPassengers\0"
-    "receiveBeacon\0temperatureChange\0"
-    "receiveStationInfo\0string"
+    "boardingPassengers\0receiveBeacon\0"
+    "temperatureChange\0receiveStationInfo\0"
+    "string"
 };
 #undef QT_MOC_LITERAL
 
@@ -62,7 +61,7 @@ static const uint qt_meta_data_TrainFactory[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -70,17 +69,16 @@ static const uint qt_meta_data_TrainFactory[] = {
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,   68,    2, 0x06,    1 /* Public */,
-       5,    1,   73,    2, 0x06,    4 /* Public */,
-       7,    1,   76,    2, 0x06,    6 /* Public */,
+       1,    2,   62,    2, 0x06,    1 /* Public */,
+       5,    1,   67,    2, 0x06,    4 /* Public */,
+       7,    1,   70,    2, 0x06,    6 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       9,    1,   79,    2, 0x0a,    8 /* Public */,
-      10,    1,   82,    2, 0x0a,   10 /* Public */,
-      11,    1,   85,    2, 0x0a,   12 /* Public */,
-      12,    1,   88,    2, 0x0a,   14 /* Public */,
-      13,    1,   91,    2, 0x0a,   16 /* Public */,
-      14,    3,   94,    2, 0x0a,   18 /* Public */,
+       9,    1,   73,    2, 0x0a,    8 /* Public */,
+      10,    1,   76,    2, 0x0a,   10 /* Public */,
+      11,    1,   79,    2, 0x0a,   12 /* Public */,
+      12,    1,   82,    2, 0x0a,   14 /* Public */,
+      13,    3,   85,    2, 0x0a,   16 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    3,    4,
@@ -90,10 +88,9 @@ static const uint qt_meta_data_TrainFactory[] = {
  // slots: parameters
     QMetaType::Void, 0x80000000 | 6,    2,
     QMetaType::Void, 0x80000000 | 6,    2,
-    QMetaType::Void, 0x80000000 | 6,    2,
     QMetaType::Void, 0x80000000 | 8,    2,
     QMetaType::Void, QMetaType::Double,    2,
-    QMetaType::Void, QMetaType::Int, 0x80000000 | 15, 0x80000000 | 15,    2,    2,    2,
+    QMetaType::Void, QMetaType::Int, 0x80000000 | 14, 0x80000000 | 14,    2,    2,    2,
 
        0        // eod
 };
@@ -108,11 +105,10 @@ void TrainFactory::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 1: _t->passOffTrain((*reinterpret_cast< vector<int>(*)>(_a[1]))); break;
         case 2: _t->beaconToTC((*reinterpret_cast< vector<string>(*)>(_a[1]))); break;
         case 3: _t->dispatchTrain((*reinterpret_cast< vector<int>(*)>(_a[1]))); break;
-        case 4: _t->receiveSignal((*reinterpret_cast< vector<int>(*)>(_a[1]))); break;
-        case 5: _t->boardingPassengers((*reinterpret_cast< vector<int>(*)>(_a[1]))); break;
-        case 6: _t->receiveBeacon((*reinterpret_cast< vector<string>(*)>(_a[1]))); break;
-        case 7: _t->temperatureChange((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 8: _t->receiveStationInfo((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< string(*)>(_a[2])),(*reinterpret_cast< string(*)>(_a[3]))); break;
+        case 4: _t->boardingPassengers((*reinterpret_cast< vector<int>(*)>(_a[1]))); break;
+        case 5: _t->receiveBeacon((*reinterpret_cast< vector<string>(*)>(_a[1]))); break;
+        case 6: _t->temperatureChange((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 7: _t->receiveStationInfo((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< string(*)>(_a[2])),(*reinterpret_cast< string(*)>(_a[3]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -149,7 +145,7 @@ const QMetaObject TrainFactory::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_TrainFactory_t
 , QtPrivate::TypeAndForceComplete<TrainFactory, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<string>, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<string>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<string, std::false_type>, QtPrivate::TypeAndForceComplete<string, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<string>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<string, std::false_type>, QtPrivate::TypeAndForceComplete<string, std::false_type>
 
 
 >,
@@ -176,13 +172,13 @@ int TrainFactory::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 9;
+        _id -= 8;
     }
     return _id;
 }
