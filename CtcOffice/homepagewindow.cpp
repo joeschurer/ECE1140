@@ -1,5 +1,6 @@
 #include "HomepageWindow.h"
 #include "ui_HomepageWindow.h"
+#include "Models.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <fstream>
@@ -13,7 +14,8 @@ using std::string;
 using std::vector;
 
 int systemClock = 0;
-int simulationSpeed = 15;
+int simulationSpeed = 1;
+QTimer globalTimer = QTimer();
 HomepageWindow::HomepageWindow(QWidget *parent, CtcOffice *ctcOffice)
     : QMainWindow(parent), ui(new Ui::HomepageWindow), ctcOffice_(ctcOffice) {
   ui->setupUi(this);
@@ -219,7 +221,7 @@ void HomepageWindow::updateOccupancyTable(vector<bool> occupancy) {
 
 void HomepageWindow::timerSlot() {
   systemClock += 1;
-  //qDebug() << systemClock;
+  qDebug() << systemClock;
   bool trainDispatched = ctcOffice_->checkForDispatch(systemClock);
   Time currentTime = ctcOffice_->toTimeFromSeconds(systemClock);
   ui->timeHourLineEdit->setText(std::to_string(currentTime.first).c_str());
@@ -295,5 +297,35 @@ void HomepageWindow::on_SubmitTestTicketsSoldButton_clicked()
 {
     auto tickets = ui->testTicketsSoldLineEdit->text().toInt();
     ctcOffice_->setTickets(tickets);
+}
+
+
+
+
+void HomepageWindow::on_oneXButton_clicked()
+{
+    globalTimer.start(1000);
+    simulationSpeed = 1;
+}
+
+
+void HomepageWindow::on_tenXButton_clicked()
+{
+    globalTimer.start(100);
+    simulationSpeed = 10;
+}
+
+void HomepageWindow::on_startSimulationButton_clicked()
+{
+    if(globalTimer.isActive()) {
+        globalTimer.stop();
+    } else {
+        if(simulationSpeed==1){
+            globalTimer.start(1000);
+
+        } else if(simulationSpeed==10){
+            globalTimer.start(100);
+        }
+    }
 }
 

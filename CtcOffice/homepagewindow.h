@@ -60,6 +60,12 @@ private slots:
 
     void on_SubmitTestTicketsSoldButton_clicked();
 
+    void on_oneXButton_clicked();
+
+    void on_tenXButton_clicked();
+
+    void on_startSimulationButton_clicked();
+
 private:
     Ui::HomepageWindow *ui;
     CtcOffice *ctcOffice_;

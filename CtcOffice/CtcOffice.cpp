@@ -425,6 +425,7 @@ void CtcOffice::buildGreenLineGraph() {
     for(int i = 86; i<150; i++) {
         trackGraph[i].push_back(i+1);
     }
+    trackGraph[29].push_back(28);
     trackGraph[150].push_back(29);
 
 }

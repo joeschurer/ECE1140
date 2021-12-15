@@ -266,7 +266,7 @@
      <widget class="QLineEdit" name="trackLineLineEdit">
       <property name="geometry">
        <rect>
-        <x>100</x>
+        <x>150</x>
         <y>80</y>
         <width>113</width>
         <height>21</height>
@@ -277,6 +277,45 @@
       </property>
       <property name="text">
        <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="oneXButton">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>160</y>
+        <width>101</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Run at 1x Speed</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tenXButton">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>160</y>
+        <width>111</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Run at 10x Speed</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="startSimulationButton">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>200</y>
+        <width>121</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start/Stop Simulation</string>
       </property>
      </widget>
     </widget>
@@ -688,6 +727,9 @@
         <height>21</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>Enter Starting Block</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="destinationBlockLineEdit">
       <property name="geometry">
@@ -697,6 +739,9 @@
         <width>113</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Enter Destination Block</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="testOccupancyLineEdit">
@@ -775,6 +820,19 @@
       </property>
       <property name="text">
        <string>Submit</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>250</y>
+        <width>191</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Print Route to Console: </string>
       </property>
      </widget>
     </widget>

@@ -15,7 +15,8 @@ SOURCES += \
 
 HEADERS += \
     CtcOffice.h \
-    HomepageWindow.h
+    HomepageWindow.h \
+    Models.h
 
 FORMS += \
     HomepageWindow.ui
