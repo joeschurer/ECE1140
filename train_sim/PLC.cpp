@@ -41,7 +41,6 @@ void push_range_or_number(const std::string &str, std::vector<int> &out) {
     }
 }
 
-//returns
 void PLC::setPrev(int index,int gap =3){
     //starting behind the train
 
@@ -77,7 +76,6 @@ void PLC::setPrev(int index,int gap =3){
 
 //return the index of the previous block if it is a switch
 int PLC::switchPrev(int index){
-    //do switch heads matter here, maybe not...
     int prev = track->track[index].prev;
     //is the previous a switch connecting to it
     if(track->track[prev].switch_head==true){
@@ -93,7 +91,7 @@ int PLC::switchPrev(int index){
 
 PLC::PLC(){
     //create the blue line
-    track_model.create_line(1);
+   // track_model.create_line(1);
 
 }
 
