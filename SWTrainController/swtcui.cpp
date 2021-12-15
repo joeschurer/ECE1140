@@ -85,8 +85,8 @@ void SWTCUI::PlusSpeedPressed() {
     ui->SetSpeedBox->setText(QString::number(train.SetSpeed, 'g', 3));
     //Calculate Power each time set speed is changed
     train.CalculatePower();
-    emit PowerCalculated(train.Power);
-    emit SetSpeedDifferent(train.SetSpeed);
+    emit PowerCalculated(train.id, train.Power);
+    emit SetSpeedDifferent(train.id, train.SetSpeed);
 }
 
 void SWTCUI::MinusSpeedPressed() {
@@ -103,22 +103,22 @@ void SWTCUI::MinusSpeedPressed() {
     }
     //Calculate Power each time set speed is changed
     train.CalculatePower();
-    emit PowerCalculated(train.Power);
-    emit SetSpeedDifferent(train.SetSpeed);
+    emit PowerCalculated(train.id, train.Power);
+    emit SetSpeedDifferent(train.id, train.SetSpeed);
 }
 
 void SWTCUI::PlusTempPressed() {
     //Change current temperature
     ++train.CurrentTemp;
     ui->SetTempBox->setText(QString::number(train.CurrentTemp, 'g', 3));
-    emit TempDifferent(train.SetTemp);
+    emit TempDifferent(train.id, train.SetTemp);
 }
 
 void SWTCUI::MinusTempPressed() {
     //Change current temperature
     --train.CurrentTemp;
     ui->SetTempBox->setText(QString::number(train.CurrentTemp, 'g', 3));
-    emit TempDifferent(train.SetTemp);
+    emit TempDifferent(train.id, train.SetTemp);
 }
 
 void SWTCUI::BrakePressed() {
@@ -128,9 +128,9 @@ void SWTCUI::BrakePressed() {
     train.Power = 0;
     train.Ukminus1 = 0;
     ui->SetSpeedBox->setText(QString::number(train.SetSpeed, 'g', 3));
-    emit SetSpeedDifferent(train.SetSpeed);
-    emit PowerCalculated(train.Power);
-    emit ServiceBrakeDifferent(train.BrakeState);
+    emit SetSpeedDifferent(train.id, train.SetSpeed);
+    emit PowerCalculated(train.id, train.Power);
+    emit ServiceBrakeDifferent(train.id, train.BrakeState);
 }
 
 void SWTCUI::OperateLeftDoorsPressed() {
@@ -143,7 +143,7 @@ void SWTCUI::OperateLeftDoorsPressed() {
     {
         train.LeftDoorsOpen = true;
     }
-    emit LeftDoorsDifferent(train.LeftDoorsOpen);
+    emit LeftDoorsDifferent(train.id, train.LeftDoorsOpen);
 
 }
 
@@ -157,7 +157,7 @@ void SWTCUI::OperateRightDoorsPressed() {
     {
         train.RightDoorsOpen = true;
     }
-    emit RightDoorsDifferent(train.RightDoorsOpen);
+    emit RightDoorsDifferent(train.id, train.RightDoorsOpen);
 }
 
 void SWTCUI::LightsButtonPressed() {
@@ -170,7 +170,7 @@ void SWTCUI::LightsButtonPressed() {
     {
         train.LightsOn = true;
     }
-    emit LightsDifferent(train.LightsOn);
+    emit LightsDifferent(train.id, train.LightsOn);
 }
 
 void SWTCUI::AutomaticModeButtonPressed() {
@@ -184,11 +184,11 @@ void SWTCUI::AutomaticModeButtonPressed() {
     {
         train.AutomaticModeState = true;
         train.SetSpeed = train.CommandedSpeed;
-        emit SetSpeedDifferent(train.SetSpeed);
+        emit SetSpeedDifferent(train.id, train.SetSpeed);
         train.CalculatePower();
     }
     ui->CurrentSpeedBox->setText(QString::number(train.SetSpeed));
-    emit AutomaticModeDifferent(train.AutomaticModeState);
+    emit AutomaticModeDifferent(train.id, train.AutomaticModeState);
 }
 
 void SWTCUI::EBrakePressed() {
@@ -206,11 +206,11 @@ void SWTCUI::EBrakePressed() {
         train.SetSpeed = 0;
         train.Power = 0;
         train.Ukminus1 = 0;
-        emit SetSpeedDifferent(train.SetSpeed);
-        emit PowerCalculated(train.Power);
+        emit SetSpeedDifferent(train.id, train.SetSpeed);
+        emit PowerCalculated(train.id, train.Power);
     }
     ui->SetSpeedBox->setText(QString::number(train.SetSpeed, 'g', 3));
-    emit EmergencyBrakeDifferent(train.EmergencyBrakeState);
+    emit EmergencyBrakeDifferent(train.id, train.EmergencyBrakeState);
 }
 
 //Functions below are simple changing of UI elements
@@ -308,7 +308,7 @@ void SWTCUI::ReadBeacon(int id, string Station, int DoorSide)
     {
         train.Destination = Station;
         train.DoorToOpen = DoorSide;
-        DestinationChanged(Station);
+        DestinationChanged(id, Station);
         BrakePressed();
         train.StopAtStation = true;
     }
@@ -322,8 +322,8 @@ void SWTCUI::ReadTrackSignal(int id, int SpeedLimit, int CSpeed, int authority)
         train.SpeedLimit = SpeedLimit;
         train.CommandedSpeed = CSpeed;
         train.Authority = authority;
-        SpeedLimitChanged(SpeedLimit);
-        CommandedSpeedChanged(CSpeed);
+        SpeedLimitChanged(id, SpeedLimit);
+        CommandedSpeedChanged(id, CSpeed);
     }
 }
 
