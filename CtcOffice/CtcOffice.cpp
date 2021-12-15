@@ -295,7 +295,7 @@ void CtcOffice::buildGreenLineStationMap() {
 TrainEntry CtcOffice::dispatchTrain(int trainNumber, ScheduleEntry scheduleEntry){
     TrainEntry t = {trainNumber, scheduleEntry.suggestedSpeed, scheduleEntry.authority};
     dispatchedTrains.push_back(t);
-    qDebug() << "dispatching train from block" << QString::number(scheduleEntry.start) << "to block" << QString::number(scheduleEntry.destination);
+    qDebug() << "dispatching train" << QString::number(trainNumber) <<  "from block" << QString::number(scheduleEntry.start) << "to block" << QString::number(scheduleEntry.destination);
     return t;
 }
 

@@ -179,7 +179,11 @@ void HomepageWindow::on_addSwitchButton_clicked() {
 
 void HomepageWindow::on_dispatchButton_clicked() {
   auto schedule = ctcOffice_->getSchedule();
-  emit sendDispatchInfo(ctcOffice_->dispatchTrain(1, schedule[1][0]));
+  for (auto element : schedule) {
+    for (auto scheduleEntry : element.second) {
+        emit sendDispatchInfo(ctcOffice_->dispatchTrain(scheduleEntry.trainNumber, scheduleEntry));
+    }
+  }
 }
 
 void HomepageWindow::receiveOccupancy(vector<bool> occupancy) {
@@ -221,7 +225,7 @@ void HomepageWindow::updateOccupancyTable(vector<bool> occupancy) {
 
 void HomepageWindow::timerSlot() {
   systemClock += 1;
-  qDebug() << systemClock;
+  //qDebug() << systemClock;
   bool trainDispatched = ctcOffice_->checkForDispatch(systemClock);
   Time currentTime = ctcOffice_->toTimeFromSeconds(systemClock);
   ui->timeHourLineEdit->setText(std::to_string(currentTime.first).c_str());
