@@ -8,6 +8,9 @@
 #include <QMessageBox>
 #include "waysidecontroller.h"
 
+//Joseph Schurer
+//UI for the SWTrackController
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE

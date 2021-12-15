@@ -2,6 +2,10 @@
 #define WAYSIDECONTROLLER_H
 #include "track_layout.h"
 #include "PLC.h"
+//Joseph Schurer
+//Class that manages the waysides
+//routes data to the correct place
+
 class WaysideController{
 private:
     track_layout track_model;

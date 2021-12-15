@@ -2,6 +2,10 @@
 #define TRACK_LAYOUT_H
 #include <vector>
 #include <QFile>
+//Joseph Schurer
+//Track data structure
+//is a vector of blocks
+
 struct block{
     //true is left item in switch declaration,false is right
     bool switch_pos= true;
@@ -45,7 +49,7 @@ public:
     track_layout();
     ~track_layout();
     bool new_block(block);
-    //0 = blue,1 = red,2= green
+    //0 = green,1 = red
     bool create_line(int line);
     block get_block(int);
     bool add_block();

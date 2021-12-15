@@ -3,7 +3,8 @@
 #include "track_layout.h"
 #include "models.h"
 
-
+//Joseph Schurer
+//this class is an individual wayside
 
 class PLC{
 private:
