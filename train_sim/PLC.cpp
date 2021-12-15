@@ -198,7 +198,7 @@ vector<vector<int>> PLC::parsePLC(){
                             waiting = true;//train waiting to leave loop
                         }
                     }
-                    if(track->track[i].headConnect==BL){
+                    if(track->track[SWPOS].headConnect==BL){
                         if(waiting==true && safe==true){
                             qDebug()<< "Toggling to allow passing of switch: " << SWPOS;
                             track->toggle_switch(SWPOS);
@@ -281,7 +281,7 @@ vector<vector<int>> PLC::parsePLC(){
 
     for(int i=0;i<ownedBlocks.size();i++){
         if(track->track[ownedBlocks[i]].occupancy==true || track->track[ownedBlocks[i]].maintenance == true){
-           setPrev(i);
+           setPrev(ownedBlocks[i]);
         }
     }
 
@@ -353,31 +353,6 @@ bool PLC::update_occupancy(int index){
 }
 
 std::vector<int> PLC::ctc_reccomend(std::vector<bool> a){
-    /*ind occupied blocks
-    std::vector<int> occBlocks;
-    int trackLength = static_cast<int>(track_model.track.size());
-    for(int i=0;i<trackLength;i++){
-        track_model.track[i].auth = a[i];
-        //if block is occupied
-        if(track_model.track[i].occupancy == true){
-            occBlocks.push_back(track_model.track[i].block_num);
-            track_model.track[i].lights = 2;
-        }
-    }
-
-    //eventually move to PLC
-    std::vector<int> temp;
-    for(int i=0;i<trackLength;i++){
-        if(track_model.track[i].switch_head == true){
-            int connection = track_model.track[i].headConnect;
-            if(track_model.track[connection].auth== false){
-                track_model.toggle_switch(connection);
-                temp.push_back(i);
-            }
-        }
-    }
-    updateBlocks();
-    */
     vector<int> temp;
     return temp;
 }
