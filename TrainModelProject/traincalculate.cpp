@@ -56,7 +56,7 @@ void trainCalculate::setPower(double power){
     return;
 }
 
-
+//calculate distance traveled since the last clock tick
 double trainCalculate::distTraveled(int blockLength){
     if(lastTime == 0){
         lastPosition = 0;
@@ -68,6 +68,7 @@ double trainCalculate::distTraveled(int blockLength){
     return distanceCovered;
 }
 
+//reset values once the train has come to a stop from either of the brakes
 void trainCalculate:: resetValues(){
     passengersOff = 0;
     lastAcc = 0;
@@ -82,6 +83,10 @@ void trainCalculate::trainAtStation(){
     }
 }
 
+//velocity calculations
+//was having connectivity issues with the whole project so I was going
+//to wait to implement grade and elevation.
+//ran out of time so there is no grade/elevation in the calculations of speed
 double trainCalculate::calculateVelocity(){
     qDebug() << "starting calcvelocity";
     if(currentVelocity == 0 && atStation == true){
@@ -121,6 +126,8 @@ double trainCalculate::calculateVelocity(){
 double trainCalculate::getLength(){
     return trainLength;
 }
+
+//weight is calculated with 150 avg weight for a person + the train weight
 int trainCalculate::calcWeight(int numPassengers){
     int passWeight = 150*numPassengers;
     int crewWeight = 150*crewMembers;
@@ -128,6 +135,8 @@ int trainCalculate::calcWeight(int numPassengers){
     return currentWeight;
 }
 
+
+//randomly assigns a % of total passengers to leave the train.
 vector<int> trainCalculate::passengersLeavingTrain(){
     if(numPassengers > 0){
         int aaah = rand() % (int)numPassengers;
@@ -140,6 +149,7 @@ vector<int> trainCalculate::passengersLeavingTrain(){
     return result;
 }
 
+//brings in new passengers and calculates total and percent capacity
 int trainCalculate::calcCapacity(int newPassengers){
         numPassengers += newPassengers;
         if(numPassengers > maxCapacity){
@@ -168,16 +178,22 @@ void trainCalculate::rightDoors(){
     return;
 }
 
+//test function for distance in the test module for automatic stopping
+//without help from the beacons.
 
 void trainCalculate::testDist(){
     //current speed in kph * 1000 / 60 / 60 * (velocity / acceleration kph / 2)
     double avgVelocity = (currentVelocity+lastVelocity)/2;
+    if(avgVelocity > 19.444){
+        avgVelocity = 19.444;
+    }
     double distanceCovered = avgVelocity;
     distToDest = distToDest - distanceCovered;
     float distToStop = (((currentKPH * 1000) / 60) / 60);
     distToStop = distToStop * ((currentKPH/4.32)/2);
     if(distToDest <= distToStop){
         if(currentMode != 2){
+            currentKPH = 70;
             serviceBrake = true;
             currentPower = 0;
         }

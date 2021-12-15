@@ -19,6 +19,7 @@ public:
     ~TrainFactory();
 
     void makeTrain(trainCalculate, int, int);
+    void receiveSignal(vector<int>);
     vector<TrainModelUI*> trains;
     int globalTemp;
     QTimer *timer;
@@ -27,7 +28,7 @@ signals:
     void commandedSpeedTC(int id, int cSpeed);
     void passOffTrain(vector<int>);
     void beaconToTC(int, string, int);
-
+    void createTC(int id, int comm);
 public slots:
         //on train creation
         void dispatchTrain(vector<int>);
@@ -37,13 +38,11 @@ public slots:
         void timeSlot();
 
         //slots from TM
-        void receiveSignal(vector<int>);
+
         void boardingPassengers(vector<int>);
         void receiveBeacon(vector<string>);
         void temperatureChange(double);
 
-        //slots from TC
-        void receiveStationInfo(int, string, string);
 
 private:
     Ui::TrainFactory *ui;

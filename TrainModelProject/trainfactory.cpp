@@ -62,7 +62,7 @@ void TrainFactory::makeTrain(trainCalculate calcs, int id, int comm){
     trane->show();
     trane->updateUI();
     trane->calcs.outsideTemp = globalTemp;
-    emit trane->createTC(id, comm);//should be a different method to initialize train controller
+    emit createTC(id, comm);//should be a different method to initialize train controller
 
 }
 
@@ -89,11 +89,11 @@ void TrainFactory::receiveSignal(vector<int> data){
 void TrainFactory::boardingPassengers(vector<int> data){
     int id = data[0];
     int newPass = data[1];
-    trains[id]->calcs.calcCapacity(newPass);
+    trains[id]->boardingPassengersFromTM(newPass);
     trains[id]->updateUI();
 }
 
-
+//decode information from beacons
 void TrainFactory::receiveBeacon(vector<string> data){
     string stringID = data[0];
     int id = stoi(stringID);
@@ -110,7 +110,7 @@ void TrainFactory::receiveBeacon(vector<string> data){
     emit beaconToTC(id, stationName, sideNum);
 }
 
-
+//calculate temp based on input.
 void TrainFactory::temperatureChange(double temp){
     globalTemp = temp;
     for(int i = 0; i < trains.size(); i++){
@@ -125,7 +125,7 @@ void TrainFactory::temperatureChange(double temp){
 
 
 //from Train Controller
-void TrainFactory::receiveStationInfo(int id, string stationName, string side){
-    trains[id]->stationValues(stationName, side);
-    trains[id]->updateUI();
-}
+//void TrainFactory::receiveStationInfo(int id, string stationName, string side){
+//    trains[id]->stationValues(stationName, side);
+//    trains[id]->updateUI();
+//}
