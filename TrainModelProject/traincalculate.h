@@ -22,6 +22,7 @@ public:
     void resetValues();
     void trainAtStation();
     vector<int> passengersLeavingTrain();
+    void testDist();
 
 //acceleration and deceleration set values
     double accelLimit = 0.5;
@@ -29,6 +30,7 @@ public:
     double emergencyDecel = -2.73;
 
 //variables
+    float distToDest;
     int id;
     double trainLength = 0;
     double percentCapacity = 0.0;
@@ -63,6 +65,7 @@ public:
     int setTemp;
     int outsideTemp;
     int currentTemp;
+    float setDist;
 
 };
 

@@ -16,11 +16,11 @@ public:
     TrainModelUI(QWidget *parent = nullptr);
     ~TrainModelUI();
     trainCalculate calcs;
-    //void updateUI();
+    void updateUI();
     void setUI();
     void setLength();
     void setWeight();
-    void getPower(int);
+    //void getPower(int);
     void getVelocity(float);
     void getAcceleration(float);
     void getBlock();
@@ -61,12 +61,15 @@ private slots:
 
     void on_passengersConfirm_clicked();
 
+    void on_stationMetersButton_clicked();
+
 private:
     Ui::TrainModelUI *ui;
 
 
 public slots:
-    void updateUI();
+    //void updateUI();
+    void dormammu(); //the time slot
     void SetSpeedChanged(int SetSpeed);
     void LightsChanged(bool state);
     void LeftDoorsChanged(bool state);
@@ -75,8 +78,6 @@ public slots:
     void EmergencyBrakeChanged(bool state);
     void AutomaticModeChanged(bool state);
     void PowerChanged(int power);
-
-
 
     //TC slots
 //    void DistanceDifferent(std::string distance); //the size of the block

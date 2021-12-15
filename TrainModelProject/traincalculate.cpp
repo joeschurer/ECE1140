@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <QDebug>
 trainCalculate::trainCalculate()
 {
     numCars = 2;
@@ -55,8 +56,7 @@ void trainCalculate::setPower(double power){
 }
 
 
-
-double trainCalculate::distTraveled(int blockLength){
+double trainCalculate::distTraveled(int blockLength){    
     if(lastTime == 0){
         lastPosition = 0;
     }
@@ -64,10 +64,6 @@ double trainCalculate::distTraveled(int blockLength){
     double avgVelocity = (currentVelocity+lastVelocity)/2;
     double distanceCovered = avgVelocity * (currentTime - lastTime);
     return distanceCovered;
-}
-
-void trainCalculate:: calcTime(){
-
 }
 
 void trainCalculate:: resetValues(){
@@ -85,6 +81,7 @@ void trainCalculate::trainAtStation(){
 }
 
 double trainCalculate::calculateVelocity(){
+    qDebug() << "starting calcvelocity";
     if(currentVelocity == 0 && atStation == true){
         resetValues();
     }
@@ -113,7 +110,7 @@ double trainCalculate::calculateVelocity(){
     if(currentKPH > 70){
         currentKPH = 70;
     }
-
+    qDebug() << currentKPH;
     return currentKPH;
 }
 
@@ -167,3 +164,7 @@ void trainCalculate::rightDoors(){
 }
 
 
+void trainCalculate::testDist(){
+    //current speed in kph * 1000 / 60 / 60 * (velocity / acceleration kph / 2)
+
+}
