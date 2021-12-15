@@ -214,9 +214,12 @@ void SWTCUI::EBrakePressed() {
 }
 
 //Functions below are simple changing of UI elements
-void SWTCUI::DestinationChanged(std::string destination)
+void SWTCUI::DestinationChanged(int id, std::string destination)
 {
-    ui->StationDisplay->setText(QString::fromStdString(destination));
+    if(train.id == id)
+    {
+        ui->StationDisplay->setText(QString::fromStdString(destination));
+    }
 }
 
 void SWTCUI::DistanceChanged(std::string distance)
@@ -229,28 +232,49 @@ void SWTCUI::TimeChanged(std::string time)
     ui->ClockDisplay->setText(QString::fromStdString(time));
 }
 
-void SWTCUI::SpeedLimitChanged(int speed)
+void SWTCUI::SpeedLimitChanged(int id, int speed)
 {
-    ui->SpeedLimitBox->setText(QString::number(speed));
-    train.SpeedLimit = speed;
+    if(train.id == id)
+    {
+        ui->SpeedLimitBox->setText(QString::number(speed));
+        train.SpeedLimit = speed;
+    }
 }
 
-void SWTCUI::CommandedSpeedChanged(int speed)
+void SWTCUI::CommandedSpeedChanged(int id, int speed)
 {
-    ui->CommandedSpeedBox->setText(QString::number(speed));
-    train.CommandedSpeed = speed;
+    if(train.id == id)
+    {
+        ui->CommandedSpeedBox->setText(QString::number(speed));
+        train.CommandedSpeed = speed;
+    }
 }
 
-void SWTCUI::CurrentSpeedChanged(int speed)
+void SWTCUI::CurrentSpeedChanged(int id, int speed)
 {
-    ui->CurrentSpeedBox->setText(QString::number(speed));
-    train.CurrentSpeed = speed;
-    train.CalculatePower();
+    if(train.id == id)
+    {
+        ui->CurrentSpeedBox->setText(QString::number(speed));
+        train.CurrentSpeed = speed;
+        train.CalculatePower();
+    }
 }
 
-void SWTCUI::EmergencyBrakeChanged(std::string state)
+void SWTCUI::EmergencyBrakeChanged(int id, bool state)
 {
-    ui->EBrakeBox->setText(QString::fromStdString(state));
+    if(train.id == id)
+    {
+        if(state)
+        {
+            ui->EBrakeBox->setText(QString::fromStdString("On"));
+            train.EmergencyBrakeState = state;
+        }
+        else
+        {
+            ui->EBrakeBox->setText(QString::fromStdString("Off"));
+            train.EmergencyBrakeState = state;
+        }
+    }
 }
 
 void SWTCUI::FailureChanged(int id, int mode)

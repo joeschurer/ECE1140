@@ -25,14 +25,14 @@ public:
     void ArrivedAtStation();
 
 public slots:
-    void DestinationChanged(std::string destination);
+    void DestinationChanged(int id, std::string destination);
     void DistanceChanged(std::string distance);
     void TimeChanged(std::string time);
-    void SpeedLimitChanged(int speed);
-    void CommandedSpeedChanged(int speed);
-    void CurrentSpeedChanged(int speed);
-    void EmergencyBrakeChanged(std::string state);
-    void FailureChanged(std::string state);
+    void SpeedLimitChanged(int id, int speed);
+    void CommandedSpeedChanged(int id, int speed);
+    void CurrentSpeedChanged(int id, int speed);
+    void EmergencyBrakeChanged(int id, bool state);
+    void FailureChanged(int id, int mode);
 
 signals:
     void SetSpeedDifferent(int speed);
