@@ -1,20 +1,21 @@
 #ifndef SWTCCREATOR_H
 #define SWTCCREATOR_H
 
-#include "swtccalculations.h"
-#include "swtcui.h"
+#include <QMainWindow>
 
+QT_BEGIN_NAMESPACE
+namespace Ui { class SWTCCreator; }
+QT_END_NAMESPACE
 
-class SWTCCreator
+class SWTCCreator : public QMainWindow
 {
+    Q_OBJECT
+
 public:
-    SWTCCreator();
-    void MakeTrain(SWTCCalculations train, int ID, int CommandedSpeedForTrain);
-    vector<SWTCUI*> AllTrains;
+    SWTCCreator(QWidget *parent = nullptr);
+    ~SWTCCreator();
 
-public slots:
-    void DispatchTrain(int ID, int CommandedSpeed);  
-
+private:
+    Ui::SWTCCreator *ui;
 };
-
 #endif // SWTCCREATOR_H

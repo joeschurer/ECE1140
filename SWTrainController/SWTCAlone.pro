@@ -23,6 +23,7 @@ HEADERS += \
 
 FORMS += \
     engineer.ui \
+    swtccreator.ui \
     swtcui.ui
 
 # Default rules for deployment.

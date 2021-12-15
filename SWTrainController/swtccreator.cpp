@@ -1,11 +1,16 @@
 #include "swtccreator.h"
-#include "swtcui.h"
-#include "ui_swtcui.h"
-#include <vector>
+#include "ui_swtccreator.h"
 
-SWTCCreator::SWTCCreator()
+SWTCCreator::SWTCCreator(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::SWTCCreator)
 {
+    ui->setupUi(this);
+}
 
+SWTCCreator::~SWTCCreator()
+{
+    delete ui;
 }
 
 void SWTCCreator::DispatchTrain(int ID, int CommandedSpeed)

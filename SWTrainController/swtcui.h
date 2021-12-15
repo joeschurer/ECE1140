@@ -19,7 +19,6 @@ public:
     SWTCUI(QWidget *parent = nullptr);
     ~SWTCUI();
     SWTCCalculations train;
-    void DispatchTrain(vector<int> traindata);
     void ReadBeacon(int id, string Station, int DoorSide);
     void ReadTrackSignal(int id, int SpeedLimit, int CSpeed, int authority);
     void EngageBrake();
