@@ -19,7 +19,7 @@ void Beacon::transmitting(vector<string> data) {
     string d = data[1];
     int a = d.find(";");
     string f = d.substr(0, a);
-    d.erase(0, a+2);
+    d.erase(0, a+1);
     ui->beaconData->setText(QString::fromStdString(d));
     vector<string> beac;
     beac.push_back(data[0]);

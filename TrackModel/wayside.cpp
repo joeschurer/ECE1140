@@ -232,14 +232,16 @@ void Wayside::on_toggleCrossing_returnPressed()
 
 void Wayside::on_red_test_clicked()
 {
+    int tog = 15;
+    emit toggleCrossing(tog);
     vector<string> vec;
     vec.push_back("1");
     vec.push_back("60");
     string a = "111";
     string b = "111";
-    string c = "110";
+    string c = "111";
     string d = "000";
-    string e = "000";
+    string e = "111";
     string f = "11111";
     string g = "111";
     string h = "111111111111111111111";
@@ -258,6 +260,5 @@ void Wayside::on_red_test_clicked()
     string auth = a+b+c+d+e+f+g+h+i+j+k+l+m+n+o+p+q+r+s+t;
     vec.push_back(auth);
     emit trainChanged(vec);
-    emit toggleCrossing(15);
 }
 
