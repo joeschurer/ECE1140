@@ -295,7 +295,7 @@ void CtcOffice::buildGreenLineStationMap() {
 TrainEntry CtcOffice::dispatchTrain(int trainNumber, ScheduleEntry scheduleEntry){
     TrainEntry t = {trainNumber, scheduleEntry.suggestedSpeed, scheduleEntry.authority};
     dispatchedTrains.push_back(t);
-    qDebug() << "dispatching train";
+    qDebug() << "dispatching train" << QString::number(trainNumber) <<  "from block" << QString::number(scheduleEntry.start) << "to block" << QString::number(scheduleEntry.destination);
     return t;
 }
 
@@ -425,6 +425,7 @@ void CtcOffice::buildGreenLineGraph() {
     for(int i = 86; i<150; i++) {
         trackGraph[i].push_back(i+1);
     }
+    trackGraph[29].push_back(28);
     trackGraph[150].push_back(29);
 
 }
@@ -451,12 +452,22 @@ void CtcOffice::buildRedLineGraph(){
     trackGraph[66].push_back(52);
     trackGraph[9].push_back(0);
     trackGraph[0].push_back(9);
-    trackGraph[16].push_back(1);
+
     trackGraph[27].push_back(76);
     trackGraph[33].push_back(72);
     trackGraph[38].push_back(71);
     trackGraph[44].push_back(67);
-    trackGraph[52].push_back(66);
+
+
+    //making bottom loop unidirection
+    trackGraph[53].clear();
+    trackGraph[53].push_back(54);
+    //trackGraph[52].push_back(66);
+
+    //making top loop unidirectinal]
+    trackGraph[15].clear();
+    trackGraph[15].push_back(14);
+    //trackGraph[16].push_back(1);
 
 
     trackGraph[76].push_back(75);

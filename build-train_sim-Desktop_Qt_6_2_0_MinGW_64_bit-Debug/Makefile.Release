@@ -746,7 +746,10 @@ release/moc_homepagewindow.cpp: ../train_sim/homepagewindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
 		../train_sim/CtcOffice.h \
-		../train_sim/models.h \
+		../train_sim/Models.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h \
 		release/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
 	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\homepagewindow.h -o release\moc_homepagewindow.cpp
@@ -1035,6 +1038,9 @@ release/moc_mainwindow.cpp: ../train_sim/mainwindow.h \
 		../train_sim/track_layout.h \
 		../train_sim/PLC.h \
 		../train_sim/models.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h \
 		release/moc_predefs.h \
 		C:/Qt/6.2.0/mingw81_64/bin/moc.exe
 	C:\Qt\6.2.0\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/daisy1/Documents/GitHub/ECE1140/build-train_sim-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/6.2.0/mingw81_64/mkspecs/win32-g++ -IC:/Users/daisy1/Documents/GitHub/ECE1140/train_sim -IC:/Qt/6.2.0/mingw81_64/include -IC:/Qt/6.2.0/mingw81_64/include/QtWidgets -IC:/Qt/6.2.0/mingw81_64/include/QtGui -IC:/Qt/6.2.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\train_sim\mainwindow.h -o release\moc_mainwindow.cpp
@@ -2144,10 +2150,9 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 ####### Compile
 
 release/CtcOffice.o: ../train_sim/CtcOffice.cpp ../train_sim/CtcOffice.h \
-		../train_sim/models.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/QDebug \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdebug.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qalgorithms.h \
+		../train_sim/Models.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qglobal.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qconfig-bootstrapped.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qconfig.h \
@@ -2168,20 +2173,22 @@ release/CtcOffice.o: ../train_sim/CtcOffice.cpp ../train_sim/CtcOffice.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qglobalstatic.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qnumeric.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qversiontagging.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qhash.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcontainertools_impl.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtmetamacros.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qobject.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qobjectdefs_impl.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qstring.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qchar.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qstringview.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbytearray.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qrefcount.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qnamespace.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtmetamacros.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qarraydata.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qpair.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qarraydatapointer.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qarraydataops.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcontainertools_impl.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbytearrayalgorithms.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbytearrayview.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qstringliteral.h \
@@ -2190,39 +2197,41 @@ release/CtcOffice.o: ../train_sim/CtcOffice.cpp ../train_sim/CtcOffice.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qutf8stringview.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qstringtokenizer.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qstringbuilder.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qiterator.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qlist.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qiterator.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbytearraylist.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qstringlist.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qalgorithms.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmath.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmap.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qshareddata.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qshareddata_impl.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtextstream.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qiodevicebase.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qscopedpointer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qstringconverter.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qset.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcontiguouscache.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qsharedpointer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qsharedpointer_impl.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qobject.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qobjectdefs_impl.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreevent.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qscopedpointer.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmetatype.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcompare.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qscopeguard.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdatastream.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qiodevicebase.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qiterable.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmetacontainer.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcontainerinfo.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtaggedpointer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmath.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qobject_impl.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qproperty.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qshareddata.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qpropertyprivate.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QDebug \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdebug.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qhash.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qmap.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qstringconverter.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qset.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/QFile \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfile.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qfiledevice.h \
@@ -2303,6 +2312,9 @@ release/PLC.o: ../train_sim/PLC.cpp ../train_sim/PLC.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qshareddata.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qpropertyprivate.h \
 		../train_sim/models.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTextStream \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtextstream.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qstringconverter.h \
@@ -2870,7 +2882,10 @@ release/homepagewindow.o: ../train_sim/homepagewindow.cpp ../train_sim/HomepageW
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
 		../train_sim/CtcOffice.h \
-		../train_sim/models.h \
+		../train_sim/Models.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h \
 		ui_HomepageWindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
@@ -3265,7 +3280,10 @@ release/lineselect.o: ../train_sim/lineselect.cpp ../train_sim/lineselect.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qpushbutton.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qicon.h \
-		../train_sim/models.h
+		../train_sim/models.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\lineselect.o ..\train_sim\lineselect.cpp
 
 release/main.o: ../train_sim/main.cpp ../train_sim/trainsimwindow.h \
@@ -3419,6 +3437,9 @@ release/main.o: ../train_sim/main.cpp ../train_sim/trainsimwindow.h \
 		../train_sim/track_layout.h \
 		../train_sim/PLC.h \
 		../train_sim/models.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h \
 		../train_sim/lineselect.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QDialog \
 		../train_sim/trackmodel.h \
@@ -3493,9 +3514,7 @@ release/main.o: ../train_sim/main.cpp ../train_sim/trainsimwindow.h \
 		../train_sim/wayside.h \
 		../train_sim/homepagewindow.h \
 		../train_sim/CtcOffice.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
-		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h \
+		../train_sim/Models.h \
 		../train_sim/trainmodelui.h \
 		../train_sim/traincalculate.h \
 		../train_sim/engineer.h \
@@ -3653,6 +3672,9 @@ release/mainwindow.o: ../train_sim/mainwindow.cpp ../train_sim/mainwindow.h \
 		../train_sim/track_layout.h \
 		../train_sim/PLC.h \
 		../train_sim/models.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h \
 		ui_mainwindow.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
@@ -4050,7 +4072,10 @@ release/track_layout.o: ../train_sim/track_layout.cpp ../train_sim/track_layout.
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcontiguouscache.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qsharedpointer.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qsharedpointer_impl.h \
-		../train_sim/models.h
+		../train_sim/models.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\track_layout.o ..\train_sim\track_layout.cpp
 
 release/trackmodel.o: ../train_sim/trackmodel.cpp ../train_sim/trackmodel.h \
@@ -4410,10 +4435,7 @@ release/trainfactory.o: ../train_sim/trainfactory.cpp ../train_sim/trainfactory.
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QWidget \
 		../train_sim/traincalculate.h \
 		ui_trainfactory.h \
-		ui_trainmodelui.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/QAction \
-		C:/Qt/6.2.0/mingw81_64/include/QtGui/qaction.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QApplication \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qapplication.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -4435,6 +4457,14 @@ release/trainfactory.o: ../train_sim/trainfactory.cpp ../train_sim/trainfactory.
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qinputmethod.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qlocale.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtGui/qguiapplication_platform.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/qaction.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qstatusbar.h \
+		ui_trainmodelui.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtGui/QAction \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QFrame \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtWidgets/QHeaderView \
@@ -5278,6 +5308,9 @@ release/waysidecontroller.o: ../train_sim/waysidecontroller.cpp ../train_sim/way
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qpropertyprivate.h \
 		../train_sim/PLC.h \
 		../train_sim/models.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/QTimer \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qtimer.h \
+		C:/Qt/6.2.0/mingw81_64/include/QtCore/qbasictimer.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/QDebug \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qdebug.h \
 		C:/Qt/6.2.0/mingw81_64/include/QtCore/qhash.h \

@@ -7,7 +7,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <queue>
-#include "models.h"
+#include "Models.h"
 
 using std::string;
 using std::vector;
@@ -16,7 +16,6 @@ extern int systemClock;
 extern int simulationSpeed;
 
 typedef std::pair<int, int> Time;
-
 
 namespace utility {
 vector<string> split(string s, string delimeter);

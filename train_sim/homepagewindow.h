@@ -29,7 +29,6 @@ signals:
 private slots:
     void on_uploadScheduleButton_clicked();
 
-    void updateTrainTable(std::list<ScheduleEntry> schedule);
     void updateOccupancyTable(vector<bool> occupancy);
     void updateTrainTable(std::unordered_map<int, std::vector<ScheduleEntry>>);
 
@@ -49,10 +48,6 @@ private slots:
 
     void on_manageTracksButton_clicked();
 
-    void on_submitTestTrackInputButton_clicked();
-
-    void on_submitTestTrainInputButton_clicked();
-
     void on_addSwitchButton_clicked();
 
     void on_dispatchButton_clicked();
@@ -60,6 +55,16 @@ private slots:
     void on_submitBlockButton_clicked();
 
     void on_removeTrackButton_clicked();
+
+    void on_submitTestOccupancyPushButton_clicked();
+
+    void on_SubmitTestTicketsSoldButton_clicked();
+
+    void on_oneXButton_clicked();
+
+    void on_tenXButton_clicked();
+
+    void on_startSimulationButton_clicked();
 
 private:
     Ui::HomepageWindow *ui;

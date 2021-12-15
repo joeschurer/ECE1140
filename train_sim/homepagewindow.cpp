@@ -1,5 +1,6 @@
 #include "HomepageWindow.h"
 #include "ui_HomepageWindow.h"
+#include "Models.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <fstream>
@@ -13,24 +14,28 @@ using std::string;
 using std::vector;
 
 int systemClock = 0;
-int simulationSpeed = 15;
+int simulationSpeed = 1;
+QTimer globalTimer = QTimer();
 HomepageWindow::HomepageWindow(QWidget *parent, CtcOffice *ctcOffice)
     : QMainWindow(parent), ui(new Ui::HomepageWindow), ctcOffice_(ctcOffice) {
   ui->setupUi(this);
+  auto line = ui->trackLineLineEdit;
+  if(ctcOffice_->getCurrentLine()==Green){
+      line->setStyleSheet("color: ""green""");
+      line->setText("Green");
+  } else {
+      line->setStyleSheet("color: ""red""");
+      line->setText("Red");
+  }
+  ui->systemStatusLineEdit->setStyleSheet("color: ""green""");
+  ui->systemStatusLineEdit->setText("System Running at 1x Speed");
   initializeTestInterfaceUi();
 }
 
 HomepageWindow::~HomepageWindow() { delete ui; }
 
 void HomepageWindow::initializeTestInterfaceUi() {
-  ui->testTrackComboBox->insertItems(0, {"Blue:A", "Blue:B", "Blue:C"});
-  ui->testTrackConditionComboBox->insertItems(
-      0, {"Broken Rail", "Track Circuit Failure", "Power Failure"});
-  ui->testTrainComboBox->insertItems(0, {"Train 1", "Train 2", "Train 3"});
-  ui->testLocationComboBox->insertItems(
-      0, {"Blue:A:1", "Blue:A:2", "Blue:A:3", "Blue:A:4", "Blue:A:5",
-          "Blue:B:6", "Blue:B:7", "Blue:B:8", "Blue:B:9", "Blue:B:10",
-          "Blue:C:11", "Blue:C:12", "Blue:C:13", "Blue:C:14", "Blue:C:15"});
+
 }
 
 void HomepageWindow::on_homepageButton_clicked() {
@@ -91,58 +96,6 @@ void HomepageWindow::updateTrainTable(
     }
   }
 }
-void HomepageWindow::updateTrainTable(std::list<ScheduleEntry> schedule) {
-  /*
-  std::list<ScheduleEntry>::iterator current=schedule.begin();
-  auto next = std::next(current,1);
-  auto trainTableWidget = ui->trainTableWidget;
-  // from yard to first station
-  int numRows = trainTableWidget->rowCount();
-  trainTableWidget->insertRow(numRows);
-  auto numTrains = ctcOffice_->getNumTrains();
-  string trainString = "Train " + std::to_string(numTrains);
-  trainTableWidget->setItem(numRows, 0, new
-  QTableWidgetItem(trainString.c_str())); string routeString = "Yard->" +
-  current->infrastructure; trainTableWidget->setItem(numRows, 1, new
-  QTableWidgetItem(routeString.c_str()));
-  // dwell is one minute
-  auto arrivalTime = std::stod(current->timeToStation) -1;
-  double previousDepartureTime = arrivalTime+1;
-  string timeString =
-  utility::convertMinutesToMinuteAndSecond(std::to_string(arrivalTime));
-  trainTableWidget->setItem(numRows, 2, new
-  QTableWidgetItem(timeString.c_str())); auto suggestedSpeed =
-  ctcOffice_->computeRouteSuggestedSpeed(routeString);
-  trainTableWidget->setItem(numRows, 3, new
-  QTableWidgetItem(std::to_string(suggestedSpeed).c_str())); auto authority =
-  ctcOffice_->computeRouteAuthority(routeString);
-  trainTableWidget->setItem(numRows, 4, new
-  QTableWidgetItem(std::to_string(authority).c_str()));
-  ctcOffice_->getRouteBlockList(routeString);
-  // other station
-  for (current = schedule.begin(); next != schedule.end(); ++current){
-      int numRows = trainTableWidget->rowCount();
-      trainTableWidget->insertRow(numRows);
-      trainTableWidget->setItem(numRows, 0, new QTableWidgetItem("Train 1"));
-      routeString = current->infrastructure + "->" + next->infrastructure;
-      trainTableWidget->setItem(numRows, 1, new
-  QTableWidgetItem(routeString.c_str())); auto arrivalTime =
-  std::stod(next->timeToStation) + previousDepartureTime -1; string timeString =
-  utility::convertMinutesToMinuteAndSecond(std::to_string(arrivalTime));
-      trainTableWidget->setItem(numRows, 2, new
-  QTableWidgetItem(timeString.c_str())); auto suggestedSpeed =
-  ctcOffice_->computeRouteSuggestedSpeed(routeString);
-      trainTableWidget->setItem(numRows, 3, new
-  QTableWidgetItem(std::to_string(suggestedSpeed).c_str())); auto authority =
-  ctcOffice_->computeRouteAuthority(routeString);
-      trainTableWidget->setItem(numRows, 4, new
-  QTableWidgetItem(std::to_string(authority).c_str()));
-      ctcOffice_->getRouteBlockList(routeString);
-      next++;
-      // 1 minute dwell
-      previousDepartureTime = arrivalTime + 1;
-  }*/
-}
 
 void HomepageWindow::updateTrainComboBox() {
   /*
@@ -175,28 +128,6 @@ void HomepageWindow::on_plusButton_clicked() {
     }
     updateTrainTable(ctcOffice_->getSchedule());
   }
-
-  /*
-  if(!scheduleTrainText.isEmpty() && !scheduleRouteText.isEmpty() &&
-  !scheduleArrivalText.isEmpty()){ auto trainTableWidget = ui->trainTableWidget;
-      int numRows = trainTableWidget->rowCount();
-      trainTableWidget->insertRow(numRows);
-      trainTableWidget->setItem(numRows, 0, new
-  QTableWidgetItem(scheduleTrainText)); trainTableWidget->setItem(numRows, 1,
-  new QTableWidgetItem(scheduleRouteText)); string timeString =
-  utility::convertMinutesToMinuteAndSecond(scheduleArrivalText.toStdString());
-      trainTableWidget->setItem(numRows, 2, new
-  QTableWidgetItem(timeString.c_str()));
-   //   auto suggestedSpeed =
-  ctcOffice_->computeRouteSuggestedSpeed(scheduleRouteText.toStdString());
-      trainTableWidget->setItem(numRows, 3, new
-  QTableWidgetItem(std::to_string(suggestedSpeed).c_str()));
-    //  auto authority =
-  ctcOffice_->computeRouteAuthority(scheduleRouteText.toStdString());
-      trainTableWidget->setItem(numRows, 4, new
-  QTableWidgetItem(std::to_string(authority).c_str()));
-      ctcOffice_->getRouteBlockList(scheduleRouteText.toStdString());
-  }*/
 }
 
 void HomepageWindow::on_addTrackSectionButton_clicked() {
@@ -226,35 +157,11 @@ void HomepageWindow::on_maintenanceModeCheckBox_stateChanged(int arg1) {
   auto checkbox = ui->maintenanceModeCheckBox;
   if (checkbox->isChecked()) {
     ui->addSwitchButton->setEnabled(true);
-    ui->removeSwitchButton->setEnabled(true);
     ui->switchLineEdit->setEnabled(true);
   } else {
     ui->addSwitchButton->setEnabled(false);
-    ui->removeSwitchButton->setEnabled(false);
     ui->switchLineEdit->setEnabled(false);
   }
-}
-
-void HomepageWindow::on_submitTestTrackInputButton_clicked() {
-  auto trackTable = ui->trackSectionTable;
-  int numRows = trackTable->rowCount();
-  trackTable->insertRow(numRows);
-  trackTable->setItem(
-      numRows, 0, new QTableWidgetItem(ui->testTrackComboBox->currentText()));
-  ui->stackedWidget->setCurrentIndex(2);
-}
-
-void HomepageWindow::on_submitTestTrainInputButton_clicked() {
-  /*
-  auto comboBox = ui->selectTrainComboBox;
-  comboBox->insertItem(0, ui->testTrainComboBox->currentText());
-  comboBox->setCurrentIndex(0);
-  ui->speedLineEdit->setText(ui->testSpeedLineEdit->text());
-  ui->authorityLineEdit->setText(ui->testAuthorityLineEdit->text());
-  ui->locationLineEdit->setText(ui->testLocationComboBox->currentText());
-  ui->destinationLineEdit->setText(ui->testDestinationLineEdit->text());
-  ui->stackedWidget->setCurrentIndex(0);
-  */
 }
 
 void HomepageWindow::on_addSwitchButton_clicked() {
@@ -274,7 +181,11 @@ void HomepageWindow::on_addSwitchButton_clicked() {
 
 void HomepageWindow::on_dispatchButton_clicked() {
   auto schedule = ctcOffice_->getSchedule();
-  emit sendDispatchInfo(ctcOffice_->dispatchTrain(1, schedule[1][0]));
+  for (auto element : schedule) {
+    for (auto scheduleEntry : element.second) {
+        emit sendDispatchInfo(ctcOffice_->dispatchTrain(scheduleEntry.trainNumber, scheduleEntry));
+    }
+  }
 }
 
 void HomepageWindow::receiveOccupancy(vector<bool> occupancy) {
@@ -308,7 +219,7 @@ void HomepageWindow::updateOccupancyTable(vector<bool> occupancy) {
   ui->dispatchedTrainsCountLineEdit->setText(QString::number(totalDispatchedTrains));
   if(totalOccupancy>totalDispatchedTrains) {
       ui->trackFailureAlertTextEdit->setTextColor(QColor("red"));
-      ui->trackFailureAlertTextEdit->setText("Alert: Occupancies>DispatchedTrains, Potential Track Failure");
+      ui->trackFailureAlertTextEdit->setText("Alert: Occupancies>Dispatched Trains, Potential Track Failure");
   } else {
       ui->trackFailureAlertTextEdit->clear();
   }
@@ -316,14 +227,12 @@ void HomepageWindow::updateOccupancyTable(vector<bool> occupancy) {
 
 void HomepageWindow::timerSlot() {
   systemClock += 1;
-  if(systemClock==360){
-      qDebug() << "should dispatch";
-  }
+  //qDebug() << systemClock;
   bool trainDispatched = ctcOffice_->checkForDispatch(systemClock);
   Time currentTime = ctcOffice_->toTimeFromSeconds(systemClock);
   ui->timeHourLineEdit->setText(std::to_string(currentTime.first).c_str());
   ui->timeHourLineEdit_2->setText(std::to_string(currentTime.first).c_str());
-  ui->timeHourLineEdit_2->setText(std::to_string(currentTime.first).c_str());
+  ui->timeHourLineEdit_3->setText(std::to_string(currentTime.first).c_str());
   ui->timeMinuteLineEdit->setText(std::to_string(currentTime.second).c_str());
   ui->timeMinuteLineEdit_2->setText(std::to_string(currentTime.second).c_str());
   ui->timeMinuteLineEdit_3->setText(std::to_string(currentTime.second).c_str());
@@ -367,6 +276,72 @@ void HomepageWindow::on_removeTrackButton_clicked()
         }
         auto closedBlocksVector = ctcOffice_->sendClosedBlocks();
         emit sendClosedBlocks(closedBlocksVector);
+    }
+}
+
+
+void HomepageWindow::on_submitTestOccupancyPushButton_clicked()
+{
+    vector<bool> occupancy;
+    if(ctcOffice_->getCurrentLine()==Green){
+        occupancy = vector<bool>(150, false);
+
+    } else {
+        occupancy = vector<bool>(76, false);
+    }
+    auto occupiedBlocksString = ui->testOccupancyLineEdit->text().toStdString();
+    auto blockVector = utility::split(occupiedBlocksString, ",");
+    for(auto block: blockVector){
+        occupancy[stoi(block)]=true;
+    }
+    ctcOffice_->updateOccupancy(occupancy);
+    updateOccupancyTable(occupancy);
+}
+
+
+void HomepageWindow::on_SubmitTestTicketsSoldButton_clicked()
+{
+    auto tickets = ui->testTicketsSoldLineEdit->text().toInt();
+    ctcOffice_->setTickets(tickets);
+}
+
+
+
+
+void HomepageWindow::on_oneXButton_clicked()
+{
+    globalTimer.start(1000);
+    simulationSpeed = 1;
+    ui->systemStatusLineEdit->setStyleSheet("color: ""green""");
+    ui->systemStatusLineEdit->setText("System Running at 1x Speed");
+}
+
+
+void HomepageWindow::on_tenXButton_clicked()
+{
+    globalTimer.start(100);
+    simulationSpeed = 10;
+    ui->systemStatusLineEdit->setStyleSheet("color: ""green""");
+    ui->systemStatusLineEdit->setText("System Running at 10x Speed");
+}
+
+void HomepageWindow::on_startSimulationButton_clicked()
+{
+    if(globalTimer.isActive()) {
+        globalTimer.stop();
+        ui->systemStatusLineEdit->setStyleSheet("color: ""red""");
+        ui->systemStatusLineEdit->setText("System Paused");
+    } else {
+        if(simulationSpeed==1){
+            globalTimer.start(1000);
+            ui->systemStatusLineEdit->setStyleSheet("color: ""green""");
+            ui->systemStatusLineEdit->setText("System Running at 1x Speed");
+
+        } else if(simulationSpeed==10){
+            globalTimer.start(100);
+            ui->systemStatusLineEdit->setStyleSheet("color: ""green""");
+            ui->systemStatusLineEdit->setText("System Running at 10x Speed");
+        }
     }
 }
 

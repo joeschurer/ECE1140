@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_HomepageWindow_t {
-    const uint offsetsAndSize[68];
-    char stringdata0[748];
+    const uint offsetsAndSize[70];
+    char stringdata0[795];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_HomepageWindow_t, stringdata0) + ofs), len 
@@ -43,26 +43,27 @@ QT_MOC_LITERAL(132, 18), // "receiveTicketSales"
 QT_MOC_LITERAL(151, 7), // "tickets"
 QT_MOC_LITERAL(159, 9), // "timerSlot"
 QT_MOC_LITERAL(169, 31), // "on_uploadScheduleButton_clicked"
-QT_MOC_LITERAL(201, 16), // "updateTrainTable"
-QT_MOC_LITERAL(218, 24), // "std::list<ScheduleEntry>"
-QT_MOC_LITERAL(243, 8), // "schedule"
-QT_MOC_LITERAL(252, 20), // "updateOccupancyTable"
-QT_MOC_LITERAL(273, 50), // "std::unordered_map<int,std::v..."
-QT_MOC_LITERAL(324, 19), // "updateTrainComboBox"
-QT_MOC_LITERAL(344, 21), // "on_plusButton_clicked"
-QT_MOC_LITERAL(366, 32), // "on_addTrackSectionButton_clicked"
-QT_MOC_LITERAL(399, 39), // "on_maintenanceModeCheckBox_st..."
-QT_MOC_LITERAL(439, 4), // "arg1"
-QT_MOC_LITERAL(444, 30), // "on_testInterfaceButton_clicked"
-QT_MOC_LITERAL(475, 25), // "on_homepageButton_clicked"
-QT_MOC_LITERAL(501, 29), // "on_manageTrainsButton_clicked"
-QT_MOC_LITERAL(531, 29), // "on_manageTracksButton_clicked"
-QT_MOC_LITERAL(561, 37), // "on_submitTestTrackInputButton..."
-QT_MOC_LITERAL(599, 37), // "on_submitTestTrainInputButton..."
-QT_MOC_LITERAL(637, 26), // "on_addSwitchButton_clicked"
-QT_MOC_LITERAL(664, 25), // "on_dispatchButton_clicked"
-QT_MOC_LITERAL(690, 28), // "on_submitBlockButton_clicked"
-QT_MOC_LITERAL(719, 28) // "on_removeTrackButton_clicked"
+QT_MOC_LITERAL(201, 20), // "updateOccupancyTable"
+QT_MOC_LITERAL(222, 16), // "updateTrainTable"
+QT_MOC_LITERAL(239, 50), // "std::unordered_map<int,std::v..."
+QT_MOC_LITERAL(290, 19), // "updateTrainComboBox"
+QT_MOC_LITERAL(310, 21), // "on_plusButton_clicked"
+QT_MOC_LITERAL(332, 32), // "on_addTrackSectionButton_clicked"
+QT_MOC_LITERAL(365, 39), // "on_maintenanceModeCheckBox_st..."
+QT_MOC_LITERAL(405, 4), // "arg1"
+QT_MOC_LITERAL(410, 30), // "on_testInterfaceButton_clicked"
+QT_MOC_LITERAL(441, 25), // "on_homepageButton_clicked"
+QT_MOC_LITERAL(467, 29), // "on_manageTrainsButton_clicked"
+QT_MOC_LITERAL(497, 29), // "on_manageTracksButton_clicked"
+QT_MOC_LITERAL(527, 26), // "on_addSwitchButton_clicked"
+QT_MOC_LITERAL(554, 25), // "on_dispatchButton_clicked"
+QT_MOC_LITERAL(580, 28), // "on_submitBlockButton_clicked"
+QT_MOC_LITERAL(609, 28), // "on_removeTrackButton_clicked"
+QT_MOC_LITERAL(638, 40), // "on_submitTestOccupancyPushBut..."
+QT_MOC_LITERAL(679, 38), // "on_SubmitTestTicketsSoldButto..."
+QT_MOC_LITERAL(718, 21), // "on_oneXButton_clicked"
+QT_MOC_LITERAL(740, 21), // "on_tenXButton_clicked"
+QT_MOC_LITERAL(762, 32) // "on_startSimulationButton_clicked"
 
     },
     "HomepageWindow\0sendClosedBlocks\0\0"
@@ -71,8 +72,7 @@ QT_MOC_LITERAL(719, 28) // "on_removeTrackButton_clicked"
     "receiveOccupancy\0occupancy\0"
     "receiveTicketSales\0tickets\0timerSlot\0"
     "on_uploadScheduleButton_clicked\0"
-    "updateTrainTable\0std::list<ScheduleEntry>\0"
-    "schedule\0updateOccupancyTable\0"
+    "updateOccupancyTable\0updateTrainTable\0"
     "std::unordered_map<int,std::vector<ScheduleEntry>>\0"
     "updateTrainComboBox\0on_plusButton_clicked\0"
     "on_addTrackSectionButton_clicked\0"
@@ -81,12 +81,14 @@ QT_MOC_LITERAL(719, 28) // "on_removeTrackButton_clicked"
     "on_homepageButton_clicked\0"
     "on_manageTrainsButton_clicked\0"
     "on_manageTracksButton_clicked\0"
-    "on_submitTestTrackInputButton_clicked\0"
-    "on_submitTestTrainInputButton_clicked\0"
     "on_addSwitchButton_clicked\0"
     "on_dispatchButton_clicked\0"
     "on_submitBlockButton_clicked\0"
-    "on_removeTrackButton_clicked"
+    "on_removeTrackButton_clicked\0"
+    "on_submitTestOccupancyPushButton_clicked\0"
+    "on_SubmitTestTicketsSoldButton_clicked\0"
+    "on_oneXButton_clicked\0on_tenXButton_clicked\0"
+    "on_startSimulationButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -96,7 +98,7 @@ static const uint qt_meta_data_HomepageWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      24,   14, // methods
+      26,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -104,32 +106,34 @@ static const uint qt_meta_data_HomepageWindow[] = {
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  158,    2, 0x06,    1 /* Public */,
-       4,    1,  161,    2, 0x06,    3 /* Public */,
-       6,    1,  164,    2, 0x06,    5 /* Public */,
+       1,    1,  170,    2, 0x06,    1 /* Public */,
+       4,    1,  173,    2, 0x06,    3 /* Public */,
+       6,    1,  176,    2, 0x06,    5 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       8,    1,  167,    2, 0x0a,    7 /* Public */,
-      10,    1,  170,    2, 0x0a,    9 /* Public */,
-      12,    0,  173,    2, 0x0a,   11 /* Public */,
-      13,    0,  174,    2, 0x08,   12 /* Private */,
-      14,    1,  175,    2, 0x08,   13 /* Private */,
-      17,    1,  178,    2, 0x08,   15 /* Private */,
-      14,    1,  181,    2, 0x08,   17 /* Private */,
-      19,    0,  184,    2, 0x08,   19 /* Private */,
-      20,    0,  185,    2, 0x08,   20 /* Private */,
-      21,    0,  186,    2, 0x08,   21 /* Private */,
-      22,    1,  187,    2, 0x08,   22 /* Private */,
-      24,    0,  190,    2, 0x08,   24 /* Private */,
-      25,    0,  191,    2, 0x08,   25 /* Private */,
-      26,    0,  192,    2, 0x08,   26 /* Private */,
-      27,    0,  193,    2, 0x08,   27 /* Private */,
-      28,    0,  194,    2, 0x08,   28 /* Private */,
-      29,    0,  195,    2, 0x08,   29 /* Private */,
-      30,    0,  196,    2, 0x08,   30 /* Private */,
-      31,    0,  197,    2, 0x08,   31 /* Private */,
-      32,    0,  198,    2, 0x08,   32 /* Private */,
-      33,    0,  199,    2, 0x08,   33 /* Private */,
+       8,    1,  179,    2, 0x0a,    7 /* Public */,
+      10,    1,  182,    2, 0x0a,    9 /* Public */,
+      12,    0,  185,    2, 0x0a,   11 /* Public */,
+      13,    0,  186,    2, 0x08,   12 /* Private */,
+      14,    1,  187,    2, 0x08,   13 /* Private */,
+      15,    1,  190,    2, 0x08,   15 /* Private */,
+      17,    0,  193,    2, 0x08,   17 /* Private */,
+      18,    0,  194,    2, 0x08,   18 /* Private */,
+      19,    0,  195,    2, 0x08,   19 /* Private */,
+      20,    1,  196,    2, 0x08,   20 /* Private */,
+      22,    0,  199,    2, 0x08,   22 /* Private */,
+      23,    0,  200,    2, 0x08,   23 /* Private */,
+      24,    0,  201,    2, 0x08,   24 /* Private */,
+      25,    0,  202,    2, 0x08,   25 /* Private */,
+      26,    0,  203,    2, 0x08,   26 /* Private */,
+      27,    0,  204,    2, 0x08,   27 /* Private */,
+      28,    0,  205,    2, 0x08,   28 /* Private */,
+      29,    0,  206,    2, 0x08,   29 /* Private */,
+      30,    0,  207,    2, 0x08,   30 /* Private */,
+      31,    0,  208,    2, 0x08,   31 /* Private */,
+      32,    0,  209,    2, 0x08,   32 /* Private */,
+      33,    0,  210,    2, 0x08,   33 /* Private */,
+      34,    0,  211,    2, 0x08,   34 /* Private */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    2,
@@ -141,13 +145,15 @@ static const uint qt_meta_data_HomepageWindow[] = {
     QMetaType::Void, QMetaType::Int,   11,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 15,   16,
     QMetaType::Void, 0x80000000 | 3,    9,
-    QMetaType::Void, 0x80000000 | 18,    2,
+    QMetaType::Void, 0x80000000 | 16,    2,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   23,
+    QMetaType::Void, QMetaType::Int,   21,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -175,23 +181,25 @@ void HomepageWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 4: _t->receiveTicketSales((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 5: _t->timerSlot(); break;
         case 6: _t->on_uploadScheduleButton_clicked(); break;
-        case 7: _t->updateTrainTable((*reinterpret_cast< std::list<ScheduleEntry>(*)>(_a[1]))); break;
-        case 8: _t->updateOccupancyTable((*reinterpret_cast< vector<bool>(*)>(_a[1]))); break;
-        case 9: _t->updateTrainTable((*reinterpret_cast< std::unordered_map<int,std::vector<ScheduleEntry>>(*)>(_a[1]))); break;
-        case 10: _t->updateTrainComboBox(); break;
-        case 11: _t->on_plusButton_clicked(); break;
-        case 12: _t->on_addTrackSectionButton_clicked(); break;
-        case 13: _t->on_maintenanceModeCheckBox_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 14: _t->on_testInterfaceButton_clicked(); break;
-        case 15: _t->on_homepageButton_clicked(); break;
-        case 16: _t->on_manageTrainsButton_clicked(); break;
-        case 17: _t->on_manageTracksButton_clicked(); break;
-        case 18: _t->on_submitTestTrackInputButton_clicked(); break;
-        case 19: _t->on_submitTestTrainInputButton_clicked(); break;
-        case 20: _t->on_addSwitchButton_clicked(); break;
-        case 21: _t->on_dispatchButton_clicked(); break;
-        case 22: _t->on_submitBlockButton_clicked(); break;
-        case 23: _t->on_removeTrackButton_clicked(); break;
+        case 7: _t->updateOccupancyTable((*reinterpret_cast< vector<bool>(*)>(_a[1]))); break;
+        case 8: _t->updateTrainTable((*reinterpret_cast< std::unordered_map<int,std::vector<ScheduleEntry>>(*)>(_a[1]))); break;
+        case 9: _t->updateTrainComboBox(); break;
+        case 10: _t->on_plusButton_clicked(); break;
+        case 11: _t->on_addTrackSectionButton_clicked(); break;
+        case 12: _t->on_maintenanceModeCheckBox_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 13: _t->on_testInterfaceButton_clicked(); break;
+        case 14: _t->on_homepageButton_clicked(); break;
+        case 15: _t->on_manageTrainsButton_clicked(); break;
+        case 16: _t->on_manageTracksButton_clicked(); break;
+        case 17: _t->on_addSwitchButton_clicked(); break;
+        case 18: _t->on_dispatchButton_clicked(); break;
+        case 19: _t->on_submitBlockButton_clicked(); break;
+        case 20: _t->on_removeTrackButton_clicked(); break;
+        case 21: _t->on_submitTestOccupancyPushButton_clicked(); break;
+        case 22: _t->on_SubmitTestTicketsSoldButton_clicked(); break;
+        case 23: _t->on_oneXButton_clicked(); break;
+        case 24: _t->on_tenXButton_clicked(); break;
+        case 25: _t->on_startSimulationButton_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -228,7 +236,7 @@ const QMetaObject HomepageWindow::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_HomepageWindow_t
 , QtPrivate::TypeAndForceComplete<HomepageWindow, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<bool>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<TrainEntry, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<bool>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<std::list<ScheduleEntry>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<bool>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<std::unordered_map<int,std::vector<ScheduleEntry>>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<bool>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<vector<bool>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<std::unordered_map<int,std::vector<ScheduleEntry>>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,
@@ -255,13 +263,13 @@ int HomepageWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 26)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 26;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 24)
+        if (_id < 26)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 24;
+        _id -= 26;
     }
     return _id;
 }

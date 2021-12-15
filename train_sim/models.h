@@ -6,14 +6,15 @@
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
+#include <QTimer>
 
 
+extern QTimer globalTimer;
 using std::string;
 using std::vector;
 extern int systemClock;
 extern int simulationSpeed;
 extern int globalLine;
-
 typedef std::pair<int, int> Time;
 enum TrackLine {Green, Red};
 
@@ -59,6 +60,5 @@ namespace utility {
 vector<string> split(string s, string delimeter);
 string convertMinutesToMinuteAndSecond(string time);
 }
-
 
 #endif // MODELS_H
