@@ -318,11 +318,6 @@ void MainWindow::on_maintenance_toggle_clicked()
 
 }
 
-/*std::vector<bool>  MainWindow::sendCTCOcc(){
-    std::vector<bool> temp =plc.sendCTCOcc();
-    return(temp);
-}*/
-
 void  MainWindow::receiveOcc(std::vector<bool> occ){
     vector<vector<int>> changes = waysideController.receiveOcc(occ);
 
@@ -363,7 +358,7 @@ void MainWindow::recieveAuth(TrainEntry t){
     emit sendTrackModelSwitches(sw);
     emit activateCrossing(cross);
 
-    std::vector<bool> temp = waysideController.sendTrackModelAuth();\
+    std::vector<bool> temp = waysideController.sendTrackModelAuth();
     emit sendTrackModelAuth(temp);
     //emit sendTrackModelAuth(temp);
     std::string auth_string;

@@ -59,14 +59,17 @@ vector<vector<int>> WaysideController::ctc_reccomend(std::vector<bool> a){
 
     vector<int> toggleSW,toggleCR;
     vector<vector<int>> temp;
+    vector<int> tempAuth;
     for(int i=0;i<waysides.size(); i++){
         vector<vector<int>>temp = waysides[i].parsePLC();
         toggleSW.insert(std::end(toggleSW), std::begin(temp[0]), std::end(temp[0]));
         toggleCR.insert(std::end(toggleCR), std::begin(temp[1]), std::end(temp[1]));
+        tempAuth = temp[2];
     }
 
     temp.push_back(toggleSW);
     temp.push_back(toggleCR);
+    temp.push_back(tempAuth);
     return temp;
 }
 
@@ -108,14 +111,16 @@ vector<vector<int>> WaysideController::receiveOcc(std::vector<bool> occ){
 
     vector<int> toggleSW,toggleCR;
     vector<vector<int>> temp;
+    vector<int> tempAuth;
     for(int i=0;i<waysides.size(); i++){
         vector<vector<int>>temp = waysides[i].parsePLC();
         toggleSW.insert(std::end(toggleSW), std::begin(temp[0]), std::end(temp[0]));
         toggleCR.insert(std::end(toggleCR), std::begin(temp[1]), std::end(temp[1]));
+        tempAuth = temp[2];
     }
-
     temp.push_back(toggleSW);
     temp.push_back(toggleCR);
+    temp.push_back(tempAuth);
     return temp;
 }
 

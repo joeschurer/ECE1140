@@ -67,18 +67,18 @@ int main(int argc, char *argv[])
 
 
 
-    QObject::connect(&e, SIGNAL(SubmitKpKi(double,double)), &s, SLOT(KpKiChanged(double,double)));
-    QObject::connect(&s, SIGNAL(TempDifferent(int)), &w, SLOT(TempChanged(int)));
-    QObject::connect(&s, SIGNAL(LeftDoorsDifferent(bool)), &w, SLOT(LeftDoorsChanged(bool)));
-    QObject::connect(&s, SIGNAL(RightDoorsDifferent(bool)), &w, SLOT(RightDoorsChanged(bool)));
-    QObject::connect(&s, SIGNAL(LightsDifferent(bool)), &w, SLOT(LightsChanged(bool)));
-    QObject::connect(&s, SIGNAL(PowerCalculated(int)), &w, SLOT(PowerChanged(int)));
-    QObject::connect(&s, SIGNAL(EmergencyBrakeDifferent(bool)), &w, SLOT(EmergencyBrakeChanged(bool)));
+//    QObject::connect(&e, SIGNAL(SubmitKpKi(double,double)), &s, SLOT(KpKiChanged(double,double)));
+//    QObject::connect(&s, SIGNAL(TempDifferent(int)), &w, SLOT(TempChanged(int)));
+//    QObject::connect(&s, SIGNAL(LeftDoorsDifferent(bool)), &w, SLOT(LeftDoorsChanged(bool)));
+//    QObject::connect(&s, SIGNAL(RightDoorsDifferent(bool)), &w, SLOT(RightDoorsChanged(bool)));
+//    QObject::connect(&s, SIGNAL(LightsDifferent(bool)), &w, SLOT(LightsChanged(bool)));
+//    QObject::connect(&s, SIGNAL(PowerCalculated(int)), &w, SLOT(PowerChanged(int)));
+//    QObject::connect(&s, SIGNAL(EmergencyBrakeDifferent(bool)), &w, SLOT(EmergencyBrakeChanged(bool)));
 
 
     TrainModel trainUI;
     trainUI.setGeometry(860, 350, 300, 300);
-    trainUI.show();
+   trainUI.show();
 
     QTimer timer;
     timer.start(1000/simulationSpeed);
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
     QObject::connect(&wui, &MainWindow::sendFixed, &window,&TrackModel::fixBlock);
     QObject::connect(&wui, &MainWindow::sendTrainDispatch,&window, &TrackModel::trainUpdated);
     QObject::connect(&trainUI, SIGNAL(trainMoved(int)), &window, SLOT(trainMoved(int)));
-    QObject::connect(&trainUI, SIGNAL(trainSpeedUpdated(QString)), &window, SLOT(actualSpeedChanged(QString)));
+  QObject::connect(&trainUI, SIGNAL(trainSpeedUpdated(QString)), &window, SLOT(actualSpeedChanged(QString)));
     QObject::connect(&wui, &MainWindow::sendTrainDispatch, &window, &TrackModel::trainUpdated);
     QObject::connect(&wui, &MainWindow::sendTrackModelSwitches, &window, &TrackModel::toggleSwitch);
     QObject::connect(&window, SIGNAL(beaconData(string)), &beacon, SLOT(transmitting(string)));
